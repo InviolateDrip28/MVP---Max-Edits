@@ -1,7 +1,7 @@
 ## Getting Started
-Prereq: have npm installed.
+Prerequisite: have `npm` installed.
 
-**Run the following commands from `currapay-frontend`**
+### Run the following commands from `currapay-frontend`:
 
 Install and build dependencies (only need to do this once/when dependencies are added):
 ```

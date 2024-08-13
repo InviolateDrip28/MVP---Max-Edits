@@ -8,6 +8,10 @@
   }
 }
 
+h1 {
+  @apply text-4xl font-semibold;
+}
+
 @media screen and (min-width: 300px) and (max-width: 768px) {
   .app {
     padding-right: 8vw;

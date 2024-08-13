@@ -22,10 +22,10 @@ export const Nav = () => {
 
   useEffect(() => {
     document.addEventListener("mousedown", close);
-  }, [])
+  }, []);
 
   return (
-    <header className="relative w-full bg-muted px-6 py-2.5 md:px-10 md:py-2 box-border flex items-center">
+    <header className="relative w-full bg-muted px-6 py-2.5 md:px-10 md:py-2 box-border flex items-center shadow-xl">
       <Image
         src={CurrapayLogo}
         alt="Currapay Logo"
@@ -62,7 +62,7 @@ export const Nav = () => {
           NEWS
         </Link>
         <Link
-          href="/"
+          href="/profile"
           className="px-2 translate-y-0.5 text-secondary"
         >
           <AccountCircleIcon fontSize="large" color="inherit" />
@@ -71,7 +71,7 @@ export const Nav = () => {
 
       {/* Medium screens and mobile View */}
       <div className="ml-auto absolute right-6 md:hidden items-center inline-flex gap-4">
-        <Link href="/" className="text-secondary">
+        <Link href="/profile" className="text-secondary">
           <AccountCircleIcon fontSize="large" color="inherit" />
         </Link>
         <div

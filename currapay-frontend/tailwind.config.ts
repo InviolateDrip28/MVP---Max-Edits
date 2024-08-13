@@ -41,7 +41,13 @@ const config: Config = {
         poppins: ["Poppins", "serif"],
       },
       animation: {
-        "fade-in": "fadeIn 0.15s ease-in-out"
+        "fade-in": "fadeIn 0.15s ease-in-out", 
+        "marquee": "marquee var(--duration, 30s) linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          to: { transform: "translateX(-50%)" },
+        },
       },
     },
   },
