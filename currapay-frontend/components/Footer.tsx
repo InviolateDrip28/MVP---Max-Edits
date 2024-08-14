@@ -7,7 +7,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 
 export const Footer = () => {
   return (
-    <footer className="px-6 py-8 sm:px-10 box-border bg-secondary/30 flex flex-col w-full">
+    <footer className="px-6 py-8 sm:px-10 box-border bg-backgroundSecondary flex flex-col w-full">
       <div>
         <Image
           src={CurrapayLogo}
@@ -35,18 +35,17 @@ export const Footer = () => {
             <Link
               href="https://www.linkedin.com/company/currapay/"
               target="_blank"
-              className="hover:underline"
             >
-              <LinkedInIcon />
+              <LinkedInIcon className="hover:text-accent hover:scale-110" />
             </Link>
             <Link href="https://x.com/CurraPay" target="_blank">
-              <XIcon />
+              <XIcon className="hover:text-accent hover:scale-110" />
             </Link>
             <Link
               href="https://www.youtube.com/@Currapay"
               target="_blank"
             >
-              <YouTubeIcon />
+              <YouTubeIcon className="hover:text-accent hover:scale-110" />
             </Link>
           </div>
           <div>more footer links here</div>

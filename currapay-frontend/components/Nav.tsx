@@ -25,45 +25,44 @@ export const Nav = () => {
   }, []);
 
   return (
-    <header className="relative w-full bg-muted px-6 py-2.5 md:px-10 md:py-2 box-border flex items-center shadow-xl">
-      <Image
-        src={CurrapayLogo}
-        alt="Currapay Logo"
-        className="h-1/4 w-1/4 md:h-1/6 md:w-1/6"
-      ></Image>
+    <header className="sticky top-0 w-full bg-white px-6 py-3 md:px-10 md:py-4 box-border flex items-center shadow-xl z-50">
+      <Link href="/">
+        <Image
+          src={CurrapayLogo}
+          alt="Currapay Logo"
+          className="h-1/4 w-1/4 md:h-1/6 md:w-1/6"
+        ></Image>
+      </Link>
 
       {/* Desktop */}
-      <div
-        id="navbar-tabs"
-        className="md:flex ml-auto gap-2 font-semibold hidden"
-      >
+      <div id="navbar-tabs" className="md:flex ml-auto gap-2 hidden">
         <Link
           href="/"
-          className="py-2 px-4 hover:bg-secondary/25 hover:rounded"
+          className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
-          HOME
+          Home
         </Link>
         <Link
           href="/about"
-          className="py-2 px-4 hover:bg-secondary/25 hover:rounded"
+          className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
-          ABOUT
+          About
         </Link>
         <Link
           href="/rates"
-          className="py-2 px-4  hover:bg-secondary/25 hover:rounded"
+          className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
-          RATES
+          Rates
         </Link>
         <Link
           href="/news"
-          className="py-2 px-4 hover:bg-secondary/25 hover:rounded"
+          className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
-          NEWS
+          News
         </Link>
         <Link
           href="/profile"
-          className="px-2 translate-y-0.5 text-secondary"
+          className="px-2 translate-y-1 text-secondary"
         >
           <AccountCircleIcon fontSize="large" color="inherit" />
         </Link>
@@ -94,18 +93,18 @@ export const Nav = () => {
             aria-orientation="vertical"
             aria-labelledby="menu-button"
           >
-            <div className="py-2 px-2 divide-y-[0.5px] divide-secondary/30">
+            <div className="py-2 px-2 divide-y-[0.5px] divide-backgroundSecondary">
               <Link href="/" className="block p-2">
-                HOME
+                Home
               </Link>
               <Link href="/about" className="block p-2">
-                ABOUT
+                About
               </Link>
               <Link href="/rates" className="block p-2">
-                RATES
+                Rates
               </Link>
               <Link href="/news" className="block p-2">
-                NEWS
+                News
               </Link>
             </div>
           </div>

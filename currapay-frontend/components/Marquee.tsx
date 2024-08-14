@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export interface MarqueeItem {
   image: string;
   link: string;
 }
 
-export const Marquee = ({items}: {items: MarqueeItem[]}) => {
+export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
   return (
-    <div className="relative flex items-center">
-      <div className="relative flex max-h-72 max-w-[100vw] overflow-hidden py-5">
-        <div className="flex animate-marquee [--duration:30s] hover:[animation-play-state:paused]">
+    <div className="relative flex items-center -mx-24">
+      <div className="relative flex max-h-72 max-w-[100vw] overflow-hidden py-5 fade-left-right">
+        <div className="flex animate-marquee [--duration:30s] hover:[animation-play-state:paused">
           {[...items, ...items].map((item, index) => (
             <Link
               key={index}
@@ -17,9 +18,10 @@ export const Marquee = ({items}: {items: MarqueeItem[]}) => {
               href={item.link}
             >
               <div className="relative h-full w-[16rem]">
-                <div className="mt-auto flex items-center h-36 w-36 bg-accent">
+                <div className="mt-auto flex items-center h-36 w-36">
                   <img
                     src={item.image}
+                    alt={`Image ${index}`}
                     className="h-full w-full object-contain"
                   />
                 </div>

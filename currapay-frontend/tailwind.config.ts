@@ -1,11 +1,12 @@
 import type { Config } from "tailwindcss";
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const flowbite = require("flowbite-react/tailwind");
 
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    flowbite.content(),
   ],
   theme: {
     container: {
@@ -22,7 +23,8 @@ const config: Config = {
         },
       },
       colors: {
-        background: "white",
+        background: "#FFFFFF",
+        backgroundSecondary: "#D5D6D7",
         primary: "#0D0F28",
         secondary: "#54565A",
         muted: "#EEE5FF",
@@ -38,7 +40,9 @@ const config: Config = {
         ]
       },
       fontFamily: {
-        poppins: ["Poppins", "serif"],
+        raleway: ['var(--font-raleway)'],
+        dmSans: ['var(--font-dmSans)'],
+        poppins: ['var(--font-poppins)'],
       },
       animation: {
         "fade-in": "fadeIn 0.15s ease-in-out", 
@@ -51,6 +55,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [flowbite.plugin()],
 };
 export default config;

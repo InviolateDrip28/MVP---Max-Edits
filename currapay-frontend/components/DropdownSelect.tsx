@@ -12,6 +12,7 @@ import {
   CheckIcon,
   ChevronDownIcon,
 } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 export interface DropdownSelectProps {
   dropdownList: string[];
@@ -34,12 +35,12 @@ export default function DropdownSelect(props: DropdownSelectProps) {
     <Listbox value={selected} onChange={props.setSelected}>
       <div className="relative w-full">
         {props.label && (
-          <Label className="bg-muted block text-sm font-semibold leading-6 py-1.5 pl-3 text-primary rounded-t-md border border-gray-300">
+          <Label className="bg-muted block font-semibold leading-6 py-1.5 pl-3 text-primary rounded-t-md border border-gray-300">
             {props.label}
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-primary shadow-sm border border-gray-300 focus:outline-none sm:text-sm sm:leading-6 ${
+          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-primary shadow-sm border border-gray-300 focus:outline-none sm:leading-6 ${
             props.label && "rounded-t-none border-t-0"
           }`}
         >
@@ -69,7 +70,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
 
         <ListboxOptions
           transition
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
+          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
         >
           {props.dropdownList.map((code) => (
             <ListboxOption
