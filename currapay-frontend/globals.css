@@ -5,17 +5,20 @@
 
 @layer base {
   body {
-    @apply bg-backgroundSecondary/10 text-primary text-base sm:text-lg ;
+    @apply bg-background text-primary text-base sm:text-lg overflow-x-hidden;
+  }
+
+  .bigHeading {
+    @apply text-4xl sm:text-6xl md:text-8xl font-semibold;
   }
 
   h1 {
-    @apply text-2xl sm:text-4xl md:text-6xl font-semibold; ;
+    @apply text-4xl sm:text-5xl md:text-6xl font-semibold;
   }
-
+  
   section {
     @apply flex min-h-screen flex-col items-center justify-between py-12 px-8 sm:p-24
   }
-
 
 }
 
@@ -23,12 +26,22 @@
   @apply overflow-x-hidden before:bg-gradient-to-r before:z-10 before:absolute before:w-12 before:top-0 before:bottom-0 before:pointer-events-none after:bg-gradient-to-l after:z-10 after:absolute after:w-12 after:top-0 after:bottom-0 after:right-0 after:pointer-events-none from-white to-transparent;
 }
 
-@media screen and (min-width: 300px) and (max-width: 768px) {
-  .app {
-    padding-right: 8vw;
-    padding-left: 8vw;
-  }
+.gradient {
+  @apply bg-gradient-to-r from-accent to-accentSecondary;
 }
+
+.gradientText {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-accentSecondary font-black;
+}
+
+.animatedGradientText {
+  @apply bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.accent),theme(colors.accentSecondary),theme(colors.accent),#63B9EC,theme(colors.accent),theme(colors.accentSecondary),theme(colors.accent))] bg-[length:200%_auto] animate-gradient;
+}
+
+.glass {
+  @apply backdrop-blur-xl bg-opacity-80;
+}
+
 
 /* pagination styles */
 .pagination-container {
@@ -42,11 +55,11 @@
     }
 
     &:hover {
-      @apply bg-muted cursor-pointer;
+      @apply bg-accent/30 cursor-pointer;
     }
 
     &.selected {
-      @apply text-accent bg-muted ;
+      @apply text-accent bg-accent/30 ;
     }
 
     &.disabled {

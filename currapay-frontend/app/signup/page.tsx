@@ -2,21 +2,21 @@ import * as React from "react";
 
 export default function SignupPage() {
   return (
-    <section className="">
-      <div className="my-24 flex items-center justify-center px-6 mx-auto">
-        <form className="w-full max-w-md">
+    <section className="h-screen w-full">
+      <div className="my-12 flex items-center justify-center">
+        <form className="w-full">
           <h1 className="text-primary text-center">
             Sign Up
           </h1>
           <div className="relative flex flex-row items-center mt-8 space-x-4">
             <input
               type="first-name"
-              className="block w-full pl-3 pr-10 py-3 text-secondary border rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="First Name"
             />
             <input
               type="family-name"
-              className="block w-full pl-3 pr-10 py-3 text-secondary border rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary rounded-lg px-11 focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Last Name"
             />
           </div>
@@ -24,7 +24,8 @@ export default function SignupPage() {
           <div className="relative flex items-center mt-4">
             <input
               type="email"
-              className="block w-full pl-3 pr-10 py-3 text-secondary border rounded-lg px-11 focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg px-11 focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
+              autoComplete="email"
               placeholder="Email address"
             />
           </div>
@@ -32,21 +33,21 @@ export default function SignupPage() {
           <div className="relative flex items-center mt-4">
             <input
               type="password"
-              className="block w-full pl-3 pr-10 py-3 text-secondary border rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
             />
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/40 focus:outline-none focus:ring focus:ring-accent focus:ring-opacity-50">
-              Sign in
+            <button className="w-full px-6 py-3 font-medium tracking-wide text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/40 focus:outline-none focus:ring focus:ring-accent focus:ring-opacity-50">
+              Sign up
             </button>
 
             <p className="mt-4 text-center text-gray-600 ">or</p>
 
             <a
               href="#"
-              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg  hover:bg-gray-50 "
+              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg  hover:bg-secondary/5 bg-white"
             >
               <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                 <path
@@ -70,12 +71,12 @@ export default function SignupPage() {
             </a>
 
             <div className="mt-6 text-center">
-              <div className="inline-flex items-center">
+              <div className="items-center">
                 <input
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent"
+                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -84,12 +85,13 @@ export default function SignupPage() {
                   I agree to the terms and conditions.
                 </label>
               </div>
+          
               <div className="inline-flex items-center">
                 <input
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent"
+                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"

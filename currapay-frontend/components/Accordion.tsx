@@ -15,21 +15,21 @@ const DUMMY_QUESTIONS = [
 ];
 export default function AccordionMenu() {
   return (
-    <Accordion collapseAll className="border-backgroundSecondary">
+    <Accordion collapseAll className="border-0 divide-y-2 divide-secondary/5">
       {DUMMY_QUESTIONS.map((question) => (
         <AccordionPanel key={question.question}>
           <AccordionTitle
             theme={{
               open: {
-                on: "bg-muted",
+                on: "bg-inherit",
               },
             }}
-            className="focus:ring-0 text-primary hover:bg-muted"
+            className="focus:ring-0 text-primary hover:bg-inherit hover:underline underline-offset-8 focus:text-accent"
           >
             {question.question}
           </AccordionTitle>
-          <AccordionContent>
-            <p className="mb-2 text-left text-secondary">
+          <AccordionContent className="border-none">
+            <p className="mt-4 mb-2 text-left text-secondary">
               {question.answer}
             </p>
           </AccordionContent>

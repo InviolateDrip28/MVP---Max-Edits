@@ -79,10 +79,10 @@ export default function News() {
       <h1>News</h1>
       <div className="flex flex-col gap-4 w-full py-8">
         {articles.map((article) => (
-          <div className="group">
+          <div className="group ">
             <div
               key={article.title}
-              className="border py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl"
+              className="border bg-white py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl "
             >
               <div className="inline-flex justify-between w-full">
                 <p>{article.author}</p>

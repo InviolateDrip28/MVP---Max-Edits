@@ -35,7 +35,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
     <Listbox value={selected} onChange={props.setSelected}>
       <div className="relative w-full">
         {props.label && (
-          <Label className="bg-muted block font-semibold leading-6 py-1.5 pl-3 text-primary rounded-t-md border border-gray-300">
+          <Label className="bg-accent block font-semibold leading-6 py-1.5 pl-3 text-white rounded-t-md border border-gray-300">
             {props.label}
           </Label>
         )}
@@ -70,7 +70,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
 
         <ListboxOptions
           transition
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
+          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
         >
           {props.dropdownList.map((code) => (
             <ListboxOption
