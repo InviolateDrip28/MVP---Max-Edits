@@ -10,26 +10,24 @@ import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
 import { useState } from "react";
+import { observer } from "mobx-react";
+import { useStores } from "@/stores/provider";
 
-export default function Homepage() {
-  const [fromCountry, setFromCountry] = useState("US");
-  const [toCountry, setToCountry] = useState("GB");
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("USD");
-  const [amount, setAmount] = useState("500");
+const Homepage = observer(() => {
+  const { SearchStore } = useStores();
   const [useBanks, setUseBanks] = useState(false);
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
   const handleClick = () => {
-    console.log("fromCountry: ", fromCountry);
-    console.log("toCountry: ", toCountry);
+    console.log("fromCountry: ", SearchStore.fromCountry);
+    console.log("toCountry: ", SearchStore.toCountry);
     console.log(
       "fromCurrency: ",
-      COUNTRY_CODE_TO_CURRENCY[fromCountry]
+      SearchStore.fromCurrency
     );
-    console.log("toCurrency: ", COUNTRY_CODE_TO_CURRENCY[toCountry]);
-    console.log("amount: ", amount);
+    console.log("toCurrency: ", SearchStore.toCurrency);
+    console.log("amount: ", SearchStore.amount);
   };
 
   return (
@@ -100,8 +98,8 @@ export default function Homepage() {
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
                   reference={COUNTRY_CODE_TO_NAME}
-                  defaultValue={fromCountry}
-                  setSelected={setFromCountry}
+                  defaultValue={SearchStore.fromCountry}
+                  setSelected={SearchStore.setFromCountry}
                   hasImage={true}
                   label={"Country From"}
                 />
@@ -110,8 +108,8 @@ export default function Homepage() {
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
                   reference={COUNTRY_CODE_TO_NAME}
-                  defaultValue={toCountry}
-                  setSelected={setToCountry}
+                  defaultValue={SearchStore.toCountry}
+                  setSelected={SearchStore.setToCountry}
                   label={"Country to"}
                   hasImage={true}
                 />
@@ -121,23 +119,23 @@ export default function Homepage() {
               <p className=" whitespace-nowrap">I want to convert</p>
               <input
                 type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={SearchStore.amount}
+                onChange={(e) => SearchStore.setAmount(e.target.value)}
                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 dropdownList={["US"]}
-                defaultValue={fromCountry}
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                setSelected={setFromCurrency}
+                defaultValue={SearchStore.fromCountry}
+                setSelected={SearchStore.setFromCurrency}
                 className="border rounded-md p-2"
               />
               <p>to</p>
               <DropdownSelect
                 dropdownList={["US"]}
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={toCountry}
-                setSelected={setToCurrency}
+                defaultValue={SearchStore.toCountry}
+                setSelected={SearchStore.setToCurrency}
                 className="border rounded-md p-2"
               />
             </div>
@@ -146,9 +144,9 @@ export default function Homepage() {
                 href={{
                   pathname: "/compare",
                   query: {
-                    from: fromCountry,
-                    to: toCountry,
-                    amount: amount,
+                    from: SearchStore.fromCurrency,
+                    to: SearchStore.toCurrency,
+                    amount: SearchStore.amount,
                   },
                 }}
                 className="text-white text-center font-bold rounded-md p-4 w-full 
@@ -176,4 +174,6 @@ export default function Homepage() {
       </div>
     </section>
   );
-}
+});
+
+export default Homepage;

@@ -1,13 +1,14 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { useStores } from "@/stores/provider";
 
 export default function Compare({
   params,
 }: {
   params: { from: string };
 }) {
-  const router = useRouter();
+  const { SearchStore } = useStores();
   const searchParams = useSearchParams();
 
   const [from, to, amount] = [
@@ -18,7 +19,9 @@ export default function Compare({
 
   return (
     <section id="compare-rates">
-      <p>{from} {to} {amount}</p>
+      <p>
+        {from} {to} {amount}
+      </p>
     </section>
   );
 }

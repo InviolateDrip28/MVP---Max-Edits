@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { DM_Sans, Poppins, Raleway } from "next/font/google";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
-import 'react-material-symbols/rounded';
+import "react-material-symbols/rounded";
 import "../globals.css";
+import { StoreProvider } from "../stores/provider";
 
 const raleway = Raleway({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -43,9 +44,11 @@ export default function RootLayout({
         className={`font-dmSans ${raleway.variable} ${DM.variable} ${poppins.variable}`}
       >
         <div>
-          <Nav />
-          {children}
-          <Footer />
+          <StoreProvider>
+            <Nav />
+            {children}
+            <Footer />
+          </StoreProvider>
         </div>
       </body>
     </html>
