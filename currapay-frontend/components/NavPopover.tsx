@@ -6,6 +6,9 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 
+/** Popover to navigate between site pages in the nav bar (mobile only) 
+ * Adapated from https://headlessui.com/v1/react/popover
+ */
 export default function NavPopover() {
   return (
     <div className="flex w-full">

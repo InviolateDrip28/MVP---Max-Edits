@@ -14,13 +14,18 @@ import {
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 
+/**
+ * Reusable dropdown select component
+ * source: https://headlessui.com/react/listbox
+ */
+
 export interface DropdownSelectProps {
   dropdownList: string[];
   reference: Record<string, string>;
   defaultValue: string;
   label?: string;
   hasImage?: boolean;
-  setSelected: (value: string) => void;
+  setSelected: any;
   className?: string;
 }
 
@@ -70,7 +75,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
 
         <ListboxOptions
           transition
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
+          className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
         >
           {props.dropdownList.map((code) => (
             <ListboxOption

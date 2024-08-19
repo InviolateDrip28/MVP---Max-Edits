@@ -6,6 +6,13 @@ import {
 import { MaterialSymbol } from "react-material-symbols";
 import Link from "next/link";
 import { useState } from "react";
+import { LANGUAGES } from "@/app/constants";
+
+/**
+ * Popover to switch the language in the nav bar
+ * Adapated from https://headlessui.com/v1/react/popover
+ */
+
 
 export default function LanguagePopover() {
   const [language, setLanguage] = useState("EN");
@@ -28,42 +35,17 @@ export default function LanguagePopover() {
           >
             {({ close }) => (
               <div>
-                <div className="p-3 ">
-                  <Link
-                    className="block rounded-lg py-2 px-3 transition hover:text-accent"
-                    href=""
-                    onClick={() => close()}
-                  >
-                    EN
-                  </Link>
-                </div>
-                <div className="p-3 ">
-                  <Link
-                    className="block rounded-lg py-2 px-3 transition hover:text-accent"
-                    href=""
-                    onClick={() => close()}
-                  >
-                    IN
-                  </Link>
-                </div>
-                <div className="p-3 ">
-                  <Link
-                    className="block rounded-lg py-2 px-3 transition hover:text-accent"
-                    href="/"
-                    onClick={() => close()}
-                  >
-                    ES
-                  </Link>
-                </div>
-                <div className="p-3 ">
-                  <Link
-                    className="block rounded-lg py-2 px-3 transition hover:text-accent"
-                    href="/"
-                    onClick={() => close()}
-                  >
-                    CN
-                  </Link>
-                </div>
+                {LANGUAGES.map((language) => (
+                  <div className="p-3 ">
+                    <Link
+                      className="block rounded-lg py-2 px-3 transition hover:text-accent"
+                      href=""
+                      onClick={() => close()}
+                    >
+                      {language}
+                    </Link>
+                  </div>
+                ))}
               </div>
             )}
           </PopoverPanel>

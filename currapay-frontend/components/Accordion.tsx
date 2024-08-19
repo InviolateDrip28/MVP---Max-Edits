@@ -5,11 +5,16 @@ import {
   AccordionTitle,
 } from "flowbite-react";
 
+/**
+ * Reusable accordion component
+ * source: https://flowbite-react.com/docs/components/accordion
+ */
+
 const DUMMY_QUESTIONS = [
-  { question: "Question", answer: "This is an amazing answer" },
-  { question: "Question", answer: "This is an even better answer" },
+  { question: "Question1", answer: "This is an amazing answer" },
+  { question: "Question2", answer: "This is an even better answer" },
   {
-    question: "Question",
+    question: "Question3",
     answer: "Omg this is the best answer ever",
   },
 ];

@@ -7,6 +7,7 @@ import CurrapayPrimaryLogo from "@/public/CurrapayPrimaryLogo.png";
 import NavPopover from "./NavPopover";
 import LanguagePopover from "./LanguagePopover";
 
+/** Navbar for the main layout */
 export const Nav = () => {
   return (
     <header className="sticky top-0 w-full bg-white px-6 py-3 sm:px-10 sm:py-4 box-border flex items-center shadow-xl z-[50]">

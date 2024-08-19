@@ -5,6 +5,7 @@ import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import CurrapayPrimaryLogo from "@/public/CurrapayPrimaryLogo.png";
 
+/* Footer for the main layout */
 export const Footer = () => {
   return (
     <footer className="px-6 py-8 md:px-10 box-border bg-secondary/40 flex flex-col w-full">
