@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MaterialSymbol } from "react-material-symbols";
-import { CurrapaySimpleIcon } from "../public/CurrapaySimpleIcon";
-import CurrapayPrimaryLogo from "@/public/CurrapayPrimaryLogo.png";
+import CurrapayShortLogoBlack from "@/public/CurrapayShortLogoBlack.png";
+import CurrapayPrimaryLogoBlack from "@/public/CurrapayPrimaryLogoBlack.png";
 import NavPopover from "./NavPopover";
 import LanguagePopover from "./LanguagePopover";
 
@@ -13,14 +13,18 @@ export const Nav = () => {
     <header className="sticky top-0 w-full bg-white px-6 py-3 sm:px-10 sm:py-4 box-border flex items-center shadow-xl z-[50]">
       <Link href="/" className="hidden md:flex">
         <Image
-          src={CurrapayPrimaryLogo}
-          alt="Currapay Logo"
+          src={CurrapayPrimaryLogoBlack}
+          alt="Currapay Primary Logo"
           className="w-[200px] -m-2"
         />
       </Link>
 
       <Link href="/" className="md:hidden">
-        <CurrapaySimpleIcon className="w-[40px] " />
+      <Image
+          src={CurrapayShortLogoBlack}
+          alt="Currapay Small Logo"
+          className="w-[70px] -m-2"
+        />
       </Link>
 
       {/* Desktop */}
