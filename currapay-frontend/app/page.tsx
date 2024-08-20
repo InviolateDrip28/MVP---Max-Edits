@@ -4,40 +4,49 @@ import {
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
   PARTNERS,
-} from "@/constants";
+} from "./constants";
+import { ArrowsRightLeftIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
+import Link from "next/link";
 import { useState } from "react";
+import { observer } from "mobx-react";
+import { useStores } from "@/stores/provider";
 
-export default function Homepage() {
-  const [fromCountry, setFromCountry] = useState("US");
-  const [toCountry, setToCountry] = useState("GB");
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("USD");
-  const [amount, setAmount] = useState("500");
+const Homepage = observer(() => {
+  const { SearchStore } = useStores();
   const [useBanks, setUseBanks] = useState(false);
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
   const handleClick = () => {
-    console.log("fromCountry: ", fromCountry);
-    console.log("toCountry: ", toCountry);
-    console.log(
-      "fromCurrency: ",
-      COUNTRY_CODE_TO_CURRENCY[fromCountry]
-    );
-    console.log("toCurrency: ", COUNTRY_CODE_TO_CURRENCY[toCountry]);
-    console.log("amount: ", amount);
+    console.log("fromCountry: ", SearchStore.fromCountry);
+    console.log("toCountry: ", SearchStore.toCountry);
+    console.log("fromCurrency: ", SearchStore.fromCurrency);
+    console.log("toCurrency: ", SearchStore.toCurrency);
+    console.log("amount: ", SearchStore.amount);
   };
+
+  const handleSwap = () => {
+    const fromCountry = SearchStore.fromCountry;
+    const toCountry = SearchStore.toCountry;
+    const fromCurrency = SearchStore.fromCurrency;
+    const toCurrency = SearchStore.toCurrency;
+    SearchStore.setFromCountry(toCountry);
+    SearchStore.setToCountry(fromCountry);
+    SearchStore.setFromCurrency(toCurrency);
+    SearchStore.setToCurrency(fromCurrency);
+  };
+
   return (
-    <section
-      id="homepage"
-    >
+    <section id="homepage">
       <div className="flex flex-col gap-48">
-        <div className="flex flex-col gap-8 items-center">
+        <div className="flex flex-col gap-8 items-center justify-center">
           <div className="px-8 space-y-4">
-            <h1 className="text-center">Search. Send. Save.</h1>
+            <p className="text-center bigHeading animatedGradientText">
+              Search. Send. Save.
+            </p>
             <p className="text-sm sm:text-2xl text-center">
               Search across banks, remittance apps, and crypto
               services to find the best way to send or recieve your
@@ -47,14 +56,14 @@ export default function Homepage() {
           <div className="border box-border p-8 shadow-xl rounded-xl w-[9/10] sm:w-full space-y-4 bg-white">
             <div
               id="filters"
-              className="justify-center flex flex-row gap-4"
+              className="justify-center flex flex-row text-xs sm:text-base md:text-lg gap-4"
             >
               <div className="flex items-center mb-4">
                 <input
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-accent"
+                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -68,7 +77,7 @@ export default function Homepage() {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-accent"
+                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -82,7 +91,7 @@ export default function Homepage() {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-accent"
+                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -93,24 +102,31 @@ export default function Homepage() {
               </div>
             </div>
 
-            <div className="w-full flex flex-col sm:flex-row gap-4">
+            <div className="w-full flex flex-col sm:flex-row gap-4 items-center">
               <div className="w-full sm:w-1/2">
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
                   reference={COUNTRY_CODE_TO_NAME}
-                  defaultValue={fromCountry}
-                  setSelected={setFromCountry}
+                  defaultValue={SearchStore.fromCountry}
+                  setSelected={SearchStore.setFromCountry}
                   hasImage={true}
-                  label={"COUNTRY FROM"}
+                  label={"Country From"}
                 />
               </div>
+              <button
+                className="flex text-secondary hover:text-accent"
+                onClick={handleSwap}
+              >
+                <ArrowsUpDownIcon className="h-6 w-6 flex sm:hidden" />
+                <ArrowsRightLeftIcon className="h-6 w-6 hidden sm:flex" />
+              </button>
               <div className="w-full sm:w-1/2">
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
                   reference={COUNTRY_CODE_TO_NAME}
-                  defaultValue={toCountry}
-                  setSelected={setToCountry}
-                  label={"COUNTRY TO"}
+                  defaultValue={SearchStore.toCountry}
+                  setSelected={SearchStore.setToCountry}
+                  label={"Country to"}
                   hasImage={true}
                 />
               </div>
@@ -119,52 +135,63 @@ export default function Homepage() {
               <p className=" whitespace-nowrap">I want to convert</p>
               <input
                 type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={SearchStore.amount}
+                onChange={(e) =>
+                  SearchStore.setAmount(e.target.value)
+                }
                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 dropdownList={["US"]}
-                defaultValue={fromCountry}
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                setSelected={setFromCurrency}
+                defaultValue={SearchStore.fromCountry}
+                setSelected={SearchStore.setFromCurrency}
                 className="border rounded-md p-2"
               />
               <p>to</p>
               <DropdownSelect
                 dropdownList={["US"]}
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={toCountry}
-                setSelected={setToCurrency}
+                defaultValue={SearchStore.toCountry}
+                setSelected={SearchStore.setToCurrency}
                 className="border rounded-md p-2"
               />
             </div>
             <div className="flex pt-4 justify-center items-center">
-              <button
-                className="bg-accent text-white font-bold rounded-md p-4 w-full"
+              <Link
+                href={{
+                  pathname: "/compare",
+                  query: {
+                    from: SearchStore.fromCurrency,
+                    to: SearchStore.toCurrency,
+                    amount: SearchStore.amount,
+                  },
+                }}
+                className="text-white text-center font-bold rounded-md p-4 w-full 
+                bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
+                before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full"
                 onClick={handleClick}
               >
-                Compare Rates {'\u26A1'}
-              </button>
+                Compare Rates {" \u26A1"}
+              </Link>
             </div>
           </div>
         </div>
 
-
-        <div id="partners" className="text-center space-y-24">
+        <div id="partners" className="text-center space-y-24 ">
           <h1>Our Partners</h1>
           <Marquee items={PARTNERS} />
         </div>
-
-        <div id="faq" className="text-center">
-          <h1>Frequently Asked Questions</h1>
-          <div className="p-8">
-          <AccordionMenu />
-
+      
+        <div id="faq" className="text-center ">
+          <h1 className="">Frequently Asked Questions</h1>
+          <div className="mt-24">
+            <AccordionMenu />
           </div>
-
         </div>
       </div>
     </section>
   );
-}
+});
+
+export default Homepage;

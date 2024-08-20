@@ -1,19 +1,16 @@
 import Link from "next/link";
-import CurrapayLogo from "../public/Currapay.png";
 import Image from "next/image";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import CurrapayPrimaryLogoBlack from "@/public/CurrapayPrimaryLogoBlack.png";
 
+/* Footer for the main layout */
 export const Footer = () => {
   return (
-    <footer className="px-6 py-8 sm:px-10 box-border bg-backgroundSecondary flex flex-col w-full">
-      <div>
-        <Image
-          src={CurrapayLogo}
-          alt="Currapay Logo"
-          className="h-1/6 w-1/6 mb-8 -ml-4"
-        ></Image>
+    <footer className="px-6 py-8 md:px-10 box-border bg-secondary/40 flex flex-col w-full">
+      <div className="py-4">
+        <Image src={CurrapayPrimaryLogoBlack} alt="Currapay Logo" className="w-[200px] -m-2" />
       </div>
 
       <div className="flex flex-row">

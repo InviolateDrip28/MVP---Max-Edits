@@ -6,6 +6,9 @@ import { useMemo } from "react";
 import classnames from "classnames";
 
 const DOTS = "...";
+// siblingCount = number of options that show up next to the current page when there are dots
+// don't forsee this changing but if it does, add it as a prop and adjust the math.
+const siblingCount = 1; 
 const range = (start: number, end: number) => {
   let length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);
@@ -19,30 +22,22 @@ const usePagination = (
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    const totalPageNumbers = 1 + 5;
+    //Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
+    const totalPageNumbers = siblingCount + pageSize;
 
-    /*
-      Case 1:
-      If the number of pages is less than the page numbers we want to show in our
-      paginationComponent, we return the range [1..totalPageCount]
-    */
+    //Number of pages is less than the page numbers we want to show, we return range [1..totalPageCount]
     if (totalPageNumbers >= totalPageCount) {
       return range(1, totalPageCount);
     }
-
-    /*
-      Calculate left and right sibling index and make sure they are within range 1 and totalPageCount
-    */
+    
+    //Calculate left and right sibling index and make sure they are within 1 and totalPageCount
     const leftSiblingIndex = Math.max(currentPage - 1, 1);
     const rightSiblingIndex = Math.min(
       currentPage + 1,
       totalPageCount
     );
 
-    /*
-      We do not show dots just when there is just one page number to be inserted between the extremes of sibling and the page limits i.e 1 and totalPageCount. Hence we are using leftSiblingIndex > 2 and rightSiblingIndex < totalPageCount - 2
-    */
+    //Calculate if we should show dots
     const shouldShowLeftDots = leftSiblingIndex > 2;
     const shouldShowRightDots =
       rightSiblingIndex < totalPageCount - 2;
@@ -50,21 +45,17 @@ const usePagination = (
     const firstPageIndex = 1;
     const lastPageIndex = totalPageCount;
 
-    /*
-      Case 2: No left dots to show, but rights dots to be shown
-    */
+    //Case 2: No left dots, but show rights dots
     if (!shouldShowLeftDots && shouldShowRightDots) {
-      let leftItemCount = 5;
+      let leftItemCount = pageSize;
       let leftRange = range(1, leftItemCount);
 
       return [...leftRange, DOTS, totalPageCount];
     }
 
-    /*
-      Case 3: No right dots to show, but left dots to be shown
-    */
+    //Case 3: No right dots, but show left dots
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      let rightItemCount = 5;
+      let rightItemCount = pageSize;
       let rightRange = range(
         totalPageCount - rightItemCount + 1,
         totalPageCount
@@ -72,9 +63,7 @@ const usePagination = (
       return [firstPageIndex, DOTS, ...rightRange];
     }
 
-    /*
-      Case 4: Both left and right dots to be shown
-    */
+    //Case 4: Show both left and right dots
     if (shouldShowLeftDots && shouldShowRightDots) {
       let middleRange = range(leftSiblingIndex, rightSiblingIndex);
       return [
@@ -90,12 +79,13 @@ const usePagination = (
   return paginationRange;
 };
 
+/** Reusable pagination page component */
 interface PaginationProps {
   onPageChange: any;
   totalCount: number;
   pageSize: number;
   currentPage: number;
-  className: string;
+  className?: string;
 }
 export const Pagination = (props: PaginationProps) => {
   const paginationRange = usePagination(
@@ -104,7 +94,7 @@ export const Pagination = (props: PaginationProps) => {
     props.currentPage
   );
 
-  // If there are less than 2 times in pagination range we will not render the component
+  //If there are less than 2 items we will not render the component
   if (
     props.currentPage === 0 ||
     !paginationRange ||
@@ -115,11 +105,17 @@ export const Pagination = (props: PaginationProps) => {
 
   const onNext = () => {
     props.onPageChange(props.currentPage + 1);
+    window.scrollTo(0, 0)
   };
 
   const onPrevious = () => {
     props.onPageChange(props.currentPage - 1);
+    window.scrollTo(0, 0)
   };
+
+  const onPageChange = (pageNumber: string | number) => {
+    props.onPageChange(pageNumber), window.scrollTo(0, 0)
+  }
 
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
@@ -133,7 +129,7 @@ export const Pagination = (props: PaginationProps) => {
       </button>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return <li key={pageNumber} className="pagination-item dots">&#8230;</li>;
         }
 
         return (
@@ -141,7 +137,8 @@ export const Pagination = (props: PaginationProps) => {
             className={classnames("pagination-item", {
               selected: pageNumber === props.currentPage,
             })}
-            onClick={() => props.onPageChange(pageNumber)}
+            onClick={() => onPageChange(pageNumber)}
+            key={pageNumber}
           >
             {pageNumber}
           </li>

@@ -6,6 +6,7 @@ export interface MarqueeItem {
   link: string;
 }
 
+/** Reusable marquee component. animations defined in tailwind.config.ts */
 export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
   return (
     <div className="relative flex items-center -mx-24">

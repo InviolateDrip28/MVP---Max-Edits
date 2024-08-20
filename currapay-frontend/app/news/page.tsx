@@ -1,5 +1,6 @@
 "use client";
 import { Pagination } from "@/components/Pagination";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const DUMMY_LIST = [
@@ -65,8 +66,14 @@ const DUMMY_LIST = [
   },
 ];
 
+export interface Article { 
+  title: string;
+  date: string;
+  content: string;
+  author: string;
+}
+
 export default function News() {
-  const length = Math.ceil(DUMMY_LIST.length / 5);
   const [articles, setArticles] = useState(DUMMY_LIST.slice(0, 5));
   const [current, setCurrent] = useState(1);
 
@@ -79,10 +86,9 @@ export default function News() {
       <h1>News</h1>
       <div className="flex flex-col gap-4 w-full py-8">
         {articles.map((article) => (
-          <div className="group">
+          <Link href="/news" className="group" key={article.title}>
             <div
-              key={article.title}
-              className="border py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl"
+              className="border bg-white py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl "
             >
               <div className="inline-flex justify-between w-full">
                 <p>{article.author}</p>
@@ -95,7 +101,7 @@ export default function News() {
                 <p>{article.content}</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <Pagination
