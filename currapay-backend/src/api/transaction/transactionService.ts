@@ -1,17 +1,30 @@
 import { PrismaClient, Transaction } from '@prisma/client';
+import prisma from '../../db/prismaClient'; 
 
 export class TransactionService {
-  private prisma = new PrismaClient();
-
   async getAllTransactions(): Promise<Transaction[]> {
-    return this.prisma.transaction.findMany();
+    try {
+      console.log("Fetching all transactions...");
+      return await prisma.transaction.findMany();
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+      throw new Error("Failed to fetch transactions");
+    }
   }
+
 
   async getTransactionById(id: number): Promise<Transaction | null> {
-    return this.prisma.transaction.findUnique({
-      where: { id },
-    });
+    try {
+      console.log(`Fetching transaction with ID: ${id}`);
+      return await prisma.transaction.findUnique({
+        where: { id },
+      });
+    } catch (error) {
+      console.error(`Error fetching transaction with ID ${id}:`, error);
+      throw new Error(`Failed to fetch transaction with ID ${id}`);
+    }
   }
+
 
   async createTransaction(data: {
     userId: number;
@@ -25,10 +38,16 @@ export class TransactionService {
     status: string;
     timestamp: Date;
   }): Promise<Transaction> {
-    return this.prisma.transaction.create({
-      data,
-    });
+    try {
+      return await prisma.transaction.create({
+        data,
+      });
+    } catch (error) {
+      console.error("Error creating transaction:", error);
+      throw new Error("Failed to create transaction");
+    }
   }
+
 
   async updateTransaction(id: number, data: Partial<{
     userId: number;
@@ -42,19 +61,26 @@ export class TransactionService {
     status: string;
     timestamp: Date;
   }>): Promise<Transaction | null> {
-    return this.prisma.transaction.update({
-      where: { id },
-      data,
-    });
+    try {
+      return await prisma.transaction.update({
+        where: { id },
+        data,
+      });
+    } catch (error) {
+      console.error(`Error updating transaction with ID ${id}:`, error);
+      throw new Error(`Failed to update transaction with ID ${id}`);
+    }
   }
+
 
   async deleteTransaction(id: number): Promise<boolean> {
     try {
-      await this.prisma.transaction.delete({
+      await prisma.transaction.delete({
         where: { id },
       });
       return true;
-    } catch {
+    } catch (error) {
+      console.error(`Error deleting transaction with ID ${id}:`, error);
       return false;
     }
   }

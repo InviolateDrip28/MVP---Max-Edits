@@ -8,32 +8,36 @@ datasource db {
 }
 
 model User {
-  id                  Int       @id @default(autoincrement())
-  emailAddress        String    @unique
-  country             String
-  city                String
-  age                 Int
-  gender              String
-  occupation          String
-  nationality         String
-  deviceUsed          String
-  internetAccess      Boolean
-  mobilePenetration   Float
-  accountCreationDate DateTime
+  id                  Int           @id @default(autoincrement()) @map("id")
+  emailAddress        String        @unique @map("emailAddress")
+  country             String        @map("country")
+  city                String        @map("city")
+  age                 Int           @map("age")
+  gender              String        @map("gender")
+  occupation          String        @map("occupation")
+  nationality         String        @map("nationality")
+  deviceUsed          String        @map("deviceUsed")
+  internetAccess      Boolean       @map("internetAccess")
+  mobilePenetration   Float         @map("mobilePenetration")
+  accountCreationDate DateTime      @map("accountCreationDate")
   transactions        Transaction[] @relation("UserTransactions")
+
+  @@map("User")
 }
 
 model Transaction {
-  id                 Int       @id @default(autoincrement())
-  userId             Int
-  amount             Float
-  currency           String
-  exchangeRate       Float
-  fees               Float
-  processingTime     Int
-  transferMethod     String
-  purposeOfTransfer  String
-  status             String
-  timestamp          DateTime
-  user               User      @relation("UserTransactions", fields: [userId], references: [id])
+  id                Int      @id @default(autoincrement()) @map("id")
+  userId            Int      @map("userId")
+  amount            Float    @map("amount")
+  currency          String   @map("currency")
+  exchangeRate      Float    @map("exchangeRate")
+  fees              Float    @map("fees")
+  processingTime    Int      @map("processingTime")
+  transferMethod    String   @map("transferMethod")
+  purposeOfTransfer String   @map("purposeOfTransfer")
+  status            String   @map("status")
+  timestamp         DateTime @map("timestamp")
+  User              User     @relation("UserTransactions", fields: [userId], references: [id])
+
+  @@map("TransactionTable")
 }

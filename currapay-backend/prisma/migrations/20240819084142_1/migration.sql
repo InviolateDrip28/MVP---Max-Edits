@@ -15,7 +15,7 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Transaction" (
+CREATE TABLE "TransactionTable" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userId" INTEGER NOT NULL,
     "amount" REAL NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "Transaction" (
     "purposeOfTransfer" TEXT NOT NULL,
     "status" TEXT NOT NULL,
     "timestamp" DATETIME NOT NULL,
-    CONSTRAINT "Transaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "TransactionTable_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex

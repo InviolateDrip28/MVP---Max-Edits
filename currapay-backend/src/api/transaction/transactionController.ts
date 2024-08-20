@@ -6,9 +6,12 @@ const transactionService = new TransactionService();
 export class TransactionController {
   async getAllTransactions(req: Request, res: Response) {
     try {
+      console.log("Handling getAllTransactions request...");
       const transactions = await transactionService.getAllTransactions();
+      console.log("Transactions fetched:", transactions);
       res.json(transactions);
     } catch (error) {
+      console.error("Error in getAllTransactions:", error);
       res.status(500).json({ error: 'An error occurred while fetching transactions' });
     }
   }
