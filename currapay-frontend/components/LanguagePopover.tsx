@@ -36,7 +36,7 @@ export default function LanguagePopover() {
             {({ close }) => (
               <div>
                 {LANGUAGES.map((language) => (
-                  <div className="p-3 ">
+                  <div className="p-3 " key="language">
                     <Link
                       className="block rounded-lg py-2 px-3 transition hover:text-accent"
                       href=""

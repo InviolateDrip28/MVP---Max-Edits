@@ -28,7 +28,7 @@ const config: Config = {
         secondary: "#545556",
         accent: "#9A67FF",
         accentSecondary: "#21E2E2",
-        navy: "#0A1045"
+        navy: "#2D5BF0"
       },
       dropShadow: {
         glow: [

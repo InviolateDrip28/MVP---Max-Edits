@@ -29,7 +29,7 @@ export default function AccordionMenu() {
                 on: "bg-inherit",
               },
             }}
-            className="focus:ring-0 text-primary hover:bg-inherit hover:underline underline-offset-8 focus:text-accent"
+            className="focus:ring-0 text-inherit hover:bg-inherit hover:underline underline-offset-8 focus:text-accent"
           >
             {question.question}
           </AccordionTitle>

@@ -105,11 +105,17 @@ export const Pagination = (props: PaginationProps) => {
 
   const onNext = () => {
     props.onPageChange(props.currentPage + 1);
+    window.scrollTo(0, 0)
   };
 
   const onPrevious = () => {
     props.onPageChange(props.currentPage - 1);
+    window.scrollTo(0, 0)
   };
+
+  const onPageChange = (pageNumber: string | number) => {
+    props.onPageChange(pageNumber), window.scrollTo(0, 0)
+  }
 
   let lastPage = paginationRange[paginationRange.length - 1];
   return (
@@ -123,7 +129,7 @@ export const Pagination = (props: PaginationProps) => {
       </button>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return <li key={pageNumber} className="pagination-item dots">&#8230;</li>;
         }
 
         return (
@@ -131,7 +137,8 @@ export const Pagination = (props: PaginationProps) => {
             className={classnames("pagination-item", {
               selected: pageNumber === props.currentPage,
             })}
-            onClick={() => props.onPageChange(pageNumber)}
+            onClick={() => onPageChange(pageNumber)}
+            key={pageNumber}
           >
             {pageNumber}
           </li>

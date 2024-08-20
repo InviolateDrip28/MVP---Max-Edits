@@ -5,6 +5,7 @@ import {
   COUNTRY_CODE_TO_CURRENCY,
   PARTNERS,
 } from "./constants";
+import { ArrowsRightLeftIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
@@ -22,12 +23,20 @@ const Homepage = observer(() => {
   const handleClick = () => {
     console.log("fromCountry: ", SearchStore.fromCountry);
     console.log("toCountry: ", SearchStore.toCountry);
-    console.log(
-      "fromCurrency: ",
-      SearchStore.fromCurrency
-    );
+    console.log("fromCurrency: ", SearchStore.fromCurrency);
     console.log("toCurrency: ", SearchStore.toCurrency);
     console.log("amount: ", SearchStore.amount);
+  };
+
+  const handleSwap = () => {
+    const fromCountry = SearchStore.fromCountry;
+    const toCountry = SearchStore.toCountry;
+    const fromCurrency = SearchStore.fromCurrency;
+    const toCurrency = SearchStore.toCurrency;
+    SearchStore.setFromCountry(toCountry);
+    SearchStore.setToCountry(fromCountry);
+    SearchStore.setFromCurrency(toCurrency);
+    SearchStore.setToCurrency(fromCurrency);
   };
 
   return (
@@ -93,7 +102,7 @@ const Homepage = observer(() => {
               </div>
             </div>
 
-            <div className="w-full flex flex-col sm:flex-row gap-4">
+            <div className="w-full flex flex-col sm:flex-row gap-4 items-center">
               <div className="w-full sm:w-1/2">
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
@@ -104,6 +113,13 @@ const Homepage = observer(() => {
                   label={"Country From"}
                 />
               </div>
+              <button
+                className="flex text-secondary hover:text-accent"
+                onClick={handleSwap}
+              >
+                <ArrowsUpDownIcon className="h-6 w-6 flex sm:hidden" />
+                <ArrowsRightLeftIcon className="h-6 w-6 hidden sm:flex" />
+              </button>
               <div className="w-full sm:w-1/2">
                 <DropdownSelect
                   dropdownList={COUNTRY_CODES}
@@ -120,7 +136,9 @@ const Homepage = observer(() => {
               <input
                 type="number"
                 value={SearchStore.amount}
-                onChange={(e) => SearchStore.setAmount(e.target.value)}
+                onChange={(e) =>
+                  SearchStore.setAmount(e.target.value)
+                }
                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
@@ -160,14 +178,14 @@ const Homepage = observer(() => {
           </div>
         </div>
 
-        <div id="partners" className="text-center space-y-24">
+        <div id="partners" className="text-center space-y-24 ">
           <h1>Our Partners</h1>
           <Marquee items={PARTNERS} />
         </div>
-
-        <div id="faq" className="text-center">
-          <h1>Frequently Asked Questions</h1>
-          <div className="p-8">
+      
+        <div id="faq" className="text-center ">
+          <h1 className="">Frequently Asked Questions</h1>
+          <div className="mt-24">
             <AccordionMenu />
           </div>
         </div>
