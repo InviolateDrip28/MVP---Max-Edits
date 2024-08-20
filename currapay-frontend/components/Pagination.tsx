@@ -5,6 +5,8 @@ import {
 import { useMemo } from "react";
 import classnames from "classnames";
 
+/** adopted from https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/ */
+
 const DOTS = "...";
 // siblingCount = number of options that show up next to the current page when there are dots
 // don't forsee this changing but if it does, add it as a prop and adjust the math.

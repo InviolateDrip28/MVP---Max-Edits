@@ -747,4 +747,17 @@ const LANGUAGES = [
   "CN",
 ];
 
-export { COUNTRY_CODES, COUNTRY_CODE_TO_NAME, COUNTRY_CODE_TO_CURRENCY, PARTNERS, LANGUAGES };
+const FAQS = [
+  { label: "What does CurraPay do?", content: "Our website and mobile app will help users find the cheapest, quickest, and best way to send money internationally in real-time across every corridor for the widest range of financial institutions. We're building an online marketplace where financial institutions find customers and vice versa, across every corridor in the international money transfer market." },
+  { label: "Is CurraPay free? ", content: "Yes! We provide our price comparison services to our users, individuals and businesses, for free at the point of use." },
+  {
+    label: "How can I send an international money transfer?",
+    content: "Our free price comparison service allow you to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers.",
+  },
+  {
+    label: "What is the mid-market exchange rate?", 
+    content: "answer"
+  }
+];
+
+export { COUNTRY_CODES, COUNTRY_CODE_TO_NAME, COUNTRY_CODE_TO_CURRENCY, PARTNERS, LANGUAGES, FAQS };

@@ -10,7 +10,7 @@ export interface MarqueeItem {
 export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
   return (
     <div className="relative flex items-center -mx-24">
-      <div className="relative flex max-h-72 max-w-[100vw] overflow-hidden py-5 fade-left-right">
+      <div className="relative flex max-h-72 max-w-[100vw] overflow-hidden fade-left-right">
         <div className="flex animate-marquee [--duration:30s] hover:[animation-play-state:paused">
           {[...items, ...items].map((item, index) => (
             <Link

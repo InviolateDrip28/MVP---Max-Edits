@@ -4,29 +4,29 @@ import Image from "next/image";
 
 const TEAM = [
   {
-    name: "John Doe",
+    name: "David McMillan",
     title: "CEO",
     imgSrc: "https://via.placeholder.com/250",
-    linkedin: "https://www.linkedin.com/in/ni-jessica/",
+    linkedin: "https://www.linkedin.com/in/davidandrewmcmillan/",
   },
   {
-    name: "John Doe",
+    name: "Max Stanley",
     title: "CEO",
     imgSrc: "https://via.placeholder.com/250",
-    linkedin: "https://www.linkedin.com/in/ni-jessica/",
+    linkedin: " https://www.linkedin.com/in/maximillian-stanley-681619135/",
   },
   {
-    name: "John Doe",
+    name: "Zach Kiihne",
     title: "CEO",
     imgSrc: "https://via.placeholder.com/250",
-    linkedin: "https://www.linkedin.com/in/ni-jessica/",
+    linkedin: "https://www.linkedin.com/in/zachary-kiihne-56b944129/",
   },
 ];
 
 export default function About() {
   return (
     <section className="text-center gap-36">
-      <div className="">
+      <div className="h-screen">
         <h1>Mission</h1>
         <p className="mt-12 sm:mt-24">
           This is a random example paragraph for the purpose of demo.
@@ -37,7 +37,7 @@ export default function About() {
         </p>
       </div>
 
-      <div className="">
+      <div className="h-screen">
         <h1>Meet the Team</h1>
         <div className="mt-12 sm:mt-24 grid grid-flow-row auto-rows-max sm:grid-flow-col sm:auto-cols-max gap-12 sm:gap-24 ">
           {TEAM.map((member) => (
@@ -46,7 +46,7 @@ export default function About() {
                 <img
                   src={member.imgSrc}
                   alt={member.name}
-                  className="group-hover:drop-shadow-xl rounded-md"
+                  className="group-hover:drop-shadow-xl rounded-full object-contain"
                 />
                 <p className="font-semibold pt-4">{member.name}</p>
                 <div className="inline-flex items-center gap-1">

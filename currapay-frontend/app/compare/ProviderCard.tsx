@@ -139,7 +139,7 @@ export default function ProviderCard(props: ProviderCardProps) {
       )}
 
       <Link
-        className="absolute bottom-4 right-10 inline-flex text-base text-secondary hover:text-accent hover:underline underline-offset-4"
+        className="absolute bottom-4 right-10 inline-flex text-base text-secondary link"
         href=""
       >
         Go to provider

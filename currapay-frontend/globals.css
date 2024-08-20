@@ -42,6 +42,14 @@
   @apply backdrop-blur-xl bg-opacity-80;
 }
 
+.link {
+  @apply hover:text-accent hover:underline hover:underline-offset-4;
+}
+
+/* scroll to top button */
+.scrollToTopButton {
+  transition: opacity 0.3s ease-in-out;
+}
 
 /* pagination styles */
 .pagination-container {

@@ -61,7 +61,7 @@ export default function ProfilePage() {
             <div className="mt-6 text-center ">
               <a
                 href="/signup"
-                className="text-sm text-accent hover:underline"
+                className="text-sm link"
               >
                 {"Don’t have an account yet? Sign up"}
               </a>

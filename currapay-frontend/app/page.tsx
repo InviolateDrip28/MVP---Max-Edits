@@ -4,8 +4,12 @@ import {
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
   PARTNERS,
+  FAQS
 } from "./constants";
-import { ArrowsRightLeftIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowsRightLeftIcon,
+  ArrowsUpDownIcon,
+} from "@heroicons/react/20/solid";
 import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
@@ -13,6 +17,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 
 const Homepage = observer(() => {
   const { SearchStore } = useStores();
@@ -41,6 +46,7 @@ const Homepage = observer(() => {
 
   return (
     <section id="homepage">
+
       <div className="flex flex-col gap-48">
         <div className="flex flex-col gap-8 items-center justify-center">
           <div className="px-8 space-y-4">
@@ -178,18 +184,22 @@ const Homepage = observer(() => {
           </div>
         </div>
 
-        <div id="partners" className="text-center space-y-24 ">
-          <h1>Our Partners</h1>
+        <div id="partners" className="text-center space-y-12">
+          <p className="text-sm sm:text-2xl text-center">In partnership with</p>
           <Marquee items={PARTNERS} />
         </div>
-      
-        <div id="faq" className="text-center ">
+
+        <div id="faq" className="h-screen pt-24 text-center ">
           <h1 className="">Frequently Asked Questions</h1>
           <div className="mt-24">
-            <AccordionMenu />
+            <AccordionMenu itemList={FAQS} />
           </div>
+          <p className="mt-24">Can&apos;t find the answer you&apos;re looking for? Feel free to <Link href="" className="link text-accent">contact us!</Link></p>
         </div>
       </div>
+
+      <ScrollToTopButton />
+
     </section>
   );
 });
