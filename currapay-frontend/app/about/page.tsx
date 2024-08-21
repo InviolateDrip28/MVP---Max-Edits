@@ -27,9 +27,10 @@ const TEAM = [
 
 export default function About() {
   return (
-    <section className="text-center gap-36 overflow-x-hidden">
-      <div className="justify-center items-center w-[100vw] h-screen -my-36 grid grid-flow-col px-8 sm:px-24 bg--950">
-        <div className="text-left space-y-4 -mr-24">
+    <section className="text-center gap-36">
+
+      <div className="md:h-screen md:-mt-36 items-center justify-center grid grid-flow-row md:grid-flow-col md:grid-cols-3 text-center md:text-left gap-8">
+        <div className="relative space-y-4 md:col-span-2 md:pr-16">
           <h1 className="">Mission</h1>
           <p className="text-xl font-semibold text-accentSecondary">
             We're building a better way to send money abroad.
@@ -42,8 +43,9 @@ export default function About() {
             look at this globe!.
           </p>
         </div>
-
-        <SimpleGlobe className="overflow-visible translate-x-1/3 scale-50 md:scale-100" />
+        <div className="w-full md:-my-36 md:col-span-1 md:translate-x-1/3">
+          <SimpleGlobe className="relative flex justify-center items-center"  />
+        </div>
       </div>
 
       <div className="h-screen">
