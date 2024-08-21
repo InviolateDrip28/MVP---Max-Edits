@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MaterialSymbol } from "react-material-symbols";
-import CurrapayShortLogoBlack from "@/public/CurrapayShortLogoBlack.png";
-import CurrapayPrimaryLogoBlack from "@/public/CurrapayPrimaryLogoBlack.png";
+import CurrapayShortLogoBlack from "@/public/logos/CurrapayShortLogoBlack.png";
+import CurrapayPrimaryLogoBlack from "@/public/logos/CurrapayPrimaryLogoBlack.png";
 import NavPopover from "./NavPopover";
 import LanguagePopover from "./LanguagePopover";
 
@@ -20,7 +20,7 @@ export const Nav = () => {
       </Link>
 
       <Link href="/" className="md:hidden">
-      <Image
+        <Image
           src={CurrapayShortLogoBlack}
           alt="Currapay Small Logo"
           className="w-[70px] -m-2"

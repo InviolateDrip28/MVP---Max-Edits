@@ -10,7 +10,7 @@ import {
   COUNTRY_CODE_TO_CURRENCY,
 } from "../constants";
 import { ArrowsRightLeftIcon } from "@heroicons/react/20/solid";
-import ProviderCard from "./ProviderCard";
+import ProviderCard from "./components/ProviderCard";
 import { Pagination } from "@/components/Pagination";
 import { useState, useEffect } from "react";
 

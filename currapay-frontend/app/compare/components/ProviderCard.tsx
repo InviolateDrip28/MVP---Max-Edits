@@ -7,7 +7,7 @@ import {
   ChevronUpIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import CurrapayShortLogoBlack from "@/public/CurrapayShortLogoBlack.png";
+import CurrapayShortLogoBlack from "@/public/logos/CurrapayShortLogoBlack.png";
 import { useState } from "react";
 import Link from "next/link";
 import RecipientCard from "./RecipientCard";
