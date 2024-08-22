@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 const arcsData = [
   {
     startLat: 40.7128,
-    startLng: -74.0060,
+    startLng: -74.006,
     endLat: 51.5072,
     endLng: 0.1276,
     color: "#81dbdb",
@@ -33,7 +33,7 @@ const arcsData = [
   },
   {
     startLat: -10.7128,
-    startLng: -55.0060,
+    startLng: -55.006,
     endLat: 56.1304,
     endLng: -106.3468,
     color: "#81dbdb",
@@ -54,7 +54,7 @@ const arcsData = [
   // },
 ];
 
-export default function SimpleGlobe({ ...props }) {
+export default function GlobeModel({ ...props }) {
   const useSize = () => {
     const [width, setWidth] = useState(window.innerWidth);
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from "next/image";
-import SimpleGlobe from "@/components/Globe";
+import GlobeModel from "@/components/Globe";
 
 const TEAM = [
   {
@@ -28,12 +28,11 @@ const TEAM = [
 export default function About() {
   return (
     <section className="text-center gap-36">
-
       <div className="md:h-screen md:-mt-36 items-center justify-center grid grid-flow-row md:grid-flow-col md:grid-cols-3 text-center md:text-left gap-8">
         <div className="relative space-y-4 md:col-span-2 md:pr-16">
           <h1 className="">Mission</h1>
           <p className="text-xl font-semibold text-accentSecondary">
-            We're building a better way to send money abroad.
+            We&apos;re building a better way to send money abroad.
           </p>
           <p className="pt-4">
             This is a random example paragraph for the purpose of
@@ -44,7 +43,7 @@ export default function About() {
           </p>
         </div>
         <div className="w-full md:-my-36 md:col-span-1 md:translate-x-1/3">
-          <SimpleGlobe className="relative flex justify-center items-center"  />
+          <GlobeModel className="relative flex justify-center items-center" />
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import {
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
   PARTNERS,
-  FAQS
+  FAQS,
 } from "./constants";
 import {
   ArrowsRightLeftIcon,
@@ -14,16 +14,27 @@ import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import api from '@/utils/api';
+import { trpc } from "@/utils/trpc";
 
 const Homepage = observer(() => {
   const { SearchStore } = useStores();
   const [useBanks, setUseBanks] = useState(false);
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
+
+  // const {
+  //   data: transactions,
+  //   error: transactionsError,
+  //   isLoading: transactionsLoading,
+  // } = trpc.transaction.getAllTransactions.useQuery();
+
+  // if (transactionsError)
+  //   return <p>Error loading data</p>;
 
   const handleClick = () => {
     console.log("fromCountry: ", SearchStore.fromCountry);
@@ -46,7 +57,6 @@ const Homepage = observer(() => {
 
   return (
     <section id="homepage">
-
       <div className="flex flex-col gap-48">
         <div className="flex flex-col gap-8 items-center justify-center">
           <div className="px-8 space-y-4">
@@ -58,6 +68,15 @@ const Homepage = observer(() => {
               services to find the best way to send or recieve your
               international money transfer.
             </p>
+
+            {/* <ul>
+              {transactions?.map((transaction) => (
+                <li key={transaction.id}>
+                  {transaction.amount} {transaction.currency}
+                </li>
+              ))}
+            </ul> */}
+
           </div>
           <div className="border box-border p-8 shadow-xl rounded-xl w-[9/10] sm:w-full space-y-4 bg-white">
             <div
@@ -185,7 +204,9 @@ const Homepage = observer(() => {
         </div>
 
         <div id="partners" className="text-center space-y-12">
-          <p className="text-sm sm:text-2xl text-center">In partnership with</p>
+          <p className="text-sm sm:text-2xl text-center">
+            In partnership with
+          </p>
           <Marquee items={PARTNERS} />
         </div>
 
@@ -194,14 +215,19 @@ const Homepage = observer(() => {
           <div className="mt-24">
             <AccordionMenu itemList={FAQS} />
           </div>
-          <p className="mt-24">Can&apos;t find the answer you&apos;re looking for? Feel free to <Link href="" className="link text-accent">contact us!</Link></p>
+          <p className="mt-24">
+            Can&apos;t find the answer you&apos;re looking for? Feel
+            free to{" "}
+            <Link href="" className="link text-accent">
+              contact us!
+            </Link>
+          </p>
         </div>
       </div>
 
       <ScrollToTopButton />
-
     </section>
   );
 });
 
-export default Homepage;
+export default trpc.withTRPC(Homepage);

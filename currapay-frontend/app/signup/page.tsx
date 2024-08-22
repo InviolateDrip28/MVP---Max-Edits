@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export default function SignupPage() {
   return (
     <section className="h-screen w-full">
