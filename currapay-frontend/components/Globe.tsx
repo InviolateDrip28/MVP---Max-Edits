@@ -1,18 +1,84 @@
 "use client";
 import Globe from "react-globe.gl";
-import { useRef, useEffect } from "react";
-import GlobeImage from '@/public/download.jpeg'
+import { useRef, useEffect, useState } from "react";
 
-const arcsData = Array.from({ length: 10 }, (_, i) => ({
-  startLat: (Math.random() - 0.5) * 180,
-  startLng: (Math.random() - 0.5) * 360,
-  endLat: (Math.random() - 0.5) * 180,
-  endLng: (Math.random() - 0.5) * 360,
-  color: "#21E2E2",
-}));
+const arcsData = [
+  {
+    startLat: 40.7128,
+    startLng: -74.0060,
+    endLat: 51.5072,
+    endLng: 0.1276,
+    color: "#81dbdb",
+  },
+  {
+    startLat: 20.5937,
+    startLng: 78.9629,
+    endLat: 52.3555,
+    endLng: 1.1743,
+    color: "#81dbdb",
+  },
+  {
+    startLat: 8.7832,
+    startLng: 34.5085,
+    endLat: 35.8617,
+    endLng: 104.1954,
+    color: "#81dbdb",
+  },
+  {
+    startLat: 38.8375,
+    startLng: 116.4074,
+    endLat: -23.6345,
+    endLng: 142.5528,
+    color: "#81dbdb",
+  },
+  {
+    startLat: -10.7128,
+    startLng: -55.0060,
+    endLat: 56.1304,
+    endLng: -106.3468,
+    color: "#81dbdb",
+  },
+  {
+    startLat: 36.7783,
+    startLng: -119.4179,
+    endLat: 35.9078,
+    endLng: 127.7669,
+    color: "#81dbdb",
+  },
+  // {
+  //   startLat: -10.7128,
+  //   startLng: -55.0060,
+  //   endLat: 56.1304,
+  //   endLng: -106.3468,
+  //   color: "red",
+  // },
+];
 
 export default function SimpleGlobe({ ...props }) {
-  const globeEl: any = useRef();
+  const useSize = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const windowSizeHandler = () => {
+        setWidth(window.innerWidth);
+      };
+      window.addEventListener("resize", windowSizeHandler);
+
+      return () => {
+        window.removeEventListener("resize", windowSizeHandler);
+      };
+    }, []);
+
+    if (width < 775) {
+      return 400;
+    } else if (width < 1024) {
+      return 600;
+    } else {
+      return 800;
+    }
+  };
+
+  const globeEl: any = useRef<any>(null);
   useEffect(() => {
     if (globeEl.current) {
       globeEl.current.controls().enableZoom = false;
@@ -24,7 +90,8 @@ export default function SimpleGlobe({ ...props }) {
   return (
     <div {...props}>
       <Globe
-        width={window.innerWidth / 2}
+        width={useSize()}
+        height={useSize()}
         ref={globeEl}
         atmosphereColor="#21E2E2"
         globeImageUrl={"/globe.jpg"}
@@ -33,7 +100,7 @@ export default function SimpleGlobe({ ...props }) {
         arcColor={"color"}
         arcStroke={1}
         arcDashGap={1}
-        arcDashAnimateTime={4000}
+        arcDashAnimateTime={5000}
       />
     </div>
   );

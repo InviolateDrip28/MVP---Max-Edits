@@ -5,7 +5,7 @@ import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import CurrapayPrimaryLogoBlack from "@/public/CurrapayPrimaryLogoBlack.png";
+import CurrapayPrimaryLogoBlack from "@/public/logos/CurrapayPrimaryLogoBlack.png";
 
 /* Footer for the main layout */
 export const Footer = () => {

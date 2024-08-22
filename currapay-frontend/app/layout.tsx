@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Poppins, Raleway } from "next/font/google";
-import { Nav } from "../components/Nav";
-import { Footer } from "../components/Footer";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 import "react-material-symbols/rounded";
 import "../globals.css";
 import { StoreProvider } from "../stores/provider";
