@@ -1,33 +1,20 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import prisma from '../../db/prismaClient'; // Import the Prisma client
+import { useUser } from '../hooks/useUser'; 
 
 const t = initTRPC.create();
 
 export const userRouter = t.router({
-  getAllUsers: t.procedure
-    .query(async () => {
-      try {
-        return await prisma.user.findMany();
-      } catch (error) {
-        console.error("Error fetching users:", error);
-        throw new Error("Failed to fetch users");
-      }
-    }),
-  
+  getAllUsers: t.procedure.query(async () => {
+    return await useUser.getAllUsers();
+  }),
+
   getUserById: t.procedure
     .input(z.number())
     .query(async ({ input }) => {
-      try {
-        return await prisma.user.findUnique({
-          where: { id: input },
-        });
-      } catch (error) {
-        console.error(`Error fetching user with ID ${input}:`, error);
-        throw new Error(`Failed to fetch user with ID ${input}`);
-      }
+      return await useUser.getUserById(input);
     }),
-  
+
   createUser: t.procedure
     .input(z.object({
       emailAddress: z.string().email(),
@@ -43,16 +30,9 @@ export const userRouter = t.router({
       accountCreationDate: z.date(),
     }))
     .mutation(async ({ input }) => {
-      try {
-        return await prisma.user.create({
-          data: input,
-        });
-      } catch (error) {
-        console.error("Error creating user:", error);
-        throw new Error("Failed to create user");
-      }
+      return await useUser.createUser(input);
     }),
-  
+
   updateUser: t.procedure
     .input(z.object({
       id: z.number(),
@@ -71,28 +51,12 @@ export const userRouter = t.router({
       }),
     }))
     .mutation(async ({ input }) => {
-      try {
-        return await prisma.user.update({
-          where: { id: input.id },
-          data: input.data,
-        });
-      } catch (error) {
-        console.error(`Error updating user with ID ${input.id}:`, error);
-        throw new Error(`Failed to update user with ID ${input.id}`);
-      }
+      return await useUser.updateUser(input.id, input.data);
     }),
-  
+
   deleteUser: t.procedure
     .input(z.number())
     .mutation(async ({ input }) => {
-      try {
-        await prisma.user.delete({
-          where: { id: input },
-        });
-        return true;
-      } catch (error) {
-        console.error(`Error deleting user with ID ${input}:`, error);
-        return false;
-      }
+      return await useUser.deleteUser(input);
     }),
 });

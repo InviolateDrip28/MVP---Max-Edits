@@ -1,35 +1,21 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import prisma from '../../db/prismaClient'; 
+import { useTransaction } from '../hooks/useTransaction'; 
+
 
 const t = initTRPC.create();
 
 export const transactionRouter = t.router({
-  getAllTransactions: t.procedure
-    .query(async () => {
-      try {
-        console.log("Fetching all transactions...");
-        return await prisma.transaction.findMany();
-      } catch (error) {
-        console.error("Error fetching transactions:", error);
-        throw new Error("Failed to fetch transactions");
-      }
-    }),
-  
+  getAllTransactions: t.procedure.query(async () => {
+    return await useTransaction.getAllTransactions();
+  }),
+
   getTransactionById: t.procedure
     .input(z.number())
     .query(async ({ input }) => {
-      try {
-        console.log(`Fetching transaction with ID: ${input}`);
-        return await prisma.transaction.findUnique({
-          where: { id: input },
-        });
-      } catch (error) {
-        console.error(`Error fetching transaction with ID ${input}:`, error);
-        throw new Error(`Failed to fetch transaction with ID ${input}`);
-      }
+      return await useTransaction.getTransactionById(input);
     }),
-  
+
   createTransaction: t.procedure
     .input(z.object({
       userId: z.number(),
@@ -44,16 +30,9 @@ export const transactionRouter = t.router({
       timestamp: z.date(),
     }))
     .mutation(async ({ input }) => {
-      try {
-        return await prisma.transaction.create({
-          data: input,
-        });
-      } catch (error) {
-        console.error("Error creating transaction:", error);
-        throw new Error("Failed to create transaction");
-      }
+      return await useTransaction.createTransaction(input);
     }),
-  
+
   updateTransaction: t.procedure
     .input(z.object({
       id: z.number(),
@@ -71,28 +50,12 @@ export const transactionRouter = t.router({
       }),
     }))
     .mutation(async ({ input }) => {
-      try {
-        return await prisma.transaction.update({
-          where: { id: input.id },
-          data: input.data,
-        });
-      } catch (error) {
-        console.error(`Error updating transaction with ID ${input.id}:`, error);
-        throw new Error(`Failed to update transaction with ID ${input.id}`);
-      }
+      return await useTransaction.updateTransaction(input.id, input.data);
     }),
-  
+
   deleteTransaction: t.procedure
     .input(z.number())
     .mutation(async ({ input }) => {
-      try {
-        await prisma.transaction.delete({
-          where: { id: input },
-        });
-        return true;
-      } catch (error) {
-        console.error(`Error deleting transaction with ID ${input}:`, error);
-        return false;
-      }
+      return await useTransaction.deleteTransaction(input);
     }),
 });

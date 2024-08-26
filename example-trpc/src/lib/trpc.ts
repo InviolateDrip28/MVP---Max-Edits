@@ -1,5 +1,6 @@
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
+
 import type { AppRouter } from '../../../currapay-backend/src/trpc/_app'; 
 
 function getBaseUrl() {
@@ -24,7 +25,7 @@ export const trpc = createTRPCNext<AppRouter>({
     return {
       links: [
         httpBatchLink({
-          url: `${getBaseUrl()}/api/trpc`,
+          url: `${getBaseUrl()}/trpc`,
 
           async headers() {
             return {
