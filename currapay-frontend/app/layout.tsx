@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { StoreProvider } from "../stores/provider";
 import { DM_Sans, Poppins, Raleway } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import "react-material-symbols/rounded";
 import "../globals.css";
-import { StoreProvider } from "../stores/provider";
+
 
 const raleway = Raleway({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
