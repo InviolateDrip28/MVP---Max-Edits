@@ -55,9 +55,10 @@ const arcsData = [
 ];
 
 export default function GlobeModel({ ...props }) {
+
   const useSize = () => {
     const [width, setWidth] = useState(window.innerWidth);
-
+  
     useEffect(() => {
       const windowSizeHandler = () => {
         setWidth(window.innerWidth);

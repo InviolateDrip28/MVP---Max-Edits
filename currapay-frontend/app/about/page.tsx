@@ -1,7 +1,14 @@
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from "next/image";
-import GlobeModel from "@/components/Globe";
+import dynamic from "next/dynamic";
+
+const Globe = dynamic(
+  () => {
+    return import("@/components/Globe");
+  },
+  { ssr: false }
+);
 
 const TEAM = [
   {
@@ -43,7 +50,7 @@ export default function About() {
           </p>
         </div>
         <div className="w-full md:-my-36 md:col-span-1 md:translate-x-1/3">
-          <GlobeModel className="relative flex justify-center items-center" />
+          <Globe className="relative flex justify-center items-center" />
         </div>
       </div>
 

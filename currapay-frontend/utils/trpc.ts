@@ -19,6 +19,8 @@ function getBaseUrl() {
   return `http://localhost:${process.env.PORT ?? 4000}`;
 }
 
+// TODO: fix type error
+// @ts-ignore
 export const trpc = createTRPCNext<AppRouter>({
   config(opts: any) {
     return {

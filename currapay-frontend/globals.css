@@ -17,7 +17,7 @@
   }
   
   section {
-    @apply flex min-h-screen flex-col items-center justify-between py-12 px-8 sm:p-24
+    @apply flex min-h-screen flex-col items-center justify-evenly py-12 px-8 sm:p-24
   }
 
 }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { StoreProvider } from "../stores/provider";
+import { Suspense } from "react";
 import { DM_Sans, Poppins, Raleway } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import "react-material-symbols/rounded";
 import "../globals.css";
-
 
 const raleway = Raleway({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -46,9 +46,11 @@ export default function RootLayout({
       >
         <div>
           <StoreProvider>
-            <Nav />
-            {children}
-            <Footer />
+            <Suspense>
+              <Nav />
+              {children}
+              <Footer />
+            </Suspense>
           </StoreProvider>
         </div>
       </body>

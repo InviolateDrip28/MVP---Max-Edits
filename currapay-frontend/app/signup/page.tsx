@@ -6,7 +6,7 @@ export default function SignupPage() {
           <h1 className="text-primary text-center">
             Sign Up
           </h1>
-          <div className="relative flex flex-row items-center mt-8 space-x-4">
+          <div className="relative flex flex-row items-center mt-24 space-x-4">
             <input
               type="first-name"
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
