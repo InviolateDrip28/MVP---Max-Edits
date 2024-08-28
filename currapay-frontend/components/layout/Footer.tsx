@@ -15,18 +15,17 @@ export const Footer = () => {
         <Image
           src={CurrapayPrimaryLogoBlack}
           alt="Currapay Logo"
-          className="w-[200px] -m-2"
+          className="w-[200px] -mx-2"
         />
+        <p>&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
       </div>
 
-      <div className="flex flex-row">
+      <div className="flex flex-row pt-12">
         <div>
-          <p>&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
-          <div id="terms-and-privacy" className="flex">
+          <div id="terms-and-privacy" className="flex flex-col">
             <Link href="/" className="link">
               Terms of Service
             </Link>
-            &nbsp;|&nbsp;
             <Link href="/" className="link">
               Privacy Policy
             </Link>
@@ -34,7 +33,7 @@ export const Footer = () => {
         </div>
 
         <div className="ml-auto">
-        Follow us on: 
+          Follow us on:
           <div id="media-links" className="flex gap-6">
             <Link
               href="https://www.linkedin.com/company/currapay/"
@@ -43,11 +42,17 @@ export const Footer = () => {
               <LinkedInIcon className="hover:text-accent hover:scale-110" />
             </Link>
 
-            <Link href="https://www.facebook.com/share/qayqz95KLMDakGb2/?mibextid=LQQJ4d" target="_blank">
+            <Link
+              href="https://www.facebook.com/share/qayqz95KLMDakGb2/?mibextid=LQQJ4d"
+              target="_blank"
+            >
               <FacebookIcon className="hover:text-accent hover:scale-110" />
             </Link>
 
-            <Link href="https://www.instagram.com/currapay/" target="_blank">
+            <Link
+              href="https://www.instagram.com/currapay/"
+              target="_blank"
+            >
               <InstagramIcon className="hover:text-accent hover:scale-110" />
             </Link>
 

@@ -8,18 +8,21 @@
     @apply bg-background text-primary text-base sm:text-lg overflow-x-hidden;
   }
 
-  .bigHeading {
-    @apply text-4xl sm:text-6xl md:text-8xl font-semibold;
-  }
-
   h1 {
     @apply text-4xl sm:text-5xl md:text-6xl font-semibold;
   }
   
   section {
-    @apply flex min-h-screen flex-col items-center justify-evenly py-12 px-8 sm:p-24
+    @apply flex min-h-screen flex-col items-center justify-evenly py-12 px-8 sm:py-24 sm:px-36
   }
 
+}
+.differentBackgroundColor {
+  @apply -my-12 -mx-8 sm:-m-24 py-24 px-8 sm:px-24 sm:py-36 ;
+}
+
+.bigHeading {
+  @apply text-4xl sm:text-6xl md:text-8xl font-semibold;
 }
 
 .fade-left-right {

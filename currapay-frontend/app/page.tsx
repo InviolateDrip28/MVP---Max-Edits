@@ -18,7 +18,7 @@ import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
-import api from '@/utils/api';
+import api from "@/utils/api";
 import { trpc } from "@/utils/trpc";
 
 const Homepage = observer(() => {
@@ -63,7 +63,7 @@ const Homepage = observer(() => {
             <p className="text-center bigHeading animatedGradientText">
               Search. Send. Save.
             </p>
-            <p className="text-sm sm:text-2xl text-center">
+            <p className="sm:text-xl md:text-2xl text-center">
               Search across banks, remittance apps, and crypto
               services to find the best way to send or recieve your
               international money transfer.
@@ -76,9 +76,8 @@ const Homepage = observer(() => {
                 </li>
               ))}
             </ul> */}
-
           </div>
-          <div className="border box-border p-8 shadow-xl rounded-xl w-[9/10] sm:w-full space-y-4 bg-white">
+          <div className="border box-border p-8 shadow-xl rounded-xl w-full space-y-4 bg-white">
             <div
               id="filters"
               className="justify-center flex flex-row text-xs sm:text-base md:text-lg gap-4"
@@ -203,14 +202,41 @@ const Homepage = observer(() => {
           </div>
         </div>
 
-        <div id="partners" className="text-center space-y-12">
+        <div id="partners" className="text-center my-24 space-y-12">
           <p className="text-sm sm:text-2xl text-center">
             In partnership with
           </p>
           <Marquee items={PARTNERS} />
         </div>
 
-        <div id="faq" className="h-screen pt-24 text-center ">
+        <div id="context" className="differentBackgroundColor bg-navy grid md:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white">
+          <div className="space-y-8 md:space-y-16">
+            <h1>Save money with CurraPay</h1>
+            <p className="text-gray-100 text-lg md:text-xl">
+              We're on a mission to reduce the cost of sending money
+              internationally. CurraPay was founded on a simple idea —
+              that the international money transfer market needed
+              greater transparency. <span className="italic">We're leveling the playing field.</span>
+            </p>
+          </div>
+
+          <div className="grid grid-rows-3 gap-y-8 md:gap-y-16">
+            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary space-y-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap ">1 billion people</p>
+              <p>send money abroad</p>
+            </div>
+            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/60 space-y-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap">$13 trillion</p>
+              <p>sent every year</p>
+            </div>
+            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/40">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap">$280 billion</p>
+              <p>lost each year due to transaction costs</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="faq" className="h-screen mt-24 mb-48 text-center">
           <h1 className="">Frequently Asked Questions</h1>
           <div className="mt-24">
             <AccordionMenu itemList={FAQS} />

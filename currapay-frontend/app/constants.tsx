@@ -752,12 +752,21 @@ const FAQS = [
   { label: "Is CurraPay free? ", content: "Yes! We provide our price comparison services to our users, individuals and businesses, for free at the point of use." },
   {
     label: "How can I send an international money transfer?",
-    content: "Our free price comparison service allow you to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers.",
+    content: "Our free price comparison service allows users to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers. When you find the option that best matches your preferences, you can click the “Send” button and we’ll send you to one of our partner’s sites where you can execute your transaction.",
+  },
+  {
+    label: "How does CurraPay make money?",
+    content: "We generate revenue from referring users to the international money transfer vendors included on this site."
   },
   {
     label: "What is the mid-market exchange rate?", 
-    content: "answer"
+    content: "This is the exchange rate that financial institutions use when buying and selling currencies in private markets; it’s also the exchange rate that Google shares with users. We provide this exchange rate to our users and if you sign up to receive notifications, we alert you to when an exchange rate is particularly strong."
+  },
+  {
+    label: "Who do you work with?",
+    content: "We work with Remitly, Wise, Ria, Atlantic Money, Western Union, MoneyGram, OFX, TransferGo, Currency Solutions, XE, Halo Financial, and World Remit (WorldRemit). Our goal is to help people move away from using banks and towards lower-cost alternative options, which would save consumers billions of dollars each year. "
   }
+
 ];
 
 export { COUNTRY_CODES, COUNTRY_CODE_TO_NAME, COUNTRY_CODE_TO_CURRENCY, PARTNERS, LANGUAGES, FAQS };

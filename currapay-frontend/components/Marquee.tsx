@@ -9,7 +9,7 @@ export interface MarqueeItem {
 /** Reusable marquee component. animations defined in tailwind.config.ts */
 export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
   return (
-    <div className="relative flex items-center -mx-24">
+    <div className="relative flex items-center -mx-8 sm:-mx-24">
       <div className="relative flex max-h-72 max-w-[100vw] overflow-hidden fade-left-right">
         <div className="flex animate-marquee [--duration:30s] hover:[animation-play-state:paused">
           {[...items, ...items].map((item, index) => (

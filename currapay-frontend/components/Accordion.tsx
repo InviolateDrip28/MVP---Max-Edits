@@ -5,7 +5,6 @@ import {
   AccordionTitle,
 } from "flowbite-react";
 
-
 /**
  * Reusable accordion component
  * source: https://flowbite-react.com/docs/components/accordion
