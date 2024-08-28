@@ -209,29 +209,30 @@ const Homepage = observer(() => {
           <Marquee items={PARTNERS} />
         </div>
 
-        <div id="context" className="differentBackgroundColor bg-navy grid md:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white">
+        <div id="context" className="differentBackgroundColor bg-navy grid lg:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white">
           <div className="space-y-8 md:space-y-16">
             <h1>Save money with CurraPay</h1>
-            <p className="text-gray-100 text-lg md:text-xl">
+            <p className="text-gray-100 text-xl md:text-3xl">
               We're on a mission to reduce the cost of sending money
               internationally. CurraPay was founded on a simple idea —
               that the international money transfer market needed
-              greater transparency. <span className="italic">We're leveling the playing field.</span>
+              greater transparency. 
+              <p className="pt-4 md:pt-8 font-semibold">We're leveling the playing field.</p>
             </p>
           </div>
 
           <div className="grid grid-rows-3 gap-y-8 md:gap-y-16">
             <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary space-y-2">
-            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap ">1 billion people</p>
-              <p>send money abroad</p>
+            <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap ">1 billion people</p>
+              <p className="text-lg sm:text-2xl">send money abroad</p>
             </div>
             <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/60 space-y-2">
-            <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap">$13 trillion</p>
-              <p>sent every year</p>
+            <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">$13 trillion</p>
+              <p className="text-lg sm:text-2xl">sent every year</p>
             </div>
-            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/40">
-              <p className="text-2xl sm:text-3xl md:text-4xl font-semibold whitespace-nowrap">$280 billion</p>
-              <p>lost each year due to transaction costs</p>
+            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/40 space-y-2">
+              <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">$280 billion</p>
+              <p className="text-lg sm:text-2xl">lost each year due to transaction costs</p>
             </div>
           </div>
         </div>

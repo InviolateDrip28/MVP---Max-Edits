@@ -35,7 +35,7 @@ const TEAM = [
 export default function About() {
   return (
     <section className="text-center gap-36">
-      <div className="md:h-screen md:-mt-36 items-center justify-center grid grid-flow-row md:grid-flow-col md:grid-cols-3 text-center md:text-left gap-8">
+      <div className="min-h-screen md:-mt-24 items-center justify-center grid grid-flow-row md:grid-flow-col md:grid-cols-3 text-center md:text-left gap-8">
         <div className="relative space-y-4 md:col-span-2 md:-ml-12 md:pr-16">
           <h1 className="md:pt-28 lg:pt-0">Mission</h1>
           <p className="text-xl font-semibold text-accentSecondary">
@@ -64,7 +64,7 @@ export default function About() {
 
       <div className="pb-36">
         <h1>Our story</h1>
-        <p className="mt-12 sm:mt-24 text-xl">
+        <p className="mt-12 sm:mt-24 text-lg md:text-xl">
           As a graduate student at Oxford, David McMillan realized
           that sending money back home to the U.S. was a complicated
           process. He teamed up with a longtime friend and British
@@ -84,7 +84,7 @@ export default function About() {
           {TEAM.map((member) => (
             <div className="group" key={member.name}>
               <div className="flex flex-col items-center relative group-hover:scale-105">
-                <div className="relative bg-black rounded-full w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 group-hover:drop-shadow-xl ">
+                <div className="relative bg-black rounded-full w-40 h-40 md:w-56 md:h-56 group-hover:drop-shadow-xl ">
                   <Image
                     src={member.imgSrc}
                     alt={member.name}
@@ -109,7 +109,7 @@ export default function About() {
             </div>
           ))}
         </div>
-        <div>
+        <div className="md:px-36">
           Our company was built by founders from best-in class finance
           and technology companies
         </div>

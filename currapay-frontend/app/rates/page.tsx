@@ -70,7 +70,7 @@ export default function Rates() {
   return (
     <section className="justify-evenly">
       <h1>Rates</h1>
-      <div className="w-full">
+      <div className=" w-1/2">
         <Chart {...chartConfig} />
       </div>
     </section>
