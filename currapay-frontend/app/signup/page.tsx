@@ -1,12 +1,12 @@
 export default function SignupPage() {
   return (
-    <section className="h-screen w-full">
-      <div className="my-12 flex items-center justify-center">
+    <section className="min-h-screen w-full">
+      <div className="mb-12 flex items-center justify-center">
         <form className="w-full">
           <h1 className="text-primary text-center">
             Sign Up
           </h1>
-          <div className="relative flex flex-row items-center mt-24 space-x-4">
+          <div className="relative flex flex-row items-center mt-16 space-x-4">
             <input
               type="first-name"
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"

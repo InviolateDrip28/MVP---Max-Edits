@@ -8,7 +8,7 @@ const ProfilePage = observer(() => {
   const { UserStore } = useStores();
 
   return (
-    <section className="h-screen w-full">
+    <section className="w-full">
       {UserStore.loggedIn ? <UserDashboard /> : <SignIn />}
     </section>
   );

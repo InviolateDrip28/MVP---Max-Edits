@@ -10,14 +10,18 @@ import {
   ArrowsRightLeftIcon,
   ArrowsUpDownIcon,
 } from "@heroicons/react/20/solid";
+import GroupIcon from "@mui/icons-material/Groups";
+import SendIcon from "@mui/icons-material/Send";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import CountUp from "react-countup";
 import api from "@/utils/api";
 import { trpc } from "@/utils/trpc";
 
@@ -63,7 +67,7 @@ const Homepage = observer(() => {
             <p className="text-center bigHeading animatedGradientText">
               Search. Send. Save.
             </p>
-            <p className="sm:text-xl md:text-2xl text-center">
+            <p className="sm:text-lg md:text-xl 2xl:text-2xl text-center">
               Search across banks, remittance apps, and crypto
               services to find the best way to send or recieve your
               international money transfer.
@@ -105,7 +109,7 @@ const Homepage = observer(() => {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-primary"
+                  className="ms-2 text-primary whitespace-nowrap"
                 >
                   Remittance Apps
                 </label>
@@ -202,42 +206,74 @@ const Homepage = observer(() => {
           </div>
         </div>
 
-        <div id="partners" className="text-center my-24 space-y-12">
-          <p className="text-sm sm:text-2xl text-center">
-            In partnership with
-          </p>
+        <div
+          id="partners"
+          className="text-center mb-24 md:mb-36 space-y-12"
+        >
+          <h3 className="text-center">In partnership with</h3>
           <Marquee items={PARTNERS} />
         </div>
 
-        <div id="context" className="differentBackgroundColor bg-navy grid lg:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white">
+        <div
+          id="context"
+          className="differentBackgroundColor bg-navy grid lg:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white"
+        >
           <div className="space-y-8 md:space-y-16">
             <h1>Save money with CurraPay</h1>
-            <p className="text-gray-100 text-xl md:text-3xl">
-              We're on a mission to reduce the cost of sending money
-              internationally. CurraPay was founded on a simple idea —
-              that the international money transfer market needed
-              greater transparency. 
-              <p className="pt-4 md:pt-8 font-semibold">We're leveling the playing field.</p>
-            </p>
+            <div>
+              <h3 className="font-semibold text-accentSecondary">
+                We&apos;re leveling the playing field.
+              </h3>
+              <h3 className="pt-4 md:pt-8 text-gray-100">
+                We&apos;re on a mission to reduce the cost of sending
+                money internationally. CurraPay was founded on a
+                simple idea — that the international money transfer
+                market needed greater transparency.
+              </h3>
+            </div>
           </div>
 
-          <div className="grid grid-rows-3 gap-y-8 md:gap-y-16">
-            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary space-y-2">
-            <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap ">1 billion people</p>
-              <p className="text-lg sm:text-2xl">send money abroad</p>
+          <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20">
+                <GroupIcon className="h-full w-full" />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  1 billion people
+                </h2>
+                <h3>send money abroad</h3>
+              </div>
             </div>
-            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/60 space-y-2">
-            <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">$13 trillion</p>
-              <p className="text-lg sm:text-2xl">sent every year</p>
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20">
+                <SendIcon className="h-full w-full" />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  <CountUp end={13} prefix="$" suffix=" trillion" enableScrollSpy={true} scrollSpyOnce={true}/>
+                </h2>
+                <h3>sent every year</h3>
+              </div>
             </div>
-            <div className="border-l-8 pl-8 py-3 md:py-6 flex flex-col justify-center border-accentSecondary/40 space-y-2">
-              <p className="text-2xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">$280 billion</p>
-              <p className="text-lg sm:text-2xl">lost each year due to transaction costs</p>
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20">
+                <RemoveCircleIcon className="h-full w-full" />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  <CountUp end={280} prefix="$" suffix=" billion" enableScrollSpy={true} scrollSpyOnce={true}/>
+                </h2>
+                <h3>lost each year due to transaction costs</h3>
+              </div>
             </div>
           </div>
         </div>
 
-        <div id="faq" className="h-screen mt-24 mb-48 text-center">
+        <div
+          id="faq"
+          className="min-h-screen mt-24 mb-48 text-center"
+        >
           <h1 className="">Frequently Asked Questions</h1>
           <div className="mt-24">
             <AccordionMenu itemList={FAQS} />

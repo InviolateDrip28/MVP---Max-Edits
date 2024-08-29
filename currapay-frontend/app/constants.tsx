@@ -748,11 +748,11 @@ const LANGUAGES = [
 ];
 
 const FAQS = [
-  { label: "What does CurraPay do?", content: "Our website and mobile app will help users find the cheapest, quickest, and best way to send money internationally in real-time across every corridor for the widest range of financial institutions. We're building an online marketplace where financial institutions find customers and vice versa, across every corridor in the international money transfer market." },
+  { label: "What does CurraPay do?", content: "Our website and mobile app helps users find the cheapest, quickest, and best way to send money internationally in real-time across every corridor for the widest range of financial institutions. We are building an online marketplace where financial institutions find customers and vice versa, across every corridor in the international money transfer market." },
   { label: "Is CurraPay free? ", content: "Yes! We provide our price comparison services to our users, individuals and businesses, for free at the point of use." },
   {
     label: "How can I send an international money transfer?",
-    content: "Our free price comparison service allows users to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers. When you find the option that best matches your preferences, you can click the “Send” button and we’ll send you to one of our partner’s sites where you can execute your transaction.",
+    content: "Our free price comparison service allows users to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers. When you find the option that best matches your preferences, you can click the “Send” button and we will send you to one of our partner’s sites where you can execute your transaction.",
   },
   {
     label: "How does CurraPay make money?",
@@ -760,11 +760,11 @@ const FAQS = [
   },
   {
     label: "What is the mid-market exchange rate?", 
-    content: "This is the exchange rate that financial institutions use when buying and selling currencies in private markets; it’s also the exchange rate that Google shares with users. We provide this exchange rate to our users and if you sign up to receive notifications, we alert you to when an exchange rate is particularly strong."
+    content: "This is the exchange rate that financial institutions use when buying and selling currencies in private markets; it is also the exchange rate that Google shares with users. We provide this exchange rate to our users and if you sign up to receive notifications, we alert you to when an exchange rate is particularly strong."
   },
   {
     label: "Who do you work with?",
-    content: "We work with Remitly, Wise, Ria, Atlantic Money, Western Union, MoneyGram, OFX, TransferGo, Currency Solutions, XE, Halo Financial, and World Remit (WorldRemit). Our goal is to help people move away from using banks and towards lower-cost alternative options, which would save consumers billions of dollars each year. "
+    content: "We work with Remitly, Wise, Ria, Atlantic Money, Western Union, MoneyGram, OFX, TransferGo, Currency Solutions, XE, Halo Financial, and World Remit (WorldRemit). Our goal is to help people move away from using banks and towards lower-cost alternative options to save consumers billions of dollars each year. "
   }
 
 ];

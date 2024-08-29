@@ -10,7 +10,7 @@ import CurrapayPrimaryLogoBlack from "@/public/logos/CurrapayPrimaryLogoBlack.pn
 /* Footer for the main layout */
 export const Footer = () => {
   return (
-    <footer className="px-6 py-8 md:px-10 box-border bg-secondary/40 flex flex-col w-full">
+    <footer className="px-6 py-8 md:px-10 box-border bg-secondary/40 flex flex-col w-full text-xs md:text-base">
       <div className="py-4">
         <Image
           src={CurrapayPrimaryLogoBlack}
@@ -20,7 +20,7 @@ export const Footer = () => {
         <p>&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
       </div>
 
-      <div className="flex flex-row pt-12">
+      <div className="flex flex-row pt-6 md:pt-12">
         <div>
           <div id="terms-and-privacy" className="flex flex-col">
             <Link href="/" className="link">
@@ -34,37 +34,37 @@ export const Footer = () => {
 
         <div className="ml-auto">
           Follow us on:
-          <div id="media-links" className="flex gap-6">
+          <div id="media-links" className="flex -ml-1 gap-2 md:ml-0 md:gap-6">
             <Link
               href="https://www.linkedin.com/company/currapay/"
               target="_blank"
             >
-              <LinkedInIcon className="hover:text-accent hover:scale-110" />
+              <LinkedInIcon className="scale-75 hover:scale-90 md:scale-100 hover:text-accent md:hover:scale-110" />
             </Link>
 
             <Link
               href="https://www.facebook.com/share/qayqz95KLMDakGb2/?mibextid=LQQJ4d"
               target="_blank"
             >
-              <FacebookIcon className="hover:text-accent hover:scale-110" />
+              <FacebookIcon className="scale-75 hover:scale-90 md:scale-100 hover:text-accent md:hover:scale-110" />
             </Link>
 
             <Link
               href="https://www.instagram.com/currapay/"
               target="_blank"
             >
-              <InstagramIcon className="hover:text-accent hover:scale-110" />
+              <InstagramIcon className="scale-75 hover:scale-90 md:scale-100 hover:text-accent md:hover:scale-110" />
             </Link>
 
             <Link href="https://x.com/CurraPay" target="_blank">
-              <XIcon className="hover:text-accent hover:scale-110" />
+              <XIcon className="scale-75 hover:scale-90 md:scale-100 hover:text-accent md:hover:scale-110" />
             </Link>
 
             <Link
               href="https://www.youtube.com/@Currapay"
               target="_blank"
             >
-              <YouTubeIcon className="hover:text-accent hover:scale-110" />
+              <YouTubeIcon className="scale-75 hover:scale-90 md:scale-100 hover:text-accent md:hover:scale-110" />
             </Link>
           </div>
         </div>

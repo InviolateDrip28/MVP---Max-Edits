@@ -14,7 +14,7 @@ export const ScrollToTopButton = () => {
 
   const handleScroll = () => {
     // Show the button when the user scrolls down
-    if (window.scrollY > window.innerHeight + 1600) {
+    if (window.scrollY > window.innerHeight + 2400) {
       setIsVisible(true);
     } else {
       setIsVisible(false);

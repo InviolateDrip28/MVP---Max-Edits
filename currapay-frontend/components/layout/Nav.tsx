@@ -28,7 +28,7 @@ export const Nav = () => {
       </Link>
 
       {/* Desktop */}
-      <div id="navbar-tabs" className="sm:flex ml-auto gap-2 hidden">
+      <div id="navbar-tabs" className="sm:flex items-center ml-auto gap-2 hidden">
         <Link
           href="/"
           className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
