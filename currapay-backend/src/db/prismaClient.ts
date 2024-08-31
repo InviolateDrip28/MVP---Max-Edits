@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: 'file:./test1.db',
+      url: process.env.DATABASE_URL || '', 
     },
   },
   log: [
