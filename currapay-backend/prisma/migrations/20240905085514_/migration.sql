@@ -2,16 +2,17 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "emailAddress" TEXT NOT NULL,
-    "country" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
-    "age" INTEGER NOT NULL,
-    "gender" TEXT NOT NULL,
-    "occupation" TEXT NOT NULL,
-    "nationality" TEXT NOT NULL,
-    "deviceUsed" TEXT NOT NULL,
-    "internetAccess" BOOLEAN NOT NULL,
-    "mobilePenetration" DOUBLE PRECISION NOT NULL,
-    "accountCreationDate" TIMESTAMP(3) NOT NULL,
+    "password" TEXT NOT NULL,
+    "country" TEXT,
+    "city" TEXT,
+    "age" INTEGER,
+    "gender" TEXT,
+    "occupation" TEXT,
+    "nationality" TEXT,
+    "deviceUsed" TEXT,
+    "browserUsed" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -28,7 +29,8 @@ CREATE TABLE "TransactionTable" (
     "transferMethod" TEXT NOT NULL,
     "purposeOfTransfer" TEXT NOT NULL,
     "status" TEXT NOT NULL,
-    "timestamp" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "TransactionTable_pkey" PRIMARY KEY ("id")
 );
