@@ -1,6 +1,6 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import { useUser } from '../hooks/useUser'; 
+import { useUser } from '../hooks/useUser';
 
 const t = initTRPC.create();
 
@@ -18,6 +18,7 @@ export const userRouter = t.router({
   createUser: t.procedure
     .input(z.object({
       emailAddress: z.string().email(),
+      password: z.string().min(6), 
       country: z.string(),
       city: z.string(),
       age: z.number().int().positive(),
@@ -25,9 +26,7 @@ export const userRouter = t.router({
       occupation: z.string(),
       nationality: z.string(),
       deviceUsed: z.string(),
-      internetAccess: z.boolean(),
-      mobilePenetration: z.number().nonnegative(),
-      accountCreationDate: z.date(),
+      browserUsed: z.string(), 
     }))
     .mutation(async ({ input }) => {
       return await useUser.createUser(input);
@@ -38,6 +37,7 @@ export const userRouter = t.router({
       id: z.number(),
       data: z.object({
         emailAddress: z.string().email().optional(),
+        password: z.string().min(6).optional(), 
         country: z.string().optional(),
         city: z.string().optional(),
         age: z.number().int().positive().optional(),
@@ -45,9 +45,7 @@ export const userRouter = t.router({
         occupation: z.string().optional(),
         nationality: z.string().optional(),
         deviceUsed: z.string().optional(),
-        internetAccess: z.boolean().optional(),
-        mobilePenetration: z.number().nonnegative().optional(),
-        accountCreationDate: z.date().optional(),
+        browserUsed: z.string().optional(),
       }),
     }))
     .mutation(async ({ input }) => {

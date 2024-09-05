@@ -32,7 +32,6 @@ export const useTransaction = {
     transferMethod: string;
     purposeOfTransfer: string;
     status: string;
-    timestamp: Date;
   }) => {
     try {
       return await prisma.transaction.create({ data: transactionData });
@@ -52,7 +51,6 @@ export const useTransaction = {
     transferMethod?: string;
     purposeOfTransfer?: string;
     status?: string;
-    timestamp?: Date;
   }) => {
     try {
       return await prisma.transaction.update({ where: { id }, data });

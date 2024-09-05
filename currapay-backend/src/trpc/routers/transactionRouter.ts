@@ -27,7 +27,6 @@ export const transactionRouter = t.router({
       transferMethod: z.string(),
       purposeOfTransfer: z.string(),
       status: z.string(),
-      timestamp: z.date(),
     }))
     .mutation(async ({ input }) => {
       return await useTransaction.createTransaction(input);
@@ -46,7 +45,6 @@ export const transactionRouter = t.router({
         transferMethod: z.string().optional(),
         purposeOfTransfer: z.string().optional(),
         status: z.string().optional(),
-        timestamp: z.date().optional(),
       }),
     }))
     .mutation(async ({ input }) => {
