@@ -62,7 +62,6 @@ const Page: React.FC = () => {
               <p>Transfer Method: {transaction.transferMethod}</p>
               <p>Purpose of Transfer: {transaction.purposeOfTransfer}</p>
               <p>Status: {transaction.status}</p>
-              <p>Timestamp: {new Date(transaction.timestamp).toLocaleString()}</p>
             </li>
           ))}
         </ul>
@@ -83,9 +82,7 @@ const Page: React.FC = () => {
               <p>Occupation: {user.occupation}</p>
               <p>Nationality: {user.nationality}</p>
               <p>Device Used: {user.deviceUsed}</p>
-              <p>Internet Access: {user.internetAccess ? 'Yes' : 'No'}</p>
-              <p>Mobile Penetration: {user.mobilePenetration}</p>
-              <p>Account Creation Date: {new Date(user.accountCreationDate).toLocaleDateString()}</p>
+              <p>Browser Used: {user.browserUsed}</p>
             </li>
           ))}
         </ul>
