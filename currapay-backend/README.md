@@ -8,9 +8,15 @@ Run the following commands in your terminal
 
 See server result in http://localhost:4000
 
-# To see changes in database
+View the data in Prisma Studio:
+
+```npx prisma studio```
+
+See server result in http://localhost:5555
+
+# To see changes in schema
 
 ```npx prisma migrate dev```
-```npx prisma introspect```
-```npx prisma db pull```
+```npx prisma migrate deploy```
 ```npx prisma generate```
+```npx prisma migrate status```
