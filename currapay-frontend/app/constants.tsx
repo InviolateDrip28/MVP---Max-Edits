@@ -720,22 +720,62 @@ const COUNTRY_CODE_TO_CURRENCY: Record<string, string> = {
 const PARTNERS = [
   {
     image:
-      "https://images.generated.photos/TdA_3xKb49DtgqfPPu5REnQFiALErCu6i3M2I_1AqIA/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDAwNTU5LmpwZw.jpg",
+      "/partners/atlantic_logo.png",
     link: "/",
   },
   {
     image:
-      "https://images.generated.photos/mp3gkB9z2wwhyySWzQJMegNbvvLV6HbKQX1_h6BEYAc/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDAwOTI5LmpwZw.jpg",
+      "/partners/currencysolutions_logo.png",
     link: "/",
   },
   {
     image:
-      "https://images.generated.photos/vOkveSlBohR880A8z67aLHImhPr7UHdnXg06pifYvZ4/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDAyNjg4LmpwZw.jpg",
+      "/partners/halofinancial_logo.png",
     link: "/",
   },
   {
     image:
-      "https://images.generated.photos/d_r3VzW3lO5ZsdaHhoVX7msWku7YIrqP4Qn1yozJU54/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDAyMTQ4LmpwZw.jpg",
+      "/partners/ofx_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/remitly_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/ria_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/moneygram_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/transfergo_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/westernunion_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/wise_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/worldremit_logo.png",
+    link: "/",
+  },
+  {
+    image:
+      "/partners/xe_logo.png",
     link: "/",
   },
 ];

@@ -56,7 +56,7 @@ export const Nav = () => {
 
         <LanguagePopover />
 
-        <Link
+        {/* <Link
           href="/profile"
           className="pl-2 translate-y-1 text-secondary hover:text-accent"
         >
@@ -67,13 +67,13 @@ export const Nav = () => {
             weight={100}
             color="inherit"
           />
-        </Link>
+        </Link> */}
       </div>
 
       {/* Medium screens and mobile View */}
       <div className="ml-auto absolute right-6 sm:hidden items-center inline-flex gap-3">
         <LanguagePopover />
-        <Link
+        {/* <Link
           href="/profile"
           className="text-secondary hover:text-accent translate-y-1"
         >
@@ -84,7 +84,7 @@ export const Nav = () => {
             weight={100}
             color="inherit"
           />
-        </Link>
+        </Link> */}
         <NavPopover />
       </div>
     </header>

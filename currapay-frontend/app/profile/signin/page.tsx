@@ -1,3 +1,4 @@
+"use client";
 import { useStores } from "@/stores/provider";
 import { useEffect, useState } from "react";
 

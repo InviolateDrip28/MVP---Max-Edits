@@ -44,7 +44,7 @@ const config: Config = {
       },
       animation: {
         "fade-in": "fadeIn 0.15s ease-in-out",
-        marquee: "marquee var(--duration, 30s) linear infinite",
+        marquee: "marquee var(--duration, 40s) linear infinite",
         gradient: 'gradient 14s linear infinite',
        
       },
