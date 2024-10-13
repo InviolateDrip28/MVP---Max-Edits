@@ -24,12 +24,6 @@ const TEAM = [
     linkedin:
       " https://www.linkedin.com/in/maximillian-stanley-681619135/",
   },
-  {
-    name: "Zach Kiihne",
-    title: "CTO",
-    imgSrc: "/team/zach-pfp.png",
-    linkedin: "https://www.linkedin.com/in/zachary-kiihne-56b944129/",
-  },
 ];
 
 export default function About() {
@@ -71,10 +65,7 @@ export default function About() {
           expat, Max Stanley, who was working in investment banking at
           Citi. Together, they founded CurraPay to help simplify
           international money transfers for the one billion people and
-          businesses who send $13 trillion abroad each year. As they
-          built CurraPay&apos;s first platform, they met Zach Kiihne, a
-          software engineer at Google, through Y Combinator&apos;s
-          Co-Founder matching, and the rest is history.
+          businesses who send $13 trillion abroad each year. 
         </p>
       </div>
 
