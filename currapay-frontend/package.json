@@ -20,6 +20,7 @@
     "@trpc/next": "^11.0.0-rc.485",
     "@trpc/react-query": "^11.0.0-rc.485",
     "@trpc/server": "^11.0.0-rc.485",
+    "@tsparticles/react": "^3.0.0",
     "apexcharts": "^3.52.0",
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",

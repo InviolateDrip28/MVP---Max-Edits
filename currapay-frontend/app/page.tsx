@@ -63,7 +63,7 @@ const Homepage = observer(() => {
     <section id="homepage">
       <div className="flex flex-col gap-48">
         <div className="grid xl:grid-flow-col gap-8 items-center">
-          <div className=" space-y-4">
+          <div className="space-y-4">
             <p className="text-center xl:text-left bigHeading animatedGradientText">
               Search.{" "}
               <span className="whitespace-nowrap">Send. Save.</span>

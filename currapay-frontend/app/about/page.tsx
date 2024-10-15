@@ -57,26 +57,27 @@ export default function About() {
       </div>
 
       <div className="pb-36 lg:-mx-16">
+
         <h1>Our story</h1>
-        <div className="mt-12 md:mt-24 grid grid-flow-row lg:grid-flow-col justify-between gap-12">
-          <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
-            As a graduate student at Oxford, David McMillan realized
-            that sending money back home to the U.S. was a complicated
-            process.
+          <div className="mt-12 md:mt-24 grid grid-flow-row lg:grid-flow-col justify-between gap-12">
+            <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
+              As a graduate student at Oxford, David McMillan realized
+              that sending money back home to the U.S. was a
+              complicated process.
+            </div>
+            <div className="justify-center text-center space-y-4 bg-white shadow-xl rounded-xl p-8 xl:p-16">
+              <p>
+                He teamed up with a longtime friend and British expat,
+                Max Stanley, who was working in investment banking at
+                Citi.
+              </p>
+            </div>
+            <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
+              Together, they founded CurraPay to help simplify
+              international money transfers for the people and
+              businesses who send money abroad each year.
+            </div>
           </div>
-          <div className="justify-center text-center space-y-4 bg-white shadow-xl rounded-xl p-8 xl:p-16">
-            <p>
-              He teamed up with a longtime friend and British expat,
-              Max Stanley, who was working in investment banking at
-              Citi.
-            </p>
-          </div>
-          <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
-            Together, they founded CurraPay to help simplify
-            international money transfers for the people and
-            businesses who send money abroad each year.
-          </div>
-        </div>
       </div>
 
       <div className="min-h-screen flex flex-col space-y-12 md:space-y-24">

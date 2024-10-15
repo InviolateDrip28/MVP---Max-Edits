@@ -33,7 +33,7 @@ export const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`fixed bottom-6 text-accentSecondary bg-white glass rounded-full drop-shadow-xl z-[99] items-center justify-center p-3 scrollToTopButton animate-bounce ${
+      className={`fixed bottom-6 right-8 sm:right-auto text-accentSecondary bg-white glass rounded-full drop-shadow-xl z-[99] items-center justify-center p-3 scrollToTopButton animate-bounce ${
         isVisible ? "visible opacity-1" : "opacity-0"
       }`}
       onClick={scrollToTop}

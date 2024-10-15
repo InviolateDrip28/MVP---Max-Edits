@@ -20,7 +20,7 @@ export const Footer = () => {
         <p>&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
       </div>
 
-      <div className="flex flex-row pt-6 md:pt-12">
+      <div className="flex flex-col sm:flex-row pt-6 md:pt-12 space-y-8 sm:space-y-0">
         <div>
           <div id="terms-and-privacy" className="flex flex-col">
             <Link href="/" className="link">
@@ -32,7 +32,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="ml-auto">
+        <div className="sm:ml-auto">
           Follow us on:
           <div id="media-links" className="flex -ml-1 gap-2 md:ml-0 md:gap-6">
             <Link
