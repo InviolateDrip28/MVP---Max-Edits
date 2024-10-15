@@ -17,7 +17,7 @@ import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
@@ -62,26 +62,22 @@ const Homepage = observer(() => {
   return (
     <section id="homepage">
       <div className="flex flex-col gap-48">
-        <div className="flex flex-col gap-8 items-center justify-center">
-          <div className="px-8 space-y-4">
-            <p className="text-center bigHeading animatedGradientText">
-              Search. Send. Save.
+        <div className="grid xl:grid-flow-col gap-8 items-center">
+          <div className=" space-y-4">
+            <p className="text-center xl:text-left bigHeading animatedGradientText">
+              Search.{" "}
+              <span className="whitespace-nowrap">Send. Save.</span>
             </p>
-            <p className="sm:text-lg md:text-xl 2xl:text-2xl text-center">
+            <p className="text-center xl:text-left xl:pt-8">
               Search across banks, remittance apps, and crypto
               services to find the best way to send or recieve your
               international money transfer.
             </p>
-
-            {/* <ul>
-              {transactions?.map((transaction) => (
-                <li key={transaction.id}>
-                  {transaction.amount} {transaction.currency}
-                </li>
-              ))}
-            </ul> */}
           </div>
-          <div className="border box-border p-8 shadow-xl rounded-xl w-full space-y-4 bg-white">
+          <div
+            className="border p-8 shadow-xl rounded-xl w-full
+          space-y-4 xl:space-y-8 bg-white"
+          >
             <div
               id="filters"
               className="justify-center flex flex-row text-xs sm:text-base md:text-lg gap-4"
@@ -167,7 +163,7 @@ const Homepage = observer(() => {
                 onChange={(e) =>
                   SearchStore.setAmount(e.target.value)
                 }
-                className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                className="relative w-full xl:w-24 cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 dropdownList={["US"]}
@@ -216,7 +212,7 @@ const Homepage = observer(() => {
 
         <div
           id="context"
-          className="differentBackgroundColor bg-navy grid lg:grid-cols-2 gap-16 md:gap-24 lg:gap-48 text-white"
+          className="differentBackgroundColor bg-navy flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-white"
         >
           <div className="space-y-8 md:space-y-16">
             <h1>Save money with CurraPay</h1>
@@ -236,7 +232,9 @@ const Homepage = observer(() => {
           <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
-                <GroupIcon className="h-full w-full" />
+                <GroupIcon
+                  style={{ width: "100%", height: "100%" }}
+                />
               </div>
               <div className="flex flex-col space-y-2">
                 <h2 className="whitespace-nowrap">
@@ -247,22 +245,38 @@ const Homepage = observer(() => {
             </div>
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
-                <SendIcon className="h-full w-full" />
+                <SendIcon style={{ width: "100%", height: "100%" }} />
               </div>
               <div className="flex flex-col space-y-2">
                 <h2 className="whitespace-nowrap">
-                  <CountUp end={13} prefix="$" suffix=" trillion" enableScrollSpy={true} scrollSpyOnce={true}/>
+                  <CountUp
+                    start={0}
+                    end={13}
+                    prefix="$"
+                    suffix=" trillion"
+                    enableScrollSpy={true}
+                    scrollSpyOnce={true}
+                  />
                 </h2>
                 <h3>sent every year</h3>
               </div>
             </div>
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
-                <RemoveCircleIcon className="h-full w-full" />
+                <RemoveCircleIcon
+                  style={{ width: "100%", height: "100%" }}
+                />
               </div>
               <div className="flex flex-col space-y-2">
                 <h2 className="whitespace-nowrap">
-                  <CountUp end={280} prefix="$" suffix=" billion" enableScrollSpy={true} scrollSpyOnce={true}/>
+                  <CountUp
+                    start={0}
+                    end={280}
+                    prefix="$"
+                    suffix=" billion"
+                    enableScrollSpy={true}
+                    scrollSpyOnce={true}
+                  />
                 </h2>
                 <h3>lost each year due to transaction costs</h3>
               </div>

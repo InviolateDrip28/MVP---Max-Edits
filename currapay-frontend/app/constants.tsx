@@ -719,94 +719,95 @@ const COUNTRY_CODE_TO_CURRENCY: Record<string, string> = {
 
 const PARTNERS = [
   {
-    image:
-      "/partners/atlantic_logo.png",
-    link: "/",
+    image: "/partners/atlantic_logo.png",
+    link: "https://atlantic.money/",
   },
   {
-    image:
-      "/partners/currencysolutions_logo.png",
-    link: "/",
+    image: "/partners/currencysolutions_logo.png",
+    link: "https://currencysolutions.com/",
   },
   {
-    image:
-      "/partners/halofinancial_logo.png",
-    link: "/",
+    image: "/partners/halofinancial_logo.png",
+    link: "https://halofinancial.com/",
   },
   {
-    image:
-      "/partners/ofx_logo.png",
-    link: "/",
+    image: "/partners/ofx_logo.png",
+    link: "https://www.ofx.com/p/currapay/",
   },
   {
-    image:
-      "/partners/remitly_logo.png",
-    link: "/",
+    image: "/partners/remitly_logo.png",
+    link: "https://remitly.com/",
   },
   {
-    image:
-      "/partners/ria_logo.png",
-    link: "/",
+    image: "/partners/ria_logo.png",
+    link: "https://ria.com/",
   },
   {
-    image:
-      "/partners/moneygram_logo.png",
-    link: "/",
+    image: "/partners/moneygram_logo.png",
+    link: "https://moneygram.com/",
   },
   {
-    image:
-      "/partners/transfergo_logo.png",
-    link: "/",
+    image: "/partners/transfergo_logo.png",
+    link: "https://transfergo.com/",
   },
   {
-    image:
-      "/partners/westernunion_logo.png",
-    link: "/",
+    image: "/partners/westernunion_logo.png",
+    link: "https://westernunion.com/",
   },
   {
-    image:
-      "/partners/wise_logo.png",
-    link: "/",
+    image: "/partners/wise_logo.png",
+    link: "https://wise.com/",
   },
   {
-    image:
-      "/partners/worldremit_logo.png",
-    link: "/",
+    image: "/partners/worldremit_logo.png",
+    link: "https://www.worldremit.com/",
   },
   {
-    image:
-      "/partners/xe_logo.png",
-    link: "/",
+    image: "/partners/xe_logo.png",
+    link: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
   },
 ];
 
-const LANGUAGES = [
-  "EN",
-  "IN",
-  "ES",
-  "CN",
-];
+const LANGUAGES = ["EN", "IN", "ES", "CN"];
 
 const FAQS = [
-  { label: "What does CurraPay do?", content: "Our website and mobile app helps users find the cheapest, quickest, and best way to send money internationally in real-time across every corridor for the widest range of financial institutions. We are building an online marketplace where financial institutions find customers and vice versa, across every corridor in the international money transfer market." },
-  { label: "Is CurraPay free? ", content: "Yes! We provide our price comparison services to our users, individuals and businesses, for free at the point of use." },
+  {
+    label: "What does CurraPay do?",
+    content:
+      "Our website and mobile app helps users find the cheapest, quickest, and best way to send money internationally in real-time across every corridor for the widest range of financial institutions. We are building an online marketplace where financial institutions find customers and vice versa, across every corridor in the international money transfer market.",
+  },
+  {
+    label: "Is CurraPay free? ",
+    content:
+      "Yes! We provide our price comparison services to our users, individuals and businesses, for free at the point of use.",
+  },
   {
     label: "How can I send an international money transfer?",
-    content: "Our free price comparison service allows users to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers. When you find the option that best matches your preferences, you can click the “Send” button and we will send you to one of our partner’s sites where you can execute your transaction.",
+    content:
+      "Our free price comparison service allows users to instantly compare offerings from banks, money transfer companies, and crypto companies that facilitate international money transfers. When you find the option that best matches your preferences, you can click the “Send” button and we will send you to one of our partner’s sites where you can execute your transaction.",
   },
   {
     label: "How does CurraPay make money?",
-    content: "We generate revenue from referring users to the international money transfer vendors included on this site."
+    content:
+      "We generate revenue from referring users to the international money transfer vendors included on this site.",
   },
   {
-    label: "What is the mid-market exchange rate?", 
-    content: "This is the exchange rate that financial institutions use when buying and selling currencies in private markets; it is also the exchange rate that Google shares with users. We provide this exchange rate to our users and if you sign up to receive notifications, we alert you to when an exchange rate is particularly strong."
+    label: "What is the mid-market exchange rate?",
+    content:
+      "This is the exchange rate that financial institutions use when buying and selling currencies in private markets; it is also the exchange rate that Google shares with users. We provide this exchange rate to our users and if you sign up to receive notifications, we alert you to when an exchange rate is particularly strong.",
   },
   {
     label: "Who do you work with?",
-    content: "We work with Remitly, Wise, Ria, Atlantic Money, Western Union, MoneyGram, OFX, TransferGo, Currency Solutions, XE, Halo Financial, and World Remit (WorldRemit). Our goal is to help people move away from using banks and towards lower-cost alternative options to save consumers billions of dollars each year. "
-  }
-
+    content:
+      "We work with Remitly, Wise, Ria, Atlantic Money, Western Union, MoneyGram, OFX, TransferGo, Currency Solutions, XE, Halo Financial, and World Remit (WorldRemit). Our goal is to help people move away from using banks and towards lower-cost alternative options to save consumers billions of dollars each year. ",
+  },
 ];
 
-export { COUNTRY_CODES, COUNTRY_CODE_TO_NAME, COUNTRY_CODE_TO_CURRENCY, PARTNERS, LANGUAGES, FAQS };
+export {
+  COUNTRY_CODES,
+  COUNTRY_CODE_TO_NAME,
+  COUNTRY_CODE_TO_CURRENCY,
+  PARTNERS,
+  LANGUAGES,
+  FAQS,
+};

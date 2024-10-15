@@ -2,9 +2,10 @@
 
 import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
+import { observer } from "mobx-react";
+import { SearchStore } from "@/stores/search.store";
 
-export default function Rates() {
-  
+const Rates = observer(() => {
   const chartConfig = {
     type: "line",
     series: [
@@ -68,11 +69,23 @@ export default function Rates() {
   } as ApexOptions;
 
   return (
-    <section className="justify-evenly">
+    <section className="">
       <h1>Rates</h1>
-      <div className=" w-1/2">
-        <Chart {...chartConfig} />
+      <div className="mt-8 bg-white flex flex-col items-center justify-center w-full py-8 px-16 rounded-xl shadow-xl">
+        <div className="flex flex-col justify-center items-center">
+          <p>Current mid-market exchange rate</p>
+          <p>
+            1 {SearchStore.fromCurrency} = 1.23{" "}
+            {SearchStore.toCurrency}
+          </p>
+        </div>
+
+        <div className="h-1/2 w-3/4">
+          <Chart {...chartConfig} />
+        </div>
       </div>
     </section>
   );
-}
+});
+
+export default Rates;

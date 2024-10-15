@@ -29,10 +29,10 @@ const TEAM = [
 export default function About() {
   return (
     <section className="text-center gap-36">
-      <div className="min-h-screen md:-mt-36 lg:-mt-24 xl:-mt-36 px-8 sm:px-16 items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-8">
-        <div className="relative space-y-4 lg:col-span-2 lg:-ml-12 lg:pr-16 text-base">
+      <div className="min-h-screen md:-mt-28 lg:-mt-24 xl:-mt-30 px-8 sm:px-16 sm:-mx-20 items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-8">
+        <div className="relative space-y-4 lg:col-span-2 lg:-ml-12 lg:pr-16 text-base 2xl:text-2xl">
           <h1 className="md:pt-28 lg:pt-0">Mission</h1>
-          <p className="text-xl font-semibold text-accentSecondary">
+          <p className="text-xl font-semibold text-accentSecondary drop-shadow-sm">
             We&apos;re building a better way to send money abroad.
           </p>
           <p className="pt-4">
@@ -56,20 +56,30 @@ export default function About() {
         </div>
       </div>
 
-      <div className="pb-36">
+      <div className="pb-36 lg:-mx-16">
         <h1>Our story</h1>
-        <p className="mt-12 sm:mt-24 text-lg md:text-xl">
-          As a graduate student at Oxford, David McMillan realized
-          that sending money back home to the U.S. was a complicated
-          process. He teamed up with a longtime friend and British
-          expat, Max Stanley, who was working in investment banking at
-          Citi. Together, they founded CurraPay to help simplify
-          international money transfers for the one billion people and
-          businesses who send $13 trillion abroad each year. 
-        </p>
+        <div className="mt-12 md:mt-24 grid grid-flow-row lg:grid-flow-col justify-between gap-12">
+          <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
+            As a graduate student at Oxford, David McMillan realized
+            that sending money back home to the U.S. was a complicated
+            process.
+          </div>
+          <div className="justify-center text-center space-y-4 bg-white shadow-xl rounded-xl p-8 xl:p-16">
+            <p>
+              He teamed up with a longtime friend and British expat,
+              Max Stanley, who was working in investment banking at
+              Citi.
+            </p>
+          </div>
+          <div className="bg-white shadow-xl rounded-xl p-8 xl:p-16">
+            Together, they founded CurraPay to help simplify
+            international money transfers for the people and
+            businesses who send money abroad each year.
+          </div>
+        </div>
       </div>
 
-      <div className="min-h-screen flex flex-col space-y-12 sm:space-y-24">
+      <div className="min-h-screen flex flex-col space-y-12 md:space-y-24">
         <h1>Meet the Team</h1>
         <div className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24">
           {TEAM.map((member) => (
@@ -100,12 +110,11 @@ export default function About() {
             </div>
           ))}
         </div>
-        <div className="md:px-36">
+        <div className="lg:px-36 ">
           Our company was built by founders from best-in class finance
           and technology companies
         </div>
       </div>
-
     </section>
   );
 }
