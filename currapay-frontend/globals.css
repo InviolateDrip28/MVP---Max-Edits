@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   body {
     @apply bg-background text-primary text-base sm:text-lg overflow-x-hidden;
@@ -17,16 +16,15 @@
   }
 
   h3 {
-    @apply text-lg md:text-xl 2xl:text-2xl
-  }
-  
-  section {
-    @apply flex min-h-screen flex-col items-center pt-24 pb-12 px-8 sm:pt-28 sm:pb-16 sm:px-16 md:px-24 md:pb-24 md:pt-36 lg:px-32
+    @apply text-lg md:text-xl 2xl:text-2xl;
   }
 
+  section {
+    @apply flex min-h-screen flex-col items-center pt-24 pb-12 px-8 sm:pt-28 sm:pb-16 sm:px-16 md:px-24 md:pb-24 md:pt-36 lg:px-32;
+  }
 }
 .differentBackgroundColor {
-  @apply -my-12 -mx-8 sm:-mx-16 sm:-my-16 md:-my-24 md:-mx-24 lg:-mx-32 py-24 px-8 sm:px-16 sm:py-16 md:px-24 md:py-24 lg:px-32 ;
+  @apply -my-12 -mx-8 sm:-mx-16 sm:-my-16 md:-my-24 md:-mx-24 lg:-mx-32 py-24 px-8 sm:px-16 sm:py-16 md:px-24 md:py-24 lg:px-32;
 }
 
 .bigHeading {
@@ -57,6 +55,35 @@
   @apply hover:text-accent hover:underline hover:underline-offset-4;
 }
 
+/* curved background shape */
+.backgroundWave {
+  @apply relative h-full z-[-1];
+}
+.backgroundWave:before,
+.backgroundWave:after {
+  content: "";
+  @apply absolute top-0 left-0 right-0 z-[-2] h-full bg-gradient-to-r from-accent to-accentSecondary;
+}
+.backgroundWave:after {
+  -webkit-mask: radial-gradient(
+        126% 72% at top,
+        white 80%,
+        transparent 0%
+      )
+      left,
+    radial-gradient(126% 72% at bottom, transparent 80%, white 0%)
+      right;
+  mask: radial-gradient(126% 72% at top, white 80%, transparent 0%)
+      left,
+    radial-gradient(126% 72% at bottom, transparent 80%, white 0%)
+      right;
+  -webkit-mask-size: 50.1% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 50.1% 100%;
+  mask-repeat: no-repeat;
+  @apply z-[-2] bg-gradient-to-br from-background to-background;
+}
+
 /* scroll to top button */
 .scrollToTopButton {
   transition: opacity 0.3s ease-in-out;
@@ -78,7 +105,7 @@
     }
 
     &.selected {
-      @apply text-accent bg-accent/30 ;
+      @apply text-accent bg-accent/30;
     }
 
     &.disabled {

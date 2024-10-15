@@ -17,10 +17,10 @@ export const Footer = () => {
           alt="Currapay Logo"
           className="w-[200px] -mx-2"
         />
-        <p>&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
+        <p className="-ml-0.5">&copy; CurraPay, Inc. {new Date().getFullYear()}</p>
       </div>
 
-      <div className="flex flex-col sm:flex-row pt-6 md:pt-12 space-y-8 sm:space-y-0">
+      <div className="flex flex-col sm:flex-row pt-6 md:pt-12 space-y-8 sm:space-y-0 -ml-0.5">
         <div>
           <div id="terms-and-privacy" className="flex flex-col">
             <Link href="/" className="link">
