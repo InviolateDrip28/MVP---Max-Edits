@@ -22,6 +22,7 @@ import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import CountUp from "react-countup";
+import RatesTable from "@/components/Table";
 import api from "@/utils/api";
 import { trpc } from "@/utils/trpc";
 
@@ -87,7 +88,7 @@ const Homepage = observer(() => {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
+                  className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -101,7 +102,7 @@ const Homepage = observer(() => {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
+                  className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -115,7 +116,7 @@ const Homepage = observer(() => {
                   id="default-checkbox"
                   type="checkbox"
                   value=""
-                  className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
+                  className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
                 />
                 <label
                   htmlFor="default-checkbox"
@@ -163,7 +164,7 @@ const Homepage = observer(() => {
                 onChange={(e) =>
                   SearchStore.setAmount(e.target.value)
                 }
-                className="relative w-full xl:w-24 cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                className="relative w-full xl:w-24 cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 dropdownList={["US"]}
@@ -284,12 +285,36 @@ const Homepage = observer(() => {
           </div>
         </div>
 
+        <div id="rates-table" className="mt-24 text-center">
+          <h1>Mid-Market Exchange Rates</h1>
+          <div className="relative mt-16 pt-8 pb-16 pl-8 pr-12 bg-white rounded-xl shadow-xl border border-secondary/30">
+            <RatesTable
+              data={[
+                "US",
+                "GB",
+                "FR",
+                "CA",
+                "CH",
+                "AU",
+                "RU",
+                "IN",
+              ]}
+            />
+            <div className="absolute right-12 bottom-4 text-sm">
+              Source{" "}
+              <Link href="https://xe-money-transfer.pxf.io/c/5580726/2132164/12610" className="underline">
+                XE
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <div
           id="faq"
           className="min-h-screen mt-24 mb-48 text-center"
         >
           <h1 className="">Frequently Asked Questions</h1>
-          <div className="mt-24">
+          <div className="mt-16">
             <AccordionMenu itemList={FAQS} />
           </div>
           <p className="mt-24">

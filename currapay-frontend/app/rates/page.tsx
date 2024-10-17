@@ -26,6 +26,9 @@ const Rates = observer(() => {
       },
       colors: ["black"],
       xaxis: {
+        tooltip: {
+          enabled: false
+        },
         axisTicks: {
           show: true,
         },
