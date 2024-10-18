@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Globe = dynamic(
   () => {
@@ -27,9 +31,13 @@ const TEAM = [
 ];
 
 export default function About() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <section className="text-center gap-36 lg:gap-48">
-      <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-4">
+      <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8">
         <div className="relative space-y-4 lg:col-span-2 lg:pr-16 text-base 2xl:text-2xl">
           <h1 className="">Our Mission</h1>
           <h3 className="font-semibold">
@@ -51,50 +59,101 @@ export default function About() {
             annually.
           </p>
         </div>
-        <div className="w-full -my-12 lg:-my-36 xl:-my-48 lg:col-span-1 lg:translate-x-1/3">
+        <div className="w-full lg:col-span-1 lg:translate-x-1/4 -my-12 lg:-my-36 xl:-my-40">
           <Globe className="relative flex justify-center items-center" />
         </div>
       </div>
 
-      <div className="">
+      <div>
         <h1>Our Story</h1>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-16 justify-center items-center">
-          
-          <div className="relative w-full h-[20rem] order-1">
-            <Image src={"/NJ.png"} alt="new jersey" fill objectFit="cover"/>
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-36 justify-center items-center">
+          <div
+            className="relative w-full h-[20rem] order-1"
+            data-aos="fade-up"
+            data-aos-duration="3000"
+          >
+            <Image
+              src={"/NJ.png"}
+              alt="new jersey"
+              className="rounded-lg"
+              fill
+              objectFit="cover"
+            />
           </div>
 
-          <p className="order-2">As a graduate student at Oxford, David McMillan realized that sending money back home to the U.S. was too complicated. He teamed up with a longtime friend and British expat, Max Stanley, who worked in investment banking at Citi. Together, they founded CurraPay to help simplify international money transfers for the one billion people and businesses who sent $13 trillion abroad last year. </p>
-
-          <p className="order-3">After incorporating our start-up in July 2024, we were accepted into a fintech accelerator run by Plug & Play (an early investor in PayPal and DropBox), Prudential, Stevens Institute of Technology, and the New Jersey Economic Development Authority. We launched our platform in November 2024. This provided our start-up</p>
-
-
-        </div>
-      </div>
-
-      {/* <div className="pb-36 differentBackgroundColor backgroundWave lg:-mx-48 ">
-        <h1>Our Story</h1>
-        <div className="mt-12 md:mt-24 grid grid-flow-row lg:grid-flow-col justify-between gap-12 z-10">
-          <div className="bg-white md:backdrop-blur-xl md:bg-opacity-85 shadow-xl rounded-xl p-8 xl:p-16">
-            As a graduate student at Oxford, David McMillan realized
-            that sending money back home to the U.S. was a complicated
-            process.
-          </div>
-          <div className="bg-white md:backdrop-blur-xl md:bg-opacity-85 shadow-xl rounded-xl p-8 xl:p-16">
+          <div
+            className="text-center lg:text-right space-y-4 order-2"
+            data-aos="fade-up"
+            data-aos-duration="3000"
+          >
             <p>
-              He teamed up with a longtime friend and British expat,
-              Max Stanley, who was working in investment banking at
-              Citi.
+              As a graduate student at Oxford, David McMillan realized
+              that sending money back home to the U.S. was too
+              complicated. He teamed up with a longtime friend and
+              British expat, Max Stanley, who worked in investment
+              banking at Citi.
+            </p>
+            <p>
+              Together, they founded CurraPay to help simplify
+              international money transfers for the one billion people
+              and businesses who sent $13 trillion abroad last year.
             </p>
           </div>
-          <div className="bg-white md:backdrop-blur-xl md:bg-opacity-85 shadow-xl rounded-xl p-8 xl:p-16">
-            Together, they founded CurraPay to help simplify
-            international money transfers for the people and
-            businesses who send money abroad each year.
+
+          <p
+            className="text-center lg:text-left order-3"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+          >
+            After incorporating our start-up in July 2024, we were
+            accepted into a fintech accelerator run by Plug & Play (an
+            early investor in PayPal and DropBox), Prudential, Stevens
+            Institute of Technology, and the New Jersey Economic
+            Development Authority. We launched our platform in
+            November 2024. This provided our start-up
+          </p>
+
+          <div
+            className="h-full w-full grid grid-cols-2 gap-12 place-content-between order-4"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+          >
+            <div className="relative h-36 w-full">
+              <Image
+                src={"/backers/nj_eda_logo.png"}
+                alt="NJ EDA"
+                objectFit="contain"
+                fill
+              />
+            </div>
+            <div className="relative h-36 w-full">
+              <Image
+                src={"/backers/plug_and_play_logo.png"}
+                alt="Plug and Play"
+                fill
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative h-36 w-full">
+              <Image
+                src={"/backers/sit_logo.png"}
+                alt="SIT"
+                fill
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative h-36 w-full">
+              <Image
+                src={"/backers/prudential_logo.png"}
+                alt="Prudential"
+                fill
+                objectFit="contain"
+              />
+            </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="flex flex-col space-y-12 md:space-y-24">
         <h1>Meet the Team</h1>
@@ -106,7 +165,7 @@ export default function About() {
           {TEAM.map((member) => (
             <div className="group" key={member.name}>
               <div className="flex flex-col items-center relative group-hover:scale-105">
-                <div className="relative bg-black rounded-full w-40 h-40 md:w-56 md:h-56 group-hover:drop-shadow-xl">
+                <div className="relative bg-black rounded-full w-40 h-40 md:w-56 md:h-56 xl:w-64 xl:h-64 group-hover:drop-shadow-xl">
                   <Image
                     src={member.imgSrc}
                     alt={member.name}
@@ -131,7 +190,6 @@ export default function About() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

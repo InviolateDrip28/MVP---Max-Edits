@@ -180,7 +180,7 @@ const Homepage = observer(() => {
               </div>
             </div>
 
-            <div className="flex pt-4 justify-center items-center">
+            <h3 className="flex pt-4 justify-center items-center">
               <Link
                 href={{
                   pathname: "/compare",
@@ -197,7 +197,7 @@ const Homepage = observer(() => {
               >
                 Compare Rates {" \u26A1"}
               </Link>
-            </div>
+            </h3>
           </div>
         </div>
 
@@ -289,7 +289,7 @@ const Homepage = observer(() => {
           </div>
         </div>
 
-        <div id="rates-table" className="text-center">
+        <div id="rates-table" className="mt-12 lg:mt-24 text-center">
           <h1>Mid-Market Exchange Rates</h1>
           <div className="relative mt-16 pt-8 pb-16 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
             <RatesTable
