@@ -45,7 +45,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-12 text-left text-primary shadow-sm border border-gray-300 focus:outline-none sm:leading-6 ${
+          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-gray-300 focus:outline-none sm:leading-6 ${
             props.label && "rounded-t-none border-t-0"
           }`}
         >
@@ -83,7 +83,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
               value={code}
               className={`${
                 props.hasImage && "pl-3"
-              } group relative cursor-pointer select-none py-2 pr-9 text-primary data-[focus]:bg-accent/80 data-[focus]:text-white"`}
+              } group relative cursor-pointer select-none py-2 pr-9 data-[focus]:bg-accent/80 data-[focus]:text-white"`}
             >
               <div className="flex items-center">
                 {props.hasImage && (

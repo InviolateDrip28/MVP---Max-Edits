@@ -147,7 +147,7 @@ export const Pagination = (props: PaginationProps) => {
         );
       })}
       <button
-        className="px-8 hover:text-accent disabled:cursor-default disabled:hover:text-primary"
+        className="px-8 hover:text-accent disabled:cursor-default disabled:hover:text-primary/70"
         disabled={props.currentPage === lastPage}
         onClick={onNext}
       >

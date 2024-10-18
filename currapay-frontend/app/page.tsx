@@ -63,7 +63,7 @@ const Homepage = observer(() => {
   return (
     <section id="homepage">
       <div className="flex flex-col gap-48">
-        <div className="grid xl:grid-flow-col gap-8 items-center">
+        <div className="grid xl:grid-flow-col gap-12 items-center">
           <div className="space-y-4">
             <p className="text-center xl:text-left bigHeading animatedGradientText">
               Search.{" "}
@@ -92,7 +92,7 @@ const Homepage = observer(() => {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-primary"
+                  className="ms-2"
                 >
                   Banks
                 </label>
@@ -106,7 +106,7 @@ const Homepage = observer(() => {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-primary whitespace-nowrap"
+                  className="ms-2 whitespace-nowrap"
                 >
                   Remittance Apps
                 </label>
@@ -120,7 +120,7 @@ const Homepage = observer(() => {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-primary"
+                  className="ms-2"
                 >
                   Crypto
                 </label>
@@ -157,14 +157,14 @@ const Homepage = observer(() => {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2">
-              <p className=" whitespace-nowrap">I want to convert</p>
+              <p className=" whitespace-nowrap">I want to send</p>
               <input
                 type="number"
                 value={SearchStore.amount}
                 onChange={(e) =>
                   SearchStore.setAmount(e.target.value)
                 }
-                className="relative w-full xl:w-24 cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                className="relative w-full xl:w-24 cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 dropdownList={["US"]}
@@ -213,15 +213,15 @@ const Homepage = observer(() => {
 
         <div
           id="context"
-          className="differentBackgroundColor bg-navy flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-white"
+          className="differentBackgroundColor bg-accentLight flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between "
         >
           <div className="space-y-8 md:space-y-16">
-            <h1>Save money with CurraPay</h1>
+            <h1 className="drop-shadow-sm">Save money with CurraPay</h1>
             <div>
-              <h3 className="font-semibold text-accentSecondary">
+              <h3 className="font-semibold text-accent drop-shadow-sm">
                 We&apos;re leveling the playing field.
               </h3>
-              <h3 className="pt-4 md:pt-8 text-gray-100">
+              <h3 className="pt-4 md:pt-8">
                 We&apos;re on a mission to reduce the cost of sending
                 money internationally. CurraPay was founded on a
                 simple idea — that the international money transfer
@@ -231,7 +231,7 @@ const Homepage = observer(() => {
           </div>
 
           <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <GroupIcon
                   style={{ width: "100%", height: "100%" }}
@@ -244,7 +244,7 @@ const Homepage = observer(() => {
                 <h3>send money abroad</h3>
               </div>
             </div>
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent/75 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <SendIcon style={{ width: "100%", height: "100%" }} />
               </div>
@@ -262,7 +262,7 @@ const Homepage = observer(() => {
                 <h3>sent every year</h3>
               </div>
             </div>
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent/50 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <RemoveCircleIcon
                   style={{ width: "100%", height: "100%" }}
@@ -311,7 +311,7 @@ const Homepage = observer(() => {
 
         <div
           id="faq"
-          className="min-h-screen mt-24 mb-48 text-center"
+          className="min-h-screen my-24 text-center"
         >
           <h1 className="">Frequently Asked Questions</h1>
           <div className="mt-16">

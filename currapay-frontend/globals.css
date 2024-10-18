@@ -4,11 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-background text-primary text-base sm:text-lg overflow-x-hidden;
+    @apply bg-background text-primary/70 text-base sm:text-lg overflow-x-hidden;
   }
 
   h1 {
-    @apply text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-semibold;
+    @apply text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-accent;
   }
 
   h2 {

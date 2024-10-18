@@ -3,7 +3,7 @@ export default function SignupPage() {
     <section className="min-h-screen w-full">
       <div className="mb-12 flex items-center justify-center">
         <form className="w-full">
-          <h1 className="text-primary text-center">
+          <h1 className="text-center">
             Sign Up
           </h1>
           <div className="relative flex flex-row items-center mt-16 space-x-4">
@@ -78,7 +78,7 @@ export default function SignupPage() {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium text-primary"
+                  className="ms-2 text-sm font-medium"
                 >
                   I agree to the terms and conditions.
                 </label>
@@ -93,7 +93,7 @@ export default function SignupPage() {
                 />
                 <label
                   htmlFor="default-checkbox"
-                  className="ms-2 text-sm font-medium text-primary"
+                  className="ms-2 text-sm font-medium "
                 >
                   I want to recieve really awesome email updates.
                 </label>

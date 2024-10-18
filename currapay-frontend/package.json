@@ -21,6 +21,7 @@
     "@trpc/react-query": "^11.0.0-rc.485",
     "@trpc/server": "^11.0.0-rc.485",
     "@tsparticles/react": "^3.0.0",
+    "@types/three": "^0.169.0",
     "apexcharts": "^3.52.0",
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",
@@ -37,6 +38,7 @@
     "react-material-symbols": "^4.4.0",
     "tailwind-merge": "^2.5.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.169.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

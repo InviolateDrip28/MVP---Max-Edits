@@ -21,7 +21,7 @@ export default function SignIn() {
   return (
     <div className="mb-12 flex items-center justify-center">
       <form className="w-full">
-        <h1 className="text-primary text-center">Sign in</h1>
+        <h1 className="text-center">Sign in</h1>
 
         <div className="relative flex items-center mt-16">
           {showWarning && (

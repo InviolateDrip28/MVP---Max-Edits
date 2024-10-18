@@ -81,7 +81,7 @@ const Compare = observer(() => {
             type="number"
             value={SearchStore.amount}
             onChange={(e) => SearchStore.setAmount(e.target.value)}
-            className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left text-primary shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+            className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
           />
           <DropdownSelect
             dropdownList={["US"]}

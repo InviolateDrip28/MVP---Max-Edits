@@ -18,10 +18,10 @@ export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
           {[...items, ...items].map((item, index) => (
             <Link
               key={index}
-              // className="h-full w-full"
+              className="h-full w-full"
               href={item.link}
             >
-              <span className="flex h-10 w-40 sm:h-16 sm:w-64 justify-center">
+              <span className="flex h-7 sm:h-8 md:h-9 lg:h-10 xl:h-11 2xl:h-12 w-max justify-center">
                   <img
                     src={item.image}
                     alt={`Image ${index}`}
