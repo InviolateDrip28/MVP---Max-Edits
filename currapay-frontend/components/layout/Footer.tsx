@@ -10,7 +10,7 @@ import CurrapayPrimaryLogoBlack from "@/public/logos/CurrapayPrimaryLogoBlack.pn
 /* Footer for the main layout */
 export const Footer = () => {
   return (
-    <footer className="px-6 py-8 md:px-10 box-border bg-secondary/10 flex flex-col w-full text-xs md:text-base">
+    <footer className="px-6 py-8 md:px-10 box-border bg-secondary/10 flex flex-col w-full">
       <div className="py-4">
         <Image
           src={CurrapayPrimaryLogoBlack}

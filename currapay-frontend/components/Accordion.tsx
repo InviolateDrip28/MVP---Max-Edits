@@ -20,7 +20,7 @@ export default function AccordionMenu({itemList}: {itemList: {label: string, con
               open: {
                 on: "bg-inherit",
               },
-              heading: "font-normal text-lg md:text-xl 2xl:text-2xl"
+              heading: "font-normal text-base sm:text-lg lg:text-xl 2xl:text-2xl"
             }}
             className="focus:ring-0 text-inherit hover:bg-inherit link focus:text-accent"
           >

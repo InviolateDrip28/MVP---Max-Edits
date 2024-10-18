@@ -70,7 +70,7 @@ export default function GlobeModel({ ...props }) {
   const [countries, setCountries] = useState({ features: [] });
 
   const globeMaterial = new THREE.MeshPhongMaterial();
-  globeMaterial.color = new THREE.Color("#8547FF");
+  globeMaterial.color = new THREE.Color("#5C0AFF"); //darker version of accent color
 
   const useSize = () => {
     const [width, setWidth] = useState(window.innerWidth);
@@ -126,7 +126,7 @@ export default function GlobeModel({ ...props }) {
         width={useSize()}
         height={useSize()}
         ref={globeEl}
-        atmosphereColor="#C2A4FF"
+        atmosphereColor="#81dbdb"
         globeMaterial={globeMaterial}
         backgroundColor={"rgba(0,0,0,0)"}
         arcsData={arcsData}

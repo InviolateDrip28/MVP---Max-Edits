@@ -77,7 +77,7 @@ const DUMMY_LIST = [
   },
 ];
 
-export interface Article { 
+export interface Article {
   id: string;
   title: string;
   date: string;
@@ -94,35 +94,37 @@ export default function News() {
   }, [current]);
 
   return (
-    <section>
-      <h1>News</h1>
-      <div className="flex flex-col gap-4 w-full py-8">
-        {articles.map((article) => (
-          <Link href={`/news/${article.id}`} className="group" key={article.id}>
-            <div
-              className="border bg-white py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl "
+    <section id="newsPage" className="items-center">
+        <h1>News</h1>
+        <div className="flex flex-col gap-4 w-full py-8">
+          {articles.map((article) => (
+            <Link
+              href={`/news/${article.id}`}
+              className="group"
+              key={article.id}
             >
-              <div className="inline-flex justify-between w-full">
-                <p>{article.author}</p>
-                <p>{article.date}</p>
+              <div className="border bg-white py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl ">
+                <div className="inline-flex justify-between w-full">
+                  <p>{article.author}</p>
+                  <p>{article.date}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-2xl">
+                    {article.title}
+                  </p>
+                  <p>{article.content}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-2xl">
-                  {article.title}
-                </p>
-                <p>{article.content}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-      <Pagination
-        onPageChange={setCurrent}
-        totalCount={DUMMY_LIST.length}
-        pageSize={5}
-        currentPage={current}
-        className=""
-      />
+            </Link>
+          ))}
+        </div>
+        <Pagination
+          onPageChange={setCurrent}
+          totalCount={DUMMY_LIST.length}
+          pageSize={5}
+          currentPage={current}
+          className=""
+        />
     </section>
   );
 }

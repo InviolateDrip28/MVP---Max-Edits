@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MaterialSymbol } from "react-material-symbols";
 import CurrapayShortLogoBlack from "@/public/logos/CurrapayShortLogoBlack.png";
 import CurrapayPrimaryLogoBlack from "@/public/logos/CurrapayPrimaryLogoBlack.png";
-import NavPopover from "./NavPopover";
+import NavPopover from "./NavDrawer";
 import LanguagePopover from "./LanguagePopover";
 
 /** Navbar for the main layout */
@@ -49,12 +49,12 @@ export const Nav = () => {
         </Link>
         <Link
           href="/news"
-          className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
+          className="py-2 pl-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
           News
         </Link>
 
-        <LanguagePopover />
+        {/* <LanguagePopover /> */}
 
         {/* <Link
           href="/profile"
@@ -72,7 +72,8 @@ export const Nav = () => {
 
       {/* Medium screens and mobile View */}
       <div className="ml-auto absolute right-6 sm:hidden items-center inline-flex gap-3">
-        <LanguagePopover />
+        {/* <LanguagePopover /> */}
+
         {/* <Link
           href="/profile"
           className="text-secondary hover:text-accent translate-y-1"

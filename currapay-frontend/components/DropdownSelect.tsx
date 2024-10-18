@@ -40,12 +40,12 @@ export default function DropdownSelect(props: DropdownSelectProps) {
     <Listbox value={selected} onChange={props.setSelected}>
       <div className="relative w-full">
         {props.label && (
-          <Label className="bg-accent block font-semibold leading-6 py-1.5 pl-3 text-white rounded-t-md border border-gray-300">
+          <Label className="bg-accent block font-semibold leading-6 py-1.5 pl-3 text-white rounded-t-md border border-secondary/30">
             {props.label}
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-gray-300 focus:outline-none sm:leading-6 ${
+          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${
             props.label && "rounded-t-none border-t-0"
           }`}
         >
@@ -68,7 +68,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
           <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
             <ChevronDownIcon
               aria-hidden="true"
-              className="h-5 w-5 text-gray-400"
+              className="h-5 w-5 text-secondary/40"
             />
           </span>
         </ListboxButton>

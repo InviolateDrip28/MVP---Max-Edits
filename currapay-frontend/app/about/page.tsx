@@ -28,13 +28,13 @@ const TEAM = [
 
 export default function About() {
   return (
-    <section className="text-center gap-36">
-      <div className="min-h-screen md:-mt-28 lg:-mt-24 xl:-mt-30 -mb-24 px-8 sm:px-16 sm:-mx-20 items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-8">
-        <div className="relative space-y-4 lg:col-span-2 lg:-ml-12 lg:pr-16 text-base 2xl:text-2xl">
-          <h1 className="md:pt-28 lg:pt-0">Our Mission</h1>
-          <p className="text-xl font-semibold ">
+    <section className="text-center gap-36 lg:gap-48">
+      <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-4">
+        <div className="relative space-y-4 lg:col-span-2 lg:pr-16 text-base 2xl:text-2xl">
+          <h1 className="">Our Mission</h1>
+          <h3 className="font-semibold">
             We&apos;re building a better way to send money abroad.
-          </p>
+          </h3>
           <p className="pt-4">
             Our platform is helping the world reach Target 10(c) of
             the U.N. Sustainable Development&apos;s Goals: reducing
@@ -51,12 +51,12 @@ export default function About() {
             annually.
           </p>
         </div>
-        <div className="w-full -my-12 lg:-my-36 lg:col-span-1 lg:translate-x-1/3">
+        <div className="w-full -my-12 lg:-my-36 xl:-my-48 lg:col-span-1 lg:translate-x-1/3">
           <Globe className="relative flex justify-center items-center" />
         </div>
       </div>
 
-      <div className="lg:-mx-16 ">
+      <div className="">
         <h1>Our Story</h1>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-16 justify-center items-center">
@@ -73,7 +73,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="pb-36 differentBackgroundColor backgroundWave lg:-mx-48 ">
+      {/* <div className="pb-36 differentBackgroundColor backgroundWave lg:-mx-48 ">
         <h1>Our Story</h1>
         <div className="mt-12 md:mt-24 grid grid-flow-row lg:grid-flow-col justify-between gap-12 z-10">
           <div className="bg-white md:backdrop-blur-xl md:bg-opacity-85 shadow-xl rounded-xl p-8 xl:p-16">
@@ -94,9 +94,9 @@ export default function About() {
             businesses who send money abroad each year.
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="min-h-screen flex flex-col space-y-12 md:space-y-24 lg:mt-16">
+      <div className="flex flex-col space-y-12 md:space-y-24">
         <h1>Meet the Team</h1>
         <p>
           Our company was built by founders from best-in class finance

@@ -72,7 +72,7 @@ const Rates = observer(() => {
   } as ApexOptions;
 
   return (
-    <section className="">
+    <section id="ratesPage" className="items-center">
       <h1>Rates</h1>
       <div className="mt-8 bg-white flex flex-col items-center justify-center w-full py-8 px-16 rounded-xl shadow-xl">
         <div className="flex flex-col justify-center items-center">
