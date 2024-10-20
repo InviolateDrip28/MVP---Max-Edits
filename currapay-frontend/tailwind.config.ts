@@ -28,7 +28,8 @@ const config: Config = {
         secondary: "#545556",
         accent: "#9A67FF",
         accentSecondary: "#21E2E2",
-        accentLight: "#C2A4FF"
+        accentLight: "#C2A4FF",
+        accentDark: "#5C0AFF",
       },
       dropShadow: {
         glow: [
@@ -36,29 +37,39 @@ const config: Config = {
           "0 0px 8px rgba(255, 255,255, 0.3)",
         ],
         glowLight: ["0 0px 8px rgba(255,255, 255, 0.3)"],
+        "3xl": "0 35px 35px rgba(0, 0, 0, 0.25)",
+        "4xl": [
+          "0 35px 35px rgba(0, 0, 0, 0.25)",
+          "0 45px 65px rgba(0, 0, 0, 0.15)",
+        ],
+        "nav": [
+          "0 0px 70px rgba(0, 0, 0, 0.50)",
+          "0 50px 70px rgba(0, 0, 0, 0.30)",
+        ],
       },
+
       fontFamily: {
         urbanist: ["var(--font-urbanist)"],
       },
       animation: {
         "fade-in": "fadeIn 0.15s ease-in-out",
         marquee: "marquee var(--duration, 40s) linear infinite",
-        gradient: 'gradient 14s linear infinite',
-       
+        gradient: "gradient 14s linear infinite",
       },
       keyframes: {
         marquee: {
           to: { transform: "translateX(-50%)" },
         },
         gradient: {
-          to: { 'background-position': '200% center' },
-        }
+          to: { "background-position": "200% center" },
+        },
       },
     },
   },
   plugins: [
-    require('flowbite/plugin')({
-    charts: true,
-  })],
+    require("flowbite/plugin")({
+      charts: true,
+    }),
+  ],
 };
 export default config;

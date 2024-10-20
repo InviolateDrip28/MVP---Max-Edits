@@ -31,7 +31,7 @@ export default function NavPopover() {
         open={isOpen}
         onClose={close}
         backdrop={false}
-        className="drop-shadow-xl p-6"
+        className={`p-6 bg-background w-3/4 ${isOpen && "drop-shadow-nav"}`}
       >
         <Drawer.Header
           style={{ fontSize: "30px" }}

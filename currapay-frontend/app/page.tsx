@@ -215,10 +215,10 @@ const Homepage = observer(() => {
 
         <div
           id="context"
-          className="differentBackgroundColor bg-accentLight w-auto flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between "
+          className="differentBackgroundColor bg-accentDark w-auto flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background"
         >
           <div className="space-y-8 md:space-y-16">
-            <h1 className="font-bold drop-shadow-glowLight">
+            <h1 className="font-bold text-accentSecondary">
               Save money with CurraPay
             </h1>
             <div>
@@ -235,7 +235,7 @@ const Homepage = observer(() => {
           </div>
 
           <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <GroupIcon
                   style={{ width: "100%", height: "100%" }}
@@ -248,7 +248,7 @@ const Homepage = observer(() => {
                 <p>send money abroad</p>
               </div>
             </div>
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent/75 gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <SendIcon style={{ width: "100%", height: "100%" }} />
               </div>
@@ -266,7 +266,7 @@ const Homepage = observer(() => {
                 <p>sent every year</p>
               </div>
             </div>
-            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accent/50 gap-6 md:gap-8">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
                 <RemoveCircleIcon
                   style={{ width: "100%", height: "100%" }}
