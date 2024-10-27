@@ -82,10 +82,10 @@ const Rates = observer(() => {
             {SearchStore.toCurrency}
           </p>
         </div>
-
+{/* 
         <div className="h-1/2 w-3/4">
           <Chart {...chartConfig} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

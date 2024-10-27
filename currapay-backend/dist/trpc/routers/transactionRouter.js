@@ -34,7 +34,6 @@ exports.transactionRouter = t.router({
         transferMethod: zod_1.z.string(),
         purposeOfTransfer: zod_1.z.string(),
         status: zod_1.z.string(),
-        timestamp: zod_1.z.date(),
     }))
         .mutation((_a) => __awaiter(void 0, [_a], void 0, function* ({ input }) {
         return yield useTransaction_1.useTransaction.createTransaction(input);
@@ -52,7 +51,6 @@ exports.transactionRouter = t.router({
             transferMethod: zod_1.z.string().optional(),
             purposeOfTransfer: zod_1.z.string().optional(),
             status: zod_1.z.string().optional(),
-            timestamp: zod_1.z.date().optional(),
         }),
     }))
         .mutation((_a) => __awaiter(void 0, [_a], void 0, function* ({ input }) {

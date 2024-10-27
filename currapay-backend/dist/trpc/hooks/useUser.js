@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useUser = void 0;
 const prismaClient_1 = __importDefault(require("../../db/prismaClient"));
+const argon2_1 = __importDefault(require("argon2"));
 exports.useUser = {
     getAllUsers: () => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -35,7 +36,10 @@ exports.useUser = {
     }),
     createUser: (userData) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            return yield prismaClient_1.default.user.create({ data: userData });
+            const hashedPassword = yield argon2_1.default.hash(userData.password);
+            return yield prismaClient_1.default.user.create({
+                data: Object.assign(Object.assign({}, userData), { password: hashedPassword, createdAt: new Date(), updatedAt: new Date() }),
+            });
         }
         catch (error) {
             console.error('Error creating user:', error);
@@ -44,7 +48,11 @@ exports.useUser = {
     }),
     updateUser: (id, data) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            return yield prismaClient_1.default.user.update({ where: { id }, data });
+            const updateData = Object.assign(Object.assign({}, data), { updatedAt: new Date() });
+            if (data.password) {
+                updateData.password = yield argon2_1.default.hash(data.password);
+            }
+            return yield prismaClient_1.default.user.update({ where: { id }, data: updateData });
         }
         catch (error) {
             console.error(`Error updating user with ID ${id}:`, error);

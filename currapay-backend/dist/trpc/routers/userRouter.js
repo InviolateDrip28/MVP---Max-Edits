@@ -26,6 +26,7 @@ exports.userRouter = t.router({
     createUser: t.procedure
         .input(zod_1.z.object({
         emailAddress: zod_1.z.string().email(),
+        password: zod_1.z.string().min(6),
         country: zod_1.z.string(),
         city: zod_1.z.string(),
         age: zod_1.z.number().int().positive(),
@@ -33,9 +34,7 @@ exports.userRouter = t.router({
         occupation: zod_1.z.string(),
         nationality: zod_1.z.string(),
         deviceUsed: zod_1.z.string(),
-        internetAccess: zod_1.z.boolean(),
-        mobilePenetration: zod_1.z.number().nonnegative(),
-        accountCreationDate: zod_1.z.date(),
+        browserUsed: zod_1.z.string(),
     }))
         .mutation((_a) => __awaiter(void 0, [_a], void 0, function* ({ input }) {
         return yield useUser_1.useUser.createUser(input);
@@ -45,6 +44,7 @@ exports.userRouter = t.router({
         id: zod_1.z.number(),
         data: zod_1.z.object({
             emailAddress: zod_1.z.string().email().optional(),
+            password: zod_1.z.string().min(6).optional(),
             country: zod_1.z.string().optional(),
             city: zod_1.z.string().optional(),
             age: zod_1.z.number().int().positive().optional(),
@@ -52,9 +52,7 @@ exports.userRouter = t.router({
             occupation: zod_1.z.string().optional(),
             nationality: zod_1.z.string().optional(),
             deviceUsed: zod_1.z.string().optional(),
-            internetAccess: zod_1.z.boolean().optional(),
-            mobilePenetration: zod_1.z.number().nonnegative().optional(),
-            accountCreationDate: zod_1.z.date().optional(),
+            browserUsed: zod_1.z.string().optional(),
         }),
     }))
         .mutation((_a) => __awaiter(void 0, [_a], void 0, function* ({ input }) {
