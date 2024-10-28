@@ -36,7 +36,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="text-center gap-36 lg:gap-48">
+    <section className="text-center gap-36 lg:gap-48 overflow-x-hidden">
       <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8">
         <div className="relative space-y-4 lg:col-span-2 lg:pr-16 text-base 2xl:text-2xl">
           <h1 className="">Our Mission</h1>

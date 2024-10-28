@@ -61,7 +61,7 @@ const Homepage = observer(() => {
   };
 
   return (
-    <section id="homepage" className="gap-36 lg:gap-48">
+    <section id="homepage" className="gap-36 lg:gap-48 overflow-x-hidden">
         <div className="grid xl:grid-flow-col gap-12 items-center justify-center">
           <div className="space-y-4">
             <p className="text-center xl:text-left bigHeading animatedGradientText">
