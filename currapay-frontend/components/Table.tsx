@@ -66,7 +66,7 @@ const RatesTable = (props: TableProps) => {
                     setCurrCol(colIndex);
                   }}
                 >
-                  {rowIndex === colIndex ? "" : rowIndex}
+                  {rowIndex === colIndex ? "" : "1.00"}
                 </td>
               ))}
             </tr>

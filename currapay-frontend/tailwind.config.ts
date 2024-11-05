@@ -47,7 +47,6 @@ const config: Config = {
           "0 50px 70px rgba(0, 0, 0, 0.30)",
         ],
       },
-
       fontFamily: {
         urbanist: ["var(--font-urbanist)"],
       },

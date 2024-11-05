@@ -20,6 +20,7 @@ const TEAM = [
     title: "CEO",
     imgSrc: "/team/david-pfp.jpg",
     linkedin: "https://www.linkedin.com/in/davidandrewmcmillan/",
+    desc: "David recently graduated from the University of Oxford where he was a Global Rotary Scholar. He won Nobel Prize Laureate Vernon Smith's annual international prize for his paper applying Keynesian probability theory to economic forecasting. Most recently, David served as Director of Public Policy at CARTS, a Princeton University spinout, which is focused on the deployment of autonomous vehicle technology.",
   },
   {
     name: "Max Stanley",
@@ -27,6 +28,7 @@ const TEAM = [
     imgSrc: "/team/max-pfp.png",
     linkedin:
       " https://www.linkedin.com/in/maximillian-stanley-681619135/",
+    desc: "Max was, most recently, an investment banker at Citi, covering tech in his equity capital markets portfolio. He worked on the Citi team that supported Sweetgreen's IPO. Before that, he was an analyst at Olsen Palmer, a boutique investment banking firm in Washington D.C., working in M&A. He graduated from the George Washington University. He holds Series 63, 7, and 79 licenses. ",
   },
 ];
 
@@ -69,7 +71,7 @@ export default function About() {
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-36 justify-center items-center">
           <div
-            className="relative w-full h-[20rem] order-1"
+            className="relative w-full h-[20rem] order-2 lg:order-1"
             data-aos="fade-up"
             data-aos-duration="3000"
           >
@@ -83,7 +85,7 @@ export default function About() {
           </div>
 
           <div
-            className="text-center lg:text-right space-y-4 order-2"
+            className="text-center lg:text-left space-y-4 order-1 lg:order-2"
             data-aos="fade-up"
             data-aos-duration="3000"
           >
@@ -111,7 +113,7 @@ export default function About() {
             early investor in PayPal and DropBox), Prudential, Stevens
             Institute of Technology, and the New Jersey Economic
             Development Authority. We launched our platform in
-            November 2024. This provided our start-up
+            November 2024. 
           </p>
 
           <div
@@ -155,7 +157,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="flex flex-col space-y-12 md:space-y-24">
+      <div className="flex flex-col space-y-12 md:space-y-24 items-center">
         <h1>Meet the Team</h1>
         <p>
           Our company was built by founders from best-in class finance
@@ -163,28 +165,36 @@ export default function About() {
         </p>
         <div className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24">
           {TEAM.map((member) => (
-            <div className="group" key={member.name}>
-              <div className="flex flex-col items-center relative group-hover:scale-105">
-                <div className="relative bg-black rounded-full w-40 h-40 md:w-56 md:h-56 xl:w-64 xl:h-64 group-hover:drop-shadow-xl">
+            <div
+              className="p-0 bg-white rounded-lg max-w-[17rem] xl:max-w-[35rem] shadow-xl"
+              key={member.name}
+            >
+              <div className="flex flex-col items-center relative">
+                <div className="relative rounded-lg bg-white h-64 md:h-72 lg:h-80 2xl:h-[30rem] w-full max-w-[35rem] items-center">
                   <Image
                     src={member.imgSrc}
                     alt={member.name}
-                    sizes="100vw"
+                    className="rounded-t-lg"
                     objectFit="cover"
-                    className="rounded-full"
                     fill
                   />
                 </div>
-                <p className="font-semibold pt-4">{member.name}</p>
-                <div className="inline-flex items-center gap-1">
-                  <p>{member.title}</p>
-                  <Link
-                    href={member.linkedin}
-                    target="_blank"
-                    className="-translate-y-0.5"
-                  >
-                    <LinkedInIcon className="hover:text-accent" />
-                  </Link>
+                <div className="py-6 px-6 lg:px-8">
+                  <p className="font-semibold">{member.name}</p>
+                  <div className="inline-flex items-center gap-1">
+                    <p>{member.title}</p>
+                    <Link
+                      href={member.linkedin}
+                      target="_blank"
+                      className="-translate-y-0.5"
+                    >
+                      <LinkedInIcon className="hover:text-accent" />
+                    </Link>
+                  </div>
+                  <p className="pt-4 text-ellipsis line-clamp-4">
+                    {member.desc}
+                  </p>
+                  <button className="py-4">Read more</button>
                 </div>
               </div>
             </div>
