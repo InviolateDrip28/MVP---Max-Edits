@@ -2,83 +2,55 @@
 import { Pagination } from "@/components/Pagination";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 // article needs a unique id that will be used as the url path
 const DUMMY_LIST = [
   {
-    id: "article-1",
-    title: "Article1",
+    id: "immigrating-mexico-to-us",
+    imgPath: "/news/article-1-img.png",
+    title:
+      "Immigrating to the U.S. from Mexico: A Comprehensive Guide",
     date: "2024-01-01",
-    content: "This is article 1",
+    content:
+      "Immigrating to the United States from Mexico is a journey that many individuals and families undertake for various reasons, including economic opportunities, education, family reunification, and a desire for a better quality of life. This article explores the key aspects of the immigration process, the challenges faced, and the resources available for those considering this path.",
+    // author: "Dr Suess",
+  },
+  {
+    id: "immigrating-guatemala-to-us",
+    imgPath: "/news/article-2-img.png",
+    title:
+      "Immigrating to the U.S. from Guatemala: A Comprehensive Guide",
+    date: "2024-01-01",
+    content:
+      "Immigrating to the United States from Guatemala is a significant step that many individuals and families take in search of better economic opportunities, education, and a higher quality of life. This article outlines the immigration process, the challenges that may arise, and useful resources, including a modern tool for managing remittances back home.",
     author: "Dr Suess",
   },
   {
-    id: "article-2",
-    title: "Article2",
+    id: "international-money-transfers-guide",
+    imgPath: "/news/article-3-img.png",
+    title: "Understanding International Money Transfers: A Guide",
     date: "2024-01-01",
-    content: "This is article 2",
+    content:
+      "While Venmo is a popular payment app in the U.S., it does not work in Europe or other international markets. This limitation is important for individuals looking to send money abroad. Here's a brief overview of the basics of international money transfers, including how to compare costs using tools like CurraPay.",
     author: "Dr Suess",
   },
   {
-    id: "article-3",
-    title: "Article3",
+    id: "international-students-guide",
+    imgPath: "/news/article-4-img.png",
+    title:
+      "A Guide for International Students Studying in U.S. Colleges and Universities",
     date: "2024-01-01",
-    content: "This is article 3",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-4",
-    title: "Article4",
-    date: "2024-01-01",
-    content: "This is article 4",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-5",
-    title: "Article5",
-    date: "2024-01-01",
-    content: "This is article 5",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-6",
-    title: "Article6",
-    date: "2024-01-01",
-    content: "This is article 6",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-7",
-    title: "Article7",
-    date: "2024-01-01",
-    content: "This is article 7",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-8",
-    title: "Article8",
-    date: "2024-01-01",
-    content: "This is article 8",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-9",
-    title: "Article9",
-    date: "2024-01-01",
-    content: "This is article 9",
-    author: "Dr Suess",
-  },
-  {
-    id: "article-10",
-    title: "Article10",
-    date: "2024-01-01",
-    content: "This is article 10",
+    content:
+      "Studying in the United States offers international students a unique opportunity to immerse themselves in diverse cultures, gain a world-class education, and build valuable connections. This article provides an overview of what international students can expect, tips for navigating life in the U.S., and resources to make the most of their experience.",
     author: "Dr Suess",
   },
 ];
 
 export interface Article {
   id: string;
+  imgPath: string;
   title: string;
   date: string;
   content: string;
@@ -94,37 +66,53 @@ export default function News() {
   }, [current]);
 
   return (
-    <section id="newsPage" className="items-center">
-        <h1>News</h1>
-        <div className="flex flex-col gap-4 w-full py-8">
-          {articles.map((article) => (
-            <Link
-              href={`/news/${article.id}`}
-              className="group"
-              key={article.id}
-            >
-              <div className="border bg-white py-6 px-8 rounded-lg shadow-md space-y-4 group-hover:scale-[102%] group-hover:shadow-xl ">
-                <div className="inline-flex justify-between w-full">
+    <section id="newsPage" className="items-center justify-start">
+      <h1>News</h1>
+      <div className="flex flex-col gap-8 md:gap-12 w-full py-8">
+        {articles.map((article) => (
+          <Link
+            href={`/news/${article.id}`}
+            className="group"
+            key={article.id}
+          >
+            <div className="border bg-white py-3 px-4 xl:py-6 xl:px-8 rounded-lg shadow-md space-y-4 md:space-x-4 xl:space-x-8 group-hover:scale-[102%] group-hover:shadow-xl relative flex flex-col md:flex-row">
+              {/* <div className="inline-flex justify-between w-full">
                   <p>{article.author}</p>
                   <p>{article.date}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-2xl">
-                    {article.title}
-                  </p>
-                  <p>{article.content}</p>
+                </div> */}
+              <div className="w-full flex items-center justify-center">
+                <div className="relative h-48 w-full md:h-full md:min-w-40 lg:min-w-48 ">
+                  <Image
+                    src={article.imgPath}
+                    alt={article.id}
+                    className="rounded-lg"
+                    objectFit="cover"
+                    fill
+                  />
                 </div>
               </div>
-            </Link>
-          ))}
-        </div>
-        <Pagination
-          onPageChange={setCurrent}
-          totalCount={DUMMY_LIST.length}
-          pageSize={5}
-          currentPage={current}
-          className=""
-        />
+
+              <div className="pb-12 space-y-2 xl:space-y-4">
+                <h3 className="font-semibold">{article.title}</h3>
+                <p className="text-xs md:text-base line-clamp-2">
+                  {article.content}
+                </p>
+                <div className="absolute bottom-3 xl:bottom-6 right-4 xl:right-8 items-center inline-flex space-x-1 hover:underline hover:text-accent">
+                  <p className="text-xs">Read more</p>
+                  <ArrowRightIcon className="h-4 w-4" />
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <Pagination
+        onPageChange={setCurrent}
+        totalCount={DUMMY_LIST.length}
+        pageSize={5}
+        currentPage={current}
+        className=""
+      />
     </section>
   );
 }

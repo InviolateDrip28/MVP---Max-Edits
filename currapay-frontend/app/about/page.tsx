@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Globe = dynamic(
   () => {
@@ -33,6 +33,8 @@ const TEAM = [
 ];
 
 export default function About() {
+  const [showDavidDesc, setShowDavidDesc] = useState(false);
+  const [showMaxDesc, setShowMaxDesc] = useState(false);
   useEffect(() => {
     AOS.init();
   }, []);
@@ -113,7 +115,7 @@ export default function About() {
             early investor in PayPal and DropBox), Prudential, Stevens
             Institute of Technology, and the New Jersey Economic
             Development Authority. We launched our platform in
-            November 2024. 
+            November 2024.
           </p>
 
           <div
@@ -191,10 +193,15 @@ export default function About() {
                       <LinkedInIcon className="hover:text-accent" />
                     </Link>
                   </div>
-                  <p className="pt-4 text-ellipsis line-clamp-4">
+                  <p className={`pt-4 text-ellipsis ${showDavidDesc && 'line-clamp-4'}`}>
                     {member.desc}
                   </p>
-                  <button className="py-4">Read more</button>
+                  <button
+                    className="py-4"
+                    onClick={() => setShowDavidDesc(!showDavidDesc)}
+                  >
+                    Read more
+                  </button>
                 </div>
               </div>
             </div>
