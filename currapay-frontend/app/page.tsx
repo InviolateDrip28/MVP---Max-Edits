@@ -17,7 +17,7 @@ import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
@@ -41,6 +41,26 @@ const Homepage = observer(() => {
   // if (transactionsError)
   //   return <p>Error loading data</p>;
 
+  const { data, error, isLoading } = trpc.xe.getXeRate.useQuery({
+    amount: 500,
+    country: "US",
+    destinationCountry: "IN",
+    buy: "INR",
+    sell: "USD",
+    fixed_currency: "buy",
+  });
+  
+  const handleSubmit = () => {
+    if (error) {
+      console.error("Error fetching data:", error);
+    } else {
+      console.log("Fetched data:", data);
+    }
+  };
+  
+  // Call handleSubmit when you want to send the data
+  handleSubmit();
+
   const handleClick = () => {
     console.log("fromCountry: ", SearchStore.fromCountry);
     console.log("toCountry: ", SearchStore.toCountry);
@@ -61,10 +81,7 @@ const Homepage = observer(() => {
   };
 
   return (
-    <div
-      id="homepage"
-      className="homepage"
-    >
+    <div id="homepage" className="homepage">
       <div className="subsection grid xl:grid-flow-col gap-16 items-center justify-center">
         <div className="space-y-4 xl:col-span-2">
           <p className="text-center xl:text-left bigHeading animatedGradientText">
@@ -320,10 +337,7 @@ const Homepage = observer(() => {
         </div>
       </div>
 
-      <div
-        id="faq"
-        className="subsection text-center"
-      >
+      <div id="faq" className="subsection text-center">
         <h1 className="">Frequently Asked Questions</h1>
         <div className="mt-16">
           <AccordionMenu itemList={FAQS} />
