@@ -40,8 +40,8 @@ export default function About() {
   }, []);
 
   return (
-    <section className="text-center gap-36 lg:gap-48 overflow-x-hidden">
-      <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8">
+    <section className="w-screen max-w-full text-center gap-36 lg:gap-48 overflow-hidden">
+      <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8 subsection">
         <div className="relative space-y-4 lg:col-span-2 lg:pr-16 text-base 2xl:text-2xl">
           <h1 className="">Our Mission</h1>
           <h3 className="font-semibold">
@@ -64,11 +64,11 @@ export default function About() {
           </p>
         </div>
         <div className="w-full lg:col-span-1 lg:translate-x-1/4 -my-12 lg:-my-36 xl:-my-40">
-          <Globe className="relative flex justify-center items-center" />
+          <Globe className="relative flex justify-center items-center " />
         </div>
       </div>
 
-      <div>
+      <div className="subsection">
         <h1>Our Story</h1>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-36 justify-center items-center">
@@ -159,7 +159,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="flex flex-col space-y-12 md:space-y-24 items-center">
+      <div className="subsection flex flex-col space-y-12 md:space-y-24 items-center">
         <h1>Meet the Team</h1>
         <p>
           Our company was built by founders from best-in class finance
@@ -197,10 +197,10 @@ export default function About() {
                     {member.desc}
                   </p>
                   <button
-                    className="py-4"
+                    className="pt-12 pb-4 text-accent hover:underline"
                     onClick={() => setShowDavidDesc(!showDavidDesc)}
                   >
-                    Read more
+                    {showDavidDesc ? "Read more" : "Hide"}
                   </button>
                 </div>
               </div>

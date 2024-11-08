@@ -75,13 +75,13 @@ export default function News() {
             className="group"
             key={article.id}
           >
-            <div className="border bg-white py-3 px-4 xl:py-6 xl:px-8 rounded-lg shadow-md space-y-4 md:space-x-4 xl:space-x-8 group-hover:scale-[102%] group-hover:shadow-xl relative flex flex-col md:flex-row">
+            <div className="border bg-white py-3 px-4 xl:py-6 xl:px-8 rounded-lg shadow-md space-y-4 sm:space-x-4 md:space-x-8 xl:space-x-12 group-hover:scale-[102%] group-hover:shadow-xl relative flex flex-col sm:flex-row">
               {/* <div className="inline-flex justify-between w-full">
                   <p>{article.author}</p>
                   <p>{article.date}</p>
                 </div> */}
-              <div className="w-full flex items-center justify-center">
-                <div className="relative h-48 w-full md:h-full md:min-w-40 lg:min-w-48 ">
+              <div className="w-full sm:w-2/5 flex items-center justify-center">
+                <div className="relative h-64 w-full xs:w-64 sm:h-48 sm:w-48 md:h-64 md:w-64 rounded-lg">
                   <Image
                     src={article.imgPath}
                     alt={article.id}

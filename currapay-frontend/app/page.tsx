@@ -61,11 +61,11 @@ const Homepage = observer(() => {
   };
 
   return (
-    <section
+    <div
       id="homepage"
-      className="gap-36 lg:gap-48 overflow-x-hidden"
+      className="homepage"
     >
-      <div className="grid xl:grid-flow-col gap-16 items-center justify-center ">
+      <div className="subsection grid xl:grid-flow-col gap-16 items-center justify-center">
         <div className="space-y-4 xl:col-span-2">
           <p className="text-center xl:text-left bigHeading animatedGradientText">
             Search. Send. Save.
@@ -211,7 +211,7 @@ const Homepage = observer(() => {
 
       <div
         id="partners"
-        className="text-center mb-12 lg:mb-24 space-y-12"
+        className="text-center mb-12 lg:mb-24 space-y-12 "
       >
         <h1 className="text-center">Partners</h1>
         <p>
@@ -222,78 +222,87 @@ const Homepage = observer(() => {
       </div>
 
       <div
-          id="context"
-          className="differentBackgroundColor bg-accentDark w-auto flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background"
-        >
-        <div className="space-y-8 md:space-y-16">
-          <h1 className="font-bold text-accentSecondary">
-            Save money with CurraPay
-          </h1>
-          <div>
-            <h3 className="font-semibold">
-              We&apos;re leveling the playing field.
-            </h3>
-            <h3 className="pt-4 md:pt-8">
-              We&apos;re on a mission to reduce the cost of sending
-              money internationally. CurraPay was founded on a simple
-              idea — that the international money transfer market
-              needed greater transparency.
-            </h3>
+        id="context"
+        className="differentBackgroundColor bg-accentDark"
+      >
+        <div className="subsection flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background">
+          <div className="space-y-8 md:space-y-16">
+            <h1 className="font-bold text-accentSecondary">
+              Save money with CurraPay
+            </h1>
+            <div>
+              <h3 className="font-semibold">
+                We&apos;re leveling the playing field.
+              </h3>
+              <h3 className="pt-4 md:pt-8">
+                We&apos;re on a mission to reduce the cost of sending
+                money internationally. CurraPay was founded on a
+                simple idea — that the international money transfer
+                market needed greater transparency.
+              </h3>
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
-          <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
-            <div className="h-16 w-16 md:h-20 md:w-20 ">
-              <GroupIcon style={{ width: "100%", height: "100%" }} />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <h2 className="whitespace-nowrap">1 billion people</h2>
-              <p>send money abroad</p>
-            </div>
-          </div>
-          <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
-            <div className="h-16 w-16 md:h-20 md:w-20">
-              <SendIcon style={{ width: "100%", height: "100%" }} />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <h2 className="whitespace-nowrap">
-                <CountUp
-                  start={0}
-                  end={13}
-                  prefix="$"
-                  suffix=" trillion"
-                  enableScrollSpy={true}
-                  scrollSpyOnce={true}
+          <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20 ">
+                <GroupIcon
+                  style={{ width: "100%", height: "100%" }}
                 />
-              </h2>
-              <p>sent every year</p>
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  1 billion people
+                </h2>
+                <p>send money abroad</p>
+              </div>
             </div>
-          </div>
-          <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
-            <div className="h-16 w-16 md:h-20 md:w-20">
-              <RemoveCircleIcon
-                style={{ width: "100%", height: "100%" }}
-              />
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/75 gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20">
+                <SendIcon style={{ width: "100%", height: "100%" }} />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  <CountUp
+                    start={0}
+                    end={13}
+                    prefix="$"
+                    suffix=" trillion"
+                    enableScrollSpy={true}
+                    scrollSpyOnce={true}
+                  />
+                </h2>
+                <p>sent every year</p>
+              </div>
             </div>
-            <div className="flex flex-col space-y-2">
-              <h2 className="whitespace-nowrap">
-                <CountUp
-                  start={0}
-                  end={280}
-                  prefix="$"
-                  suffix=" billion"
-                  enableScrollSpy={true}
-                  scrollSpyOnce={true}
+            <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
+              <div className="h-16 w-16 md:h-20 md:w-20">
+                <RemoveCircleIcon
+                  style={{ width: "100%", height: "100%" }}
                 />
-              </h2>
-              <p>lost each year due to transaction costs</p>
+              </div>
+              <div className="flex flex-col space-y-2">
+                <h2 className="whitespace-nowrap">
+                  <CountUp
+                    start={0}
+                    end={280}
+                    prefix="$"
+                    suffix=" billion"
+                    enableScrollSpy={true}
+                    scrollSpyOnce={true}
+                  />
+                </h2>
+                <p>lost each year due to transaction costs</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="rates-table" className="mt-12 lg:mt-24 text-center">
+      <div
+        id="rates-table"
+        className="subsection mt-12 lg:mt-24 text-center"
+      >
         <h1>Mid-Market Exchange Rates</h1>
         <div className="relative mt-16 pt-8 pb-16 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
           <RatesTable
@@ -311,7 +320,10 @@ const Homepage = observer(() => {
         </div>
       </div>
 
-      <div id="faq" className="text-center w-full">
+      <div
+        id="faq"
+        className="subsection text-center"
+      >
         <h1 className="">Frequently Asked Questions</h1>
         <div className="mt-16">
           <AccordionMenu itemList={FAQS} />
@@ -325,7 +337,7 @@ const Homepage = observer(() => {
         </p>
       </div>
       <ScrollToTopButton />
-    </section>
+    </div>
   );
 });
 

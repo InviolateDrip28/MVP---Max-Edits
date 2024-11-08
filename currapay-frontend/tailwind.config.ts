@@ -12,15 +12,14 @@ const config: Config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       screens: {
         mobile: {
           raw: "not all and (orientation: landscape) and (min-width: 768px)",
         },
+        "xs": "480px",
+        "3xl": "1680px",
       },
       colors: {
         background: "#F5F7FA",
@@ -42,7 +41,7 @@ const config: Config = {
           "0 35px 35px rgba(0, 0, 0, 0.25)",
           "0 45px 65px rgba(0, 0, 0, 0.15)",
         ],
-        "nav": [
+        nav: [
           "0 0px 70px rgba(0, 0, 0, 0.50)",
           "0 50px 70px rgba(0, 0, 0, 0.30)",
         ],
