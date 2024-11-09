@@ -9,7 +9,10 @@ import {
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
 } from "../constants";
-import { ArrowsRightLeftIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowsRightLeftIcon,
+  ArrowsUpDownIcon,
+} from "@heroicons/react/20/solid";
 import ProviderCard from "./components/ProviderCard";
 import { Pagination } from "@/components/Pagination";
 import { useState, useEffect } from "react";
@@ -45,59 +48,69 @@ const Compare = observer(() => {
   };
 
   return (
-    <section id="compare-rates" className="gap-8">
+    <section id="compare-rates" className="flex items-center gap-8">
       <div
         id="search"
-        className="border box-border p-6 shadow-xl rounded-xl w-full space-y-4 bg-white"
+        className="w-full flex border box-border p-6 xl:p-8 shadow-xl rounded-xl space-y-4 bg-white"
       >
-        <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <div className="min-w-52">
+        <div className="w-full flex flex-col lg:flex-row gap-4 justify-center">
+          <div className="w-auto lg:w-2/5 xl:w-auto flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-2 xl:gap-4 items-center justify-center">
+          <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
+              <DropdownSelect
+                dropdownList={COUNTRY_CODES}
+                reference={COUNTRY_CODE_TO_NAME}
+                defaultValue={SearchStore.fromCountry}
+                setSelected={SearchStore.setFromCountry}
+                hasImage={true}
+              />
+            </div>
+            <button
+              className="flex text-secondary hover:text-accent"
+              onClick={handleSwap}
+            >
+              <ArrowsUpDownIcon className="h-6 w-6 flex md:hidden" />
+              <ArrowsRightLeftIcon className="h-6 w-6 hidden md:flex" />
+            </button>
+            <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
+              <DropdownSelect
+                dropdownList={COUNTRY_CODES}
+                reference={COUNTRY_CODE_TO_NAME}
+                defaultValue={SearchStore.toCountry}
+                setSelected={SearchStore.setToCountry}
+                hasImage={true}
+              />
+            </div>
+          </div>
+
+          <div className="hidden lg:inline-block items-center -my-4 min-h-[1em] min-w-[1px] w-[1px] self-stretch bg-secondary/30"></div>
+
+          <div className="block lg:hidden my-2 sm:my-4 border-t w-full border-secondary/30"></div>
+
+          <div className="inline-flex items-center flex-row space-x-2">
+            <p className="hidden md:block pt-4 sm:pt-0">Send</p>
+            <input
+              type="number"
+              value={SearchStore.amount}
+              onChange={(e) => SearchStore.setAmount(e.target.value)}
+              className="relative w-full text-base sm:text-lg 2xl:text-2xl min-w-20 cursor-default rounded-md bg-white py-1.5 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+            />
             <DropdownSelect
-              dropdownList={COUNTRY_CODES}
-              reference={COUNTRY_CODE_TO_NAME}
+              dropdownList={["US"]}
+              reference={COUNTRY_CODE_TO_CURRENCY}
               defaultValue={SearchStore.fromCountry}
-              setSelected={SearchStore.setFromCountry}
-              hasImage={true}
+              setSelected={SearchStore.setFromCurrency}
+              className="border rounded-md p-2"
             />
-          </div>
-          <button
-            className="flex text-secondary hover:text-accent -mx-1"
-            onClick={handleSwap}
-          >
-            <ArrowsRightLeftIcon className="h-6 w-6" />
-          </button>
-          <div className="min-w-52">
+            <p>to</p>
             <DropdownSelect
-              dropdownList={COUNTRY_CODES}
-              reference={COUNTRY_CODE_TO_NAME}
+              dropdownList={["US"]}
+              reference={COUNTRY_CODE_TO_CURRENCY}
               defaultValue={SearchStore.toCountry}
-              setSelected={SearchStore.setToCountry}
-              hasImage={true}
+              setSelected={SearchStore.setToCurrency}
+              className="border rounded-md p-2"
             />
           </div>
-          <div className="items-center inline-block -my-4 min-w-[1em] sm:min-w-0 sm:min-h-[1em] sm:w-2 self-stretch bg-secondary/30"></div>
-          <p className="pt-4 sm:pt-0">Send</p>
-          <input
-            type="number"
-            value={SearchStore.amount}
-            onChange={(e) => SearchStore.setAmount(e.target.value)}
-            className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-2 text-left shadow-sm border border-gray-300 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
-          />
-          <DropdownSelect
-            dropdownList={["US"]}
-            reference={COUNTRY_CODE_TO_CURRENCY}
-            defaultValue={SearchStore.fromCountry}
-            setSelected={SearchStore.setFromCurrency}
-            className="border rounded-md p-2"
-          />
-          <p>to</p>
-          <DropdownSelect
-            dropdownList={["US"]}
-            reference={COUNTRY_CODE_TO_CURRENCY}
-            defaultValue={SearchStore.toCountry}
-            setSelected={SearchStore.setToCurrency}
-            className="border rounded-md p-2"
-          />
+
           <Link
             href={{
               pathname: "/compare",
@@ -107,9 +120,9 @@ const Compare = observer(() => {
                 amount: SearchStore.amount,
               },
             }}
-            className="text-white text-center font-bold rounded-md py-1.5 px-1 w-full 
+            className="text-white text-center font-bold rounded-md py-1.5 px-2 w-full lg:max-w-24 
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
-                before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full"
+                before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 lg:mt-0"
             onClick={() => console.log("ajsdf")}
           >
             Go {" \u26A1"}
@@ -117,12 +130,12 @@ const Compare = observer(() => {
         </div>
       </div>
 
-      <div className="text-secondary">
+      <h3 className="text-secondary pt-10 pb-0 lg:pt-16 lg:pb-6">
         Showing results from {numProviders} providers
-      </div>
+      </h3>
       <div id="providers" className="flex flex-col gap-4 w-full">
         {cards.map((i) => (
-          <ProviderCard key={i} fromCurrency={from} toCurrency={to} />
+          <ProviderCard key={i} fromCurrency={from} toCurrency={to} amount={amount} />
         ))}
       </div>
       <Pagination
@@ -130,7 +143,6 @@ const Compare = observer(() => {
         totalCount={PROVIDER_DATA.length}
         pageSize={5}
         currentPage={current}
-        className=""
       />
     </section>
   );

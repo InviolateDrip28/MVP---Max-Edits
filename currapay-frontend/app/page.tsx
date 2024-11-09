@@ -107,7 +107,7 @@ const Homepage = observer(() => {
                 id="default-checkbox"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
+                className="w-4 h-4 text-accent bg-secondary/10 border-secondary/30 rounded accent-accent focus:ring-0"
               />
               <label
                 htmlFor="default-checkbox"
@@ -121,7 +121,7 @@ const Homepage = observer(() => {
                 id="default-checkbox"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
+                className="w-4 h-4 text-accent bg-secondary/10 border-secondary/30 rounded accent-accent focus:ring-0"
               />
               <label
                 htmlFor="default-checkbox"
@@ -135,7 +135,7 @@ const Homepage = observer(() => {
                 id="default-checkbox"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 text-accent bg-gray-100 border-secondary/30 rounded accent-accent focus:ring-0"
+                className="w-4 h-4 text-accent bg-secondary/10 border-secondary/30 rounded accent-accent focus:ring-0"
               />
               <label
                 htmlFor="default-checkbox"

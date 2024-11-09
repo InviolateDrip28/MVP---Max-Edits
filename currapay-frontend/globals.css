@@ -111,7 +111,7 @@
 
 /* pagination styles */
 .pagination-container {
-  @apply flex list-none;
+  @apply flex list-none justify-center ;
 
   .pagination-item {
     @apply flex m-2 box-border text-center items-center justify-center rounded-md h-12 w-12;
