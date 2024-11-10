@@ -16,18 +16,73 @@ import {
 import ProviderCard from "./components/ProviderCard";
 import { Pagination } from "@/components/Pagination";
 import { useState, useEffect } from "react";
+import { Option } from "./types";
 
-const PROVIDER_DATA = [1, 2, 3, 4, 5, 6, 7];
+// TODO: add serialization for typing
+const PROVIDER_DATA: Record<string, Option[]> = {
+  "Western Union": [
+    {
+      method: "debit card",
+      fee: 1.00,
+      exchangeRate: 1.00,
+      transferTime: "1-2 days",
+    },
+    {
+      method: "bank transfer",
+      fee: 3.00,
+      exchangeRate: 1.21,
+      transferTime: "1-5 days",
+    },
+  ],
+  "Currency Solutions": [
+    {
+      method: "debit card",
+      fee: 0,
+      exchangeRate: 1.04,
+      transferTime: "1-2 days",
+    },
+    {
+      method: "bank transfer",
+      fee: 1.00,
+      exchangeRate: 1.05,
+      transferTime: "1-2 days",
+    },
+  ],
+  Xe: [
+    {
+      method: "debit card",
+      fee: 3.00,
+      exchangeRate: 1.21,
+      transferTime: "1-2 days",
+    },
+  ],
+  "Atlantic Money": [
+    {
+      method: "debit card",
+      fee: 1.00,
+      exchangeRate: 1.43,
+      transferTime: "1-2 days",
+    },
+    {
+      method: "bank transfer",
+      fee: 3.00,
+      exchangeRate: 1.00,
+      transferTime: "1-2 days",
+    },
+  ],
+};
+
+const PROVIDER_NAMES = Object.keys(PROVIDER_DATA);
 
 const Compare = observer(() => {
   const { SearchStore } = useStores();
   const searchParams = useSearchParams();
-  const numProviders = PROVIDER_DATA.length;
-  const [cards, setCards] = useState(PROVIDER_DATA.slice(0, 5));
+  const numProviders = PROVIDER_NAMES.length;
+  const [cards, setCards] = useState(PROVIDER_NAMES.slice(0, 5));
   const [current, setCurrent] = useState(1);
 
   useEffect(() => {
-    setCards(PROVIDER_DATA.slice((current - 1) * 5, current * 5));
+    setCards(PROVIDER_NAMES.slice((current - 1) * 5, current * 5));
   }, [current]);
 
   const [from, to, amount] = [
@@ -55,7 +110,7 @@ const Compare = observer(() => {
       >
         <div className="w-full flex flex-col lg:flex-row gap-4 justify-center">
           <div className="w-auto lg:w-2/5 xl:w-auto flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-2 xl:gap-4 items-center justify-center">
-          <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
+            <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
@@ -133,14 +188,21 @@ const Compare = observer(() => {
       <h3 className="text-secondary pt-10 pb-0 lg:pt-16 lg:pb-6">
         Showing results from {numProviders} providers
       </h3>
-      <div id="providers" className="flex flex-col gap-4 w-full">
-        {cards.map((i) => (
-          <ProviderCard key={i} fromCurrency={from} toCurrency={to} amount={amount} />
+      <div id="providers" className="flex flex-col gap-4 md:gap-8 xl:gap-16 w-full">
+        {cards.map((provider, i) => (
+          <ProviderCard
+            key={i}
+            provider={provider}
+            fromCurrency={from}
+            toCurrency={to}
+            amount={amount}
+            options={PROVIDER_DATA[provider]}
+          />
         ))}
       </div>
       <Pagination
         onPageChange={setCurrent}
-        totalCount={PROVIDER_DATA.length}
+        totalCount={numProviders}
         pageSize={5}
         currentPage={current}
       />
