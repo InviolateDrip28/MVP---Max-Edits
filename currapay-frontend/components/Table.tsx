@@ -6,6 +6,32 @@ interface TableProps {
 }
 
 const RatesTable = (props: TableProps) => {
+  // get the values for the table
+  // const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "RUB", "INR"];
+  // RUB is not tradeable
+  // INR is tradeable only between 07:00 to 17:30 NZST
+  // sell currency cannot equal the currency of buy
+  const currencies = ["GBP", "EUR", "CAD", "CHF", "AUD"];
+
+  // these are the rates of selling USD to buy the currencies from the above list
+  const { data, error, isLoading } = trpc.xe.getMultipleXeRates.useQuery({
+    amount: 500,
+    sell: "USD",
+    buyArray: currencies,
+    fixed_currency: "buy",
+  });
+
+  const handleSubmit = () => {
+    if (error) {
+      console.error("Error fetching data:", error);
+    } else {
+      console.log("Fetched data:", data);
+    }
+  };
+
+  // Call handleSubmit when you want to send the data
+  handleSubmit();
+  
   const [currRow, setCurrRow] = useState(0);
   const [currCol, setCurrCol] = useState(0);
 
