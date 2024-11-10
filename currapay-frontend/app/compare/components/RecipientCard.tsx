@@ -4,15 +4,18 @@ import {
   ChevronUpIcon,
 } from "@heroicons/react/20/solid";
 import { useState } from "react";
-
-interface RecipientCardProps {
-  fromCurrency: string;
-  toCurrency: string;
-  amount: string;
-}
+import { RecipientCardProps } from "../types";
 
 export default function RecipientCard(props: RecipientCardProps) {
   const [showRecieveDetails, setShowRecieveDetails] = useState(false);
+
+  function calculateAmount(
+    amount: string,
+    rate: number,
+    fee: number
+  ): string {
+    return (parseFloat(amount) * rate - fee).toFixed(2).toString();
+  }
 
   return (
     <div className="w-full h-full">
@@ -23,7 +26,15 @@ export default function RecipientCard(props: RecipientCardProps) {
             <span className="mb-2 font-semibold text-secondary">
               Recipient recieves:{"  "}
             </span>
-            <span> {props.amount} {props.toCurrency}</span>
+            <span>
+              {" "}
+              {calculateAmount(
+                props.amount,
+                props.option.exchangeRate,
+                props.option.fee
+              )}{" "}
+              {props.toCurrency}
+            </span>
           </p>
           <p>Exchange rate: 0%</p>
         </div>
@@ -69,7 +80,12 @@ export default function RecipientCard(props: RecipientCardProps) {
           Recipient recieves
         </h3>
         <h1 className="pb-28 tracking-tight">
-          {props.amount} {props.toCurrency}
+          {calculateAmount(
+            props.amount,
+            props.option.exchangeRate,
+            props.option.fee
+          )}{" "}
+          {props.toCurrency}
         </h1>
         {showRecieveDetails && (
           <div className="pb-12 font-normal">
