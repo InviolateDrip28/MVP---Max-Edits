@@ -61,7 +61,7 @@
 }
 
 .link {
-  @apply hover:text-accent hover:underline hover:underline-offset-4;
+  @apply hover:text-accent hover:underline hover:underline-offset-4 decoration-accent;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

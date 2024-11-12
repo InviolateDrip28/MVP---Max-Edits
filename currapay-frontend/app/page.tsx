@@ -49,7 +49,7 @@ const Homepage = observer(() => {
     sell: "USD",
     fixed_currency: "buy",
   });
-  
+
   const handleSubmit = () => {
     if (error) {
       console.error("Error fetching data:", error);
@@ -57,7 +57,7 @@ const Homepage = observer(() => {
       console.log("Fetched data:", data);
     }
   };
-  
+
   // Call handleSubmit when you want to send the data
   handleSubmit();
 
@@ -340,13 +340,13 @@ const Homepage = observer(() => {
         <div className="mt-16">
           <AccordionMenu itemList={FAQS} />
         </div>
-        <p className="mt-24">
+        <h3 className="font-normal mt-24">
           Can&apos;t find the answer you&apos;re looking for? Feel
           free to{" "}
-          <Link href="" className="link text-accent">
+          <Link href="https://forms.gle/JZK9F2C3E9u1osaaA" className="link text-accent underline underline-offset-4">
             contact us!
           </Link>
-        </p>
+        </h3>
       </div>
       <ScrollToTopButton />
     </div>
