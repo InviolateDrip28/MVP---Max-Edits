@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
+import { trpc } from "@/utils/trpc";
 
 interface TableProps {
   data: any[];

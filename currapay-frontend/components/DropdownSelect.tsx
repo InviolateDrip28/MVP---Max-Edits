@@ -20,7 +20,7 @@ import Image from "next/image";
  */
 
 export interface DropdownSelectProps {
-  dropdownList: string[];
+  dropdownList?: string[];
   reference: Record<string, string>;
   defaultValue: string;
   label?: string;
@@ -45,7 +45,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full cursor-pointer rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${
+          className={`relative w-full rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${props.dropdownList ? 'cursor-pointer' : 'cursor-default'} ${
             props.label && "rounded-t-none border-t-0"
           }`}
         >
@@ -65,44 +65,48 @@ export default function DropdownSelect(props: DropdownSelectProps) {
               {props.reference[selected]}
             </span>
           </span>
-          <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-            <ChevronDownIcon
-              aria-hidden="true"
-              className="h-5 w-5 text-secondary/40"
-            />
-          </span>
+          {props.dropdownList && (
+            <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+              <ChevronDownIcon
+                aria-hidden="true"
+                className="h-5 w-5 text-secondary/40"
+              />
+            </span>
+          )}
         </ListboxButton>
 
-        <ListboxOptions
-          transition
-          className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
-        >
-          {props.dropdownList.map((code) => (
-            <ListboxOption
-              key={code}
-              value={code}
-              className={`${
-                props.hasImage && "pl-3"
-              } group relative cursor-pointer select-none py-2 pr-9 data-[focus]:bg-accent/80 data-[focus]:text-white"`}
-            >
-              <div className="flex items-center">
-                {props.hasImage && (
-                  <img
-                    alt={code}
-                    src={`https://flagsapi.com/${code}/flat/64.png`}
-                    className="h-5 w-5 flex-shrink-0"
-                  />
-                )}
-                <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
-                  {props.reference[code]}
+        {props.dropdownList && (
+          <ListboxOptions
+            transition
+            className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
+          >
+            {props.dropdownList.map((code) => (
+              <ListboxOption
+                key={code}
+                value={code}
+                className={`${
+                  props.hasImage && "pl-3"
+                } group relative cursor-pointer select-none py-2 pr-9 data-[focus]:bg-accent/80 data-[focus]:text-white"`}
+              >
+                <div className="flex items-center">
+                  {props.hasImage && (
+                    <img
+                      alt={code}
+                      src={`https://flagsapi.com/${code}/flat/64.png`}
+                      className="h-5 w-5 flex-shrink-0"
+                    />
+                  )}
+                  <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
+                    {props.reference[code]}
+                  </span>
+                </div>
+                <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-accent group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden">
+                  <CheckIcon aria-hidden="true" className="h-5 w-5" />
                 </span>
-              </div>
-              <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-accent group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden">
-                <CheckIcon aria-hidden="true" className="h-5 w-5" />
-              </span>
-            </ListboxOption>
-          ))}
-        </ListboxOptions>
+              </ListboxOption>
+            ))}
+          </ListboxOptions>
+        )}
       </div>
     </Listbox>
   );

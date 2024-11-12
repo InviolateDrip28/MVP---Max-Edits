@@ -14,7 +14,15 @@ const Globe = dynamic(
   { ssr: false }
 );
 
-const TEAM = [
+interface Member {
+  name: string;
+  title: string;
+  imgSrc: string;
+  linkedin: string;
+  desc: string;
+}
+
+const TEAM: Member[] = [
   {
     name: "David McMillan",
     title: "CEO",
@@ -32,9 +40,53 @@ const TEAM = [
   },
 ];
 
+const MemberCard = ({ member }: { member: Member }) => {
+  const [showDesc, setShowDesc] = useState(false);
+
+  return (
+    <div className="p-0 bg-white rounded-lg max-w-[17rem] xl:max-w-[35rem] shadow-xl">
+      <div className="flex flex-col items-center">
+        <div className="relative rounded-lg bg-white h-64 md:h-72 lg:h-80 2xl:h-[30rem] w-full max-w-[35rem] items-center">
+          <Image
+            src={member.imgSrc}
+            alt={member.name}
+            className="rounded-t-lg"
+            objectFit="cover"
+            fill
+          />
+        </div>
+        <div className="relative pt-6 pb-20 px-6 lg:px-8">
+          <p className="font-semibold">{member.name}</p>
+          <div className="inline-flex items-center gap-1">
+            <p>{member.title}</p>
+            <Link
+              href={member.linkedin}
+              target="_blank"
+              className="-translate-y-0.5"
+            >
+              <LinkedInIcon className="hover:text-accent" />
+            </Link>
+          </div>
+          <p
+            className={`pt-4 text-ellipsis ${
+              !showDesc && "line-clamp-4"
+            }`}
+          >
+            {member.desc}
+          </p>
+          <button
+            className="absolute left-1/2 transform -translate-x-1/2 bottom-6 text-accent hover:underline"
+            onClick={() => setShowDesc(!showDesc)}
+          >
+            {showDesc ? "Hide" : "Read more"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function About() {
-  const [showDavidDesc, setShowDavidDesc] = useState(false);
-  const [showMaxDesc, setShowMaxDesc] = useState(false);
   useEffect(() => {
     AOS.init();
   }, []);
@@ -167,44 +219,7 @@ export default function About() {
         </p>
         <div className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24">
           {TEAM.map((member) => (
-            <div
-              className="p-0 bg-white rounded-lg max-w-[17rem] xl:max-w-[35rem] shadow-xl"
-              key={member.name}
-            >
-              <div className="flex flex-col items-center relative">
-                <div className="relative rounded-lg bg-white h-64 md:h-72 lg:h-80 2xl:h-[30rem] w-full max-w-[35rem] items-center">
-                  <Image
-                    src={member.imgSrc}
-                    alt={member.name}
-                    className="rounded-t-lg"
-                    objectFit="cover"
-                    fill
-                  />
-                </div>
-                <div className="py-6 px-6 lg:px-8">
-                  <p className="font-semibold">{member.name}</p>
-                  <div className="inline-flex items-center gap-1">
-                    <p>{member.title}</p>
-                    <Link
-                      href={member.linkedin}
-                      target="_blank"
-                      className="-translate-y-0.5"
-                    >
-                      <LinkedInIcon className="hover:text-accent" />
-                    </Link>
-                  </div>
-                  <p className={`pt-4 text-ellipsis ${showDavidDesc && 'line-clamp-4'}`}>
-                    {member.desc}
-                  </p>
-                  <button
-                    className="pt-12 pb-4 text-accent hover:underline"
-                    onClick={() => setShowDavidDesc(!showDavidDesc)}
-                  >
-                    {showDavidDesc ? "Read more" : "Hide"}
-                  </button>
-                </div>
-              </div>
-            </div>
+            <MemberCard key={member.name} member={member} />
           ))}
         </div>
       </div>

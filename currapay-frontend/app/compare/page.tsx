@@ -150,7 +150,6 @@ const Compare = observer(() => {
               className="relative w-full text-base sm:text-lg 2xl:text-2xl min-w-20 cursor-default rounded-md bg-white py-1.5 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
             />
             <DropdownSelect
-              dropdownList={["US"]}
               reference={COUNTRY_CODE_TO_CURRENCY}
               defaultValue={SearchStore.fromCountry}
               setSelected={SearchStore.setFromCurrency}
@@ -158,7 +157,6 @@ const Compare = observer(() => {
             />
             <p>to</p>
             <DropdownSelect
-              dropdownList={["US"]}
               reference={COUNTRY_CODE_TO_CURRENCY}
               defaultValue={SearchStore.toCountry}
               setSelected={SearchStore.setToCurrency}

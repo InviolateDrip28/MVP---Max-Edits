@@ -178,7 +178,7 @@ export default function ProviderCard(props: ProviderCardProps) {
 
             {optionsRest && (
               <button
-                className="flex items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:underline decoration-accent underline-offset-4"
+                className="flex text-left whitespace-nowrap items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:underline decoration-accent underline-offset-4"
                 onClick={() =>
                   setShowTransferOptions(!showTransferOptions)
                 }

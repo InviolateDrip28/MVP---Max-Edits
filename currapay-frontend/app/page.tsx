@@ -188,7 +188,6 @@ const Homepage = observer(() => {
                 className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-1 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
-                dropdownList={["US"]}
                 reference={COUNTRY_CODE_TO_CURRENCY}
                 defaultValue={SearchStore.fromCountry}
                 setSelected={SearchStore.setFromCurrency}
@@ -196,7 +195,6 @@ const Homepage = observer(() => {
               />
               <p>to</p>
               <DropdownSelect
-                dropdownList={["US"]}
                 reference={COUNTRY_CODE_TO_CURRENCY}
                 defaultValue={SearchStore.toCountry}
                 setSelected={SearchStore.setToCurrency}
@@ -321,19 +319,19 @@ const Homepage = observer(() => {
         className="subsection mt-12 lg:mt-24 text-center"
       >
         <h1>Mid-Market Exchange Rates</h1>
-        <div className="relative mt-16 pt-8 pb-16 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
+        <div className="relative mt-16 pt-8 pb-20 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
           <RatesTable
             data={["US", "GB", "FR", "CA", "CH", "AU", "RU", "IN"]}
           />
-          <div className="absolute right-12 bottom-4 text-sm">
+          <p className="absolute right-12 bottom-6">
             Source{" "}
             <Link
               href="https://xe-money-transfer.pxf.io/c/5580726/2132164/12610"
-              className="underline"
+              className="underline hover:text-accent hover:decoration-accent"
             >
               XE
             </Link>
-          </div>
+          </p>
         </div>
       </div>
 

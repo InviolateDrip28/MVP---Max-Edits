@@ -61,7 +61,7 @@ export default function RecipientCard(props: RecipientCardProps) {
             </p>
           ) : (
             <p className="inline-flex hover:text-accent">
-              Show more details
+              More details
               <span className="flex items-center ml-1">
                 <ChevronDownIcon
                   aria-hidden="true"
@@ -94,7 +94,7 @@ export default function RecipientCard(props: RecipientCardProps) {
           </div>
         )}
         <button
-          className="flex items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:text-accent hover:underline decoration-accent underline-offset-4"
+          className="flex text-left whitespace-nowrap items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:text-accent hover:underline decoration-accent underline-offset-4"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
           {showRecieveDetails ? (
@@ -108,8 +108,8 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
           ) : (
-            <p className="inline-flex">
-              Show more details
+            <p className="inline-flex text-left">
+              More details
               <span className="flex items-center ml-1">
                 <ChevronDownIcon
                   aria-hidden="true"
