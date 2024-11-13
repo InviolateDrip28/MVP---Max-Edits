@@ -32,35 +32,6 @@ const Homepage = observer(() => {
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
-  // const {
-  //   data: transactions,
-  //   error: transactionsError,
-  //   isLoading: transactionsLoading,
-  // } = trpc.transaction.getAllTransactions.useQuery();
-
-  // if (transactionsError)
-  //   return <p>Error loading data</p>;
-
-  const { data, error, isLoading } = trpc.xe.getXeRate.useQuery({
-    amount: 500,
-    country: "US",
-    destinationCountry: "IN",
-    buy: "INR",
-    sell: "USD",
-    fixed_currency: "buy",
-  });
-
-  const handleSubmit = () => {
-    if (error) {
-      console.error("Error fetching data:", error);
-    } else {
-      console.log("Fetched data:", data);
-    }
-  };
-
-  // Call handleSubmit when you want to send the data
-  handleSubmit();
-
   const handleClick = () => {
     console.log("fromCountry: ", SearchStore.fromCountry);
     console.log("toCountry: ", SearchStore.toCountry);
@@ -88,9 +59,8 @@ const Homepage = observer(() => {
             Search. Send. Save.
           </p>
           <p className="text-center xl:text-left xl:pt-8">
-            Search across banks, remittance apps, and crypto services
-            to find the best way to send or recieve your international
-            money transfer.
+            Search across banks, remittance apps, and crypto services to find
+            the best way to send or recieve your international money transfer.
           </p>
         </div>
 
@@ -109,10 +79,7 @@ const Homepage = observer(() => {
                 value=""
                 className="w-4 h-4 text-accent bg-secondary/10 border-secondary/30 rounded accent-accent focus:ring-0"
               />
-              <label
-                htmlFor="default-checkbox"
-                className="ms-1 md:ms-2"
-              >
+              <label htmlFor="default-checkbox" className="ms-1 md:ms-2">
                 Banks
               </label>
             </div>
@@ -137,10 +104,7 @@ const Homepage = observer(() => {
                 value=""
                 className="w-4 h-4 text-accent bg-secondary/10 border-secondary/30 rounded accent-accent focus:ring-0"
               />
-              <label
-                htmlFor="default-checkbox"
-                className="ms-1 md:ms-2"
-              >
+              <label htmlFor="default-checkbox" className="ms-1 md:ms-2">
                 Crypto
               </label>
             </div>
@@ -182,9 +146,7 @@ const Homepage = observer(() => {
               <input
                 type="number"
                 value={SearchStore.amount}
-                onChange={(e) =>
-                  SearchStore.setAmount(e.target.value)
-                }
+                onChange={(e) => SearchStore.setAmount(e.target.value)}
                 className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-1 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
@@ -224,22 +186,16 @@ const Homepage = observer(() => {
         </div>
       </div>
 
-      <div
-        id="partners"
-        className="text-center mb-12 lg:mb-24 space-y-12 "
-      >
+      <div id="partners" className="text-center mb-12 lg:mb-24 space-y-12 ">
         <h1 className="text-center">Partners</h1>
         <p>
-          We work with industry leading financial-institutions to
-          provide you with the best rates
+          We work with industry leading financial-institutions to provide you
+          with the best rates
         </p>
         <Marquee items={PARTNERS} />
       </div>
 
-      <div
-        id="context"
-        className="differentBackgroundColor bg-accentDark"
-      >
+      <div id="context" className="differentBackgroundColor bg-accentDark">
         <div className="subsection flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background">
           <div className="space-y-8 md:space-y-16">
             <h1 className="font-bold text-accentSecondary">
@@ -250,10 +206,10 @@ const Homepage = observer(() => {
                 We&apos;re leveling the playing field.
               </h3>
               <h3 className="pt-4 md:pt-8">
-                We&apos;re on a mission to reduce the cost of sending
-                money internationally. CurraPay was founded on a
-                simple idea — that the international money transfer
-                market needed greater transparency.
+                We&apos;re on a mission to reduce the cost of sending money
+                internationally. CurraPay was founded on a simple idea — that
+                the international money transfer market needed greater
+                transparency.
               </h3>
             </div>
           </div>
@@ -261,14 +217,10 @@ const Homepage = observer(() => {
           <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20 ">
-                <GroupIcon
-                  style={{ width: "100%", height: "100%" }}
-                />
+                <GroupIcon style={{ width: "100%", height: "100%" }} />
               </div>
               <div className="flex flex-col space-y-2">
-                <h2 className="whitespace-nowrap">
-                  1 billion people
-                </h2>
+                <h2 className="whitespace-nowrap">1 billion people</h2>
                 <p>send money abroad</p>
               </div>
             </div>
@@ -292,9 +244,7 @@ const Homepage = observer(() => {
             </div>
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary/50 gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20">
-                <RemoveCircleIcon
-                  style={{ width: "100%", height: "100%" }}
-                />
+                <RemoveCircleIcon style={{ width: "100%", height: "100%" }} />
               </div>
               <div className="flex flex-col space-y-2">
                 <h2 className="whitespace-nowrap">
@@ -314,15 +264,10 @@ const Homepage = observer(() => {
         </div>
       </div>
 
-      <div
-        id="rates-table"
-        className="subsection mt-12 lg:mt-24 text-center"
-      >
+      <div id="rates-table" className="subsection mt-12 lg:mt-24 text-center">
         <h1>Mid-Market Exchange Rates</h1>
         <div className="relative mt-16 pt-8 pb-20 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
-          <RatesTable
-            data={["US", "GB", "FR", "CA", "CH", "AU", "RU", "IN"]}
-          />
+          <RatesTable data={["US", "GB", "FR", "CA", "CH", "AU", "RU", "IN"]} />
           <p className="absolute right-12 bottom-6">
             Source{" "}
             <Link
@@ -341,9 +286,11 @@ const Homepage = observer(() => {
           <AccordionMenu itemList={FAQS} />
         </div>
         <h3 className="font-normal mt-24">
-          Can&apos;t find the answer you&apos;re looking for? Feel
-          free to{" "}
-          <Link href="https://forms.gle/JZK9F2C3E9u1osaaA" className="link text-accent underline underline-offset-4">
+          Can&apos;t find the answer you&apos;re looking for? Feel free to{" "}
+          <Link
+            href="https://forms.gle/JZK9F2C3E9u1osaaA"
+            className="link text-accent underline underline-offset-4"
+          >
             contact us!
           </Link>
         </h3>

@@ -64,77 +64,75 @@ export const xeRouter = t.router({
       }
     }),
 
-  //to get multiple rates
-  getMultipleXeRates: t.procedure
-    .input(
-      z.object({
-        sell: z.string().length(3),
-        buyArray: z.array(z.string().length(3)),
-        amount: z.number().positive(),
-        fixed_currency: z.enum(["sell", "buy"]),
-      })
-    )
-    .query(async (opts) => {
-      const { sell, buyArray, amount, fixed_currency } = opts.input;
+  // To get the values for the rates table
+  // rates for these currencies => ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "RUB", "INR"];
+  // RUB is not tradeable
+  // INR is tradeable only between 07:00 to 17:30 NZST
+  // sell currency cannot equal the currency of buy
+  getXeRatesTable: t.procedure.query(async (opts) => {
+    const currencies: string[] = [
+      "USD",
+      "GBP",
+      "EUR",
+      "CAD",
+      "CHF",
+      "AUD",
+      "INR",
+    ];
 
-      const rates: Record<
-        string,
-        { rate: number; country: string; destinationCountry: string }
-      > = {};
+    const currencyToCountryCode: Record<string, string> = {
+      USD: "US",
+      GBP: "GB",
+      EUR: "FR", // use the country code for France for the euro currency
+      CAD: "CA",
+      CHF: "CH",
+      AUD: "AU",
+      RUB: "RU",
+      INR: "IN",
+    };
 
-      const currencyToCountryCode: Record<string, string> = {
-        USD: "US",
-        GBP: "GB",
-        EUR: "FR", // use the country code for France for the euro currency
-        CAD: "CA",
-        CHF: "CH",
-        AUD: "AU",
-        RUB: "RU",
-        INR: "IN",
-      };
+    let resultArr: (string | null)[][] = [];
 
-      const ratePromises = buyArray.map(async (buy) => {
-        const isBuying = fixed_currency === "buy";
-        const country = isBuying
-          ? currencyToCountryCode[buy]
-          : currencyToCountryCode[sell];
-        const destinationCountry = isBuying
-          ? currencyToCountryCode[buy]
-          : currencyToCountryCode[sell];
+    for (const sell of currencies) {
+      const tmpArr: (string | null)[] = [];
 
-        try {
-          const authHeader = `Basic ${Buffer.from(
-            `${process.env.XE_ID}:${process.env.XE_KEY}`
-          ).toString("base64")}`;
+      for (const buy of currencies) {
+        if (sell !== buy) {
+          try {
+            const authHeader = `Basic ${Buffer.from(
+              `${process.env.XE_ID}:${process.env.XE_KEY}`
+            ).toString("base64")}`;
 
-          const response = await axios.get(
-            `${process.env.XE_URL}/v2/tradeable_rate`,
-            {
-              headers: {
-                Authorization: authHeader,
-              },
-              params: {
-                sell: sell,
-                buy: buy,
-                amount,
-                country,
-                destinationCountry,
-                fixed_currency,
-              },
-            }
-          );
+            const response = await axios.get(
+              `${process.env.XE_URL}/v2/tradeable_rate`,
+              {
+                headers: {
+                  Authorization: authHeader,
+                },
+                params: {
+                  sell,
+                  buy,
+                  amount: 500,
+                  country: currencyToCountryCode[sell],
+                  destinationCountry: currencyToCountryCode[buy],
+                  fixed_currency: "buy",
+                },
+              }
+            );
 
-          const rate = response.data.rates[0]?.rate;
-          if (rate) {
-            rates[buy] = { rate, country, destinationCountry };
+            const rate = response.data.rates[0]?.rate || "N/A";
+            tmpArr.push(rate);
+          } catch (error) {
+            tmpArr.push("N/A");
           }
-        } catch (error) {
-          console.error(`Error fetching rate for ${buy}:`, error);
+        } else {
+          tmpArr.push("N/A");
         }
-      });
+      }
+      resultArr.push(tmpArr);
+    }
 
-      await Promise.all(ratePromises);
-      console.log(rates);
-      return rates;
-    }),
+    console.log("XE Rates Table:", resultArr);
+    return resultArr;
+  }),
 });
