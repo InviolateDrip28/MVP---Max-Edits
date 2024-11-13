@@ -93,11 +93,14 @@ const RatesTable = (props: TableProps) => {
                   }}
                 >
                   {/* {rowIndex === colIndex ? "" : "1.00"} */}
-                  {rowIndex === colIndex
-                    ? ""
+                  {isLoading ||
+                  !data ||
+                  data[rowIndex] === undefined ||
+                  data[rowIndex][colIndex] === undefined
+                    ? "N/A"
                     : data[rowIndex][colIndex] !== "N/A"
                     ? data[rowIndex][colIndex]
-                    : "N/A"}{" "}
+                    : "N/A"}
                 </td>
               ))}
             </tr>
