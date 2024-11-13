@@ -7,6 +7,9 @@ interface TableProps {
 }
 
 const RatesTable = (props: TableProps) => {
+  const [currRow, setCurrRow] = useState(0);
+  const [currCol, setCurrCol] = useState(0);
+
   // get the values for the table
   // const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "RUB", "INR"];
   // RUB is not tradeable
@@ -33,9 +36,6 @@ const RatesTable = (props: TableProps) => {
 
   // Call handleSubmit when you want to send the data
   handleSubmit();
-
-  const [currRow, setCurrRow] = useState(0);
-  const [currCol, setCurrCol] = useState(0);
 
   return (
     <div className="w-full overflow-x-auto">
