@@ -19,11 +19,14 @@ import Image from "next/image";
  * source: https://headlessui.com/react/listbox
  */
 
+// TODO: switch to combo box?
+
 export interface DropdownSelectProps {
   dropdownList?: string[];
   reference: Record<string, string>;
   defaultValue: string;
   label?: string;
+  textStyles?: string;
   hasImage?: boolean;
   setSelected: any;
   className?: string;
@@ -45,7 +48,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full rounded-md bg-white py-1.5 pl-3 pr-12 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${props.dropdownList ? 'cursor-pointer' : 'cursor-default'} ${
+          className={`relative w-full rounded-md bg-white py-1.5 pl-3 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${props.dropdownList ? 'cursor-pointer pr-9' : 'cursor-default pr-3'} ${
             props.label && "rounded-t-none border-t-0"
           }`}
         >
@@ -60,7 +63,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
             <span
               className={`${
                 props.hasImage && "ml-1.5"
-              } block truncate xl:min-w-[4ch] xl:max-w-[12ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
+              } ${props.textStyles && props.textStyles} block truncate xl:min-w-[4ch] xl:max-w-[12ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
             >
               {props.reference[selected]}
             </span>
@@ -78,7 +81,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
         {props.dropdownList && (
           <ListboxOptions
             transition
-            className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
+            className="absolute z-20 mt-1 max-h-56 w-full overflow-auto no-scrollbar rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
           >
             {props.dropdownList.map((code) => (
               <ListboxOption

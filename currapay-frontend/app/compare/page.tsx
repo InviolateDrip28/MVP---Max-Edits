@@ -23,13 +23,13 @@ const PROVIDER_DATA: Record<string, Option[]> = {
   "Western Union": [
     {
       method: "debit card",
-      fee: 1.00,
-      exchangeRate: 1.00,
+      fee: 1.0,
+      exchangeRate: 1.0,
       transferTime: "1-2 days",
     },
     {
       method: "bank transfer",
-      fee: 3.00,
+      fee: 3.0,
       exchangeRate: 1.21,
       transferTime: "1-5 days",
     },
@@ -43,7 +43,7 @@ const PROVIDER_DATA: Record<string, Option[]> = {
     },
     {
       method: "bank transfer",
-      fee: 1.00,
+      fee: 1.0,
       exchangeRate: 1.05,
       transferTime: "1-2 days",
     },
@@ -51,7 +51,7 @@ const PROVIDER_DATA: Record<string, Option[]> = {
   Xe: [
     {
       method: "debit card",
-      fee: 3.00,
+      fee: 3.0,
       exchangeRate: 1.21,
       transferTime: "1-2 days",
     },
@@ -59,14 +59,14 @@ const PROVIDER_DATA: Record<string, Option[]> = {
   "Atlantic Money": [
     {
       method: "debit card",
-      fee: 1.00,
+      fee: 1.0,
       exchangeRate: 1.43,
       transferTime: "1-2 days",
     },
     {
       method: "bank transfer",
-      fee: 3.00,
-      exchangeRate: 1.00,
+      fee: 3.0,
+      exchangeRate: 1.0,
       transferTime: "1-2 days",
     },
   ],
@@ -109,13 +109,14 @@ const Compare = observer(() => {
         className="w-full flex border box-border p-6 xl:p-8 shadow-xl rounded-xl space-y-4 bg-white"
       >
         <div className="w-full flex flex-col lg:flex-row gap-4 justify-center">
-          <div className="w-auto lg:w-2/5 xl:w-auto flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-2 xl:gap-4 items-center justify-center">
-            <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
+          <div className="w-auto xl:w-max flex flex-col md:flex-row gap-3 lg:gap-2 xl:gap-3 items-center justify-center">
+            <div className="w-full xl:min-w-52">
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
                 defaultValue={SearchStore.fromCountry}
                 setSelected={SearchStore.setFromCountry}
+                textStyles={"xl:text-2xl xl:min-w-[12ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"}
                 hasImage={true}
               />
             </div>
@@ -126,12 +127,13 @@ const Compare = observer(() => {
               <ArrowsUpDownIcon className="h-6 w-6 flex md:hidden" />
               <ArrowsRightLeftIcon className="h-6 w-6 hidden md:flex" />
             </button>
-            <div className="w-full lg:w-auto lg:min-w-36 xl:min-w-52">
+            <div className="w-full xl:min-w-52">
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
                 defaultValue={SearchStore.toCountry}
                 setSelected={SearchStore.setToCountry}
+                textStyles={"xl:text-2xl xl:min-w-[12ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"}
                 hasImage={true}
               />
             </div>
@@ -141,52 +143,59 @@ const Compare = observer(() => {
 
           <div className="block lg:hidden my-2 sm:my-4 border-t w-full border-secondary/30"></div>
 
-          <div className="inline-flex items-center flex-row space-x-2">
-            <p className="hidden md:block pt-4 sm:pt-0">Send</p>
-            <input
-              type="number"
-              value={SearchStore.amount}
-              onChange={(e) => SearchStore.setAmount(e.target.value)}
-              className="relative w-full text-base sm:text-lg 2xl:text-2xl min-w-20 cursor-default rounded-md bg-white py-1.5 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
-            />
-            <DropdownSelect
-              reference={COUNTRY_CODE_TO_CURRENCY}
-              defaultValue={SearchStore.fromCountry}
-              setSelected={SearchStore.setFromCurrency}
-              className="border rounded-md p-2"
-            />
-            <p>to</p>
-            <DropdownSelect
-              reference={COUNTRY_CODE_TO_CURRENCY}
-              defaultValue={SearchStore.toCountry}
-              setSelected={SearchStore.setToCurrency}
-              className="border rounded-md p-2"
-            />
-          </div>
-
-          <Link
-            href={{
-              pathname: "/compare",
-              query: {
-                from: SearchStore.fromCurrency,
-                to: SearchStore.toCurrency,
-                amount: SearchStore.amount,
-              },
-            }}
-            className="text-white text-center font-bold rounded-md py-1.5 px-2 w-full lg:max-w-24 
+          <div className="inline-flex flex-col sm:flex-row items-center sm:space-x-3">
+            <div className="w-full inline-flex items-center space-x-2 sm:space-x-3">
+              <input
+                type="number"
+                value={SearchStore.amount}
+                onChange={(e) =>
+                  SearchStore.setAmount(e.target.value)
+                }
+                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-1.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+              />
+              <DropdownSelect
+                reference={COUNTRY_CODE_TO_CURRENCY}
+                defaultValue={SearchStore.fromCountry}
+                setSelected={SearchStore.setFromCurrency}
+                textStyles={"xl:text-2xl"}
+                className="border rounded-md p-2"
+              />
+              <p className="xl:text-2xl">to</p>
+              <DropdownSelect
+                reference={COUNTRY_CODE_TO_CURRENCY}
+                defaultValue={SearchStore.toCountry}
+                setSelected={SearchStore.setToCurrency}
+                textStyles={"xl:text-2xl"}
+                className="border rounded-md p-2"
+              />
+            </div>
+            <Link
+              href={{
+                pathname: "/compare",
+                query: {
+                  from: SearchStore.fromCurrency,
+                  to: SearchStore.toCurrency,
+                  amount: SearchStore.amount,
+                },
+              }}
+              className="text-white text-center font-bold rounded-md py-2 sm:py-1.5 xl:py-2 w-full sm:min-w-24 sm:max-w-32 text-base sm:text-lg xl:text-2xl
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
-                before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 lg:mt-0"
-            onClick={() => console.log("ajsdf")}
-          >
-            Go {" \u26A1"}
-          </Link>
+                before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 sm:mt-0"
+              onClick={() => console.log("TODO: Implement search")}
+            >
+              Go {" \u26A1"}
+            </Link>
+          </div>
         </div>
       </div>
 
-      <h3 className="text-secondary pt-10 pb-0 lg:pt-16 lg:pb-6">
+      <h3 className="text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
         Showing results from {numProviders} providers
       </h3>
-      <div id="providers" className="flex flex-col gap-4 md:gap-8 xl:gap-16 w-full">
+      <div
+        id="providers"
+        className="flex flex-col gap-8 xl:gap-16 w-full"
+      >
         {cards.map((provider, i) => (
           <ProviderCard
             key={i}

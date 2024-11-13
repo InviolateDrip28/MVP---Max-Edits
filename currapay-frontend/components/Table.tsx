@@ -38,7 +38,7 @@ const RatesTable = (props: TableProps) => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <table className="2xl:w-full whitespace-nowrap m-0 table-fixed">
+      <table className="lg:w-full whitespace-nowrap m-0 table-fixed">
         <thead>
           <tr>
             <th className="sticky z-20 left-0 top-0 bg-white px-4 mx-6"></th>

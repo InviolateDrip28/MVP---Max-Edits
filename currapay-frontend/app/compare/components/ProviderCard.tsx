@@ -11,7 +11,10 @@ import CurrapayShortLogoBlack from "@/public/logos/CurrapayShortLogoBlack.png";
 import { useState } from "react";
 import Link from "next/link";
 import RecipientCard from "./RecipientCard";
-import { PARTNER_NAMES_TO_LINKS,  PARTNER_NAMES_TO_IMAGES } from "@/app/constants";
+import {
+  PARTNER_NAMES_TO_LINKS,
+  PARTNER_NAMES_TO_IMAGES,
+} from "@/app/constants";
 
 // need to map provider to image path
 // for each provider, need to get how many options they have
@@ -28,16 +31,17 @@ export default function ProviderCard(props: ProviderCardProps) {
     useState(false);
 
   return (
-    <div className="relative border bg-white pt-6 pb-20 lg:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
+    <div className="relative border bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
       {/* smaller screens (no images, less details) */}
-      <div className="block lg:hidden">
+      <div className="block lg-xl:hidden">
         <div className="flex flex-col gap-4">
-          <div className="relative float-right w-1/2 h-24">
+          <div className="relative flex justify-start w-1/2 h-20">
             <Image
+              className="absolute justify-start"
               src={PARTNER_NAMES_TO_IMAGES[props.provider]}
               alt="provider logo"
               fill
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", objectPosition: "left" }}
             />
           </div>
 
@@ -79,7 +83,7 @@ export default function ProviderCard(props: ProviderCardProps) {
         {optionsRest && (
           <div className="py-4">
             <button
-              className="absolute bottom-6 left-6 items-center inline-flex bg-accentDark hover:bg-accentDark/90 cursor-pointer text-white rounded-lg py-2 px-3"
+              className="absolute bottom-6 left-6 items-center inline-flex bg-accentDark hover:bg-accentDark/90 cursor-pointer text-white rounded-lg p-1.5 px-2.5 md:py-2 md:px-3"
               onClick={() =>
                 setShowTransferOptions(!showTransferOptions)
               }
@@ -153,39 +157,37 @@ export default function ProviderCard(props: ProviderCardProps) {
       </div>
 
       {/* larger screens */}
-      <div className="hidden lg:block">
+      <div className="hidden lg-xl:block">
         <div className="rounded-lg gap-4 flex flex-row justify-between">
-          <div className="relative mr-4 w-full h-32 self-center">
+          <div className="relative mr-4 min-w-32 w-full h-24 self-center">
             <Image
               src={PARTNER_NAMES_TO_IMAGES[props.provider]}
               alt="provider logo"
               fill
-              style={{ objectFit: "contain"}}
+              style={{ objectFit: "contain" }}
             />
           </div>
-          <div className="relative w-full p-6 bg-white border border-secondary/10 rounded-lg shadow ">
+          <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow ">
             <ClockIcon className="w-8 h-8 text-secondary mb-3" />
-
-            <h3 className="mb-4 font-semibold tracking-tight text-primary">
+            <h4 className="mb-4 font-semibold tracking-tight text-primary">
               Transfer time
-            </h3>
+            </h4>
 
-            <div className="pb-12 space-y-2 font-normal">
+            <div className="pb-6 space-y-2 font-normal">
               <p>{optionsFirst.transferTime}</p>
-              <p className="font-semibold">Payment method: </p>
-              <p className="-translate-y-2">{optionsFirst.method}</p>
+              <p>By {optionsFirst.method}</p>
             </div>
 
             {optionsRest && (
               <button
-                className="flex text-left whitespace-nowrap items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:underline decoration-accent underline-offset-4"
+                className="flex text-left items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:underline decoration-accent underline-offset-4"
                 onClick={() =>
                   setShowTransferOptions(!showTransferOptions)
                 }
               >
                 {showTransferOptions ? (
                   <p className="inline-flex text-accent">
-                    Less payment options
+                    Less options
                     <span className="flex items-center ml-1">
                       <ChevronUpIcon
                         aria-hidden="true"
@@ -195,7 +197,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                   </p>
                 ) : (
                   <p className="inline-flex hover:text-accent">
-                    More payment options
+                    More options
                     <span className="flex items-center ml-1">
                       <ChevronDownIcon
                         aria-hidden="true"
@@ -208,11 +210,11 @@ export default function ProviderCard(props: ProviderCardProps) {
             )}
           </div>
 
-          <div className="relative w-full p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
+          <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
             <ArrowPathIcon className="w-8 h-8 text-secondary mb-3" />
-            <h3 className="mb-4 font-semibold tracking-tight text-primary">
+            <h4 className="mb-4 font-semibold tracking-tight text-primary">
               Rates
-            </h3>
+            </h4>
 
             <div className="pb-12 space-y-2 font-normal">
               <p>
@@ -245,12 +247,12 @@ export default function ProviderCard(props: ProviderCardProps) {
 
                 <div className="rounded-lg gap-4 flex flex-row justify-center text-secondary">
                   <div className="relative w-full mr-4"></div>
-                  <div className="relative w-full p-6 bg-white border border-secondary/10 rounded-lg shadow ">
+                  <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow ">
                     <ClockIcon className="w-8 h-8 text-secondary mb-3" />
 
-                    <h3 className="mb-4 font-semibold tracking-tight text-primary">
+                    <h4 className="mb-4 font-semibold tracking-tight text-primary">
                       Transfer time
-                    </h3>
+                    </h4>
 
                     <div className="pb-12 space-y-2 font-normal">
                       <p>{option.transferTime}</p>
@@ -263,11 +265,11 @@ export default function ProviderCard(props: ProviderCardProps) {
                     </div>
                   </div>
 
-                  <div className="relative w-full p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
+                  <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
                     <ArrowPathIcon className="w-8 h-8 text-secondary mb-3" />
-                    <h3 className="mb-4 font-semibold tracking-tight text-primary">
+                    <h4 className="mb-4 font-semibold tracking-tight text-primary">
                       Rates
-                    </h3>
+                    </h4>
 
                     <div className="pb-12 space-y-2 font-normal">
                       <p>
@@ -300,7 +302,7 @@ export default function ProviderCard(props: ProviderCardProps) {
       </div>
 
       <Link
-        className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 inline-flex bg-accent hover:bg-accent/75 text-white rounded-lg py-2 px-3"
+        className="absolute bottom-6 right-6 lg-xl:bottom-8 lg-xl:right-8 inline-flex bg-accent hover:bg-accent/75 text-white rounded-lg py-1.5 px-2.5 md:py-2 md:px-3"
         href={PARTNER_NAMES_TO_LINKS[props.provider]}
       >
         <p className="font-bold">Go to provider</p>

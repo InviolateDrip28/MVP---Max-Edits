@@ -20,6 +20,7 @@ const config: Config = {
         },
         "xs": "480px",
         "3xl": "1680px",
+        "lg-xl": "1200px"
       },
       colors: {
         background: "#F5F7FA",

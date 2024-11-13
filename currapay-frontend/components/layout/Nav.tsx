@@ -41,12 +41,12 @@ export const Nav = () => {
         >
           About
         </Link>
-        <Link
+        {/* <Link
           href="/rates"
           className="py-2 px-4 hover:underline hover:underline-offset-8 hover:text-accent"
         >
           Rates
-        </Link>
+        </Link> */}
         <Link
           href="/news"
           className="py-2 pl-4 hover:underline hover:underline-offset-8 hover:text-accent"

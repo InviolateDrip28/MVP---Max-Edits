@@ -63,13 +63,13 @@ export default function NavPopover() {
             <h3>About</h3>
           </Link>
 
-          <Link
+          {/* <Link
             className="block rounded-lg p-3 transition hover:text-accent hover:bg-secondary/10"
             href="/rates"
             onClick={() => close()}
           >
             <h3>Rates</h3>
-          </Link>
+          </Link> */}
 
           <Link
             className="block rounded-lg p-3 transition hover:text-accent hover:bg-secondary/10"

@@ -82,7 +82,7 @@ const Homepage = observer(() => {
 
   return (
     <div id="homepage" className="homepage">
-      <div className="subsection grid xl:grid-flow-col gap-16 items-center justify-center">
+      <div className="subsection grid xl:grid-flow-col xl:grid-cols-5 gap-16 items-center justify-center">
         <div className="space-y-4 xl:col-span-2">
           <p className="text-center xl:text-left bigHeading animatedGradientText">
             Search. Send. Save.

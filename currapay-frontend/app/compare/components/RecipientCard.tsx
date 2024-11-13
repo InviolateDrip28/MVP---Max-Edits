@@ -20,7 +20,7 @@ export default function RecipientCard(props: RecipientCardProps) {
   return (
     <div className="w-full h-full">
       {/* smaller screens */}
-      <div className="font-normal text-secondary/80 block lg:hidden">
+      <div className="font-normal text-secondary/80 block lg-xl:hidden">
         <div className="pb-4">
           <p>
             <span className="mb-2 font-semibold text-secondary">
@@ -40,7 +40,7 @@ export default function RecipientCard(props: RecipientCardProps) {
         </div>
 
         {showRecieveDetails && (
-          <div className="pb-12 font-normal">
+          <div className="pb-6 font-normal">
             <p>math</p>
             <p>math</p>
           </div>
@@ -74,19 +74,19 @@ export default function RecipientCard(props: RecipientCardProps) {
       </div>
 
       {/* larger screens */}
-      <div className="relative w-full p-6 bg-white border border-secondary/10 rounded-lg shadow hidden lg:block">
+      <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow hidden lg-xl:block">
         <BanknotesIcon className="w-8 h-8 text-secondary mb-3" />
-        <h3 className="mb-4 font-semibold tracking-tight text-primary">
+        <h4 className="mb-4 font-semibold tracking-tight text-primary pr-3">
           Recipient recieves
-        </h3>
-        <h1 className="pb-28 tracking-tight">
+        </h4>
+        <h3 className="pb-20 font-semibold text-accent tracking-tight">
           {calculateAmount(
             props.amount,
             props.option.exchangeRate,
             props.option.fee
           )}{" "}
           {props.toCurrency}
-        </h1>
+        </h3>
         {showRecieveDetails && (
           <div className="pb-12 font-normal">
             <p>math</p>

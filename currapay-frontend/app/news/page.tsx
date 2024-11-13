@@ -94,11 +94,11 @@ export default function News() {
 
               <div className="pb-12 space-y-2 xl:space-y-4">
                 <h3 className="font-semibold">{article.title}</h3>
-                <p className="text-xs md:text-base line-clamp-2">
+                <p className="line-clamp-2 lg:line-clamp-3">
                   {article.content}
                 </p>
                 <div className="absolute bottom-3 xl:bottom-6 right-4 xl:right-8 items-center inline-flex space-x-1 hover:underline hover:text-accent">
-                  <p className="text-xs">Read more</p>
+                  <p>Read more</p>
                   <ArrowRightIcon className="h-4 w-4" />
                 </div>
               </div>
