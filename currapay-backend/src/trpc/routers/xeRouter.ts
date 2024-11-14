@@ -132,7 +132,8 @@ export const xeRouter = t.router({
       resultArr.push(tmpArr);
     }
 
-    console.log("XE Rates Table:", resultArr);
+    // console.log("XE Rates Table:", resultArr);
+    console.log("XE Rates Table generated");
     return resultArr;
   }),
 });
