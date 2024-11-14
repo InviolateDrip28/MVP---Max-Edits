@@ -30,7 +30,7 @@ const RatesTable = (props: TableProps) => {
       console.error("Error fetching data:", error);
     } else {
       console.log("Fetched data:", data);
-      console.log("first cell", data[0][1]);
+      // console.log("first cell", data[0][1]);
     }
   };
 

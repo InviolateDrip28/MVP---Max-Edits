@@ -77,7 +77,12 @@ export const allRatesRouter = t.router({
         { source: "OFX", rate: ofxRate },
       ];
 
-      rates.sort((a, b) => (b.rate ?? 0) - (a.rate ?? 0));
+      rates.sort((a, b) => {
+        if (a.rate === null && b.rate === null) return 0;
+        if (a.rate === null) return 1;
+        if (b.rate === null) return -1;
+        return b.rate - a.rate;
+      });
 
       console.log(rates);
       return rates;
