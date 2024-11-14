@@ -6,7 +6,10 @@ import * as crypto from "crypto";
 const t = initTRPC.create();
 
 export const ofxRouter = t.router({
-  //to get a single rate
+  // full response data is
+  // {"ofxRate":rate,"inverseOfxRate":rate,"convertedAmount":amount}
+
+  // to get a single rate
   getOfxRate: t.procedure
     .input(
       z.object({
