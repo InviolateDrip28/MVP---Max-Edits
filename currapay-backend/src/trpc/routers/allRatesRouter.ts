@@ -71,10 +71,34 @@ export const allRatesRouter = t.router({
         throw new Error("Failed to fetch OFX rate");
       }
 
+      // Get Atlantic Money Rate
+      let amRate: number | null = null;
+      try {
+        const response = await axios.get(
+          `${process.env.AM_URL}/transfer/public/v1/estimate`,
+          {
+            params: {
+              amount: amount,
+              destinationCurrencyCode: buy,
+              entryMode: "source",
+
+              sourceCurrencyCode: sell,
+            },
+          }
+        );
+
+        const amRate = response.data.payload?.quote?.rate || null;
+        console.log("Atlantic Money Rate:", amRate);
+      } catch (error) {
+        console.error("Error fetching Atlantic Money rate:", error);
+        throw new Error("Failed to fetch Atlantic Money rate");
+      }
+
       // Return rates in descending order
       const rates = [
         { source: "XE", rate: xeRate },
         { source: "OFX", rate: ofxRate },
+        { source: "Atlantic Money", rate: amRate },
       ];
 
       rates.sort((a, b) => {
