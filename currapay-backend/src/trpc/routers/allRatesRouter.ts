@@ -94,11 +94,31 @@ export const allRatesRouter = t.router({
         throw new Error("Failed to fetch Atlantic Money rate");
       }
 
+      // Get Currency Solutions Rate
+      let csRate: number | null = null;
+      try {
+        const response = await axios.get(
+          `${process.env.CS_URL}/${sell}${buy}`,
+          {
+            headers: {
+              "x-api-key": process.env.CS_KEY!,
+            },
+          }
+        );
+
+        csRate = response.data.data.offer || null;
+        console.log("Currency Solution Rate:", csRate);
+      } catch (error) {
+        console.error("Error fetching Currency Solution rate:", error);
+        throw new Error("Failed to fetch Currency Solution  rate");
+      }
+
       // Return rates in descending order
       const rates = [
         { source: "XE", rate: xeRate },
         { source: "OFX", rate: ofxRate },
         { source: "Atlantic Money", rate: amRate },
+        { source: "Currency Solution", rate: csRate },
       ];
 
       rates.sort((a, b) => {
