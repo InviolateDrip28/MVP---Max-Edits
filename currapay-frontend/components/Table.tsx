@@ -11,9 +11,7 @@ const RatesTable = (props: TableProps) => {
   const [currCol, setCurrCol] = useState(0);
 
   // get the values for the table
-  // const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "RUB", "INR"];
-  // RUB is not tradeable
-  // INR is tradeable only between 07:00 to 17:30 NZST
+  // const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "BRL", "JPY"];
   // sell currency cannot equal the currency of buy
   const { data, error, isLoading } = trpc.xe.getXeRatesTable.useQuery();
 
