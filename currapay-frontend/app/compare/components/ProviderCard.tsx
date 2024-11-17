@@ -7,7 +7,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { ProviderCardProps } from "../types";
 import Image from "next/image";
-import CurrapayShortLogoBlack from "@/public/logos/CurrapayShortLogoBlack.png";
 import { useState } from "react";
 import Link from "next/link";
 import RecipientCard from "./RecipientCard";
@@ -53,9 +52,9 @@ export default function ProviderCard(props: ProviderCardProps) {
                 <span className="mb-2 font-semibold text-secondary">
                   Transfer time:{"  "}
                 </span>
-                <span>{optionsFirst.transferTime}</span>
+                <span>1-2 days</span>
               </p>
-              <p>Payment method: {optionsFirst.method}</p>
+              <p>Payment method: debit card</p>
             </div>
           </div>
 
@@ -65,10 +64,11 @@ export default function ProviderCard(props: ProviderCardProps) {
                 Fee:{"  "}
               </span>
               <span>
-                {optionsFirst.fee} {props.fromCurrency}
+                {/* {props.fee} {props.fromCurrency} */}
+                1 {props.fromCurrency}
               </span>
             </p>
-            <p>Exchange rate: {optionsFirst.exchangeRate}</p>
+            <p>Exchange rate: {optionsFirst.rate}</p>
             {/* <p className="py-2">This is a good option</p> */}
           </div>
 
@@ -124,9 +124,11 @@ export default function ProviderCard(props: ProviderCardProps) {
                       <span className="mb-2 font-semibold text-secondary">
                         Transfer time:{"  "}
                       </span>
-                      <span>{option.transferTime}</span>
+                      {/* <span>{option.transferTime}</span> */}
+                      <span>1-2 days</span>
                     </p>
-                    <p>Payment method: {option.method} </p>
+                    {/* <p>Payment method: {option.method} </p> */}
+                    <p>Payment method: debit card </p>
                   </div>
                 </div>
 
@@ -136,10 +138,11 @@ export default function ProviderCard(props: ProviderCardProps) {
                       Fee:{"  "}
                     </span>
                     <span>
-                      {option.fee} {props.fromCurrency}
+                    {/* {option.fee} {props.fromCurrency} */}
+                      1 {props.fromCurrency}
                     </span>
                   </p>
-                  <p>Exchange rate: {option.exchangeRate} %</p>
+                  <p>Exchange rate: {option.rate} %</p>
                   {/* <p className="py-2">This is a good option</p> */}
                 </div>
 
@@ -174,8 +177,10 @@ export default function ProviderCard(props: ProviderCardProps) {
             </h4>
 
             <div className="pb-6 space-y-2 font-normal">
-              <p>{optionsFirst.transferTime}</p>
-              <p>By {optionsFirst.method}</p>
+            {/* <p>{optionsFirst.transferTime}</p>
+              <p>By {optionsFirst.method}</p> */}
+              <p>1-2 days</p>
+              <p>By debit card</p>
             </div>
 
             {optionsRest && (
@@ -219,11 +224,11 @@ export default function ProviderCard(props: ProviderCardProps) {
             <div className="pb-12 space-y-2 font-normal">
               <p>
                 <span className="font-semibold">Fee: </span>{" "}
-                {optionsFirst.fee} {props.fromCurrency}
+                1 {props.fromCurrency}
               </p>
               <p>
                 <span className="font-semibold">Exchange rate:</span>{" "}
-                {optionsFirst.exchangeRate}%
+                {optionsFirst.rate}%
               </p>
             </div>
             {/* <p className="absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary">
@@ -255,12 +260,14 @@ export default function ProviderCard(props: ProviderCardProps) {
                     </h4>
 
                     <div className="pb-12 space-y-2 font-normal">
-                      <p>{option.transferTime}</p>
+                      {/* <p>{option.transferTime}</p> */}
+                      <p>1-2 days</p>
                       <p className="font-semibold">
                         Payment method:{" "}
                       </p>
                       <p className="-translate-y-2">
-                        {option.method}
+                        {/* {option.method} */}
+                        debit card
                       </p>
                     </div>
                   </div>
@@ -274,13 +281,14 @@ export default function ProviderCard(props: ProviderCardProps) {
                     <div className="pb-12 space-y-2 font-normal">
                       <p>
                         <span className="font-semibold">Fee: </span>{" "}
-                        {option.fee} {props.fromCurrency}
+                        {/* {option.fee} {props.fromCurrency} */}
+                        1 {props.fromCurrency}
                       </p>
                       <p>
                         <span className="font-semibold">
                           Exchange rate:
                         </span>{" "}
-                        {option.exchangeRate}%
+                        {option.rate}%
                       </p>
                     </div>
                     {/* <p className="absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary">

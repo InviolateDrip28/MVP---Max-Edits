@@ -3,7 +3,7 @@ import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
 
 interface TableProps {
-  data: any[];
+  countries: string[];
 }
 
 const RatesTable = (props: TableProps) => {
@@ -25,17 +25,16 @@ const RatesTable = (props: TableProps) => {
     return <div>Error loading data: {error.message}</div>;
   }
 
-  const handleSubmit = () => {
-    if (error) {
-      console.error("Error fetching data:", error);
-    } else {
-      console.log("Fetched data:", data);
-      // console.log("first cell", data[0][1]);
-    }
-  };
+  // const handleSubmit = () => {
+  //   if (error) {
+  //     console.error("Error fetching data:", error);
+  //   } else {
+  //     console.log("Fetched data:", data);
+  //   }
+  // };
 
-  // Call handleSubmit when you want to send the data
-  handleSubmit();
+  // // Call handleSubmit when you want to send the data
+  // handleSubmit();
 
   return (
     <div className="w-full overflow-x-auto">
@@ -43,7 +42,7 @@ const RatesTable = (props: TableProps) => {
         <thead>
           <tr>
             <th className="sticky z-20 left-0 top-0 bg-white px-4 mx-6"></th>
-            {props.data.map((country, colIndex) => (
+            {props.countries.map((country, colIndex) => (
               <th key={colIndex} className="sticky z-10 top-0">
                 <div
                   className={`whitespace-nowrap inline-flex
@@ -64,7 +63,7 @@ const RatesTable = (props: TableProps) => {
         </thead>
 
         <tbody>
-          {props.data.map((country, rowIndex) => (
+          {props.countries.map((country, rowIndex) => (
             <tr key={country}>
               <th className="sticky left-0 z-20 bg-white pr-6">
                 <div
@@ -80,7 +79,7 @@ const RatesTable = (props: TableProps) => {
                   1 {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
               </th>
-              {props.data.map((_, colIndex) => (
+              {props.countries.map((_, colIndex) => (
                 <td
                   key={`${rowIndex}-${colIndex}`}
                   className={`border border-secondary/40 text-center bg-secondary/10 items-center py-2 mx-12 ${
@@ -111,4 +110,4 @@ const RatesTable = (props: TableProps) => {
   );
 };
 
-export default RatesTable;
+export default trpc.withTRPC(RatesTable);

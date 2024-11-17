@@ -16,80 +16,55 @@ import {
 import ProviderCard from "./components/ProviderCard";
 import { Pagination } from "@/components/Pagination";
 import { useState, useEffect } from "react";
-import { Option } from "./types";
+import { Provider } from "./types";
+import { trpc } from "@/utils/trpc";
+import { Spinner } from "@/components/Spinner";
 
-// TODO: add serialization for typing
-const PROVIDER_DATA: Record<string, Option[]> = {
-  "Western Union": [
-    {
-      method: "debit card",
-      fee: 1.0,
-      exchangeRate: 1.0,
-      transferTime: "1-2 days",
-    },
-    {
-      method: "bank transfer",
-      fee: 3.0,
-      exchangeRate: 1.21,
-      transferTime: "1-5 days",
-    },
-  ],
-  "Currency Solutions": [
-    {
-      method: "debit card",
-      fee: 0,
-      exchangeRate: 1.04,
-      transferTime: "1-2 days",
-    },
-    {
-      method: "bank transfer",
-      fee: 1.0,
-      exchangeRate: 1.05,
-      transferTime: "1-2 days",
-    },
-  ],
-  Xe: [
-    {
-      method: "debit card",
-      fee: 3.0,
-      exchangeRate: 1.21,
-      transferTime: "1-2 days",
-    },
-  ],
-  "Atlantic Money": [
-    {
-      method: "debit card",
-      fee: 1.0,
-      exchangeRate: 1.43,
-      transferTime: "1-2 days",
-    },
-    {
-      method: "bank transfer",
-      fee: 3.0,
-      exchangeRate: 1.0,
-      transferTime: "1-2 days",
-    },
-  ],
-};
-
-const PROVIDER_NAMES = Object.keys(PROVIDER_DATA);
+type TData = Provider[];
+interface QueryResult<TData> {
+  data: Provider[] | undefined;
+  error: unknown;
+  isLoading: boolean;
+}
 
 const Compare = observer(() => {
   const { SearchStore } = useStores();
   const searchParams = useSearchParams();
-  const numProviders = PROVIDER_NAMES.length;
-  const [cards, setCards] = useState(PROVIDER_NAMES.slice(0, 5));
-  const [current, setCurrent] = useState(1);
 
-  useEffect(() => {
-    setCards(PROVIDER_NAMES.slice((current - 1) * 5, current * 5));
-  }, [current]);
-
-  const [from, to, amount] = [
+  const [from, to, amount, fromCountry, toCountry] = [
     searchParams.get("from")!,
     searchParams.get("to")!,
     searchParams.get("amount")!,
+    searchParams.get("fromCountry")!,
+    searchParams.get("toCountry")!,
   ];
+
+  const { data, error, isLoading } =
+    trpc.allRates.getRankedRates.useQuery<TData>({
+      amount: Number(amount),
+      country: fromCountry,
+      sell: from,
+      buy: to,
+      destinationCountry: toCountry,
+      fixed_currency: "sell",
+    });
+
+  const [numProviders, setNumProviders] = useState(0);
+  const [cards, setCards] = useState<Provider[]>([]);
+  const [current, setCurrent] = useState(1);
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      setNumProviders(data.length);
+      setCards(data.slice(0, 5));
+    }
+  }, [numProviders, data, isLoading]);
+
+  useEffect(() => {
+    if (data) {
+      setCards(data.slice((current - 1) * 5, current * 5));
+    }
+  }, [current, data]);
 
   const handleSwap = () => {
     const fromCountry = SearchStore.fromCountry;
@@ -103,7 +78,10 @@ const Compare = observer(() => {
   };
 
   return (
-    <section id="compare-rates" className="flex items-center gap-8">
+    <section
+      id="compare-rates"
+      className="flex items-center justify-start gap-8"
+    >
       <div
         id="search"
         className="w-full flex border box-border p-6 xl:p-8 shadow-xl rounded-xl space-y-4 bg-white"
@@ -116,7 +94,9 @@ const Compare = observer(() => {
                 reference={COUNTRY_CODE_TO_NAME}
                 defaultValue={SearchStore.fromCountry}
                 setSelected={SearchStore.setFromCountry}
-                textStyles={"xl:text-2xl xl:min-w-[12ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"}
+                textStyles={
+                  "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
+                }
                 hasImage={true}
               />
             </div>
@@ -133,7 +113,9 @@ const Compare = observer(() => {
                 reference={COUNTRY_CODE_TO_NAME}
                 defaultValue={SearchStore.toCountry}
                 setSelected={SearchStore.setToCountry}
-                textStyles={"xl:text-2xl xl:min-w-[12ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"}
+                textStyles={
+                  "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
+                }
                 hasImage={true}
               />
             </div>
@@ -176,12 +158,13 @@ const Compare = observer(() => {
                   from: SearchStore.fromCurrency,
                   to: SearchStore.toCurrency,
                   amount: SearchStore.amount,
+                  fromCountry: SearchStore.fromCountry,
+                  toCountry: SearchStore.toCountry,
                 },
               }}
               className="text-white text-center font-bold rounded-md py-2 sm:py-1.5 xl:py-2 w-full sm:min-w-24 sm:max-w-32 text-base sm:text-lg xl:text-2xl
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 sm:mt-0"
-              onClick={() => console.log("TODO: Implement search")}
             >
               Go {" \u26A1"}
             </Link>
@@ -189,32 +172,49 @@ const Compare = observer(() => {
         </div>
       </div>
 
-      <h3 className="text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
-        Showing results from {numProviders} providers
-      </h3>
-      <div
-        id="providers"
-        className="flex flex-col gap-8 xl:gap-16 w-full"
-      >
-        {cards.map((provider, i) => (
-          <ProviderCard
-            key={i}
-            provider={provider}
-            fromCurrency={from}
-            toCurrency={to}
-            amount={amount}
-            options={PROVIDER_DATA[provider]}
+      {isLoading && (
+        <div className="w-full h-full text-secondary items-center justify-center inline-flex pt-10 pb-0 lg:pt-16 lg:pb-6 space-x-2">
+          <Spinner />
+          <h3 className="">Loading...</h3>
+        </div>
+      )}
+      
+      {error && (
+        <h3 className="w-full h-full text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
+          Error getting results, please try again.
+        </h3>
+      )}
+
+      {numProviders > 0 && (
+        <>
+          <h3 className="text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
+            Showing results from {numProviders} providers
+          </h3>
+          <div
+            id="providers"
+            className="flex flex-col gap-8 xl:gap-16 w-full"
+          >
+            {cards.map((provider, i) => (
+              <ProviderCard
+                key={i}
+                provider={provider.source}
+                fromCurrency={from}
+                toCurrency={to}
+                amount={amount}
+                options={[{ rate: provider.rate }]}
+              />
+            ))}
+          </div>
+          <Pagination
+            onPageChange={setCurrent}
+            totalCount={numProviders}
+            pageSize={5}
+            currentPage={current}
           />
-        ))}
-      </div>
-      <Pagination
-        onPageChange={setCurrent}
-        totalCount={numProviders}
-        pageSize={5}
-        currentPage={current}
-      />
+        </>
+      )}
     </section>
   );
 });
 
-export default Compare;
+export default trpc.withTRPC(Compare);

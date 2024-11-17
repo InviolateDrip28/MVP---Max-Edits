@@ -21,7 +21,7 @@ export default function RecipientCard(props: RecipientCardProps) {
     <div className="w-full h-full">
       {/* smaller screens */}
       <div className="font-normal text-secondary/80 block lg-xl:hidden">
-        <div className="pb-4">
+        <div>
           <p>
             <span className="mb-2 font-semibold text-secondary">
               Recipient recieves:{"  "}
@@ -30,13 +30,13 @@ export default function RecipientCard(props: RecipientCardProps) {
               {" "}
               {calculateAmount(
                 props.amount,
-                props.option.exchangeRate,
-                props.option.fee
+                props.option.rate,
+                // props.option.fee
+                1
               )}{" "}
               {props.toCurrency}
             </span>
           </p>
-          <p>Exchange rate: 0%</p>
         </div>
 
         {showRecieveDetails && (
@@ -82,8 +82,9 @@ export default function RecipientCard(props: RecipientCardProps) {
         <h3 className="pb-20 font-semibold text-accent tracking-tight">
           {calculateAmount(
             props.amount,
-            props.option.exchangeRate,
-            props.option.fee
+            props.option.rate,
+            // props.option.fee
+            1
           )}{" "}
           {props.toCurrency}
         </h3>

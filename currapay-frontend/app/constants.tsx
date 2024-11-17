@@ -668,15 +668,15 @@ const PARTNERS = [
 
 export const PARTNER_NAMES_TO_LINKS: Record<string, string> = {
   "Western Union": "https://www.westernunion.com",
-  "Currency Solutions": "https://www.currencysolutions.com",
-  Xe: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
+  "Currency Solution": "https://www.currencysolutions.com",
+  XE: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
   "Atlantic Money": "https://www.atlanticmoney.com",
 };
 
 export const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
   "Western Union": "/partners/westernunion_logo.png",
-  "Currency Solutions": "/partners/currencysolutions_logo.png",
-  Xe: "/partners/xe_logo.png",
+  "Currency Solution": "/partners/currencysolutions_logo.png",
+  XE: "/partners/xe_logo.png",
   "Atlantic Money": "/partners/atlantic_logo.png",
 };
 

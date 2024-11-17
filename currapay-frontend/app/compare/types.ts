@@ -1,8 +1,17 @@
+// export interface Option {
+//   method: string;
+//   fee: number;
+//   exchangeRate: number;
+//   transferTime: string;
+// }
+
+
+export type Provider = {
+  source: string;
+  rate: number;
+}
 export interface Option {
-  method: string;
-  fee: number;
-  exchangeRate: number;
-  transferTime: string;
+  rate: number;
 }
 
 export interface ProviderCardProps {
