@@ -267,7 +267,7 @@ const Homepage = observer(() => {
       <div id="rates-table" className="subsection mt-12 lg:mt-24 text-center">
         <h1>Mid-Market Exchange Rates</h1>
         <div className="relative mt-16 pt-8 pb-20 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
-          <RatesTable data={["US", "GB", "FR", "CA", "CH", "AU", "RU", "IN"]} />
+          <RatesTable data={["US", "GB", "FR", "CA", "CH", "AU", "BR", "JP"]} />
           <p className="absolute right-12 bottom-6">
             Source{" "}
             <Link
