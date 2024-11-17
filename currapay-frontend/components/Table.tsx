@@ -2,17 +2,12 @@ import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
 
-interface TableProps {
-  countries: string[];
-}
-
-const RatesTable = (props: TableProps) => {
+const RatesTable = () => {
   const [currRow, setCurrRow] = useState(0);
   const [currCol, setCurrCol] = useState(0);
 
-  // get the values for the table
-  // const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "BRL", "JPY"];
-  // sell currency cannot equal the currency of buy
+  const countries = ["US", "GB", "EU", "CA", "CH", "AU", "BR", "JP"];
+
   const { data, error, isLoading } = trpc.xe.getXeRatesTable.useQuery();
 
   if (isLoading) {
@@ -23,24 +18,13 @@ const RatesTable = (props: TableProps) => {
     return <div>Error loading data: {error.message}</div>;
   }
 
-  // const handleSubmit = () => {
-  //   if (error) {
-  //     console.error("Error fetching data:", error);
-  //   } else {
-  //     console.log("Fetched data:", data);
-  //   }
-  // };
-
-  // // Call handleSubmit when you want to send the data
-  // handleSubmit();
-
   return (
     <div className="w-full overflow-x-auto">
       <table className="lg:w-full whitespace-nowrap m-0 table-fixed">
         <thead>
           <tr>
             <th className="sticky z-20 left-0 top-0 bg-white px-4 mx-6"></th>
-            {props.countries.map((country, colIndex) => (
+            {countries.map((country, colIndex) => (
               <th key={colIndex} className="sticky z-10 top-0">
                 <div
                   className={`whitespace-nowrap inline-flex
@@ -61,7 +45,7 @@ const RatesTable = (props: TableProps) => {
         </thead>
 
         <tbody>
-          {props.countries.map((country, rowIndex) => (
+          {countries.map((country, rowIndex) => (
             <tr key={country}>
               <th className="sticky left-0 z-20 bg-white pr-6">
                 <div
@@ -77,7 +61,7 @@ const RatesTable = (props: TableProps) => {
                   1 {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
               </th>
-              {props.countries.map((_, colIndex) => (
+              {countries.map((_, colIndex) => (
                 <td
                   key={`${rowIndex}-${colIndex}`}
                   className={`border border-secondary/40 text-center bg-secondary/10 items-center py-2 mx-12 ${
