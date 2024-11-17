@@ -65,7 +65,7 @@ export const xeRouter = t.router({
     }),
 
   // To get the values for the rates table
-  // rates for these currencies => ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "RUB", "INR"];
+  // rates for these currencies => ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "BRL", "JPY"];
   // RUB is not tradeable
   // INR is tradeable only between 07:00 to 17:30 NZST
   // sell currency cannot equal the currency of buy
@@ -77,7 +77,8 @@ export const xeRouter = t.router({
       "CAD",
       "CHF",
       "AUD",
-      "INR",
+      "BRL",
+      "JPY",
     ];
 
     const currencyToCountryCode: Record<string, string> = {
@@ -87,8 +88,8 @@ export const xeRouter = t.router({
       CAD: "CA",
       CHF: "CH",
       AUD: "AU",
-      RUB: "RU",
-      INR: "IN",
+      BRL: "BR",
+      JPY: "JP",
     };
 
     let resultArr: (string | null)[][] = [];
