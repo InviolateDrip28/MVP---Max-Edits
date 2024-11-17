@@ -282,7 +282,7 @@ const Homepage = observer(() => {
       >
         <h1>Mid-Market Exchange Rates</h1>
         <div className="relative mt-16 pt-8 pb-20 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
-          <RatesTable countries={["US", "GB", "FR", "CA", "CH", "AU", "BR", "JP"]}/>
+          <RatesTable />
           <p className="absolute right-12 bottom-6">
             Source{" "}
             <Link
