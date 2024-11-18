@@ -628,6 +628,9 @@ const PARTNERS = [
     image: "/partners/halofinancial_logo.png",
     link: "https://halofinancial.com/",
   },
+  { image: "/partners/instarem_logo.png", 
+    link: "https://www.instarem.com/" 
+  },
   {
     image: "/partners/ofx_logo.png",
     link: "https://www.ofx.com/p/currapay/",
@@ -666,39 +669,41 @@ const PARTNERS = [
   },
 ];
 
-export const PARTNER_NAMES_TO_LINKS: Record<string, string> = {
+const PARTNER_NAMES_TO_LINKS: Record<string, string> = {
   "Western Union": "https://www.westernunion.com",
   "Currency Solution": "https://www.currencysolutions.com",
   XE: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
   "Atlantic Money": "https://www.atlanticmoney.com",
+  Instarem: "https://www.instarem.com",
 };
 
-export const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
+const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
   "Western Union": "/partners/westernunion_logo.png",
   "Currency Solution": "/partners/currencysolutions_logo.png",
   XE: "/partners/xe_logo.png",
   "Atlantic Money": "/partners/atlantic_logo.png",
-  "Instarem": "/partners/instarem_logo.png",
-  "OFX": "/partners/ofx_logo.png",
+  Instarem: "/partners/instarem_logo.png",
+  OFX: "/partners/ofx_logo.png",
 };
 
-export const PARTNER_NAMES_TO_FEES: Record<string, string> = {
+const PARTNER_NAMES_TO_FEES: Record<string, string> = {
   "Western Union": "3",
   "Currency Solution": "3",
   XE: "3",
   "Atlantic Money": "3",
-  "Instarem": "3",
-  "OFX": "3",
-}
+  Instarem: "3",
+  OFX: "3",
+};
 
-export const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> = {
-  "Western Union": "1-2 days",
-  "Currency Solution": "1-2 days",
-  XE: "1-2 days",
-  "Atlantic Money": "1-2 days",
-  "Instarem": "1-2 days",
-  "OFX": "1-2 days",
-}
+const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> =
+  {
+    "Western Union": "1-2 days",
+    "Currency Solution": "1-2 days",
+    XE: "1-2 days",
+    "Atlantic Money": "1-2 days",
+    Instarem: "1-2 days",
+    OFX: "1-2 days",
+  };
 
 const LANGUAGES = ["EN", "IN", "ES", "CN"];
 
@@ -739,6 +744,10 @@ export {
   COUNTRY_CODES,
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
+  PARTNER_NAMES_TO_FEES,
+  PARTNER_NAMES_TO_IMAGES,
+  PARTNER_NAMES_TO_LINKS,
+  PARTNER_NAMES_TO_TRANSFER_TIMES,
   PARTNERS,
   LANGUAGES,
   FAQS,
