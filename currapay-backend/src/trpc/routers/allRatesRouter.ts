@@ -87,7 +87,7 @@ export const allRatesRouter = t.router({
           }
         );
 
-        const amRate = response.data.payload?.quote?.rate || null;
+        amRate = response.data.payload?.quote?.rate || null;
         console.log("Atlantic Money Rate:", amRate);
       } catch (error) {
         console.error("Error fetching Atlantic Money rate:", error);

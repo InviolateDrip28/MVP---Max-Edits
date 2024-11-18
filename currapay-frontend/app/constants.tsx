@@ -678,7 +678,27 @@ export const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
   "Currency Solution": "/partners/currencysolutions_logo.png",
   XE: "/partners/xe_logo.png",
   "Atlantic Money": "/partners/atlantic_logo.png",
+  "Instarem": "/partners/instarem_logo.png",
+  "OFX": "/partners/ofx_logo.png",
 };
+
+export const PARTNER_NAMES_TO_FEES: Record<string, string> = {
+  "Western Union": "3",
+  "Currency Solution": "3",
+  XE: "3",
+  "Atlantic Money": "3",
+  "Instarem": "3",
+  "OFX": "3",
+}
+
+export const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> = {
+  "Western Union": "1-2 days",
+  "Currency Solution": "1-2 days",
+  XE: "1-2 days",
+  "Atlantic Money": "1-2 days",
+  "Instarem": "1-2 days",
+  "OFX": "1-2 days",
+}
 
 const LANGUAGES = ["EN", "IN", "ES", "CN"];
 

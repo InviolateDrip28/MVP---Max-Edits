@@ -13,6 +13,8 @@ import RecipientCard from "./RecipientCard";
 import {
   PARTNER_NAMES_TO_LINKS,
   PARTNER_NAMES_TO_IMAGES,
+  PARTNER_NAMES_TO_FEES,
+  PARTNER_NAMES_TO_TRANSFER_TIMES,
 } from "@/app/constants";
 
 // need to map provider to image path
@@ -52,7 +54,9 @@ export default function ProviderCard(props: ProviderCardProps) {
                 <span className="mb-2 font-semibold text-secondary">
                   Transfer time:{"  "}
                 </span>
-                <span>1-2 days</span>
+                <span>
+                  {PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}
+                </span>
               </p>
               <p>Payment method: debit card</p>
             </div>
@@ -65,7 +69,8 @@ export default function ProviderCard(props: ProviderCardProps) {
               </span>
               <span>
                 {/* {props.fee} {props.fromCurrency} */}
-                1 {props.fromCurrency}
+                {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
+                {props.fromCurrency}
               </span>
             </p>
             <p>Exchange rate: {optionsFirst.rate}</p>
@@ -125,7 +130,13 @@ export default function ProviderCard(props: ProviderCardProps) {
                         Transfer time:{"  "}
                       </span>
                       {/* <span>{option.transferTime}</span> */}
-                      <span>1-2 days</span>
+                      <span>
+                        {
+                          PARTNER_NAMES_TO_TRANSFER_TIMES[
+                            props.provider
+                          ]
+                        }
+                      </span>
                     </p>
                     {/* <p>Payment method: {option.method} </p> */}
                     <p>Payment method: debit card </p>
@@ -138,8 +149,9 @@ export default function ProviderCard(props: ProviderCardProps) {
                       Fee:{"  "}
                     </span>
                     <span>
-                    {/* {option.fee} {props.fromCurrency} */}
-                      1 {props.fromCurrency}
+                      {/* {option.fee} {props.fromCurrency} */}
+                      {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
+                      {props.fromCurrency}
                     </span>
                   </p>
                   <p>Exchange rate: {option.rate} %</p>
@@ -177,9 +189,9 @@ export default function ProviderCard(props: ProviderCardProps) {
             </h4>
 
             <div className="pb-6 space-y-2 font-normal">
-            {/* <p>{optionsFirst.transferTime}</p>
+              {/* <p>{optionsFirst.transferTime}</p>
               <p>By {optionsFirst.method}</p> */}
-              <p>1-2 days</p>
+              <p>{PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}</p>
               <p>By debit card</p>
             </div>
 
@@ -224,7 +236,8 @@ export default function ProviderCard(props: ProviderCardProps) {
             <div className="pb-12 space-y-2 font-normal">
               <p>
                 <span className="font-semibold">Fee: </span>{" "}
-                1 {props.fromCurrency}
+                {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
+                {props.fromCurrency}
               </p>
               <p>
                 <span className="font-semibold">Exchange rate:</span>{" "}
@@ -261,7 +274,13 @@ export default function ProviderCard(props: ProviderCardProps) {
 
                     <div className="pb-12 space-y-2 font-normal">
                       {/* <p>{option.transferTime}</p> */}
-                      <p>1-2 days</p>
+                      <p>
+                        {
+                          PARTNER_NAMES_TO_TRANSFER_TIMES[
+                            props.provider
+                          ]
+                        }
+                      </p>
                       <p className="font-semibold">
                         Payment method:{" "}
                       </p>
@@ -282,7 +301,8 @@ export default function ProviderCard(props: ProviderCardProps) {
                       <p>
                         <span className="font-semibold">Fee: </span>{" "}
                         {/* {option.fee} {props.fromCurrency} */}
-                        1 {props.fromCurrency}
+                        {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
+                        {props.fromCurrency}
                       </p>
                       <p>
                         <span className="font-semibold">

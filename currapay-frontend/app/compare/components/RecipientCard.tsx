@@ -39,13 +39,13 @@ export default function RecipientCard(props: RecipientCardProps) {
           </p>
         </div>
 
-        {showRecieveDetails && (
+        {/* {showRecieveDetails && (
           <div className="pb-6 font-normal">
             <p>math</p>
             <p>math</p>
           </div>
-        )}
-        <button
+        )} */}
+        {/* <button
           className="flex items-center hover:underline decoration-accent underline-offset-4 pb-4 hover:text-accent"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
@@ -70,7 +70,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
           )}
-        </button>
+        </button> */}
       </div>
 
       {/* larger screens */}
@@ -79,7 +79,7 @@ export default function RecipientCard(props: RecipientCardProps) {
         <h4 className="mb-4 font-semibold tracking-tight text-primary pr-3">
           Recipient recieves
         </h4>
-        <h3 className="pb-20 font-semibold text-accent tracking-tight">
+        <h3 className="pb-24 font-semibold text-accent tracking-tight">
           {calculateAmount(
             props.amount,
             props.option.rate,
@@ -88,13 +88,13 @@ export default function RecipientCard(props: RecipientCardProps) {
           )}{" "}
           {props.toCurrency}
         </h3>
-        {showRecieveDetails && (
+        {/* {showRecieveDetails && (
           <div className="pb-12 font-normal">
             <p>math</p>
             <p>math</p>
           </div>
-        )}
-        <button
+        )} */}
+        {/* <button
           className="flex text-left whitespace-nowrap items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:text-accent hover:underline decoration-accent underline-offset-4"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
@@ -119,7 +119,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
           )}
-        </button>
+        </button> */}
       </div>
     </div>
   );
