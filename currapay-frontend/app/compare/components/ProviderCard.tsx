@@ -30,20 +30,32 @@ export default function ProviderCard(props: ProviderCardProps) {
     props.options.length > 1 ? props.options.slice(1) : undefined;
   const [showTransferOptions, setShowTransferOptions] =
     useState(false);
+  const showDeal = false; // TODO: implement this
 
   return (
     <div className="relative border bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
       {/* smaller screens (no images, less details) */}
       <div className="block lg-xl:hidden">
         <div className="flex flex-col gap-4">
-          <div className="relative flex justify-start w-1/2 h-20">
-            <Image
-              className="absolute justify-start"
-              src={PARTNER_NAMES_TO_IMAGES[props.provider]}
-              alt="provider logo"
-              fill
-              style={{ objectFit: "contain", objectPosition: "left" }}
-            />
+          <div>
+            <div className="relative flex justify-start w-1/2 h-20">
+              <Image
+                className="absolute justify-start"
+                src={PARTNER_NAMES_TO_IMAGES[props.provider]}
+                alt="provider logo"
+                fill
+                style={{
+                  objectFit: "contain",
+                  objectPosition: "left",
+                }}
+              />
+            </div>
+            {showDeal && (
+              <div className="bg-accentSecondary/50 w-full mt-2 rounded-lg p-2">
+                Offers deal for new customers!
+                <button className="px-1 underline">Details</button>
+              </div>
+            )}
           </div>
 
           <div className="border" />
@@ -81,6 +93,7 @@ export default function ProviderCard(props: ProviderCardProps) {
             fromCurrency={props.fromCurrency}
             toCurrency={props.toCurrency}
             amount={props.amount}
+            provider={props.provider}
             option={optionsFirst}
           />
         </div>
@@ -162,6 +175,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                   fromCurrency={props.fromCurrency}
                   toCurrency={props.toCurrency}
                   amount={props.amount}
+                  provider={props.provider}
                   option={optionsFirst}
                 />
               </div>
@@ -173,8 +187,18 @@ export default function ProviderCard(props: ProviderCardProps) {
 
       {/* larger screens */}
       <div className="hidden lg-xl:block">
+        {showDeal && (
+          <div className="grid grid-cols-4 gap-4 pb-4">
+            <div className="relative col-span-1" />
+            <div className="bg-accentSecondary/50 w-full col-span-3 rounded-lg py-1 lg-xl:px-4 xl:px-6">
+              Includes zero transfer fees and/or preferential exchange
+              rate on your first transfer*
+            </div>
+          </div>
+        )}
+
         <div className="rounded-lg gap-4 flex flex-row justify-between">
-          <div className="relative mr-4 min-w-32 w-full h-24 self-center">
+          <div className="relative mr-4 min-w-32 w-full h-24 my-20 self-start">
             <Image
               src={PARTNER_NAMES_TO_IMAGES[props.provider]}
               alt="provider logo"
@@ -253,6 +277,7 @@ export default function ProviderCard(props: ProviderCardProps) {
             fromCurrency={props.fromCurrency}
             toCurrency={props.toCurrency}
             amount={props.amount}
+            provider={props.provider}
             option={optionsFirst}
           />
         </div>
@@ -320,6 +345,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                     fromCurrency={props.fromCurrency}
                     toCurrency={props.toCurrency}
                     amount={props.amount}
+                    provider={props.provider}
                     option={option}
                   />
                 </div>

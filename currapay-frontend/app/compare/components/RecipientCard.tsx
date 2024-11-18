@@ -5,17 +5,16 @@ import {
 } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { RecipientCardProps } from "../types";
+import { PARTNER_NAMES_TO_FEES } from "@/app/constants";
 
 export default function RecipientCard(props: RecipientCardProps) {
   const [showRecieveDetails, setShowRecieveDetails] = useState(false);
-
-  function calculateAmount(
-    amount: string,
-    rate: number,
-    fee: number
-  ): string {
-    return (parseFloat(amount) * rate - fee).toFixed(2).toString();
-  }
+  const total = (
+    parseFloat(props.amount) -
+    Number(PARTNER_NAMES_TO_FEES[props.provider]) * props.option.rate
+  )
+    .toFixed(2)
+    .toString();
 
   return (
     <div className="w-full h-full">
@@ -28,24 +27,40 @@ export default function RecipientCard(props: RecipientCardProps) {
             </span>
             <span>
               {" "}
-              {calculateAmount(
-                props.amount,
-                props.option.rate,
-                // props.option.fee
-                1
-              )}{" "}
+              {total}{" "}
               {props.toCurrency}
             </span>
           </p>
         </div>
 
-        {/* {showRecieveDetails && (
-          <div className="pb-6 font-normal">
-            <p>math</p>
-            <p>math</p>
+        {showRecieveDetails && (
+          <div className="text-secondary/75 font-normal mb-4 ">
+            <p className="flex whitespace-nowrap">
+              <span className="text-left">You pay</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">{props.amount}</span>
+            </p>
+            <p className="flex whitespace-nowrap">
+              <span>- Fee</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">
+                {PARTNER_NAMES_TO_FEES[props.provider]}
+              </span>
+            </p>
+            <p className="flex whitespace-nowrap">
+              <span>&times; Exchange rate</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">
+                {props.option.rate}
+              </span>
+            </p>
+            <div className="border border-secondary/80 my-2" />
+            <p className="text-right">
+              {total}
+            </p>
           </div>
-        )} */}
-        {/* <button
+        )}
+        <button
           className="flex items-center hover:underline decoration-accent underline-offset-4 pb-4 hover:text-accent"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
@@ -70,7 +85,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
           )}
-        </button> */}
+        </button>
       </div>
 
       {/* larger screens */}
@@ -80,21 +95,39 @@ export default function RecipientCard(props: RecipientCardProps) {
           Recipient recieves
         </h4>
         <h3 className="pb-24 font-semibold text-accent tracking-tight">
-          {calculateAmount(
-            props.amount,
-            props.option.rate,
-            // props.option.fee
-            1
-          )}{" "}
+          {total}{" "}
           {props.toCurrency}
         </h3>
-        {/* {showRecieveDetails && (
-          <div className="pb-12 font-normal">
-            <p>math</p>
-            <p>math</p>
+
+        {showRecieveDetails && (
+          <div className="text-secondary/75 font-normal mb-4 -translate-y-10">
+            <p className="flex whitespace-nowrap">
+              <span className="text-left">You pay</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">{props.amount}</span>
+            </p>
+            <p className="flex whitespace-nowrap">
+              <span>- Fee</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">
+                {PARTNER_NAMES_TO_FEES[props.provider]}
+              </span>
+            </p>
+            <p className="flex whitespace-nowrap">
+              <span>&times; Exchange rate</span>
+              <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
+              <span className="text-right font-semibold">
+                {props.option.rate}
+              </span>
+            </p>
+            <div className="border border-secondary/80 my-2" />
+            <p className="text-right">
+              {total}
+            </p>
           </div>
-        )} */}
-        {/* <button
+        )}
+
+        <button
           className="flex text-left whitespace-nowrap items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:text-accent hover:underline decoration-accent underline-offset-4"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
@@ -119,7 +152,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
           )}
-        </button> */}
+        </button>
       </div>
     </div>
   );

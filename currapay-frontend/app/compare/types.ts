@@ -26,6 +26,7 @@ export interface RecipientCardProps {
   fromCurrency: string;
   toCurrency: string;
   amount: string;
+  provider: string;
   option: Option;
 }
 

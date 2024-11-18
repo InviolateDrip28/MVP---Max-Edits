@@ -45,6 +45,7 @@ export const allRatesRouter = t.router({
         );
 
         xeRate = response.data.rates[0]?.rate || null;
+        xeRate = parseFloat(Number(xeRate).toFixed(3))
         console.log("XE rate:", xeRate);
       } catch (error) {
         console.error("Error fetching XE rate:", error);
@@ -88,6 +89,7 @@ export const allRatesRouter = t.router({
         );
 
         amRate = response.data.payload?.quote?.rate || null;
+        amRate = parseFloat(Number(amRate).toFixed(3))
         console.log("Atlantic Money Rate:", amRate);
       } catch (error) {
         console.error("Error fetching Atlantic Money rate:", error);
@@ -107,6 +109,7 @@ export const allRatesRouter = t.router({
         );
 
         csRate = response.data.data.offer || null;
+        csRate = parseFloat(Number(csRate).toFixed(3))
         console.log("Currency Solution Rate:", csRate);
       } catch (error) {
         console.error("Error fetching Currency Solution rate:", error);
