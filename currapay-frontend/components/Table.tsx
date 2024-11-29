@@ -33,12 +33,10 @@ const RatesTable = () => {
                        currCol == colIndex && "border-b-4 border-b-accent"
                      }`}
                 >
-                  <Image
+                  <img
                     alt={country}
                     src={`https://flagsapi.com/${country}/flat/64.png`}
-                    width={20}
-                    height={20}
-                    className="pr-2"
+                    className="h-5 pr-2"
                   />
                   {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
@@ -56,12 +54,10 @@ const RatesTable = () => {
                     currRow == rowIndex && " border-b-4 border-b-accent"
                   }`}
                 >
-                  <Image
+                  <img
                     alt={country}
                     src={`https://flagsapi.com/${country}/flat/64.png`}
-                    width={20}
-                    height={20}
-                    className="pr-2"
+                    className="h-5 pr-2"
                   />
                   1 {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>

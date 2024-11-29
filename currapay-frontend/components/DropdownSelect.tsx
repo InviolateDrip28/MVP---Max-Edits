@@ -51,12 +51,10 @@ export default function DropdownSelect(props: DropdownSelectProps) {
         >
           <span className="flex items-center">
             {props.hasImage && (
-              <Image
+              <img
                 alt={selected}
                 src={`https://flagsapi.com/${selected}/flat/64.png`}
-                width={20}
-                height={20}
-                className="flex-shrink-0"
+                className="h-5 w-5 flex-shrink-0"
               />
             )}
             <span
@@ -92,12 +90,10 @@ export default function DropdownSelect(props: DropdownSelectProps) {
               >
                 <div className="flex items-center">
                   {props.hasImage && (
-                    <Image
+                    <img
                       alt={code}
                       src={`https://flagsapi.com/${code}/flat/64.png`}
-                      width={20}
-                      height={20}
-                      className="flex-shrink-0"
+                      className="h-5 w-5 flex-shrink-0"
                     />
                   )}
                   <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
