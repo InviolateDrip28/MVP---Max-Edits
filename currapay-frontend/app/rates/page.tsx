@@ -1,6 +1,5 @@
 "use client";
 
-import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
 import { observer } from "mobx-react";
 import { SearchStore } from "@/stores/search.store";
@@ -27,7 +26,7 @@ const Rates = observer(() => {
       colors: ["black"],
       xaxis: {
         tooltip: {
-          enabled: false
+          enabled: false,
         },
         axisTicks: {
           show: true,
@@ -78,11 +77,10 @@ const Rates = observer(() => {
         <div className="flex flex-col justify-center items-center">
           <p>Current mid-market exchange rate</p>
           <p>
-            1 {SearchStore.fromCurrency} = 1.23{" "}
-            {SearchStore.toCurrency}
+            1 {SearchStore.fromCurrency} = 1.23 {SearchStore.toCurrency}
           </p>
         </div>
-{/* 
+        {/* 
         <div className="h-1/2 w-3/4">
           <Chart {...chartConfig} />
         </div> */}

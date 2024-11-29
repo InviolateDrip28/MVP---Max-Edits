@@ -1,14 +1,13 @@
-import { httpLink } from '@trpc/client';
-import { createTRPCNext } from '@trpc/next';
-import { AppRouter } from '../../currapay-backend/src/trpc/_app';
+import { httpLink } from "@trpc/client";
+import { createTRPCNext } from "@trpc/next";
+import { AppRouter } from "../../currapay-backend/src/trpc/_app";
 
 function getBaseUrl() {
-  if (typeof window !== 'undefined')
-    // browser should use relative path
-    return '';
+  // use localhost or production url
+  const apiBaseUrl = process.env.API_BASE_URL;
+  const baseUrl = apiBaseUrl ?? `http://localhost:4000`;
 
-  // assume localhost
-  return `http://localhost:${process.env.PORT ?? 4000}`;
+  return baseUrl;
 }
 
 export const trpc = createTRPCNext<AppRouter>({
@@ -16,14 +15,13 @@ export const trpc = createTRPCNext<AppRouter>({
     return {
       links: [
         httpLink({
-          url: `http://localhost:4000/trpc`,
+          url: `${getBaseUrl()}/trpc`,
 
           async headers() {
             return {
               // authorization: getAuthCookie(),
             };
           },
-
         }),
       ],
     };

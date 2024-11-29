@@ -16,17 +16,15 @@ export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
          hover:[animation-play-state:paused] pt-8 space-x-24"
         >
           {[...items, ...items].map((item, index) => (
-            <Link
-              key={index}
-              className="h-full w-full"
-              href={item.link}
-            >
+            <Link key={index} className="h-full w-full" href={item.link}>
               <span className="flex h-7 sm:h-8 md:h-9 lg:h-10 xl:h-11 2xl:h-12 w-max justify-center">
-                  <img
-                    src={item.image}
-                    alt={`Image ${index}`}
-                    className="h-full object-contain"
-                  />
+                <Image
+                  src={item.image}
+                  alt={`Image ${index}`}
+                  width={500}
+                  height={500}
+                  className="h-full object-contain"
+                />
               </span>
             </Link>
           ))}

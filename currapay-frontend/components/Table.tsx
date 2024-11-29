@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
+import Image from "next/image";
 
 const RatesTable = () => {
   const [currRow, setCurrRow] = useState(0);
@@ -32,10 +33,12 @@ const RatesTable = () => {
                        currCol == colIndex && "border-b-4 border-b-accent"
                      }`}
                 >
-                  <img
+                  <Image
                     alt={country}
                     src={`https://flagsapi.com/${country}/flat/64.png`}
-                    className="h-5 pr-2"
+                    width={20}
+                    height={20}
+                    className="pr-2"
                   />
                   {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
@@ -53,10 +56,12 @@ const RatesTable = () => {
                     currRow == rowIndex && " border-b-4 border-b-accent"
                   }`}
                 >
-                  <img
+                  <Image
                     alt={country}
                     src={`https://flagsapi.com/${country}/flat/64.png`}
-                    className="h-5 pr-2"
+                    width={20}
+                    height={20}
+                    className="pr-2"
                   />
                   1 {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>

@@ -8,10 +8,7 @@ import {
   ListboxOptions,
   Label,
 } from "@headlessui/react";
-import {
-  CheckIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/20/solid";
+import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 
 /**
@@ -48,22 +45,24 @@ export default function DropdownSelect(props: DropdownSelectProps) {
           </Label>
         )}
         <ListboxButton
-          className={`relative w-full rounded-md bg-white py-1.5 pl-3 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${props.dropdownList ? 'cursor-pointer pr-9' : 'cursor-default pr-3'} ${
-            props.label && "rounded-t-none border-t-0"
-          }`}
+          className={`relative w-full rounded-md bg-white py-1.5 pl-3 text-left shadow-sm border border-secondary/30 focus:outline-none sm:leading-6 ${
+            props.dropdownList ? "cursor-pointer pr-9" : "cursor-default pr-3"
+          } ${props.label && "rounded-t-none border-t-0"}`}
         >
           <span className="flex items-center">
             {props.hasImage && (
-              <img
+              <Image
                 alt={selected}
                 src={`https://flagsapi.com/${selected}/flat/64.png`}
-                className="h-5 w-5 flex-shrink-0"
+                width={20}
+                height={20}
+                className="flex-shrink-0"
               />
             )}
             <span
-              className={`${
-                props.hasImage && "ml-1.5"
-              } ${props.textStyles && props.textStyles} block truncate xl:min-w-[4ch] xl:max-w-[12ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
+              className={`${props.hasImage && "ml-1.5"} ${
+                props.textStyles && props.textStyles
+              } block truncate xl:min-w-[4ch] xl:max-w-[12ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
             >
               {props.reference[selected]}
             </span>
@@ -93,10 +92,12 @@ export default function DropdownSelect(props: DropdownSelectProps) {
               >
                 <div className="flex items-center">
                   {props.hasImage && (
-                    <img
+                    <Image
                       alt={code}
                       src={`https://flagsapi.com/${code}/flat/64.png`}
-                      className="h-5 w-5 flex-shrink-0"
+                      width={20}
+                      height={20}
+                      className="flex-shrink-0"
                     />
                   )}
                   <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">

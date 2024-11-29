@@ -1,0 +1,1 @@
+web: cd currapay-backend && npm run build && npm start
