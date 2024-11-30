@@ -4,7 +4,7 @@ import { AppRouter } from "../../currapay-backend/src/trpc/_app";
 
 function getBaseUrl() {
   // use localhost or production url
-  // const apiBaseUrl = process.env.API_BASE_URL;
+  // const baseUrl = process.env.API_BASE_URL;
   const baseUrl = `https://currapay-backend-v1-346c542a874a.herokuapp.com`;
 
   return baseUrl;

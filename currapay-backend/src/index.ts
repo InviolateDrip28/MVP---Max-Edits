@@ -13,22 +13,11 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 // Initialize the Express application
 const app = express();
 
-// Get allowed origins
-const allowedOrigins =
-  process.env.NODE_ENV === "production"
-    ? process.env.PROD_URL?.split(",") ?? []
-    : [process.env.DEV_URL ?? "http://localhost:3000"];
-
 // CORS setup
+// Allow requests from any origin
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"), false);
-      }
-    },
+    origin: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
