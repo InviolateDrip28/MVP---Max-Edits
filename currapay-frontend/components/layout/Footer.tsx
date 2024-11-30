@@ -23,11 +23,14 @@ export const Footer = () => {
       <div className="flex flex-col sm:flex-row pt-6 md:pt-12 space-y-8 sm:space-y-0 -ml-0.5">
         <div>
           <div id="terms-and-privacy" className="flex flex-col">
-            <Link href="/" className="link">
+            <Link href="/https://www.iubenda.com/terms-and-conditions/17897588" className="link">
               Terms of Service
             </Link>
-            <Link href="/" className="link">
+            <Link href="https://www.iubenda.com/privacy-policy/17897588" className="link">
               Privacy Policy
+            </Link>
+            <Link href="https://www.iubenda.com/privacy-policy/17897588/cookie-policy" className="link">
+              Cookie Policy
             </Link>
           </div>
         </div>
