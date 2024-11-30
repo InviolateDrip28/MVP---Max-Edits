@@ -133,7 +133,7 @@ const Compare = observer(() => {
                 onChange={(e) =>
                   SearchStore.setAmount(e.target.value)
                 }
-                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-1.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-2 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}

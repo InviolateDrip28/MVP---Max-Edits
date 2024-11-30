@@ -48,11 +48,11 @@ const Homepage = observer(() => {
           <p className="text-center xl:text-left bigHeading animatedGradientText">
             Search. Send. Save.
           </p>
-          <p className="text-center xl:text-left xl:pt-8">
+          <h4 className="text-center xl:text-left xl:pt-8">
             Search across banks, remittance apps, and crypto services
-            to find the best way to send or recieve your international
+            to find the best way to send or receive your international
             money transfer.
-          </p>
+          </h4>
         </div>
 
         <div
@@ -146,7 +146,7 @@ const Homepage = observer(() => {
                 onChange={(e) =>
                   SearchStore.setAmount(e.target.value)
                 }
-                className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-1 2xl:py-0.5 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-1.5 2xl:py-1 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
@@ -191,10 +191,10 @@ const Homepage = observer(() => {
         className="text-center mb-12 lg:mb-24 space-y-12 "
       >
         <h1 className="text-center">Partners</h1>
-        <p>
-          We work with industry leading financial-institutions to
+        <h3>
+          We work with industry leading financial institutions to
           provide you with the best rates
-        </p>
+        </h3>
         <Marquee items={PARTNERS} />
       </div>
 

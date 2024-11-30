@@ -35,7 +35,7 @@ export default function NavPopover() {
       >
         <Drawer.Header
           style={{ fontSize: "30px" }}
-          className="pl-3 pb-8 -mt-3"
+          className="pl-3 pb-8 -mt-1.5"
           theme={{
             inner: {
               titleText: "text-2xl",

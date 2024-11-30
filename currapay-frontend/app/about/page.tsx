@@ -36,7 +36,7 @@ const TEAM: Member[] = [
     imgSrc: "/team/max-pfp.png",
     linkedin:
       " https://www.linkedin.com/in/maximillian-stanley-681619135/",
-    desc: "Max was, most recently, an investment banker at Citi, covering tech in his equity capital markets portfolio. He worked on the Citi team that supported Sweetgreen's IPO. Before that, he was an analyst at Olsen Palmer, a boutique investment banking firm in Washington D.C., working in M&A. He graduated from the George Washington University. He holds Series 63, 7, and 79 licenses. ",
+    desc: "Before co-founding CurraPay, Max was an investment banker at Citi, covering the Technology and Communications sector. Before Citi, he was an analyst at Olsen Palmer, an investment bank in Washington D.C., working on community bank M&A. He received a B.A. in Economics and History from George Washington University. He holds Series 7, 79, and 63 licenses.",
   },
 ];
 
@@ -94,28 +94,30 @@ export default function About() {
   return (
     <section className="w-screen max-w-full text-center gap-36 lg:gap-48 overflow-hidden">
       <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8 subsection">
-        <div className="relative space-y-4 lg:col-span-2 lg:pr-16 text-base 2xl:text-2xl">
+        <div className="relative space-y-4 lg:col-span-2 lg:pr-16 2xl:text-2xl 2xl:-mt-16 mobile:mx-11">
           <h1 className="">Our Mission</h1>
           <h3 className="font-semibold">
             We&apos;re building a better way to send money abroad.
           </h3>
-          <p className="pt-4">
-            Our platform is helping the world reach Target 10(c) of
-            the U.N. Sustainable Development&apos;s Goals: reducing
-            the cost of sending money abroad below 3%. Through our
-            platform, we are helping move demand within the
+          <h4 className="pt-4">
+            CurraPay is helping the world reach Target 10(c) of the
+            United Nation&apos;s Sustainable Development&apos;s Goals:
+            reducing the cost of sending money abroad below 3%.
+          </h4>
+          <h4>
+            Through CurraPay, we are helping move demand within the
             international money transfer market away from slow and
             expensive institutions, and towards cheaper and quicker
             alternatives.
-          </p>
-          <p>
+          </h4>
+          <h4>
             We are working at the intersection of profit and purpose
-            to build a marketplace that empowers the more than one
+            to build a marketplace that empowers the more than 1
             billion people who send and receive more than $13 trillion
             annually.
-          </p>
+          </h4>
         </div>
-        <div className="w-full lg:col-span-1 lg:translate-x-1/4 -my-12 lg:-my-36 xl:-my-40">
+        <div className="w-full lg:col-span-1 lg:translate-x-1/4 -my-12 lg:-my-36 xl:-my-40 2xl:-my-48">
           <Globe className="relative flex justify-center items-center " />
         </div>
       </div>
@@ -211,13 +213,17 @@ export default function About() {
         </div>
       </div>
 
-      <div className="subsection flex flex-col space-y-12 md:space-y-24 items-center">
+      <div className="subsection flex flex-col space-y-12 md:space-y-16 items-center">
         <h1>Meet the Team</h1>
-        <p>
+        <h4>
           Our company was built by founders from best-in class finance
           and technology companies
-        </p>
-        <div className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24">
+        </h4>
+        <div
+          className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24"
+          data-aos="fade-up"
+          data-aos-duration="3000"
+        >
           {TEAM.map((member) => (
             <MemberCard key={member.name} member={member} />
           ))}

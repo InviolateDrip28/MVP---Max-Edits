@@ -60,7 +60,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
             <span
               className={`${props.hasImage && "ml-1.5"} ${
                 props.textStyles && props.textStyles
-              } block truncate xl:min-w-[4ch] xl:max-w-[12ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
+              } py-0.5 block truncate xl:min-w-[4ch] xl:max-w-[16ch] 2xl:min-w-[12ch] 2xl:max-w-[50ch]`}
             >
               {props.reference[selected]}
             </span>
@@ -78,7 +78,7 @@ export default function DropdownSelect(props: DropdownSelectProps) {
         {props.dropdownList && (
           <ListboxOptions
             transition
-            className="absolute z-20 mt-1 max-h-56 w-full overflow-auto no-scrollbar rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm backdrop-blur-xl"
+            className="absolute z-20 mt-1 max-h-56 w-full overflow-auto no-scrollbar rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in backdrop-blur-xl"
           >
             {props.dropdownList.map((code) => (
               <ListboxOption
@@ -96,9 +96,9 @@ export default function DropdownSelect(props: DropdownSelectProps) {
                       className="h-5 w-5 flex-shrink-0"
                     />
                   )}
-                  <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
+                  <polygon className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
                     {props.reference[code]}
-                  </span>
+                  </polygon>
                 </div>
                 <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-accent group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden">
                   <CheckIcon aria-hidden="true" className="h-5 w-5" />
