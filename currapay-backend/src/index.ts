@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 // Define a route for the root path
 app.get("/", (req, res) => {
-  res.send("Welcome to the tRPC API!");
+  res.send("Currapay's Server");
 });
 
 // tRPC setup
