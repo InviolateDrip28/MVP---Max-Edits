@@ -7,6 +7,7 @@ import { xeRouter } from "./routers/xeRouter";
 import { ofxRouter } from "./routers/ofxRouter";
 import { allRatesRouter } from "./routers/allRatesRouter";
 import { instaremRouter } from "./routers/instaremRouter";
+import { westernUnionRouter } from "./routers/westernUnionRouter";
 
 const t = initTRPC.create();
 
@@ -23,6 +24,7 @@ export const appRouter = t.router({
   ofx: ofxRouter,
   allRates: allRatesRouter,
   instarem: instaremRouter,
+  westernUnion: westernUnionRouter,
 });
 
 export type AppRouter = typeof appRouter;

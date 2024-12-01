@@ -8,7 +8,9 @@ export const allRatesRouter = t.router({
   getRankedRates: t.procedure
     .input(
       z.object({
+        // currency of sell
         sell: z.string().length(3),
+        // currency of buy
         buy: z.string().length(3),
         amount: z.number().positive(),
         country: z.string().length(2),
@@ -45,7 +47,7 @@ export const allRatesRouter = t.router({
         );
 
         xeRate = response.data.rates[0]?.rate || null;
-        xeRate = parseFloat(Number(xeRate).toFixed(3))
+        xeRate = parseFloat(Number(xeRate).toFixed(3));
         console.log("XE rate:", xeRate);
       } catch (error) {
         console.error("Error fetching XE rate:", error);
@@ -89,7 +91,7 @@ export const allRatesRouter = t.router({
         );
 
         amRate = response.data.payload?.quote?.rate || null;
-        amRate = parseFloat(Number(amRate).toFixed(3))
+        amRate = parseFloat(Number(amRate).toFixed(3));
         console.log("Atlantic Money Rate:", amRate);
       } catch (error) {
         console.error("Error fetching Atlantic Money rate:", error);
@@ -109,11 +111,31 @@ export const allRatesRouter = t.router({
         );
 
         csRate = response.data.data.offer || null;
-        csRate = parseFloat(Number(csRate).toFixed(3))
+        csRate = parseFloat(Number(csRate).toFixed(3));
         console.log("Currency Solution Rate:", csRate);
       } catch (error) {
         console.error("Error fetching Currency Solution rate:", error);
         throw new Error("Failed to fetch Currency Solution  rate");
+      }
+
+      // Get Western Union Rate
+      let wuRate: number | null = null;
+      try {
+        const response = await axios.get(
+          `${process.env.WU_URL}/wuconnect/prices/products`,
+          {
+            headers: {
+              "x-api-key": process.env.WU_KEY!,
+            },
+          }
+        );
+
+        wuRate = response.data.products[0].exchangeRate;
+        wuRate = parseFloat(Number(wuRate).toFixed(3));
+        console.log("Western Union Rate:", wuRate);
+      } catch (error) {
+        console.error("Error fetching Western Union rate:", error);
+        throw new Error("Failed to fetch Western Union rate");
       }
 
       // Return rates in descending order
@@ -122,6 +144,7 @@ export const allRatesRouter = t.router({
         // { source: "OFX", rate: ofxRate },
         { source: "Atlantic Money", rate: amRate },
         { source: "Currency Solution", rate: csRate },
+        { source: "Western Union", rate: wuRate },
       ];
 
       rates.sort((a, b) => {
