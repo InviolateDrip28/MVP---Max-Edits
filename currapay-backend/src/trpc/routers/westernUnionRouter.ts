@@ -18,18 +18,32 @@ export const westernUnionRouter = t.router({
       })
     )
     .query(async (opts) => {
-      const { sell, buy } = opts.input;
+      const { sell, buy, amount, country, destinationCountry } = opts.input;
       try {
-        const response = await axios.get(
+        const request = {
+          origination: {
+            country,
+            currency: sell,
+            sendAmount: amount,
+          },
+          destination: {
+            country: destinationCountry,
+            currency: buy,
+          },
+        };
+
+        const response = await axios.post(
           `${process.env.WU_URL}/wuconnect/prices/products`,
+          request,
           {
             headers: {
+              "Content-Type": "application/json",
               "x-api-key": process.env.WU_KEY!,
             },
           }
         );
 
-        const wuRate = response.data.products[0].exchangeRate;
+        const wuRate = response.data.products[0]?.exchangeRate;
         console.log("Western Union Rate:", wuRate);
         return wuRate;
       } catch (error) {

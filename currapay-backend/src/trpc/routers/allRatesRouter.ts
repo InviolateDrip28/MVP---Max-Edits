@@ -121,16 +121,30 @@ export const allRatesRouter = t.router({
       // Get Western Union Rate
       let wuRate: number | null = null;
       try {
-        const response = await axios.get(
+        const request = {
+          origination: {
+            country,
+            currency: sell,
+            sendAmount: amount,
+          },
+          destination: {
+            country: destinationCountry,
+            currency: buy,
+          },
+        };
+
+        const response = await axios.post(
           `${process.env.WU_URL}/wuconnect/prices/products`,
+          request,
           {
             headers: {
+              "Content-Type": "application/json",
               "x-api-key": process.env.WU_KEY!,
             },
           }
         );
 
-        wuRate = response.data.products[0].exchangeRate;
+        wuRate = response.data.products[0]?.exchangeRate;
         wuRate = parseFloat(Number(wuRate).toFixed(3));
         console.log("Western Union Rate:", wuRate);
       } catch (error) {
