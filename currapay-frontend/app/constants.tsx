@@ -637,11 +637,11 @@ const PARTNERS = [
   },
   {
     image: "/partners/remitly_logo.png",
-    link: "https://remitly.com/",
+    link: "https://remitly.tod8mp.net/55g9ko",
   },
   {
     image: "/partners/ria_logo.png",
-    link: "https://ria.com/",
+    link: "https://ria-money-transfer.7eer.net/e1KVn6",
   },
   {
     image: "/partners/moneygram_logo.png",
@@ -649,7 +649,7 @@ const PARTNERS = [
   },
   {
     image: "/partners/transfergo_logo.png",
-    link: "https://transfergo.com/",
+    link: "https://transfergo.sjv.io/xLk4Jx",
   },
   {
     image: "/partners/westernunion_logo.png",
@@ -657,15 +657,15 @@ const PARTNERS = [
   },
   {
     image: "/partners/wise_logo.png",
-    link: "https://wise.com/",
+    link: "https://wise.prf.hn/click/camref:1011l3XFpW",
   },
   {
     image: "/partners/worldremit_logo.png",
-    link: "https://www.worldremit.com/",
+    link: "https://worldremit.sjv.io/DyKXW5",
   },
   {
     image: "/partners/xe_logo.png",
-    link: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
+    link: "https://xe-money-transfer.sjv.io/QjymYa",
   },
 ];
 

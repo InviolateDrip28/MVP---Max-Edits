@@ -22,7 +22,7 @@ export default function RecipientCard(props: RecipientCardProps) {
       <div className="font-normal text-secondary/80 block lg-xl:hidden">
         <div>
           <p>
-            <span className="mb-2 font-semibold text-secondary">
+            <span className="mb-2 font-semibold text-primary">
               Recipient recieves:{"  "}
             </span>
             <span>
@@ -90,7 +90,7 @@ export default function RecipientCard(props: RecipientCardProps) {
 
       {/* larger screens */}
       <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow hidden lg-xl:block">
-        <BanknotesIcon className="w-8 h-8 text-secondary mb-3" />
+        <BanknotesIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
         <h4 className="mb-4 font-semibold tracking-tight text-primary pr-3">
           Recipient recieves
         </h4>

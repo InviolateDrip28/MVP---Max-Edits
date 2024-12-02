@@ -13,12 +13,14 @@ import {
   ArrowsRightLeftIcon,
   ArrowsUpDownIcon,
 } from "@heroicons/react/20/solid";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ProviderCard from "./components/ProviderCard";
 import { Pagination } from "@/components/Pagination";
 import { useState, useEffect } from "react";
 import { Provider } from "./types";
 import { trpc } from "@/utils/trpc";
 import { Spinner } from "@/components/Spinner";
+import { Tooltip } from "flowbite-react";
 
 type TData = Provider[];
 interface QueryResult<TData> {
@@ -178,7 +180,7 @@ const Compare = observer(() => {
           <h3 className="">Loading...</h3>
         </div>
       )}
-      
+
       {error && (
         <h3 className="w-full h-full text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
           Error getting results, please try again.
@@ -187,9 +189,27 @@ const Compare = observer(() => {
 
       {numProviders > 0 && (
         <>
-          <h3 className="text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6">
-            Showing results from {numProviders} providers
-          </h3>
+          <div className="pt-10 pb-0 lg:pt-16 lg:pb-6 space-y-4 text-secondary text-center">
+            <h3 className="text-accent font-semibold">Showing results from {numProviders} providers</h3>
+            <p className="whitespace-nowrap space-x-1.5 flex items-center ">
+              <Tooltip
+                content="CurraPay is supported by you. When you discover a provider through our links on our site, we may earn an affiliate commission."
+                placement="bottom"
+                className="max-w-md shadow-2xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30"
+                style="light"
+                theme={{arrow: {base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30"}}}
+              >
+                <span className="underline underline-offset-4 flex items-center cursor-pointer">
+                  <QuestionMarkCircleIcon className="h-4 w-4 md:h-6 md:w-6 mr-1" />
+                  Advertiser disclosure
+                </span>
+              </Tooltip>
+
+              <span>|</span>
+              <span>Sorted by amount received</span>
+            </p>
+          </div>
+
           <div
             id="providers"
             className="flex flex-col gap-8 xl:gap-16 w-full"

@@ -33,7 +33,7 @@ export default function ProviderCard(props: ProviderCardProps) {
   const showDeal = false; // TODO: implement this
 
   return (
-    <div className="relative border bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
+    <div className="relative border-2 border-secondary/25 bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
       {/* smaller screens (no images, less details) */}
       <div className="block lg-xl:hidden">
         <div className="flex flex-col gap-4">
@@ -63,7 +63,7 @@ export default function ProviderCard(props: ProviderCardProps) {
           <div>
             <div className="font-normal text-secondary/80">
               <p>
-                <span className="mb-2 font-semibold text-secondary">
+                <span className="mb-2 font-semibold text-primary">
                   Transfer time:{"  "}
                 </span>
                 <span>
@@ -76,7 +76,7 @@ export default function ProviderCard(props: ProviderCardProps) {
 
           <div className="font-normal text-secondary/80">
             <p>
-              <span className="mb-2 font-semibold text-secondary">
+              <span className="mb-2 font-semibold text-primary">
                 Fee:{"  "}
               </span>
               <span>
@@ -139,7 +139,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                 <div>
                   <div className="font-normal text-secondary/80">
                     <p>
-                      <span className="mb-2 font-semibold text-secondary">
+                      <span className="mb-2 font-semibold text-primary">
                         Transfer time:{"  "}
                       </span>
                       {/* <span>{option.transferTime}</span> */}
@@ -158,7 +158,7 @@ export default function ProviderCard(props: ProviderCardProps) {
 
                 <div className="font-normal text-secondary/80">
                   <p>
-                    <span className="mb-2 font-semibold text-secondary">
+                    <span className="mb-2 font-semibold text-primary">
                       Fee:{"  "}
                     </span>
                     <span>
@@ -207,7 +207,7 @@ export default function ProviderCard(props: ProviderCardProps) {
             />
           </div>
           <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow ">
-            <ClockIcon className="w-8 h-8 text-secondary mb-3" />
+            <ClockIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
             <h4 className="mb-4 font-semibold tracking-tight text-primary">
               Transfer time
             </h4>
@@ -252,14 +252,14 @@ export default function ProviderCard(props: ProviderCardProps) {
           </div>
 
           <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
-            <ArrowPathIcon className="w-8 h-8 text-secondary mb-3" />
+            <ArrowPathIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
             <h4 className="mb-4 font-semibold tracking-tight text-primary">
               Rates
             </h4>
 
             <div className="pb-12 space-y-2 font-normal">
               <p>
-                <span className="font-semibold">Fee: </span>{" "}
+                <span className="font-semibold text-primary">Fee: </span>{" "}
                 {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
                 {props.fromCurrency}
               </p>
@@ -291,7 +291,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                 <div className="rounded-lg gap-4 flex flex-row justify-center text-secondary">
                   <div className="relative w-full mr-4"></div>
                   <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow ">
-                    <ClockIcon className="w-8 h-8 text-secondary mb-3" />
+                    <ClockIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
 
                     <h4 className="mb-4 font-semibold tracking-tight text-primary">
                       Transfer time
@@ -317,14 +317,14 @@ export default function ProviderCard(props: ProviderCardProps) {
                   </div>
 
                   <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow text-secondary ">
-                    <ArrowPathIcon className="w-8 h-8 text-secondary mb-3" />
-                    <h4 className="mb-4 font-semibold tracking-tight text-primary">
+                    <ArrowPathIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
+                    <h4 className="mb-4 font-semibold tracking-tight text-primary ">
                       Rates
                     </h4>
 
                     <div className="pb-12 space-y-2 font-normal">
                       <p>
-                        <span className="font-semibold">Fee: </span>{" "}
+                        <span className="font-semibold text-primary">Fee: </span>{" "}
                         {/* {option.fee} {props.fromCurrency} */}
                         {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
                         {props.fromCurrency}
