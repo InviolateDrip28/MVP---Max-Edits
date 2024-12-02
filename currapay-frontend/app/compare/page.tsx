@@ -195,7 +195,7 @@ const Compare = observer(() => {
               <Tooltip
                 content="CurraPay is supported by you. When you discover a provider through our links on our site, we may earn an affiliate commission."
                 placement="bottom"
-                className="max-w-md shadow-2xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30"
+                className="max-w-xs md:max-w-md shadow-xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30"
                 style="light"
                 theme={{arrow: {base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30"}}}
               >
