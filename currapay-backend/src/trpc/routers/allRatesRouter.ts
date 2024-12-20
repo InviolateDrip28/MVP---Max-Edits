@@ -51,7 +51,8 @@ export const allRatesRouter = t.router({
         console.log("XE rate:", xeRate);
       } catch (error) {
         console.error("Error fetching XE rate:", error);
-        throw new Error("Failed to fetch XE rate");
+        xeRate = null;
+        // throw new Error("Failed to fetch XE rate");
       }
 
       // Get OFX Rate
@@ -84,7 +85,6 @@ export const allRatesRouter = t.router({
               amount: amount,
               destinationCurrencyCode: buy,
               entryMode: "source",
-
               sourceCurrencyCode: sell,
             },
           }
@@ -95,7 +95,8 @@ export const allRatesRouter = t.router({
         console.log("Atlantic Money Rate:", amRate);
       } catch (error) {
         console.error("Error fetching Atlantic Money rate:", error);
-        throw new Error("Failed to fetch Atlantic Money rate");
+        amRate = null;
+        // throw new Error("Failed to fetch Atlantic Money rate");
       }
 
       // Get Currency Solutions Rate
@@ -115,7 +116,8 @@ export const allRatesRouter = t.router({
         console.log("Currency Solution Rate:", csRate);
       } catch (error) {
         console.error("Error fetching Currency Solution rate:", error);
-        throw new Error("Failed to fetch Currency Solution  rate");
+        // throw new Error("Failed to fetch Currency Solution  rate");
+        csRate = null;
       }
 
       // Get Western Union Rate
@@ -149,7 +151,8 @@ export const allRatesRouter = t.router({
         console.log("Western Union Rate:", wuRate);
       } catch (error) {
         console.error("Error fetching Western Union rate:", error);
-        throw new Error("Failed to fetch Western Union rate");
+        // throw new Error("Failed to fetch Western Union rate");
+        wuRate = null;
       }
 
       // Return rates in descending order

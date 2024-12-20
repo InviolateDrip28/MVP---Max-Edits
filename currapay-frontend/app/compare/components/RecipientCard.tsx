@@ -10,8 +10,8 @@ import { PARTNER_NAMES_TO_FEES } from "@/app/constants";
 export default function RecipientCard(props: RecipientCardProps) {
   const [showRecieveDetails, setShowRecieveDetails] = useState(false);
   const total = (
-    parseFloat(props.amount) -
-    Number(PARTNER_NAMES_TO_FEES[props.provider]) * props.option.rate
+    parseFloat(props.amount) * props.option.rate -
+    Number(PARTNER_NAMES_TO_FEES[props.provider])
   )
     .toFixed(2)
     .toString();
@@ -27,8 +27,7 @@ export default function RecipientCard(props: RecipientCardProps) {
             </span>
             <span>
               {" "}
-              {total}{" "}
-              {props.toCurrency}
+              {total} {props.toCurrency}
             </span>
           </p>
         </div>
@@ -55,9 +54,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
             <div className="border border-secondary/80 my-2" />
-            <p className="text-right">
-              {total}
-            </p>
+            <p className="text-right">{total}</p>
           </div>
         )}
         <button
@@ -68,20 +65,14 @@ export default function RecipientCard(props: RecipientCardProps) {
             <p className="inline-flex text-accent">
               Hide
               <span className="flex items-center ml-1">
-                <ChevronUpIcon
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                />
+                <ChevronUpIcon aria-hidden="true" className="h-4 w-4" />
               </span>
             </p>
           ) : (
             <p className="inline-flex hover:text-accent">
               More details
               <span className="flex items-center ml-1">
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                />
+                <ChevronDownIcon aria-hidden="true" className="h-4 w-4" />
               </span>
             </p>
           )}
@@ -95,8 +86,7 @@ export default function RecipientCard(props: RecipientCardProps) {
           Recipient recieves
         </h4>
         <h3 className="pb-24 font-semibold text-accent tracking-tight">
-          {total}{" "}
-          {props.toCurrency}
+          {total} {props.toCurrency}
         </h3>
 
         {showRecieveDetails && (
@@ -121,9 +111,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               </span>
             </p>
             <div className="border border-secondary/80 my-2" />
-            <p className="text-right">
-              {total}
-            </p>
+            <p className="text-right">{total}</p>
           </div>
         )}
 
@@ -135,20 +123,14 @@ export default function RecipientCard(props: RecipientCardProps) {
             <p className="inline-flex text-accent">
               Hide
               <span className="flex items-center ml-1">
-                <ChevronUpIcon
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                />
+                <ChevronUpIcon aria-hidden="true" className="h-4 w-4" />
               </span>
             </p>
           ) : (
             <p className="inline-flex text-left">
               More details
               <span className="flex items-center ml-1">
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                />
+                <ChevronDownIcon aria-hidden="true" className="h-4 w-4" />
               </span>
             </p>
           )}
