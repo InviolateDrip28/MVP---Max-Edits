@@ -628,9 +628,7 @@ const PARTNERS = [
     image: "/partners/halofinancial_logo.png",
     link: "https://halofinancial.com/",
   },
-  { image: "/partners/instarem_logo.png", 
-    link: "https://www.instarem.com/" 
-  },
+  { image: "/partners/instarem_logo.png", link: "https://www.instarem.com/" },
   {
     image: "/partners/ofx_logo.png",
     link: "https://www.ofx.com/p/currapay/",
@@ -688,22 +686,21 @@ const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
 
 const PARTNER_NAMES_TO_FEES: Record<string, string> = {
   "Western Union": "3",
-  "Currency Solution": "3",
+  "Currency Solution": "0",
   XE: "3",
   "Atlantic Money": "3",
   Instarem: "3",
-  OFX: "3",
+  OFX: "0",
 };
 
-const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> =
-  {
-    "Western Union": "1-2 days",
-    "Currency Solution": "1-2 days",
-    XE: "1-2 days",
-    "Atlantic Money": "1-2 days",
-    Instarem: "1-2 days",
-    OFX: "1-2 days",
-  };
+const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> = {
+  "Western Union": "1-2 days",
+  "Currency Solution": "1-2 days",
+  XE: "1-2 days",
+  "Atlantic Money": "1-2 days",
+  Instarem: "1-2 days",
+  OFX: "1-2 days",
+};
 
 const LANGUAGES = ["EN", "IN", "ES", "CN"];
 
