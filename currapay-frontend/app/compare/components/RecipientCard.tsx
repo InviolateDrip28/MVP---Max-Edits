@@ -10,8 +10,8 @@ import { PARTNER_NAMES_TO_FEES } from "@/app/constants";
 export default function RecipientCard(props: RecipientCardProps) {
   const [showRecieveDetails, setShowRecieveDetails] = useState(false);
   const total = (
-    parseFloat(props.amount) * props.option.rate -
-    Number(PARTNER_NAMES_TO_FEES[props.provider])
+    (parseFloat(props.amount) - Number(PARTNER_NAMES_TO_FEES[props.provider])) *
+    props.option.rate
   )
     .toFixed(2)
     .toString();

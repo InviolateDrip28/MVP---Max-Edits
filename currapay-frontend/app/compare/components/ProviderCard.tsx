@@ -28,8 +28,7 @@ export default function ProviderCard(props: ProviderCardProps) {
   const optionsFirst = props.options[0];
   const optionsRest =
     props.options.length > 1 ? props.options.slice(1) : undefined;
-  const [showTransferOptions, setShowTransferOptions] =
-    useState(false);
+  const [showTransferOptions, setShowTransferOptions] = useState(false);
   const showDeal = false; // TODO: implement this
 
   return (
@@ -66,9 +65,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                 <span className="mb-2 font-semibold text-primary">
                   Transfer time:{"  "}
                 </span>
-                <span>
-                  {PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}
-                </span>
+                <span>{PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}</span>
               </p>
               <p>Payment method: debit card</p>
             </div>
@@ -81,8 +78,7 @@ export default function ProviderCard(props: ProviderCardProps) {
               </span>
               <span>
                 {/* {props.fee} {props.fromCurrency} */}
-                {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
-                {props.fromCurrency}
+                {PARTNER_NAMES_TO_FEES[props.provider]} {props.fromCurrency}
               </span>
             </p>
             <p>Exchange rate: {optionsFirst.rate}</p>
@@ -102,28 +98,20 @@ export default function ProviderCard(props: ProviderCardProps) {
           <div className="py-4">
             <button
               className="absolute bottom-6 left-6 items-center inline-flex bg-accentDark hover:bg-accentDark/90 cursor-pointer text-white rounded-lg p-1.5 px-2.5 md:py-2 md:px-3"
-              onClick={() =>
-                setShowTransferOptions(!showTransferOptions)
-              }
+              onClick={() => setShowTransferOptions(!showTransferOptions)}
             >
               {showTransferOptions ? (
                 <p className="inline-flex ">
                   Less options
                   <span className="flex items-center ml-1">
-                    <ChevronUpIcon
-                      aria-hidden="true"
-                      className="h-4 w-4"
-                    />
+                    <ChevronUpIcon aria-hidden="true" className="h-4 w-4" />
                   </span>
                 </p>
               ) : (
                 <p className="inline-flex">
                   More options
                   <span className="flex items-center ml-1">
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="h-4 w-4"
-                    />
+                    <ChevronDownIcon aria-hidden="true" className="h-4 w-4" />
                   </span>
                 </p>
               )}
@@ -144,11 +132,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                       </span>
                       {/* <span>{option.transferTime}</span> */}
                       <span>
-                        {
-                          PARTNER_NAMES_TO_TRANSFER_TIMES[
-                            props.provider
-                          ]
-                        }
+                        {PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}
                       </span>
                     </p>
                     {/* <p>Payment method: {option.method} </p> */}
@@ -167,7 +151,7 @@ export default function ProviderCard(props: ProviderCardProps) {
                       {props.fromCurrency}
                     </span>
                   </p>
-                  <p>Exchange rate: {option.rate} %</p>
+                  <p>Exchange rate: {option.rate}</p>
                   {/* <p className="py-2">This is a good option</p> */}
                 </div>
 
@@ -191,8 +175,8 @@ export default function ProviderCard(props: ProviderCardProps) {
           <div className="grid grid-cols-4 gap-4 pb-4">
             <div className="relative col-span-1" />
             <div className="bg-accentSecondary/50 w-full col-span-3 rounded-lg py-1 lg-xl:px-4 xl:px-6">
-              Includes zero transfer fees and/or preferential exchange
-              rate on your first transfer*
+              Includes zero transfer fees and/or preferential exchange rate on
+              your first transfer*
             </div>
           </div>
         )}
@@ -222,28 +206,20 @@ export default function ProviderCard(props: ProviderCardProps) {
             {optionsRest && (
               <button
                 className="flex text-left items-center absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary hover:underline decoration-accent underline-offset-4"
-                onClick={() =>
-                  setShowTransferOptions(!showTransferOptions)
-                }
+                onClick={() => setShowTransferOptions(!showTransferOptions)}
               >
                 {showTransferOptions ? (
                   <p className="inline-flex text-accent">
                     Less options
                     <span className="flex items-center ml-1">
-                      <ChevronUpIcon
-                        aria-hidden="true"
-                        className="h-4 w-4"
-                      />
+                      <ChevronUpIcon aria-hidden="true" className="h-4 w-4" />
                     </span>
                   </p>
                 ) : (
                   <p className="inline-flex hover:text-accent">
                     More options
                     <span className="flex items-center ml-1">
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className="h-4 w-4"
-                      />
+                      <ChevronDownIcon aria-hidden="true" className="h-4 w-4" />
                     </span>
                   </p>
                 )}
@@ -260,12 +236,11 @@ export default function ProviderCard(props: ProviderCardProps) {
             <div className="pb-12 space-y-2 font-normal">
               <p>
                 <span className="font-semibold text-primary">Fee: </span>{" "}
-                {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
-                {props.fromCurrency}
+                {PARTNER_NAMES_TO_FEES[props.provider]} {props.fromCurrency}
               </p>
               <p>
                 <span className="font-semibold">Exchange rate:</span>{" "}
-                {optionsFirst.rate}%
+                {optionsFirst.rate}
               </p>
             </div>
             {/* <p className="absolute text-sm sm:text-base 2xl:text-lg bottom-6 text-secondary">
@@ -299,16 +274,8 @@ export default function ProviderCard(props: ProviderCardProps) {
 
                     <div className="pb-12 space-y-2 font-normal">
                       {/* <p>{option.transferTime}</p> */}
-                      <p>
-                        {
-                          PARTNER_NAMES_TO_TRANSFER_TIMES[
-                            props.provider
-                          ]
-                        }
-                      </p>
-                      <p className="font-semibold">
-                        Payment method:{" "}
-                      </p>
+                      <p>{PARTNER_NAMES_TO_TRANSFER_TIMES[props.provider]}</p>
+                      <p className="font-semibold">Payment method: </p>
                       <p className="-translate-y-2">
                         {/* {option.method} */}
                         debit card
@@ -324,15 +291,15 @@ export default function ProviderCard(props: ProviderCardProps) {
 
                     <div className="pb-12 space-y-2 font-normal">
                       <p>
-                        <span className="font-semibold text-primary">Fee: </span>{" "}
+                        <span className="font-semibold text-primary">
+                          Fee:{" "}
+                        </span>{" "}
                         {/* {option.fee} {props.fromCurrency} */}
                         {PARTNER_NAMES_TO_FEES[props.provider]}{" "}
                         {props.fromCurrency}
                       </p>
                       <p>
-                        <span className="font-semibold">
-                          Exchange rate:
-                        </span>{" "}
+                        <span className="font-semibold">Exchange rate:</span>{" "}
                         {option.rate}%
                       </p>
                     </div>
