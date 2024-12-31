@@ -125,41 +125,40 @@ export default function About() {
       <div className="subsection">
         <h1>Our Story</h1>
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-36 justify-center items-center">
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 w-full h-full gap-20 lg:gap-36 justify-center items-center">
           <div
-            className="relative w-full h-[20rem] order-2 lg:order-1"
+            className="relative w-full h-full order-2 lg:order-1 items-center justify-center"
             data-aos="fade-up"
             data-aos-duration="3000"
           >
-            <Image
-              src={"/NJ.png"}
-              alt="new jersey"
-              className="rounded-lg"
-              fill
-              objectFit="cover"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={"/max_and_david.jpg"}
+              alt="founders"
+              className="object-contain rounded-lg"
             />
           </div>
 
           <div
-            className="text-center lg:text-left space-y-4 order-1 lg:order-2"
+            className="text-center lg:text-left space-y-4 order-1 lg:order-2 2xl:text-2xl"
             data-aos="fade-up"
             data-aos-duration="3000"
           >
-            <p>
+            <h4>
               As a graduate student at Oxford, David McMillan realized
               that sending money back home to the U.S. was too
               complicated. He teamed up with a longtime friend and
               British expat, Max Stanley, who worked in investment
               banking at Citi.
-            </p>
-            <p>
+            </h4>
+            <h4>
               Together, they founded CurraPay to help simplify
               international money transfers for the one billion people
               and businesses who sent $13 trillion abroad last year.
-            </p>
+            </h4>
           </div>
 
-          <p
+          <h4
             className="text-center lg:text-left order-3"
             data-aos="fade-up"
             data-aos-duration="2000"
@@ -170,7 +169,7 @@ export default function About() {
             Institute of Technology, and the New Jersey Economic
             Development Authority. We launched our platform in
             November 2024.
-          </p>
+          </h4>
 
           <div
             className="h-full w-full grid grid-cols-2 gap-12 place-content-between order-4"

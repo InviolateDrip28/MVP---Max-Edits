@@ -4,8 +4,8 @@ import { makeAutoObservable } from "mobx";
 class _UserStore {
   // Default values
   loggedIn = false;
-  firstName = "Jessica";
-  lastName = "Ni";
+  firstName = "First";
+  lastName = "Last";
   country = "US";
 
   constructor() {

@@ -190,7 +190,7 @@ const Homepage = observer(() => {
         id="partners"
         className="text-center mb-12 lg:mb-24 space-y-12 "
       >
-        <h1 className="text-center">Partners</h1>
+        <h1 className="text-center">Our Partners</h1>
         <h3>
           We work with industry leading financial institutions to
           provide you with the best rates
