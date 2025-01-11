@@ -215,7 +215,7 @@ const Compare = () => {
             <h3 className="font-semibold">No results</h3>
 
             <h4>
-              Looks like we couldn't find any providers that send
+              Looks like we couldn&apos;t find any providers that send
               money from{" "}
               <span className="font-semibold">
                 {COUNTRY_CODE_TO_NAME[_fromCountry]} ({_fromCountry})
@@ -232,7 +232,7 @@ const Compare = () => {
               className="bg-accent hover:bg-accent/75 text-white rounded-lg py-2 px-3 md:py-4 md:px-6 font-bold"
               href={"/"}
             >
-              <h4>Let's try a new search!</h4>
+              <h4>Let&apos;s try a new search!</h4>
             </Link>
           </div>
         </div>
