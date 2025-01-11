@@ -5,12 +5,13 @@ import {
 } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { RecipientCardProps } from "../types";
-import { PARTNER_NAMES_TO_FEES } from "@/app/constants";
+
+import { PARTNER_NAMES_TO_DETAILS } from "@/app/constants";
 
 export default function RecipientCard(props: RecipientCardProps) {
   const [showRecieveDetails, setShowRecieveDetails] = useState(false);
   const total = (
-    (parseFloat(props.amount) - Number(PARTNER_NAMES_TO_FEES[props.provider])) *
+    (parseFloat(props.amount) - Number(PARTNER_NAMES_TO_DETAILS[props.provider].fees)) *
     props.option.rate
   )
     .toFixed(2)
@@ -43,7 +44,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               <span>- Fee</span>
               <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
               <span className="text-right font-semibold">
-                {PARTNER_NAMES_TO_FEES[props.provider]}
+                {PARTNER_NAMES_TO_DETAILS[props.provider].fees}
               </span>
             </p>
             <p className="flex whitespace-nowrap">
@@ -100,7 +101,7 @@ export default function RecipientCard(props: RecipientCardProps) {
               <span>- Fee</span>
               <span className="border-b border-dashed border-secondary/70 -translate-y-2 w-full mx-1"></span>
               <span className="text-right font-semibold">
-                {PARTNER_NAMES_TO_FEES[props.provider]}
+                {PARTNER_NAMES_TO_DETAILS[props.provider].fees}
               </span>
             </p>
             <p className="flex whitespace-nowrap">

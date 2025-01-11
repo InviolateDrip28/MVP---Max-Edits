@@ -618,7 +618,7 @@ const COUNTRY_CODE_TO_CURRENCY: Record<string, string> = {
 const PARTNERS = [
   {
     image: "/partners/atlantic_logo.png",
-    link: "https://atlantic.money/",
+    link: "https://share.atlantic.money/test",
   },
   {
     image: "/partners/currencysolutions_logo.png",
@@ -628,7 +628,10 @@ const PARTNERS = [
     image: "/partners/halofinancial_logo.png",
     link: "https://halofinancial.com/",
   },
-  { image: "/partners/instarem_logo.png", link: "https://www.instarem.com/" },
+  {
+    image: "/partners/instarem_logo.png",
+    link: "https://www.instarem.com/",
+  },
   {
     image: "/partners/ofx_logo.png",
     link: "https://www.ofx.com/p/currapay/",
@@ -667,39 +670,94 @@ const PARTNERS = [
   },
 ];
 
-const PARTNER_NAMES_TO_LINKS: Record<string, string> = {
-  "Western Union": "https://www.westernunion.com",
-  "Currency Solution": "https://www.currencysolutions.com",
-  XE: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
-  "Atlantic Money": "https://www.atlanticmoney.com",
-  Instarem: "https://www.instarem.com",
-};
+interface PartnerDetails {
+  displayName: string;
+  link: string;
+  image: string;
+  fees: string;
+  transferTime: string;
+}
 
-const PARTNER_NAMES_TO_IMAGES: Record<string, string> = {
-  "Western Union": "/partners/westernunion_logo.png",
-  "Currency Solution": "/partners/currencysolutions_logo.png",
-  XE: "/partners/xe_logo.png",
-  "Atlantic Money": "/partners/atlantic_logo.png",
-  Instarem: "/partners/instarem_logo.png",
-  OFX: "/partners/ofx_logo.png",
-};
+const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
+  "Western Union": {
+    displayName: "Western Union",
+    link: "https://www.westernunion.com",
+    image: "/partners/westernunion_logo.png",
+    fees: "3",
+    transferTime: "1-2 days",
+  },
+  "Currency Solution": {
+    displayName: "Currency Solutions",
+    link: "https://www.currencysolutions.com",
+    image: "/partners/currencysolutions_logo.png",
+    fees: "0",
+    transferTime: "1-2 days",
+  },
+  XE: {
+    displayName: "XE",
+    link: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
+    image: "/partners/xe_logo.png",
+    fees: "3",
+    transferTime: "1-2 days",
+  },
+  "Atlantic Money": {
+    displayName: "Atlantic Money",
+    link: "https://share.atlantic.money/test",
+    image: "/partners/atlantic_logo.png",
+    fees: "3",
+    transferTime: "1-2 days",
+  },
+  Instarem: {
+    displayName: "Instarem",
+    link: "https://www.instarem.com",
+    image: "/partners/instarem_logo.png",
+    fees: "3",
+    transferTime: "1-2 days",
+  },
+  OFX: {
+    displayName: "OFX",
+    link: "https://www.ofx.com/p/currapay/",
+    image: "/partners/ofx_logo.png",
+    fees: "0",
+    transferTime: "1-2 days",
+  },
+  Remitly: {
+    displayName: "Remitly",
+    link: "https://remitly.tod8mp.net/55g9ko",
+    image: "/partners/remitly_logo.png",
+    fees: "3",
+    transferTime: "1-2 days",
+  },
+}
 
-const PARTNER_NAMES_TO_FEES: Record<string, string> = {
-  "Western Union": "3",
-  "Currency Solution": "0",
-  XE: "3",
-  "Atlantic Money": "3",
-  Instarem: "3",
-  OFX: "0",
-};
+interface ModalDetails {
+  description: string[];
+  details?: string;
+}
 
-const PARTNER_NAMES_TO_TRANSFER_TIMES: Record<string, string> = {
-  "Western Union": "1-2 days",
-  "Currency Solution": "1-2 days",
-  XE: "1-2 days",
-  "Atlantic Money": "1-2 days",
-  Instarem: "1-2 days",
-  OFX: "1-2 days",
+const PARTNER_NAMES_TO_PROMOTION: Record<string, ModalDetails> = {
+  "Western Union": {
+    description: [
+      "Get a $0 transfer fee* the first time you send money internationally online or with the Western Union app.",
+    ],
+    details: "FX gains apply.",
+  },
+  "Currency Solution": {
+    description: [
+      "Currency Solutions is a “zero-fee” broker (FX gains still apply).",
+    ],
+  },
+  Remitly: {
+    description: [
+      "$0 fee on first transfer.",
+      "$0 fees anytime you send a transfer of $1,000 or higher in the USA-IND corridor.",
+    ],
+  },
+  OFX: {
+    description: [
+      "OFX is a “zero-fee” broker (FX gains still apply).",
+    ],
+  },
 };
 
 const LANGUAGES = ["EN", "IN", "ES", "CN"];
@@ -741,10 +799,8 @@ export {
   COUNTRY_CODES,
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
-  PARTNER_NAMES_TO_FEES,
-  PARTNER_NAMES_TO_IMAGES,
-  PARTNER_NAMES_TO_LINKS,
-  PARTNER_NAMES_TO_TRANSFER_TIMES,
+  PARTNER_NAMES_TO_DETAILS,
+  PARTNER_NAMES_TO_PROMOTION,
   PARTNERS,
   LANGUAGES,
   FAQS,

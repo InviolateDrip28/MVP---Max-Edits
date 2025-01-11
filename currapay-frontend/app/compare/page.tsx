@@ -12,6 +12,7 @@ import {
 import {
   ArrowsRightLeftIcon,
   ArrowsUpDownIcon,
+  ExclamationCircleIcon,
 } from "@heroicons/react/20/solid";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ProviderCard from "./components/ProviderCard";
@@ -21,6 +22,7 @@ import { Provider } from "./types";
 import { trpc } from "@/utils/trpc";
 import { Spinner } from "@/components/Spinner";
 import { Tooltip } from "flowbite-react";
+import { NumericFormat } from "react-number-format";
 
 type TData = Provider[];
 interface QueryResult<TData> {
@@ -129,13 +131,17 @@ const Compare = observer(() => {
 
           <div className="inline-flex flex-col sm:flex-row items-center sm:space-x-3">
             <div className="w-full inline-flex items-center space-x-2 sm:space-x-3">
-              <input
-                type="number"
+              <NumericFormat
+                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-2 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+                thousandSeparator={","}
                 value={SearchStore.amount}
                 onChange={(e) =>
-                  SearchStore.setAmount(e.target.value)
+                  SearchStore.setAmount(
+                    e.target.value.replace(/,/g, "")
+                  )
                 }
-                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-2 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+                allowNegative={false}
+                decimalScale={2}
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
@@ -187,17 +193,55 @@ const Compare = observer(() => {
         </h3>
       )}
 
+      {numProviders === 0 && !isLoading && (
+        <div className="w-full h-full text-secondary text-center pt-10 pb-0 lg:pt-16 lg:pb-6 space-y-12 md:space-y-16">
+          <div className="space-y-4">
+            <div className="flex justify-center">
+              <ExclamationCircleIcon className="h-16 w-16 text-accent" />
+            </div>
+            <h3 className="font-semibold">No results</h3>
+
+            <h4>
+              Looks like we couldn't find any providers that send
+              money from{" "}
+              <span className="font-semibold">
+                {COUNTRY_CODE_TO_NAME[fromCountry]} ({fromCountry})
+              </span>{" "}
+              to{" "}
+              <span className="font-semibold">
+                {COUNTRY_CODE_TO_NAME[toCountry]} ({toCountry})
+              </span>
+              .
+            </h4>
+          </div>
+          <div className="flex justify-center">
+            <Link
+              className="bg-accent hover:bg-accent/75 text-white rounded-lg py-2 px-3 md:py-4 md:px-6 font-bold"
+              href={"/"}
+            >
+              <h4>Let's try a new search!</h4>
+            </Link>
+          </div>
+        </div>
+      )}
+
       {numProviders > 0 && (
         <>
           <div className="pt-10 pb-0 lg:pt-16 lg:pb-6 space-y-4 text-secondary text-center">
-            <h3 className="text-accent font-semibold">Showing results from {numProviders} providers</h3>
+            <h3 className="text-accent font-semibold">
+              Showing results from {numProviders} providers
+            </h3>
             <p className="whitespace-nowrap space-x-1.5 flex items-center ">
               <Tooltip
                 content="CurraPay is supported by you. When you discover a provider through our links on our site, we may earn an affiliate commission."
                 placement="bottom"
                 className="max-w-xs md:max-w-md shadow-xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30"
                 style="light"
-                theme={{arrow: {base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30"}}}
+                theme={{
+                  arrow: {
+                    base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30",
+                  },
+                }}
               >
                 <span className="underline underline-offset-4 flex items-center cursor-pointer">
                   <QuestionMarkCircleIcon className="h-4 w-4 md:h-6 md:w-6 mr-1" />

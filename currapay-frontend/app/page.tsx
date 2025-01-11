@@ -23,6 +23,7 @@ import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import CountUp from "react-countup";
 import RatesTable from "@/components/Table";
+import { NumericFormat } from "react-number-format";
 
 const Homepage = observer(() => {
   const { SearchStore } = useStores();
@@ -140,13 +141,13 @@ const Homepage = observer(() => {
           <div className="flex flex-col items-center gap-2">
             <p className="">I want to send</p>
             <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
-              <input
-                type="number"
-                value={SearchStore.amount}
-                onChange={(e) =>
-                  SearchStore.setAmount(e.target.value)
-                }
+              <NumericFormat
                 className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-1.5 2xl:py-1 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                thousandSeparator={","}
+                value={SearchStore.amount}
+                onChange={(e) => SearchStore.setAmount(e.target.value.replace(/,/g, ''))}
+                allowNegative={false}
+                decimalScale={2}
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
