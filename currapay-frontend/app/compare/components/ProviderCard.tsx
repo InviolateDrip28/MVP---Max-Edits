@@ -37,7 +37,7 @@ export default function ProviderCard(props: ProviderCardProps) {
     useState(false);
 
   return (
-    <div className="relative border-2 border-secondary/25 bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
+    <div className="relative border border-secondary/25 bg-white pt-6 pb-20 lg-xl:pb-28 px-6 md:px-8 rounded-lg shadow-md gap-4 flex flex-col justify-center">
       {/* smaller screens (no images, less details) */}
       <div className="block lg-xl:hidden">
         <div className="flex flex-col gap-4">

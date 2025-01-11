@@ -448,6 +448,7 @@ const COUNTRY_CODE_TO_CURRENCY: Record<string, string> = {
   EE: "EUR",
   SZ: "ZAR",
   ET: "ETB",
+  EU: "EUR",
   FK: "FKP",
   FO: "DKK",
   FJ: "FJD",

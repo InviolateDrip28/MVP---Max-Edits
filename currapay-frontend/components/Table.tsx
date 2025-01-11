@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
-import Image from "next/image";
 
 const RatesTable = () => {
   const [currRow, setCurrRow] = useState(0);
@@ -9,7 +8,8 @@ const RatesTable = () => {
 
   const countries = ["US", "GB", "EU", "CA", "CH", "AU", "BR", "JP"];
 
-  const { data, error, isLoading } = trpc.xe.getXeRatesTable.useQuery();
+  const { data, error, isLoading } =
+    trpc.xe.getXeRatesTable.useQuery();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -30,14 +30,24 @@ const RatesTable = () => {
                 <div
                   className={`whitespace-nowrap inline-flex
                      items-center justify-center text-center mb-2 px-2 mx-4 ${
-                       currCol == colIndex && "border-b-4 border-b-accent"
+                       currCol == colIndex &&
+                       "border-b-4 border-b-accent"
                      }`}
                 >
-                  <img
-                    alt={country}
-                    src={`https://flagsapi.com/${country}/flat/64.png`}
-                    className="h-5 pr-2"
-                  />
+                  {country == "EU" ? (
+                    <img
+                      alt={country}
+                      src={`/eu-flag.png`}
+                      className="h-3.5 pr-2"
+                    />
+                  ) : (
+                    <img
+                      alt={country}
+                      src={`https://flagsapi.com/${country}/flat/64.png`}
+                      className="h-5 pr-2"
+                    />
+                  )}
+
                   {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
               </th>
@@ -51,14 +61,23 @@ const RatesTable = () => {
               <th className="sticky left-0 z-20 bg-white pr-6">
                 <div
                   className={`text-right items-center justify-center whitespace-nowrap px-2 inline-flex ${
-                    currRow == rowIndex && " border-b-4 border-b-accent"
+                    currRow == rowIndex &&
+                    " border-b-4 border-b-accent"
                   }`}
                 >
-                  <img
-                    alt={country}
-                    src={`https://flagsapi.com/${country}/flat/64.png`}
-                    className="h-5 pr-2"
-                  />
+                  {country == "EU" ? (
+                    <img
+                      alt={country}
+                      src={`/eu-flag.png`}
+                      className="h-3.5 pr-2"
+                    />
+                  ) : (
+                    <img
+                      alt={country}
+                      src={`https://flagsapi.com/${country}/flat/64.png`}
+                      className="h-5 pr-2"
+                    />
+                  )}
                   1 {COUNTRY_CODE_TO_CURRENCY[country]}
                 </div>
               </th>
@@ -82,7 +101,7 @@ const RatesTable = () => {
                     ? "N/A"
                     : data[rowIndex][colIndex] !== "N/A"
                     ? data[rowIndex][colIndex]
-                    : "N/A"}
+                    : "-"}
                 </td>
               ))}
             </tr>

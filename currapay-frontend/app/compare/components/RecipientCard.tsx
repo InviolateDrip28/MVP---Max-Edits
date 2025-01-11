@@ -15,7 +15,8 @@ export default function RecipientCard(props: RecipientCardProps) {
     props.option.rate
   )
     .toFixed(2)
-    .toString();
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <div className="w-full h-full">

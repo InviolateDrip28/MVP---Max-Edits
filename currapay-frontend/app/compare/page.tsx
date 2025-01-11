@@ -225,7 +225,7 @@ const Compare = observer(() => {
         </div>
       )}
 
-      {numProviders > 0 && (
+      {numProviders > 0 && !isLoading && (
         <>
           <div className="pt-10 pb-0 lg:pt-16 lg:pb-6 space-y-4 text-secondary text-center">
             <h3 className="text-accent font-semibold">
