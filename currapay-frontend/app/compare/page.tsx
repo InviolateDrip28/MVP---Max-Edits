@@ -1,8 +1,8 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { observer } from "mobx-react";
-import { useStores } from "@/stores/provider";
+// import { observer } from "mobx-react";
+// import { useStores } from "@/stores/provider";
 import DropdownSelect from "@/components/DropdownSelect";
 import {
   COUNTRY_CODES,
@@ -25,17 +25,34 @@ import { Tooltip } from "flowbite-react";
 import { NumericFormat } from "react-number-format";
 
 type TData = Provider[];
-interface QueryResult<TData> {
-  data: Provider[] | undefined;
-  error: unknown;
-  isLoading: boolean;
-}
 
-const Compare = observer(() => {
-  const { SearchStore } = useStores();
+// interface QueryResult<TData> {
+//   data: Provider[] | undefined;
+//   error: unknown;
+//   isLoading: boolean;
+// }
+
+const Compare = () => {
+  // const { SearchStore } = useStores();
   const searchParams = useSearchParams();
 
-  const [from, to, amount, fromCountry, toCountry] = [
+  const [amount, setAmount] = useState<string>(searchParams.get("amount")!);
+  const [fromCountry, setFromCountry] = useState<string>(searchParams.get("fromCountry")!);
+  const [toCountry, setToCountry] = useState<string>(searchParams.get("toCountry")!);
+  
+  useEffect(() => {
+    window.localStorage.setItem("amount", amount);
+  }, [amount]);
+
+  useEffect(() => {
+    window.localStorage.setItem("fromCountry", fromCountry);
+  }, [fromCountry]);
+
+  useEffect(() => {
+    window.localStorage.setItem("toCountry", toCountry);
+  }, [toCountry]);
+
+  const [_fromCurrency, _toCurrency, _amount, _fromCountry, _toCountry] = [
     searchParams.get("from")!,
     searchParams.get("to")!,
     searchParams.get("amount")!,
@@ -45,11 +62,11 @@ const Compare = observer(() => {
 
   const { data, error, isLoading } =
     trpc.allRates.getRankedRates.useQuery<TData>({
-      amount: Number(amount),
-      country: fromCountry,
-      sell: from,
-      buy: to,
-      destinationCountry: toCountry,
+      amount: Number(_amount),
+      country: _fromCountry,
+      sell: _fromCurrency,
+      buy: _toCurrency,
+      destinationCountry: _toCountry,
       fixed_currency: "sell",
     });
 
@@ -71,14 +88,10 @@ const Compare = observer(() => {
   }, [current, data]);
 
   const handleSwap = () => {
-    const fromCountry = SearchStore.fromCountry;
-    const toCountry = SearchStore.toCountry;
-    const fromCurrency = SearchStore.fromCurrency;
-    const toCurrency = SearchStore.toCurrency;
-    SearchStore.setFromCountry(toCountry);
-    SearchStore.setToCountry(fromCountry);
-    SearchStore.setFromCurrency(toCurrency);
-    SearchStore.setToCurrency(fromCurrency);
+    const from = fromCountry;
+    const to = toCountry;
+    setToCountry(from);
+    setFromCountry(to);
   };
 
   return (
@@ -96,8 +109,8 @@ const Compare = observer(() => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={SearchStore.fromCountry}
-                setSelected={SearchStore.setFromCountry}
+                defaultValue={fromCountry}
+                setSelected={setFromCountry}
                 textStyles={
                   "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
                 }
@@ -115,8 +128,8 @@ const Compare = observer(() => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={SearchStore.toCountry}
-                setSelected={SearchStore.setToCountry}
+                defaultValue={toCountry}
+                setSelected={setToCountry}
                 textStyles={
                   "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
                 }
@@ -134,9 +147,9 @@ const Compare = observer(() => {
               <NumericFormat
                 className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-2 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
                 thousandSeparator={","}
-                value={SearchStore.amount}
+                value={amount}
                 onChange={(e) =>
-                  SearchStore.setAmount(
+                  setAmount(
                     e.target.value.replace(/,/g, "")
                   )
                 }
@@ -145,16 +158,16 @@ const Compare = observer(() => {
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={SearchStore.fromCountry}
-                setSelected={SearchStore.setFromCurrency}
+                defaultValue={fromCountry}
+                setSelected={setFromCountry}
                 textStyles={"xl:text-2xl"}
                 className="border rounded-md p-2"
               />
               <p className="xl:text-2xl">to</p>
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={SearchStore.toCountry}
-                setSelected={SearchStore.setToCurrency}
+                defaultValue={toCountry}
+                setSelected={setToCountry}
                 textStyles={"xl:text-2xl"}
                 className="border rounded-md p-2"
               />
@@ -163,11 +176,11 @@ const Compare = observer(() => {
               href={{
                 pathname: "/compare",
                 query: {
-                  from: SearchStore.fromCurrency,
-                  to: SearchStore.toCurrency,
-                  amount: SearchStore.amount,
-                  fromCountry: SearchStore.fromCountry,
-                  toCountry: SearchStore.toCountry,
+                  from: COUNTRY_CODE_TO_CURRENCY[fromCountry],
+                  to: COUNTRY_CODE_TO_CURRENCY[toCountry],
+                  amount: amount,
+                  fromCountry: fromCountry,
+                  toCountry: toCountry,
                 },
               }}
               className="text-white text-center font-bold rounded-md py-2 sm:py-1.5 xl:py-2 w-full sm:min-w-24 sm:max-w-32 text-base sm:text-lg xl:text-2xl
@@ -205,7 +218,7 @@ const Compare = observer(() => {
               Looks like we couldn't find any providers that send
               money from{" "}
               <span className="font-semibold">
-                {COUNTRY_CODE_TO_NAME[fromCountry]} ({fromCountry})
+                {COUNTRY_CODE_TO_NAME[_fromCountry]} ({_fromCountry})
               </span>{" "}
               to{" "}
               <span className="font-semibold">
@@ -262,9 +275,9 @@ const Compare = observer(() => {
               <ProviderCard
                 key={i}
                 provider={provider.source}
-                fromCurrency={from}
-                toCurrency={to}
-                amount={amount}
+                fromCurrency={_fromCurrency}
+                toCurrency={_toCurrency}
+                amount={_amount}
                 options={[{ rate: provider.rate }]}
               />
             ))}
@@ -279,6 +292,6 @@ const Compare = observer(() => {
       )}
     </section>
   );
-});
+};
 
 export default trpc.withTRPC(Compare);

@@ -17,29 +17,64 @@ import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
-import { observer } from "mobx-react";
-import { useStores } from "@/stores/provider";
+import { useEffect, useState } from "react";
+// import { observer } from "mobx-react";
+// import { useStores } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import CountUp from "react-countup";
 import RatesTable from "@/components/Table";
 import { NumericFormat } from "react-number-format";
 
-const Homepage = observer(() => {
-  const { SearchStore } = useStores();
+const Homepage = () => {
+  // const { SearchStore } = useStores();
   const [useBanks, setUseBanks] = useState(false);
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
+  const [amount, setAmount] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedVal = window.localStorage.getItem("amount");
+      return storedVal ? storedVal : "500";
+    } else {
+      return "500";
+    }
+  });
+
+  const [fromCountry, setFromCountry] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedVal = window.localStorage.getItem("fromCountry");
+      return storedVal ? storedVal : "US";
+    } else {
+      return "US";
+    }
+  });
+
+  const [toCountry, setToCountry] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedVal = window.localStorage.getItem("toCountry");
+      return storedVal ? storedVal : "GB";
+    } else {
+      return "GB";
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("amount", amount);
+  }, [amount]);
+
+  useEffect(() => {
+    window.localStorage.setItem("fromCountry", fromCountry);
+  }, [fromCountry]);
+
+  useEffect(() => {
+    window.localStorage.setItem("toCountry", toCountry);
+  }, [toCountry]);
+
   const handleSwap = () => {
-    const fromCountry = SearchStore.fromCountry;
-    const toCountry = SearchStore.toCountry;
-    const fromCurrency = SearchStore.fromCurrency;
-    const toCurrency = SearchStore.toCurrency;
-    SearchStore.setFromCountry(toCountry);
-    SearchStore.setToCountry(fromCountry);
-    SearchStore.setFromCurrency(toCurrency);
-    SearchStore.setToCurrency(fromCurrency);
+    const from = fromCountry;
+    const to = toCountry;
+    setToCountry(from);
+    setFromCountry(to);
   };
 
   return (
@@ -113,8 +148,8 @@ const Homepage = observer(() => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={SearchStore.fromCountry}
-                setSelected={SearchStore.setFromCountry}
+                defaultValue={fromCountry}
+                setSelected={setFromCountry}
                 hasImage={true}
                 label={"Country From"}
               />
@@ -130,8 +165,8 @@ const Homepage = observer(() => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={SearchStore.toCountry}
-                setSelected={SearchStore.setToCountry}
+                defaultValue={toCountry}
+                setSelected={setToCountry}
                 label={"Country to"}
                 hasImage={true}
               />
@@ -144,22 +179,26 @@ const Homepage = observer(() => {
               <NumericFormat
                 className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-1.5 2xl:py-1 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
                 thousandSeparator={","}
-                value={SearchStore.amount}
-                onChange={(e) => SearchStore.setAmount(e.target.value.replace(/,/g, ''))}
+                value={amount}
+                onChange={(e) =>
+                  setAmount(
+                    e.target.value.replace(/,/g, "")
+                  )
+                }
                 allowNegative={false}
                 decimalScale={2}
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={SearchStore.fromCountry}
-                setSelected={SearchStore.setFromCurrency}
+                defaultValue={fromCountry}
+                setSelected={setFromCountry}
                 className="border rounded-md p-2"
               />
               <p>to</p>
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={SearchStore.toCountry}
-                setSelected={SearchStore.setToCurrency}
+                defaultValue={toCountry}
+                setSelected={setToCountry}
                 className="border rounded-md p-2"
               />
             </div>
@@ -170,11 +209,11 @@ const Homepage = observer(() => {
               href={{
                 pathname: "/compare",
                 query: {
-                  from: SearchStore.fromCurrency,
-                  to: SearchStore.toCurrency,
-                  amount: SearchStore.amount,
-                  fromCountry: SearchStore.fromCountry,
-                  toCountry: SearchStore.toCountry,
+                  from: COUNTRY_CODE_TO_CURRENCY[fromCountry],
+                  to: COUNTRY_CODE_TO_CURRENCY[toCountry],
+                  amount: amount,
+                  fromCountry: fromCountry,
+                  toCountry: toCountry,
                 },
               }}
               className="text-white text-center font-bold rounded-md p-4 w-full 
@@ -315,6 +354,6 @@ const Homepage = observer(() => {
       <ScrollToTopButton />
     </div>
   );
-});
+};
 
 export default Homepage;
