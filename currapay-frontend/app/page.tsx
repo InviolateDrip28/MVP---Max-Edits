@@ -31,50 +31,40 @@ const Homepage = () => {
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
-  const [amount, setAmount] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedVal = window.localStorage.getItem("amount");
-      return storedVal ? storedVal : "500";
-    } else {
-      return "500";
-    }
-  });
-
-  const [fromCountry, setFromCountry] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedVal = window.localStorage.getItem("fromCountry");
-      return storedVal ? storedVal : "US";
-    } else {
-      return "US";
-    }
-  });
-
-  const [toCountry, setToCountry] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedVal = window.localStorage.getItem("toCountry");
-      return storedVal ? storedVal : "GB";
-    } else {
-      return "GB";
-    }
-  });
+  const [amount, setAmount] = useState("500");
+  const [fromCountry, setFromCountry] = useState("US");
+  const [toCountry, setToCountry] = useState("GB");
 
   useEffect(() => {
-    window.localStorage.setItem("amount", amount);
-  }, [amount]);
-
-  useEffect(() => {
-    window.localStorage.setItem("fromCountry", fromCountry);
-  }, [fromCountry]);
-
-  useEffect(() => {
-    window.localStorage.setItem("toCountry", toCountry);
-  }, [toCountry]);
+    if (typeof window !== "undefined" && window.localStorage) {
+      let _amount = localStorage.getItem("amount");
+      let _fromCountry = localStorage.getItem("fromCountry");
+      let _toCountry = localStorage.getItem("toCountry");
+      if (_amount) {
+        setAmount(_amount);
+      }
+      if (_fromCountry) {
+        setFromCountry(_fromCountry);
+      }
+      if (_toCountry) {
+        setToCountry(_toCountry);
+      }
+    }
+  }, []);
 
   const handleSwap = () => {
     const from = fromCountry;
     const to = toCountry;
     setToCountry(from);
     setFromCountry(to);
+  };
+
+  const handleClick = () => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("amount", amount);
+      localStorage.setItem("fromCountry", fromCountry);
+      localStorage.setItem("toCountry", toCountry);
+    }
   };
 
   return (
@@ -181,9 +171,7 @@ const Homepage = () => {
                 thousandSeparator={","}
                 value={amount}
                 onChange={(e) =>
-                  setAmount(
-                    e.target.value.replace(/,/g, "")
-                  )
+                  setAmount(e.target.value.replace(/,/g, ""))
                 }
                 allowNegative={false}
                 decimalScale={2}
@@ -216,6 +204,7 @@ const Homepage = () => {
                   toCountry: toCountry,
                 },
               }}
+              onClick={handleClick}
               className="text-white text-center font-bold rounded-md p-4 w-full 
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full"
@@ -287,7 +276,9 @@ const Homepage = () => {
                     suffix=" trillion"
                     enableScrollSpy={true}
                     scrollSpyOnce={true}
-                  />
+                  >
+                    {({ countUpRef }) => <span ref={countUpRef} />}
+                  </CountUp>
                 </h2>
                 <p>sent every year</p>
               </div>
@@ -307,7 +298,9 @@ const Homepage = () => {
                     suffix=" billion"
                     enableScrollSpy={true}
                     scrollSpyOnce={true}
-                  />
+                  >
+                    {({ countUpRef }) => <span ref={countUpRef} />}
+                  </CountUp>
                 </h2>
                 <p>lost each year due to transaction costs</p>
               </div>

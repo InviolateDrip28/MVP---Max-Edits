@@ -96,9 +96,9 @@ export default function DropdownSelect(props: DropdownSelectProps) {
                       className="h-5 w-5 flex-shrink-0"
                     />
                   )}
-                  <polygon className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
+                  <p className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
                     {props.reference[code]}
-                  </polygon>
+                  </p>
                 </div>
                 <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-accent group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden">
                   <CheckIcon aria-hidden="true" className="h-5 w-5" />

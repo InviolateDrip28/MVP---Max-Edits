@@ -39,18 +39,14 @@ const Compare = () => {
   const [amount, setAmount] = useState<string>(searchParams.get("amount")!);
   const [fromCountry, setFromCountry] = useState<string>(searchParams.get("fromCountry")!);
   const [toCountry, setToCountry] = useState<string>(searchParams.get("toCountry")!);
-  
-  useEffect(() => {
-    window.localStorage.setItem("amount", amount);
-  }, [amount]);
 
-  useEffect(() => {
-    window.localStorage.setItem("fromCountry", fromCountry);
-  }, [fromCountry]);
-
-  useEffect(() => {
-    window.localStorage.setItem("toCountry", toCountry);
-  }, [toCountry]);
+  const handleClick = () => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("amount", amount);
+      localStorage.setItem("fromCountry", fromCountry);
+      localStorage.setItem("toCountry", toCountry);
+    }
+  };
 
   const [_fromCurrency, _toCurrency, _amount, _fromCountry, _toCountry] = [
     searchParams.get("from")!,
@@ -183,6 +179,7 @@ const Compare = () => {
                   toCountry: toCountry,
                 },
               }}
+              onClick={handleClick}
               className="text-white text-center font-bold rounded-md py-2 sm:py-1.5 xl:py-2 w-full sm:min-w-24 sm:max-w-32 text-base sm:text-lg xl:text-2xl
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 sm:mt-0"
@@ -244,7 +241,7 @@ const Compare = () => {
             <h3 className="text-accent font-semibold">
               Showing results from {numProviders} providers
             </h3>
-            <p className="whitespace-nowrap space-x-1.5 flex items-center ">
+            <div className="whitespace-nowrap space-x-1.5 flex items-center ">
               <Tooltip
                 content="CurraPay is supported by you. When you discover a provider through our links on our site, we may earn an affiliate commission."
                 placement="bottom"
@@ -264,7 +261,7 @@ const Compare = () => {
 
               <span>|</span>
               <span>Sorted by amount received</span>
-            </p>
+            </div>
           </div>
 
           <div
