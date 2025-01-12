@@ -40,10 +40,10 @@ async function updateRatesTable() {
         JPY: "JP",
     };
     
-    let resultArr = [];
+    let resultArr: (string | null)[][] = [];
 
     for (const sell of currencies) {
-      const tmpArr = [];
+      const tmpArr: (string | null)[] = [];
 
       for (const buy of currencies) {
         if (sell !== buy) {

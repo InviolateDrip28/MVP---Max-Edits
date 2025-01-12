@@ -9,6 +9,15 @@ const RatesTable = () => {
 
   const countries = ["US", "GB", "EU", "CA", "CH", "AU", "BR", "JP"];
 
+  const { data, error, isLoading } = trpc.ratesData.useQuery();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error loading data: {error.message}</div>;
+  }
+
+
   return (
     <div className="w-full overflow-x-auto">
       <table className="lg:w-full whitespace-nowrap m-0 table-fixed">
@@ -84,12 +93,13 @@ const RatesTable = () => {
                   }}
                 >
                   {/* {rowIndex === colIndex ? "" : "1.00"} */}
-                  {!ratesData ||
-                  ratesData[rowIndex] === undefined ||
-                  ratesData[rowIndex][colIndex] === undefined
+                  {isLoading || 
+                  !data ||
+                  data[rowIndex] === undefined ||
+                  data[rowIndex][colIndex] === undefined
                     ? "N/A"
-                    : ratesData[rowIndex][colIndex] !== "N/A"
-                    ? ratesData[rowIndex][colIndex]
+                    : data[rowIndex][colIndex] !== "N/A"
+                    ? data[rowIndex][colIndex]
                     : "-"}
                 </td>
               ))}

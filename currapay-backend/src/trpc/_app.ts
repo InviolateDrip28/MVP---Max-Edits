@@ -8,6 +8,7 @@ import { ofxRouter } from "./routers/ofxRouter";
 import { allRatesRouter } from "./routers/allRatesRouter";
 import { instaremRouter } from "./routers/instaremRouter";
 import { westernUnionRouter } from "./routers/westernUnionRouter";
+import ratesData from "../data/rates.json"
 
 const t = initTRPC.create();
 
@@ -25,6 +26,9 @@ export const appRouter = t.router({
   allRates: allRatesRouter,
   instarem: instaremRouter,
   westernUnion: westernUnionRouter,
+  ratesData: t.procedure.query (() => {
+    return ratesData;
+  })
 });
 
 export type AppRouter = typeof appRouter;
