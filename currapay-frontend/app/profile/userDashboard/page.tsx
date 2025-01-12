@@ -1,16 +1,16 @@
 'use client'
 import { observer } from "mobx-react";
-import { useStores } from "@/stores/provider";
+import { useUserStore } from "@/stores/provider";
 
 const UserDashboard = observer(() => {
-  const { UserStore } = useStores();
+  const userStore = useUserStore();
 
   function handleLogOut() {
-    UserStore.setLoggedIn(false);
+    userStore.setLoggedIn(false);
   }
   return (
     <div>
-      <h1>Welcome back, {UserStore.firstName}!</h1>
+      <h1>Welcome back, {userStore.firstName}!</h1>
       <p>Here is your profile page.</p>
       <button
         onClick={handleLogOut}

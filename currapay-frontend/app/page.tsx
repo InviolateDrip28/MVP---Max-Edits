@@ -18,54 +18,52 @@ import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-// import { observer } from "mobx-react";
-// import { useStores } from "@/stores/provider";
+import { observer } from "mobx-react";
+import { useSearchStore } from "@/stores/provider";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import CountUp from "react-countup";
 import RatesTable from "@/components/Table";
 import { NumericFormat } from "react-number-format";
 
-const Homepage = () => {
-  // const { SearchStore } = useStores();
+const Homepage = observer(() => {
+  const searchStore = useSearchStore();
   const [useBanks, setUseBanks] = useState(false);
   const [useRemittanceApps, setUseRemittanceApps] = useState(false);
   const [useCrypto, setUseCrypto] = useState(false);
 
-  const [amount, setAmount] = useState("500");
-  const [fromCountry, setFromCountry] = useState("US");
-  const [toCountry, setToCountry] = useState("GB");
+  // const [amount, setAmount] = useState("500");
+  // const [fromCountry, setFromCountry] = useState("US");
+  // const [toCountry, setToCountry] = useState("GB");
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      let _amount = localStorage.getItem("amount");
-      let _fromCountry = localStorage.getItem("fromCountry");
-      let _toCountry = localStorage.getItem("toCountry");
-      if (_amount) {
-        setAmount(_amount);
-      }
-      if (_fromCountry) {
-        setFromCountry(_fromCountry);
-      }
-      if (_toCountry) {
-        setToCountry(_toCountry);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined" && window.localStorage) {
+  //     let _amount = localStorage.getItem("amount");
+  //     let _fromCountry = localStorage.getItem("fromCountry");
+  //     let _toCountry = localStorage.getItem("toCountry");
+  //     if (_amount) {
+  //       setAmount(_amount);
+  //     }
+  //     if (_fromCountry) {
+  //       setFromCountry(_fromCountry);
+  //     }
+  //     if (_toCountry) {
+  //       setToCountry(_toCountry);
+  //     }
+  //   }
+  // }, []);
 
   const handleSwap = () => {
-    const from = fromCountry;
-    const to = toCountry;
-    setToCountry(from);
-    setFromCountry(to);
+    const from = searchStore.fromCountry;
+    const to = searchStore.toCountry;
+    searchStore.setFromCountry(to);
+    searchStore.setToCountry(from);
   };
 
-  const handleClick = () => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.setItem("amount", amount);
-      localStorage.setItem("fromCountry", fromCountry);
-      localStorage.setItem("toCountry", toCountry);
-    }
-  };
+  // const handleClick = () => {
+  //   if (typeof window !== "undefined" && window.localStorage) {
+  //     searchStore.makeLocalStorage();
+  //   }
+  // };
 
   return (
     <div id="homepage" className="homepage">
@@ -138,8 +136,8 @@ const Homepage = () => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={fromCountry}
-                setSelected={setFromCountry}
+                defaultValue={searchStore.fromCountry}
+                setSelected={searchStore.setFromCountry}
                 hasImage={true}
                 label={"Country From"}
               />
@@ -155,8 +153,8 @@ const Homepage = () => {
               <DropdownSelect
                 dropdownList={COUNTRY_CODES}
                 reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={toCountry}
-                setSelected={setToCountry}
+                defaultValue={searchStore.toCountry}
+                setSelected={searchStore.setToCountry}
                 label={"Country to"}
                 hasImage={true}
               />
@@ -169,24 +167,26 @@ const Homepage = () => {
               <NumericFormat
                 className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-1.5 2xl:py-1 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
                 thousandSeparator={","}
-                value={amount}
+                value={searchStore.amount}
                 onChange={(e) =>
-                  setAmount(e.target.value.replace(/,/g, ""))
+                  searchStore.setAmount(
+                    e.target.value.replace(/,/g, "")
+                  )
                 }
                 allowNegative={false}
                 decimalScale={2}
               />
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={fromCountry}
-                setSelected={setFromCountry}
+                defaultValue={searchStore.fromCountry}
+                setSelected={searchStore.setFromCountry}
                 className="border rounded-md p-2"
               />
               <p>to</p>
               <DropdownSelect
                 reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={toCountry}
-                setSelected={setToCountry}
+                defaultValue={searchStore.toCountry}
+                setSelected={searchStore.setToCountry}
                 className="border rounded-md p-2"
               />
             </div>
@@ -197,14 +197,16 @@ const Homepage = () => {
               href={{
                 pathname: "/compare",
                 query: {
-                  from: COUNTRY_CODE_TO_CURRENCY[fromCountry],
-                  to: COUNTRY_CODE_TO_CURRENCY[toCountry],
-                  amount: amount,
-                  fromCountry: fromCountry,
-                  toCountry: toCountry,
+                  from: COUNTRY_CODE_TO_CURRENCY[
+                    searchStore.fromCountry
+                  ],
+                  to: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+                  amount: searchStore.amount,
+                  fromCountry: searchStore.fromCountry,
+                  toCountry: searchStore.toCountry,
                 },
               }}
-              onClick={handleClick}
+              // onClick={handleClick}
               className="text-white text-center font-bold rounded-md p-4 w-full 
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full"
@@ -347,6 +349,6 @@ const Homepage = () => {
       <ScrollToTopButton />
     </div>
   );
-};
+});
 
 export default Homepage;

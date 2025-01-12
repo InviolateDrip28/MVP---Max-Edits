@@ -1,40 +1,45 @@
-import { makeAutoObservable } from "mobx";
-import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
+import { makeObservable, observable, action } from "mobx";
+import { RootStore } from ".";
 
 // Stores the search state
-class _SearchStore {
+// On refresh, the search state is reverted back to the last thing the user searched for
+export class SearchStore {
   // Default values
-  fromCountry = "US";
-  toCountry = "GB";
-  fromCurrency = "USD";
-  toCurrency = "GBP";
-  amount = "500";
+  root: RootStore;
+  fromCountry: string = localStorage.getItem("fromCountry") || "US";
+  toCountry: string = localStorage.getItem("toCountry") || "GB";
+  amount: string = localStorage.getItem("amount") || "500";
 
-  constructor() {
-    makeAutoObservable(this);
+  constructor(root: RootStore) {
+    this.root = root;
+    makeObservable(this, {
+      fromCountry: observable,
+      toCountry: observable,
+      amount: observable,
+      setFromCountry: action,
+      setToCountry: action,
+      setAmount: action,
+    });
   }
 
   public setFromCountry = (country: string) => {
     this.fromCountry = country;
-    this.fromCurrency = COUNTRY_CODE_TO_CURRENCY[country];
-  }
+    localStorage.setItem("fromCountry", country);
+  };
 
   public setToCountry = (country: string) => {
     this.toCountry = country;
-    this.toCurrency = COUNTRY_CODE_TO_CURRENCY[country];
-  }
-
-  public setFromCurrency = (currency: string) => {
-    this.fromCurrency = currency;
-  }
-
-  public setToCurrency = (currency: string) =>{
-    this.toCurrency = currency;
-  }
+    localStorage.setItem("toCountry", country);
+  };
 
   public setAmount = (amount: string) => {
     this.amount = amount;
-  }
-}
+    localStorage.setItem("amount", amount);
+  };
 
-export const SearchStore = new _SearchStore();
+  // public makeLocalStorage = () => {
+  //   localStorage.setItem("fromCountry", this.fromCountry);
+  //   localStorage.setItem("toCountry", this.toCountry);
+  //   localStorage.setItem("amount", this.amount);
+  // };
+}
