@@ -14,9 +14,9 @@ import Image from "next/image";
 /**
  * Reusable dropdown select component
  * source: https://headlessui.com/react/listbox
+ * 
+ * currently not used in favor of Searchbox component
  */
-
-// TODO: switch to combo box?
 
 export interface DropdownSelectProps {
   dropdownList?: string[];

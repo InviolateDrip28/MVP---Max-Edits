@@ -1,19 +1,18 @@
 "use client";
 import {
-  COUNTRY_CODES,
+  COUNTRY_NAMES,
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
   PARTNERS,
   FAQS,
+  COUNTRY_NAME_TO_CODE,
 } from "./constants";
 import {
-  ArrowsRightLeftIcon,
   ArrowsUpDownIcon,
 } from "@heroicons/react/20/solid";
 import GroupIcon from "@mui/icons-material/Groups";
 import SendIcon from "@mui/icons-material/Send";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import DropdownSelect from "@/components/DropdownSelect";
 import AccordionMenu from "@/components/Accordion";
 import { Marquee } from "@/components/Marquee";
 import Link from "next/link";
@@ -24,6 +23,7 @@ import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import CountUp from "react-countup";
 import RatesTable from "@/components/Table";
 import { NumericFormat } from "react-number-format";
+import Searchbox from "@/components/Searchbox";
 
 const Homepage = () => {
   // const { SearchStore } = useStores();
@@ -69,11 +69,12 @@ const Homepage = () => {
 
   return (
     <div id="homepage" className="homepage">
-      <div className="subsection grid xl:grid-flow-col xl:grid-cols-5 gap-16 items-center justify-center">
-        <div className="space-y-4 xl:col-span-2">
-          <p className="text-center xl:text-left bigHeading animatedGradientText">
+      <div className="subsection grid xl:grid-flow-col xl:grid-cols-2 gap-16 xl:gap-20 items-center justify-center">
+        <div className="space-y-4">
+          <p className="text-center xl:text-left xl:leading-tight bigHeading animatedGradientText">
             Search. Send. Save.
           </p>
+
           <h4 className="text-center xl:text-left xl:pt-8">
             Search across banks, remittance apps, and crypto services
             to find the best way to send or receive your international
@@ -82,8 +83,8 @@ const Homepage = () => {
         </div>
 
         <div
-          className="border p-8 shadow-xl rounded-xl w-full
-          space-y-4 xl:space-y-8 xl:col-span-3 bg-white"
+          className="border border-secondary/30 p-8 shadow-xl rounded-xl w-full
+          space-y-4 xl:space-y-6 bg-white"
         >
           <div
             id="filters"
@@ -133,61 +134,56 @@ const Homepage = () => {
             </div>
           </div>
 
-          <div className="w-full flex flex-col lg:flex-row gap-4 items-center">
-            <div className="w-full lg:w-1/2">
-              <DropdownSelect
-                dropdownList={COUNTRY_CODES}
-                reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={fromCountry}
-                setSelected={setFromCountry}
-                hasImage={true}
-                label={"Country From"}
-              />
-            </div>
-            <button
-              className="flex text-secondary hover:text-accent"
-              onClick={handleSwap}
-            >
-              <ArrowsUpDownIcon className="h-6 w-6 flex lg:hidden" />
-              <ArrowsRightLeftIcon className="h-6 w-6 hidden lg:flex" />
-            </button>
-            <div className="w-full lg:w-1/2">
-              <DropdownSelect
-                dropdownList={COUNTRY_CODES}
-                reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={toCountry}
-                setSelected={setToCountry}
-                label={"Country to"}
-                hasImage={true}
-              />
+          <h3 className="font-semibold text-center text-accent">
+            I want to send
+          </h3>
+
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
+              <div className="w-full">
+                <p className="text-secondary/80">Amount</p>
+                <NumericFormat
+                  className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-3 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
+                  thousandSeparator={","}
+                  value={amount}
+                  onChange={(e) =>
+                    setAmount(e.target.value.replace(/,/g, ""))
+                  }
+                  allowNegative={false}
+                  decimalScale={2}
+                  maxLength={9}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="">I want to send</p>
-            <div className="flex flex-col sm:flex-row items-center gap-2 w-full">
-              <NumericFormat
-                className="relative w-full xl:min-w-28 text-base sm:text-lg lg:text-xl 2xl:text-2xl tracking-wide cursor-default rounded-md bg-white py-2 lg:py-1.5 2xl:py-1 pl-3 pr-2 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent"
-                thousandSeparator={","}
-                value={amount}
-                onChange={(e) =>
-                  setAmount(e.target.value.replace(/,/g, ""))
-                }
-                allowNegative={false}
-                decimalScale={2}
-              />
-              <DropdownSelect
-                reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={fromCountry}
+          <div className="w-full flex flex-col items-center">
+            <div className="w-full">
+              <p className="text-secondary/80">From</p>
+              <Searchbox
+                optionsList={COUNTRY_NAMES}
+                reference={COUNTRY_NAME_TO_CODE}
+                reference2={COUNTRY_CODE_TO_CURRENCY}
+                defaultValue={COUNTRY_CODE_TO_NAME[fromCountry]}
                 setSelected={setFromCountry}
-                className="border rounded-md p-2"
               />
-              <p>to</p>
-              <DropdownSelect
-                reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={toCountry}
+            </div>
+            <button
+              className="flex translate-y-3 text-secondary hover:text-accent"
+              onClick={handleSwap}
+            >
+              <ArrowsUpDownIcon className="h-6 w-6 flex" />
+              {/* <ArrowsRightLeftIcon className="h-6 w-6 hidden lg:flex" /> */}
+            </button>
+
+            <div className="w-full">
+              <p className="text-secondary/80">To</p>
+              <Searchbox
+                optionsList={COUNTRY_NAMES}
+                reference={COUNTRY_NAME_TO_CODE}
+                reference2={COUNTRY_CODE_TO_CURRENCY}
+                defaultValue={COUNTRY_CODE_TO_NAME[toCountry]}
                 setSelected={setToCountry}
-                className="border rounded-md p-2"
               />
             </div>
           </div>
@@ -333,7 +329,7 @@ const Homepage = () => {
         <div className="mt-16">
           <AccordionMenu itemList={FAQS} />
         </div>
-        <h3 className="font-normal mt-24">
+        <h4 className="font-normal mt-24">
           Can&apos;t find the answer you&apos;re looking for? Feel
           free to{" "}
           <Link
@@ -342,7 +338,7 @@ const Homepage = () => {
           >
             contact us!
           </Link>
-        </h3>
+        </h4>
       </div>
       <ScrollToTopButton />
     </div>
