@@ -1001,7 +1001,7 @@ const COUNTRY_CODE_TO_CURRENCY: Record<string, string> = {
 const PARTNERS = [
   {
     image: "/partners/atlantic_logo.png",
-    link: "https://share.atlantic.money/test",
+    link: "https://www.financeads.net/tc.php?t=70726C4772109258T",
   },
   {
     image: "/partners/currencysolutions_logo.png",
@@ -1085,7 +1085,7 @@ const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
   },
   "Atlantic Money": {
     displayName: "Atlantic Money",
-    link: "https://share.atlantic.money/test",
+    link: "https://www.financeads.net/tc.php?t=70726C4772109258T",
     image: "/partners/atlantic_logo.png",
     fees: "3",
     transferTime: "1-2 days",

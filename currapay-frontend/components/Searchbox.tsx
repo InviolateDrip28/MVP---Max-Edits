@@ -84,7 +84,7 @@ export default function Searchbox(props: SearchboxProps) {
             </span>
             <ComboboxButton className="absolute inset-y-0 right-4 ml-3 flex items-center">
               <MagnifyingGlassIcon
-                className="h-5 w-5"
+                className="h-5 w-5 hover:text-accent"
                 aria-hidden="true"
               />
             </ComboboxButton>

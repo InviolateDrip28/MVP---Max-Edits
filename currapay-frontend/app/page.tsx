@@ -225,7 +225,7 @@ const Homepage = () => {
 
       <div
         id="context"
-        className="differentBackgroundColor bg-accentDark"
+        className="differentBackgroundColor bg-gradient-to-tr from-accentDark via-accentDark/80 to-accentDark "
       >
         <div className="subsection flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background">
           <div className="space-y-8 md:space-y-16">
