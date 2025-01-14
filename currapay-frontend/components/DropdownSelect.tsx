@@ -15,7 +15,7 @@ import Image from "next/image";
  * Reusable dropdown select component
  * source: https://headlessui.com/react/listbox
  * 
- * currently not used in favor of Searchbox component
+ * currently not using in favor of Searchbox component
  */
 
 export interface DropdownSelectProps {
