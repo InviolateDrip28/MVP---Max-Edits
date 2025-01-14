@@ -3,9 +3,9 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { observer } from "mobx-react";
 import { useSearchStore } from "@/stores/provider";
-import DropdownSelect from "@/components/DropdownSelect";
 import {
-  COUNTRY_CODES,
+  COUNTRY_NAMES,
+  COUNTRY_NAME_TO_CODE,
   COUNTRY_CODE_TO_NAME,
   COUNTRY_CODE_TO_CURRENCY,
 } from "../constants";
@@ -23,21 +23,13 @@ import { trpc } from "@/utils/trpc";
 import { Spinner } from "@/components/Spinner";
 import { Tooltip } from "flowbite-react";
 import { NumericFormat } from "react-number-format";
+import Searchbox from "@/components/Searchbox";
 
 type TData = Provider[];
-
-// interface QueryResult<TData> {
-//   data: Provider[] | undefined;
-//   error: unknown;
-//   isLoading: boolean;
-// }
 
 const Compare = observer(() => {
   const searchStore = useSearchStore();
   const searchParams = useSearchParams();
-  // const [amount, setAmount] = useState<string>(searchParams.get("amount")!);
-  // const [fromCountry, setFromCountry] = useState<string>(searchParams.get("fromCountry")!);
-  // const [toCountry, setToCountry] = useState<string>(searchParams.get("toCountry")!);
 
   const [fromCurrency, toCurrency, amount, fromCountry, toCountry] = [
     searchParams.get("from")!,
@@ -74,11 +66,6 @@ const Compare = observer(() => {
     }
   }, [current, data]);
 
-  // const handleClick = () => {
-  //   if (typeof window !== "undefined" && window.localStorage) {
-  //     searchStore.makeLocalStorage();
-  //   }
-  // };
 
   const handleSwap = () => {
     const from = searchStore.fromCountry;
@@ -96,96 +83,66 @@ const Compare = observer(() => {
         id="search"
         className="w-full flex border box-border p-6 xl:p-8 shadow-xl rounded-xl space-y-4 bg-white"
       >
-        <div className="w-full flex flex-col lg:flex-row gap-4 justify-center">
-          <div className="w-auto xl:w-max flex flex-col md:flex-row gap-3 lg:gap-2 xl:gap-3 items-center justify-center">
-            <div className="w-full xl:min-w-52">
-              <DropdownSelect
-                dropdownList={COUNTRY_CODES}
-                reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={searchStore.fromCountry}
-                setSelected={searchStore.setFromCountry}
-                textStyles={
-                  "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
-                }
-                hasImage={true}
-              />
-            </div>
-            <button
-              className="flex text-secondary hover:text-accent"
-              onClick={handleSwap}
-            >
-              <ArrowsUpDownIcon className="h-6 w-6 flex md:hidden" />
-              <ArrowsRightLeftIcon className="h-6 w-6 hidden md:flex" />
-            </button>
-            <div className="w-full xl:min-w-52">
-              <DropdownSelect
-                dropdownList={COUNTRY_CODES}
-                reference={COUNTRY_CODE_TO_NAME}
-                defaultValue={searchStore.toCountry}
-                setSelected={searchStore.setToCountry}
-                textStyles={
-                  "xl:text-2xl xl:min-w-[14ch] xl:max-w-[16ch] 2xl:min-w-[16ch] 2xl:max-w-[50ch]"
-                }
-                hasImage={true}
-              />
-            </div>
+        <div className="w-full flex flex-col md:flex-row md:items-end gap-4 justify-center ">
+          <div className="w-full">
+            <p className="text-secondary/80">Amount</p>
+            <NumericFormat
+              className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 md:min-w-36 cursor-default rounded-md bg-white py-2 md:py-2.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+              thousandSeparator={","}
+              value={searchStore.amount}
+              onChange={(e) =>
+                searchStore.setAmount(e.target.value.replace(/,/g, ""))
+              }
+              allowNegative={false}
+              decimalScale={2}
+            />
           </div>
 
-          <div className="hidden lg:inline-block items-center -my-4 min-h-[1em] min-w-[1px] w-[1px] self-stretch bg-secondary/30"></div>
-
-          <div className="block lg:hidden my-2 sm:my-4 border-t w-full border-secondary/30"></div>
-
-          <div className="inline-flex flex-col sm:flex-row items-center sm:space-x-3">
-            <div className="w-full inline-flex items-center space-x-2 sm:space-x-3">
-              <NumericFormat
-                className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 lg:min-w-36 cursor-default rounded-md bg-white py-2 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
-                thousandSeparator={","}
-                value={searchStore.amount}
-                onChange={(e) =>
-                  searchStore.setAmount(
-                    e.target.value.replace(/,/g, "")
-                  )
-                }
-                allowNegative={false}
-                decimalScale={2}
-              />
-              <DropdownSelect
-                reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={searchStore.fromCountry}
-                setSelected={searchStore.setFromCountry}
-                textStyles={"xl:text-2xl"}
-                className="border rounded-md p-2"
-              />
-              <p className="xl:text-2xl">to</p>
-              <DropdownSelect
-                reference={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={searchStore.toCountry}
-                setSelected={searchStore.setToCountry}
-                textStyles={"xl:text-2xl"}
-                className="border rounded-md p-2"
-              />
-            </div>
-            <Link
-              href={{
-                pathname: "/compare",
-                query: {
-                  from: COUNTRY_CODE_TO_CURRENCY[
-                    searchStore.fromCountry
-                  ],
-                  to: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
-                  amount: searchStore.amount,
-                  fromCountry: searchStore.fromCountry,
-                  toCountry: searchStore.toCountry,
-                },
-              }}
-              // onClick={handleClick}
-              className="text-white text-center font-bold rounded-md py-2 sm:py-1.5 xl:py-2 w-full sm:min-w-24 sm:max-w-32 text-base sm:text-lg xl:text-2xl
+          <div className="w-full">
+            <p className="text-secondary/80">From</p>
+            <Searchbox
+              optionsList={COUNTRY_NAMES}
+              reference={COUNTRY_NAME_TO_CODE}
+              reference2={COUNTRY_CODE_TO_CURRENCY}
+              defaultValue={COUNTRY_CODE_TO_NAME[searchStore.fromCountry]}
+              setSelected={searchStore.setFromCountry}
+            />
+          </div>
+          <button
+            className="flex md:h-full items-center justify-center text-secondary hover:text-accent -my-4 translate-y-3 md:my-0"
+            onClick={handleSwap}
+          >
+            <ArrowsUpDownIcon className="h-6 w-6 flex md:hidden" />
+            <ArrowsRightLeftIcon className="h-6 w-6 hidden md:flex" />
+          </button>
+          <div className="w-full">
+            <p className="text-secondary/80">To</p>
+            <Searchbox
+              optionsList={COUNTRY_NAMES}
+              reference={COUNTRY_NAME_TO_CODE}
+              reference2={COUNTRY_CODE_TO_CURRENCY}
+              defaultValue={COUNTRY_CODE_TO_NAME[searchStore.toCountry]}
+              setSelected={searchStore.setToCountry}
+            />
+          </div>
+          <Link
+            href={{
+              pathname: "/compare",
+              query: {
+                from: COUNTRY_CODE_TO_CURRENCY[searchStore.fromCountry],
+                to: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+                amount: searchStore.amount,
+                fromCountry: searchStore.fromCountry,
+                toCountry: searchStore.toCountry,
+              },
+            }}
+            // onClick={handleClick}
+            className="text-white text-center font-bold rounded-md py-2 md:py-[9px] lg:py-[13px] xl:py-[11px] w-full md:min-w-24 md:max-w-32 h-min flex justify-center text-base sm:text-lg xl:text-2xl
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 sm:mt-0"
-            >
-              Go {" \u26A1"}
-            </Link>
-          </div>
+          >
+            Go {" \u26A1"}
+          </Link>
         </div>
       </div>
 

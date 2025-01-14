@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, reaction } from "mobx";
 import { RootStore } from ".";
 
 // Stores the search state
@@ -6,9 +6,9 @@ import { RootStore } from ".";
 export class SearchStore {
   // Default values
   root: RootStore;
-  fromCountry: string = localStorage.getItem("fromCountry") || "US";
-  toCountry: string = localStorage.getItem("toCountry") || "GB";
-  amount: string = localStorage.getItem("amount") || "500";
+  fromCountry: string = "US";
+  toCountry: string = "GB";
+  amount: string = "500";
 
   constructor(root: RootStore) {
     this.root = root;
@@ -20,6 +20,8 @@ export class SearchStore {
       setToCountry: action,
       setAmount: action,
     });
+
+    this.loadFromLocalStorage();
   }
 
   public setFromCountry = (country: string) => {
@@ -37,9 +39,22 @@ export class SearchStore {
     localStorage.setItem("amount", amount);
   };
 
-  // public makeLocalStorage = () => {
-  //   localStorage.setItem("fromCountry", this.fromCountry);
-  //   localStorage.setItem("toCountry", this.toCountry);
-  //   localStorage.setItem("amount", this.amount);
-  // };
+  loadFromLocalStorage() {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const fromCountry = localStorage.getItem("fromCountry");
+      if (fromCountry) {
+        this.fromCountry = fromCountry;
+      }
+
+      const toCountry = localStorage.getItem("toCountry");
+      if (toCountry) {
+        this.toCountry = toCountry;
+      }
+
+      const amount = localStorage.getItem("amount");
+      if (amount) {
+        this.amount = amount;
+      }
+    }
+  }
 }

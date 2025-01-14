@@ -10,17 +10,26 @@ import {
  * source: https://flowbite-react.com/docs/components/accordion
  */
 
-export default function AccordionMenu({itemList}: {itemList: {label: string, content: string}[]}) {
+export default function AccordionMenu({
+  itemList,
+}: {
+  itemList: { label: string; content: string }[];
+}) {
   return (
-    <Accordion collapseAll className="border-0 divide-y-2 divide-secondary/5">
+    <Accordion
+      collapseAll
+      className="border-0 divide-y-2 divide-secondary/5"
+    >
       {itemList.map((item) => (
         <AccordionPanel key={item.label}>
           <AccordionTitle
+            as="h4"
             theme={{
               open: {
                 on: "bg-inherit",
               },
-              heading: "font-normal text-base sm:text-lg lg:text-xl 2xl:text-2xl"
+              heading:
+                "font-normal",
             }}
             className="focus:ring-0 text-inherit hover:bg-inherit link focus:text-accent"
           >
