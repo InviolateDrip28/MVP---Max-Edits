@@ -1,8 +1,8 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-// import { observer } from "mobx-react";
-// import { useStores } from "@/stores/provider";
+import { observer } from "mobx-react";
+import { useSearchStore } from "@/stores/provider";
 import {
   COUNTRY_NAMES,
   COUNTRY_NAME_TO_CODE,
@@ -27,41 +27,11 @@ import Searchbox from "@/components/Searchbox";
 
 type TData = Provider[];
 
-// interface QueryResult<TData> {
-//   data: Provider[] | undefined;
-//   error: unknown;
-//   isLoading: boolean;
-// }
-
-const Compare = () => {
-  // const { SearchStore } = useStores();
+const Compare = observer(() => {
+  const searchStore = useSearchStore();
   const searchParams = useSearchParams();
 
-  const [amount, setAmount] = useState<string>(
-    searchParams.get("amount")!
-  );
-  const [fromCountry, setFromCountry] = useState<string>(
-    searchParams.get("fromCountry")!
-  );
-  const [toCountry, setToCountry] = useState<string>(
-    searchParams.get("toCountry")!
-  );
-
-  const handleClick = () => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.setItem("amount", amount);
-      localStorage.setItem("fromCountry", fromCountry);
-      localStorage.setItem("toCountry", toCountry);
-    }
-  };
-
-  const [
-    _fromCurrency,
-    _toCurrency,
-    _amount,
-    _fromCountry,
-    _toCountry,
-  ] = [
+  const [fromCurrency, toCurrency, amount, fromCountry, toCountry] = [
     searchParams.get("from")!,
     searchParams.get("to")!,
     searchParams.get("amount")!,
@@ -71,11 +41,11 @@ const Compare = () => {
 
   const { data, error, isLoading } =
     trpc.allRates.getRankedRates.useQuery<TData>({
-      amount: Number(_amount),
-      country: _fromCountry,
-      sell: _fromCurrency,
-      buy: _toCurrency,
-      destinationCountry: _toCountry,
+      amount: Number(amount),
+      country: fromCountry,
+      sell: fromCurrency,
+      buy: toCurrency,
+      destinationCountry: toCountry,
       fixed_currency: "sell",
     });
 
@@ -96,11 +66,12 @@ const Compare = () => {
     }
   }, [current, data]);
 
+
   const handleSwap = () => {
-    const from = fromCountry;
-    const to = toCountry;
-    setToCountry(from);
-    setFromCountry(to);
+    const from = searchStore.fromCountry;
+    const to = searchStore.toCountry;
+    searchStore.setToCountry(from);
+    searchStore.setFromCountry(to);
   };
 
   return (
@@ -118,9 +89,9 @@ const Compare = () => {
             <NumericFormat
               className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 md:min-w-36 cursor-default rounded-md bg-white py-2 md:py-2.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
               thousandSeparator={","}
-              value={amount}
+              value={searchStore.amount}
               onChange={(e) =>
-                setAmount(e.target.value.replace(/,/g, ""))
+                searchStore.setAmount(e.target.value.replace(/,/g, ""))
               }
               allowNegative={false}
               decimalScale={2}
@@ -133,8 +104,8 @@ const Compare = () => {
               optionsList={COUNTRY_NAMES}
               reference={COUNTRY_NAME_TO_CODE}
               reference2={COUNTRY_CODE_TO_CURRENCY}
-              defaultValue={COUNTRY_CODE_TO_NAME[fromCountry]}
-              setSelected={setFromCountry}
+              defaultValue={COUNTRY_CODE_TO_NAME[searchStore.fromCountry]}
+              setSelected={searchStore.setFromCountry}
             />
           </div>
           <button
@@ -150,22 +121,22 @@ const Compare = () => {
               optionsList={COUNTRY_NAMES}
               reference={COUNTRY_NAME_TO_CODE}
               reference2={COUNTRY_CODE_TO_CURRENCY}
-              defaultValue={COUNTRY_CODE_TO_NAME[toCountry]}
-              setSelected={setToCountry}
+              defaultValue={COUNTRY_CODE_TO_NAME[searchStore.toCountry]}
+              setSelected={searchStore.setToCountry}
             />
           </div>
           <Link
             href={{
               pathname: "/compare",
               query: {
-                from: COUNTRY_CODE_TO_CURRENCY[fromCountry],
-                to: COUNTRY_CODE_TO_CURRENCY[toCountry],
-                amount: amount,
-                fromCountry: fromCountry,
-                toCountry: toCountry,
+                from: COUNTRY_CODE_TO_CURRENCY[searchStore.fromCountry],
+                to: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+                amount: searchStore.amount,
+                fromCountry: searchStore.fromCountry,
+                toCountry: searchStore.toCountry,
               },
             }}
-            onClick={handleClick}
+            // onClick={handleClick}
             className="text-white text-center font-bold rounded-md py-2 md:py-[9px] lg:py-[13px] xl:py-[11px] w-full md:min-w-24 md:max-w-32 h-min flex justify-center text-base sm:text-lg xl:text-2xl
                 bg-accent/80 relative z-10 overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent
                 before:transition-transform before:duration-500 before:-z-10 hover:before:translate-x-full mt-4 sm:mt-0"
@@ -200,7 +171,7 @@ const Compare = () => {
               Looks like we couldn&apos;t find any providers that send
               money from{" "}
               <span className="font-semibold">
-                {COUNTRY_CODE_TO_NAME[_fromCountry]} ({_fromCountry})
+                {COUNTRY_CODE_TO_NAME[fromCountry]} ({fromCountry})
               </span>{" "}
               to{" "}
               <span className="font-semibold">
@@ -257,9 +228,9 @@ const Compare = () => {
               <ProviderCard
                 key={i}
                 provider={provider.source}
-                fromCurrency={_fromCurrency}
-                toCurrency={_toCurrency}
-                amount={_amount}
+                fromCurrency={fromCurrency}
+                toCurrency={toCurrency}
+                amount={amount}
                 options={[{ rate: provider.rate }]}
               />
             ))}
@@ -274,6 +245,6 @@ const Compare = () => {
       )}
     </section>
   );
-};
+});
 
 export default trpc.withTRPC(Compare);

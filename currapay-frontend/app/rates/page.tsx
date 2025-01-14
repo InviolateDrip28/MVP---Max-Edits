@@ -2,7 +2,6 @@
 
 import type { ApexOptions } from "apexcharts";
 import { observer } from "mobx-react";
-import { SearchStore } from "@/stores/search.store";
 
 const Rates = observer(() => {
   const chartConfig = {
@@ -77,7 +76,7 @@ const Rates = observer(() => {
         <div className="flex flex-col justify-center items-center">
           <p>Current mid-market exchange rate</p>
           <p>
-            1 {SearchStore.fromCurrency} = 1.23 {SearchStore.toCurrency}
+            1 USD = 1.23 GB
           </p>
         </div>
         {/* 

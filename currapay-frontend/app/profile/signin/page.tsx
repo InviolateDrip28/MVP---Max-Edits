@@ -1,9 +1,9 @@
 "use client";
-import { useStores } from "@/stores/provider";
+import { useUserStore } from "@/stores/provider";
 import { useEffect, useState } from "react";
 
 export default function SignIn() {
-  const { UserStore } = useStores();
+  const userStore = useUserStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showWarning, setShowWarning] = useState(false);
@@ -11,7 +11,7 @@ export default function SignIn() {
   function handleSignIn() {
     // TODO: Implement sign in logic
     if (true) {
-      UserStore.setLoggedIn(true);
+      userStore.setLoggedIn(true);
     } else {
       setShowWarning(true);
       return;

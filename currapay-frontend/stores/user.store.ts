@@ -1,15 +1,24 @@
-import { makeAutoObservable } from "mobx";
+import { makeObservable, observable, action } from "mobx";
+import { RootStore } from ".";
 
 // Stores the user state
-class _UserStore {
+export class UserStore {
   // Default values
+  root: RootStore;
   loggedIn = false;
   firstName = "First";
   lastName = "Last";
   country = "US";
 
-  constructor() {
-    makeAutoObservable(this);
+  constructor(root: RootStore) {
+    this.root = root;
+    makeObservable(this, {
+      loggedIn: observable,
+      firstName: observable,
+      lastName: observable,
+      country: observable,
+      setLoggedIn: action
+    });
   }
 
   public setLoggedIn = (loggedIn: boolean) => {
@@ -17,5 +26,3 @@ class _UserStore {
   }
   
 }
-
-export const UserStore = new _UserStore();

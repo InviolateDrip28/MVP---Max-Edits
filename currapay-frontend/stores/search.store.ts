@@ -1,40 +1,60 @@
-import { makeAutoObservable } from "mobx";
-import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
+import { makeObservable, observable, action, reaction } from "mobx";
+import { RootStore } from ".";
 
 // Stores the search state
-class _SearchStore {
+// On refresh, the search state is reverted back to the last thing the user searched for
+export class SearchStore {
   // Default values
-  fromCountry = "US";
-  toCountry = "GB";
-  fromCurrency = "USD";
-  toCurrency = "GBP";
-  amount = "500";
+  root: RootStore;
+  fromCountry: string = "US";
+  toCountry: string = "GB";
+  amount: string = "500";
 
-  constructor() {
-    makeAutoObservable(this);
+  constructor(root: RootStore) {
+    this.root = root;
+    makeObservable(this, {
+      fromCountry: observable,
+      toCountry: observable,
+      amount: observable,
+      setFromCountry: action,
+      setToCountry: action,
+      setAmount: action,
+    });
+
+    this.loadFromLocalStorage();
   }
 
   public setFromCountry = (country: string) => {
     this.fromCountry = country;
-    this.fromCurrency = COUNTRY_CODE_TO_CURRENCY[country];
-  }
+    localStorage.setItem("fromCountry", country);
+  };
 
   public setToCountry = (country: string) => {
     this.toCountry = country;
-    this.toCurrency = COUNTRY_CODE_TO_CURRENCY[country];
-  }
-
-  public setFromCurrency = (currency: string) => {
-    this.fromCurrency = currency;
-  }
-
-  public setToCurrency = (currency: string) =>{
-    this.toCurrency = currency;
-  }
+    localStorage.setItem("toCountry", country);
+  };
 
   public setAmount = (amount: string) => {
     this.amount = amount;
+    localStorage.setItem("amount", amount);
+  };
+
+  loadFromLocalStorage() {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const fromCountry = localStorage.getItem("fromCountry");
+      if (fromCountry) {
+        this.fromCountry = fromCountry;
+      }
+
+      const toCountry = localStorage.getItem("toCountry");
+      if (toCountry) {
+        this.toCountry = toCountry;
+      }
+
+      const amount = localStorage.getItem("amount");
+      if (amount) {
+        this.amount = amount;
+      }
+    }
   }
 }
-
-export const SearchStore = new _SearchStore();
