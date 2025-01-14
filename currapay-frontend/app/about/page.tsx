@@ -93,14 +93,14 @@ export default function About() {
   return (
     <div
       id="about"
-      className="about w-screen max-w-full text-center gap-36 lg:gap-48 overflow-hidden"
+      className="about text-center gap-36 lg:gap-48"
     >
       <div
         id="mission"
         className="differentBackgroundColor bg-gradient-to-tl from-slate-900 to-accentDark"
       >
         <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8 subsection pt-20 sm:pt-32 md:pt-36 lg:-mt-4 xl:-mt-8 2xl:-mt-12">
-          <div className="relative space-y-4 lg:col-span-2 lg:pr-16 2xl:text-2xl mobile:mx-1 z-10">
+          <div className="relative space-y-4 lg:col-span-2 lg:pr-16 2xl:text-2xl mobile:px-12 z-10">
             <h1 className="text-white">Our Mission</h1>
             <h3 className="font-semibold text-gray-300">
               We&apos;re building a better way to send money abroad.
