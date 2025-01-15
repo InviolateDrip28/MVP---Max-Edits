@@ -25,7 +25,9 @@ export default function GlobeModel({ ...props }) {
       };
     }, []);
 
-    if (width < 775) {
+    if (width < 450) {
+      return width - 100;
+    } else if (width < 775) {
       return 400;
     } else if (width < 1024) {
       return 600;

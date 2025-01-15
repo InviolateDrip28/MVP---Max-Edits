@@ -99,8 +99,8 @@ export default function About() {
         id="mission"
         className="differentBackgroundColor bg-gradient-to-tl from-slate-900 to-accentDark"
       >
-        <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8 subsection pt-20 sm:pt-32 md:pt-36 lg:-mt-4 xl:-mt-8 2xl:-mt-12">
-          <div className="relative space-y-4 lg:col-span-2 lg:pr-16 2xl:text-2xl mobile:px-12 z-10">
+        <div className="items-center justify-center grid grid-flow-row lg:grid-flow-col lg:grid-cols-3 text-center lg:text-left gap-12 lg:gap-8 subsection pt-12 sm:pt-24 md:pt-36 lg:-mt-4 xl:-mt-8 2xl:-mt-12">
+          <div className="relative justify-center space-y-4 lg:col-span-2 lg:pr-16 2xl:text-2xl z-10">
             <h1 className="text-white">Our Mission</h1>
             <h3 className="font-semibold text-gray-300">
               We&apos;re building a better way to send money abroad.
@@ -135,8 +135,8 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="w-full lg:col-span-1 lg:translate-x-1/4 -my-12 lg:-my-36 xl:-my-40 2xl:-my-48">
-            <Globe className="relative flex justify-center items-center " />
+          <div className="w-full lg:col-span-1 lg:translate-x-1/4 xl:translate-y-4 -my-12 lg:-my-36 xl:-my-40 2xl:-my-48">
+            <Globe className="relative flex justify-center items-center" />
           </div>
         </div>
       </div>
@@ -188,7 +188,6 @@ export default function About() {
         id="investors"
         className="differentBackgroundColor -mb-8 sm:-mb-8 md:-mb-12 md:py-20 lg:py-20 xl:py-20 2xl:py-20 bg-accentDark"
       >
-        {/* -my-12 -mx-8 sm:-mx-12 sm:-my-16 md:-my-24 md:-mx-16 lg:-mx-24 xl:-mx-32 py-24 px-8 sm:px-12 sm:py-16 md:px-16 md:py-24 lg:px-24 lg:py-32 xl:px-32 xl:py-36 2xl:py-40; */}
         <div className="subsection flex flex-col items-center justify-center">
           <h1 className="w-full h-full flex items-center justify-center text-white">
             Backed by

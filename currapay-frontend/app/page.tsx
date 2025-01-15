@@ -307,6 +307,7 @@ const Homepage = observer(() => {
           free to{" "}
           <Link
             href="https://forms.gle/JZK9F2C3E9u1osaaA"
+            target="_blank"
             className="link text-accent underline underline-offset-4"
           >
             contact us!
