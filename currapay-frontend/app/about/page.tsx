@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -135,7 +136,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="w-full lg:col-span-1 lg:translate-x-1/4 xl:translate-y-4 -my-12 lg:-my-36 xl:-my-40 2xl:-my-48">
+          <div className="w-full lg:col-span-1 lg:translate-x-1/4 md:translate-y-4 -my-12 lg:-my-36 xl:-my-40 2xl:-my-48">
             <Globe className="relative flex justify-center items-center" />
           </div>
         </div>
@@ -149,7 +150,6 @@ export default function About() {
             data-aos="fade-up"
             data-aos-duration="2400"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={"/max_and_david.jpg"}
               alt="founders"

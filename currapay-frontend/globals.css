@@ -33,7 +33,7 @@
 }
 
 .about {
-  @apply flex flex-col w-full min-h-screen m-auto justify-center px-6 pb-24 sm:px-12 md:px-16 md:pb-36 lg:px-24 lg:pb-48 xl:px-32 xl:pb-52 overflow-x-hidden;
+  @apply flex flex-col w-full min-h-screen m-auto justify-center px-6 pb-24 sm:px-12 md:px-16 md:pb-36 lg:px-24 lg:pb-48 xl:px-32 xl:pb-52 overflow-hidden;
 }
 
 .subsection {
