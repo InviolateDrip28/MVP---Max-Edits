@@ -499,6 +499,7 @@ const Homepage = observer(() => {
             <Link
               href="https://xe-money-transfer.pxf.io/c/5580726/2132164/12610"
               className="underline hover:text-accent hover:decoration-accent"
+              target="_blank"
             >
               XE
             </Link>

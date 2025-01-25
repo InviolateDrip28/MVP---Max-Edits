@@ -7,27 +7,24 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import {
-  PARTNER_NAMES_TO_DETAILS,
-  PARTNER_NAMES_TO_PROMOTION,
-} from "@/app/constants";
+import { PARTNER_NAMES_TO_DETAILS } from "@/app/constants";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Link from "next/link";
 
 /**
- * Modal component for the provider details
+ * Modal component to track transactions
  * source: https://headlessui.com/v1/react/dialog
  */
 
-export interface ProviderModalProps {
+export interface TransactionModalProps {
   className?: string;
-  buttonText: string;
-  buttonStyle?: string;
   provider: string;
 }
 
-export default function ProviderModal(props: ProviderModalProps) {
+export default function TransactionModal(
+  props: TransactionModalProps
+) {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -38,16 +35,28 @@ export default function ProviderModal(props: ProviderModalProps) {
     setIsOpen(true);
   }
 
+  function handleYes() {
+    setIsOpen(false);
+  }
+
+  function handleNo() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className={props.className}>
-        <button
-          type="button"
+        <Link
+          className="inline-flex bg-accent hover:bg-accent/75 text-white rounded-lg py-1.5 px-2.5 md:py-2 md:px-3"
+          href={PARTNER_NAMES_TO_DETAILS[props.provider].link}
+          target="_blank"
           onClick={openModal}
-          className={props.buttonStyle ? props.buttonStyle : ""}
         >
-          {props.buttonText}
-        </button>
+          <p className="font-bold">Go to provider</p>
+          <div className="flex items-center ml-1">
+            <OpenInNewIcon className="h-6 w-6" />
+          </div>
+        </Link>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -86,49 +95,28 @@ export default function ProviderModal(props: ProviderModalProps) {
                   />
 
                   <DialogTitle as="h3" className="font-semibold">
-                    Promotion details
+                    Did you complete your transaction?
                   </DialogTitle>
-                  <div className="mt-4 md:mt-8 mb-16 md:mb-28">
-                    <ol className="list-disc ml-6 space-y-2 md:space-y-4">
-                      {PARTNER_NAMES_TO_PROMOTION[
-                        props.provider
-                      ].description.map((text) => (
-                        <li key={text}> {text}</li>
-                      ))}
-                    </ol>
-                    {PARTNER_NAMES_TO_PROMOTION[props.provider]
-                      .details && (
-                      <p className="text-secondary/80 ml-2 mt-12 md:mt-20 space-x-2.5 md:space-x-1.5">
-                        <span>*</span>
-                        <span>
-                          {
-                            PARTNER_NAMES_TO_PROMOTION[props.provider]
-                              .details
-                          }
-                        </span>
-                      </p>
-                    )}
+                  <div className="mt-4 md:mt-8 mb-8 md:mb-16">
+                    <p>
+                      Let us know, and we&apos;ll help track your
+                      transactions.
+                    </p>
                   </div>
 
-                  <div className="flex justify-center items-center">
-                    <Link
-                      className="absolute bottom-6 md:bottom-12 bg-accent hover:bg-accent/75 text-white rounded-lg py-2 px-3 md:py-4 md:px-6 inline-flex"
-                      href={
-                        PARTNER_NAMES_TO_DETAILS[props.provider].link
-                      }
-                      target="_blank"
+                  <div className="flex justify-center items-center space-x-8 font-bold">
+                    <button
+                      className="bg-accent hover:bg-accent/75 text-white rounded-lg py-2 px-3 md:py-4 md:px-6"
+                      onClick={handleYes}
                     >
-                      <p className="font-bold">
-                        Go to{" "}
-                        {
-                          PARTNER_NAMES_TO_DETAILS[props.provider]
-                            .displayName
-                        }
-                      </p>
-                      <div className="flex items-center ml-1.5">
-                        <OpenInNewIcon className="h-6 w-6" />
-                      </div>
-                    </Link>
+                      <h4>Yes</h4>
+                    </button>
+                    <button
+                      className="bg-secondary hover:bg-secondary/75 text-white rounded-lg py-2 px-3 md:py-4 md:px-6"
+                      onClick={handleNo}
+                    >
+                      <h4>No</h4>
+                    </button>
                   </div>
                 </DialogPanel>
               </TransitionChild>
