@@ -1,5 +1,4 @@
 import {
-  ArrowRightIcon,
   ClockIcon,
   ArrowPathIcon,
   ChevronDownIcon,
@@ -8,13 +7,10 @@ import {
 import { ProviderCardProps } from "../types";
 import Image from "next/image";
 import { useState } from "react";
-import Link from "next/link";
 import RecipientCard from "./RecipientCard";
 import ProviderModal from "./ProviderModal";
-import {
-  PARTNER_NAMES_TO_DETAILS,
-} from "@/app/constants";
-
+import TransactionModal from "./TransactionModal";
+import { PARTNER_NAMES_TO_DETAILS } from "@/app/constants";
 
 // need to map provider to image path
 // for each provider, need to get how many options they have
@@ -58,11 +54,11 @@ export default function ProviderCard(props: ProviderCardProps) {
               <div className="bg-accentSecondary/50 w-full mt-2 rounded-lg p-2">
                 Offers deal for new customers!
                 <ProviderModal
-                className="relative inline-flex px-1"
-                buttonText={"Details"}
-                buttonStyle="underline"
-                provider={props.provider}
-              />
+                  className="relative inline-flex px-1"
+                  buttonText={"Details"}
+                  buttonStyle="underline"
+                  provider={props.provider}
+                />
               </div>
             )}
           </div>
@@ -76,7 +72,10 @@ export default function ProviderCard(props: ProviderCardProps) {
                   Transfer time:{"  "}
                 </span>
                 <span>
-                  {PARTNER_NAMES_TO_DETAILS[props.provider].transferTime}
+                  {
+                    PARTNER_NAMES_TO_DETAILS[props.provider]
+                      .transferTime
+                  }
                 </span>
               </p>
               <p>Payment method: debit card</p>
@@ -154,7 +153,8 @@ export default function ProviderCard(props: ProviderCardProps) {
                       {/* <span>{option.transferTime}</span> */}
                       <span>
                         {
-                          PARTNER_NAMES_TO_DETAILS[props.provider].transferTime
+                          PARTNER_NAMES_TO_DETAILS[props.provider]
+                            .transferTime
                         }
                       </span>
                     </p>
@@ -170,7 +170,9 @@ export default function ProviderCard(props: ProviderCardProps) {
                     </span>
                     <span>
                       {/* {option.fee} {props.fromCurrency} */}
-                      {PARTNER_NAMES_TO_DETAILS[props.provider].fees}{" "}
+                      {
+                        PARTNER_NAMES_TO_DETAILS[props.provider].fees
+                      }{" "}
                       {props.fromCurrency}
                     </span>
                   </p>
@@ -228,7 +230,12 @@ export default function ProviderCard(props: ProviderCardProps) {
             <div className="pb-6 space-y-2 font-normal">
               {/* <p>{optionsFirst.transferTime}</p>
               <p>By {optionsFirst.method}</p> */}
-              <p>{PARTNER_NAMES_TO_DETAILS[props.provider].transferTime}</p>
+              <p>
+                {
+                  PARTNER_NAMES_TO_DETAILS[props.provider]
+                    .transferTime
+                }
+              </p>
               <p>By debit card</p>
             </div>
 
@@ -316,7 +323,8 @@ export default function ProviderCard(props: ProviderCardProps) {
                       {/* <p>{option.transferTime}</p> */}
                       <p>
                         {
-                          PARTNER_NAMES_TO_DETAILS[props.provider].transferTime
+                          PARTNER_NAMES_TO_DETAILS[props.provider]
+                            .transferTime
                         }
                       </p>
                       <p className="font-semibold">
@@ -341,7 +349,10 @@ export default function ProviderCard(props: ProviderCardProps) {
                           Fee:{" "}
                         </span>{" "}
                         {/* {option.fee} {props.fromCurrency} */}
-                        {PARTNER_NAMES_TO_DETAILS[props.provider].fees}{" "}
+                        {
+                          PARTNER_NAMES_TO_DETAILS[props.provider]
+                            .fees
+                        }{" "}
                         {props.fromCurrency}
                       </p>
                       <p>
@@ -370,16 +381,10 @@ export default function ProviderCard(props: ProviderCardProps) {
         )}
       </div>
 
-      <Link
-        className="absolute bottom-6 right-6 lg-xl:bottom-8 lg-xl:right-8 inline-flex bg-accent hover:bg-accent/75 text-white rounded-lg py-1.5 px-2.5 md:py-2 md:px-3"
-        href={PARTNER_NAMES_TO_DETAILS[props.provider].link}
-      >
-        <p className="font-bold">Go to provider</p>
-
-        <div className="flex items-center ml-2">
-          <ArrowRightIcon className="h-6 w-6" />
-        </div>
-      </Link>
+      <TransactionModal
+        className="absolute bottom-6 right-6 lg-xl:bottom-8 lg-xl:right-8"
+        provider={props.provider}
+      />
     </div>
   );
 }
