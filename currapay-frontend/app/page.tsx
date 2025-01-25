@@ -213,52 +213,50 @@ const Homepage = observer(() => {
           How CurraPay Works
         </h1>
 
+        {/* TODO: fix here */}
         <div className="relative overflow-hidden w-full">
           <div className="mt-2 overflow-hidden">
             <div className="relative">
               <div className="relative">
-                <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
+                <div className="absolute inset-x-0 hidden xl:px-44 top-2 lg:block md:px-20 lg:px-28">
                   <svg
                     className="w-full"
                     xmlns="http://www.w3.org/2000/svg"
                     width="875"
-                    height="48"
+                    height="60"
                     viewBox="0 0 875 48"
                     fill="none"
                   >
                     <path
                       d="M2 29C20.2154 33.6961 38.9915 35.1324 57.6111 37.5555C80.2065 40.496 102.791 43.3231 125.556 44.5555C163.184 46.5927 201.26 45 238.944 45C312.75 45 385.368 30.7371 458.278 20.6666C495.231 15.5627 532.399 11.6429 569.278 6.11109C589.515 3.07551 609.767 2.09927 630.222 1.99998C655.606 1.87676 681.208 1.11809 706.556 2.44442C739.552 4.17096 772.539 6.75565 805.222 11.5C828 14.8064 850.34 20.2233 873 24"
-                      stroke="black"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-dasharray="1 12"
+                      stroke="#545556"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeDasharray="1 12"
                     />
                   </svg>
                 </div>
-                <div className="relative grid grid-cols-1 text-center gap-y-8 sm:gap-y-10 md:gap-y-12 md:grid-cols-3 gap-x-36">
+                <div className="relative grid grid-cols-1 text-center gap-y-8 sm:gap-y-10 lg:gap-y-12 lg:grid-cols-3 lg:gap-x-24 xl:gap-x-36">
                   <div>
-                    <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-full shadow">
-                      <span className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        1
-                      </span>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">1</h1>
                     </div>
-                    <h3 className="mt-4 sm:mt-6 text-xl font-semibold leading-tight text-gray-900 dark:text-white md:mt-10">
-                      Search for the Country You Want to Send To
-                    </h3>
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
+                      Search for a Country
+                    </h2>
                     <p className="mt-3 sm:mt-4">
                       Simply select the country you want to send money
                       to, and then enter the amount you wish to send.
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-full shadow">
-                      <span className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        2
-                      </span>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">2</h1>
                     </div>
-                    <h3 className="mt-4 sm:mt-6 text-xl font-semibold leading-tight text-gray-900 dark:text-white md:mt-10">
+
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
                       Compare Your Trusted Providers
-                    </h3>
+                    </h2>
                     <p className="mt-3 sm:mt-4 ">
                       Just like finding the best hotel on Booking.com
                       or Kayak, our unique comparison engine shows you
@@ -267,14 +265,12 @@ const Homepage = observer(() => {
                     </p>
                   </div>
                   <div>
-                    <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-full shadow">
-                      <span className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        3
-                      </span>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">3</h1>
                     </div>
-                    <h3 className="mt-4 sm:mt-6 text-xl font-semibold leading-tight text-gray-900 dark:text-white md:mt-10">
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
                       Choose, Send, Then Save!
-                    </h3>
+                    </h2>
                     <p className="mt-3 sm:mt-4">
                       Find your trusted provider, then send your
                       money. You&apos;ll know that you secured the
@@ -288,57 +284,14 @@ const Homepage = observer(() => {
             </div>
           </div>
         </div>
-
-        <div className="grid grid-flow-row lg:grid-flow-col gap-16">
-          <div className="space-y-4">
-            <div className="lg:h-1/2 space-y-4">
-              <MagnifyingGlassIcon className="h-12 w-12 text-accent" />
-              <h2>STEP 1</h2>
-              <h4>Search for the Country You Want to Send To</h4>
-            </div>
-            <div className="pt-6 border-b border-secondary/30" />
-            <p className="lg:pt-4">
-              Simply select the country you want to send money to, and
-              then enter the amount you wish to send.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="lg:h-1/2 space-y-4">
-              <ChartBarIcon className="h-12 w-12 text-accent" />
-              <h2>STEP 2</h2>
-              <h4>Compare Your Trusted Providers</h4>
-            </div>
-            <div className="pt-6 border-b border-secondary/30" />
-            <p className="lg:pt-4">
-              Just like finding the best hotel on Booking.com or
-              Kayak, our unique comparison engine shows you the
-              fastest and cheapest providers to send your money
-              through.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="lg:h-1/2 space-y-4">
-              <CursorArrowRaysIcon className="h-12 w-12 text-accent" />
-              <h2>STEP 3</h2>
-              <h4>Choose, Send, Then Save!</h4>
-            </div>
-            <div className="pt-6 border-b border-secondary/30" />
-            <p className="lg:pt-4">
-              Find your trusted provider, then send your money.
-              You&apos;ll know that you secured the best possible
-              value for you and your recipient. CurraPay is all about
-              getting you more “bang for your buck”!
-            </p>
-          </div>
-        </div>
       </div>
 
       <div
         id="who-we-help"
-        className="subsection flex flex-col py-4 lg:py-12 space-y-16"
+        className="subsection flex flex-col py-4 lg:py-12 space-y-16 lg:space-y-32"
       >
         <div className="grid lg:grid-cols-2 gap-12">
-          <div className="space-y-8">
+          <div className="space-y-8 order-2 lg:order-1">
             <h1>Who We&apos;re Helping</h1>
             <h3>
               We understand the importance of sending money quickly
@@ -349,9 +302,9 @@ const Homepage = observer(() => {
               at the lowest cost.
             </h3>
           </div>
-          <div className="flex w-full justify-center ">
+          <div className="flex w-full justify-center order-1 lg:order-2">
             <img
-              className="rounded-md shadow-lg object-cover"
+              className="w-full rounded-md shadow-lg object-cover"
               src="/home_page.jpg"
             />
           </div>
@@ -384,10 +337,12 @@ const Homepage = observer(() => {
           <div className="bg-white border border-secondary/30 rounded-xl py-8 px-6 space-y-3 lg:space-y-8">
             <div className="lg:h-1/3 space-y-1">
               <BookOpenIcon className="text-accent h-8 w-8" />
-              <h4 className="font-semibold">
-                {" "}
-                Study-Abroad & International Students
-              </h4>
+              <div className="flex flex-row lg:flex-col font-semibold whitespace-break-spaces">
+                <h4 className="whitespace-pre">
+                  Study-Abroad & {""}
+                </h4>
+                <h4>International Students</h4>
+              </div>
             </div>
             <p className="pt-4">
               Sending tuition or funding your study abroad? Compare

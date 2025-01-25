@@ -175,7 +175,7 @@ export default function About() {
               Play (an early investor in PayPal and DropBox),
               Prudential, Stevens Institute of Technology, and the New
               Jersey Economic Development Authority. The platform
-              launched in November 2024.
+              launched in November 2024, and the rest is history.
             </h4>
           </div>
         </div>
