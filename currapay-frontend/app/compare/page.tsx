@@ -87,7 +87,7 @@ const Compare = observer(() => {
           <div className="w-full">
             <p className="text-secondary/80">Amount</p>
             <NumericFormat
-              className="relative w-full text-base sm:text-lg xl:text-2xl min-w-20 md:min-w-36 cursor-default rounded-md bg-white py-2 md:py-2.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
+              className="relative w-full text-base sm:text-lg lg:text-xl 2xl:text-2xl min-w-20 md:min-w-36 cursor-default rounded-md bg-white py-2 md:py-2.5 px-3 text-left shadow-sm border border-secondary/30 sm:leading-6 focus:border-accent focus:ring-1 focus:ring-accent "
               thousandSeparator={","}
               value={searchStore.amount}
               onChange={(e) =>
