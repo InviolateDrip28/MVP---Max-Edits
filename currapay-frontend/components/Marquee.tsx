@@ -16,7 +16,7 @@ export const Marquee = ({ items }: { items: MarqueeItem[] }) => {
          hover:[animation-play-state:paused] pt-8 md:space-x-24"
         >
           {[...items, ...items].map((item, index) => (
-            <Link key={index} className="h-full w-full" href={item.link}>
+            <Link key={index} className="h-full w-full" href={item.link} target="_blank">
               <span className="flex h-7 sm:h-8 md:h-9 lg:h-10 xl:h-11 2xl:h-12 w-max justify-center">
                 <Image
                   src={item.image}

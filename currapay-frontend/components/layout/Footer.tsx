@@ -44,18 +44,21 @@ export const Footer = () => {
             <Link
               href="https://www.iubenda.com/terms-and-conditions/17897588"
               className="link"
+              target="_blank"
             >
               Terms of Service
             </Link>
             <Link
               href="https://www.iubenda.com/privacy-policy/17897588"
               className="link"
+              target="_blank"
             >
               Privacy Policy
             </Link>
             <Link
               href="https://www.iubenda.com/privacy-policy/17897588/cookie-policy"
               className="link"
+              target="_blank"
             >
               Cookie Policy
             </Link>
