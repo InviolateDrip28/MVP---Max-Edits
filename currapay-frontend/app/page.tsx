@@ -9,6 +9,12 @@ import {
 } from "./constants";
 import {
   ArrowsUpDownIcon,
+  CursorArrowRaysIcon,
+  MagnifyingGlassIcon,
+  ChartBarIcon,
+  HomeIcon,
+  BookOpenIcon,
+  BuildingOffice2Icon,
 } from "@heroicons/react/20/solid";
 import GroupIcon from "@mui/icons-material/Groups";
 import SendIcon from "@mui/icons-material/Send";
@@ -118,7 +124,9 @@ const Homepage = observer(() => {
                   thousandSeparator={","}
                   value={searchStore.amount}
                   onChange={(e) =>
-                    searchStore.setAmount(e.target.value.replace(/,/g, ""))
+                    searchStore.setAmount(
+                      e.target.value.replace(/,/g, "")
+                    )
                   }
                   allowNegative={false}
                   decimalScale={2}
@@ -135,7 +143,9 @@ const Homepage = observer(() => {
                 optionsList={COUNTRY_NAMES}
                 reference={COUNTRY_NAME_TO_CODE}
                 reference2={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={COUNTRY_CODE_TO_NAME[searchStore.fromCountry]}
+                defaultValue={
+                  COUNTRY_CODE_TO_NAME[searchStore.fromCountry]
+                }
                 setSelected={searchStore.setFromCountry}
               />
             </div>
@@ -153,7 +163,9 @@ const Homepage = observer(() => {
                 optionsList={COUNTRY_NAMES}
                 reference={COUNTRY_NAME_TO_CODE}
                 reference2={COUNTRY_CODE_TO_CURRENCY}
-                defaultValue={COUNTRY_CODE_TO_NAME[searchStore.toCountry]}
+                defaultValue={
+                  COUNTRY_CODE_TO_NAME[searchStore.toCountry]
+                }
                 setSelected={searchStore.setToCountry}
               />
             </div>
@@ -184,10 +196,7 @@ const Homepage = observer(() => {
         </div>
       </div>
 
-      <div
-        id="partners"
-        className="text-center mb-12 lg:mb-24 space-y-12 "
-      >
+      <div id="partners" className="text-center mb-12 space-y-12">
         <h1 className="text-center">Our Partners</h1>
         <h3>
           We work with industry leading financial institutions to
@@ -197,28 +206,183 @@ const Homepage = observer(() => {
       </div>
 
       <div
+        id="how-it-works"
+        className="differentBackgroundColor bg-secondary/10 space-y-12 lg:space-y-24"
+      >
+        <h1 className="text-accent text-center">
+          How CurraPay Works
+        </h1>
+
+        {/* TODO: fix here */}
+        <div className="relative overflow-hidden w-full">
+          <div className="mt-2 overflow-hidden">
+            <div className="relative">
+              <div className="relative">
+                <div className="absolute inset-x-0 hidden xl:px-44 top-2 lg:block md:px-20 lg:px-28">
+                  <svg
+                    className="w-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="875"
+                    height="60"
+                    viewBox="0 0 875 48"
+                    fill="none"
+                  >
+                    <path
+                      d="M2 29C20.2154 33.6961 38.9915 35.1324 57.6111 37.5555C80.2065 40.496 102.791 43.3231 125.556 44.5555C163.184 46.5927 201.26 45 238.944 45C312.75 45 385.368 30.7371 458.278 20.6666C495.231 15.5627 532.399 11.6429 569.278 6.11109C589.515 3.07551 609.767 2.09927 630.222 1.99998C655.606 1.87676 681.208 1.11809 706.556 2.44442C739.552 4.17096 772.539 6.75565 805.222 11.5C828 14.8064 850.34 20.2233 873 24"
+                      stroke="#545556"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeDasharray="1 12"
+                    />
+                  </svg>
+                </div>
+                <div className="relative grid grid-cols-1 text-center gap-y-8 sm:gap-y-10 lg:gap-y-12 lg:grid-cols-3 lg:gap-x-24 xl:gap-x-36">
+                  <div>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">1</h1>
+                    </div>
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
+                      Search for a Country
+                    </h2>
+                    <p className="mt-3 sm:mt-4">
+                      Simply select the country you want to send money
+                      to, and then enter the amount you wish to send.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">2</h1>
+                    </div>
+
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
+                      Compare Your Trusted Providers
+                    </h2>
+                    <p className="mt-3 sm:mt-4 ">
+                      Just like finding the best hotel on Booking.com
+                      or Kayak, our unique comparison engine shows you
+                      the fastest and cheapest providers to send your
+                      money through.
+                    </p>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 mx-auto bg-accentDark border-2 border-[#4508bf] rounded-full shadow-xl">
+                      <h1 className="font-semibold text-white">3</h1>
+                    </div>
+                    <h2 className="mt-4 sm:mt-6 md:mt-10 lg:h-36 xl:h-28">
+                      Choose, Send, Then Save!
+                    </h2>
+                    <p className="mt-3 sm:mt-4">
+                      Find your trusted provider, then send your
+                      money. You&apos;ll know that you secured the
+                      best possible value for you and your recipient.
+                      CurraPay is all about getting you more “bang for
+                      your buck”!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="who-we-help"
+        className="subsection flex flex-col py-4 lg:py-12 space-y-16 lg:space-y-32"
+      >
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div className="space-y-8 order-2 lg:order-1">
+            <h1>Who We&apos;re Helping</h1>
+            <h3>
+              We understand the importance of sending money quickly
+              and affordably, especially internationally. That&apos;s
+              why we&apos;re dedicated to empowering both those
+              sending and receiving money. We help you find the best
+              options to ensure your money gets there efficiently and
+              at the lowest cost.
+            </h3>
+          </div>
+          <div className="flex w-full justify-center order-1 lg:order-2">
+            <img
+              className="w-full rounded-md shadow-lg object-cover"
+              src="/home_page.jpg"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-8 lg:space-y-0">
+          <div className="bg-white border border-secondary/30 rounded-xl py-8 px-6 space-y-3 lg:space-y-8">
+            <div className="lg:h-1/3 space-y-1">
+              <HomeIcon className="text-accent h-8 w-8" />
+              <h4 className="font-semibold">Immigrants</h4>
+            </div>
+
+            <p className="pt-4">
+              Just settled into a new country? We have you covered!
+              Send money home quickly and cheaply to friends, family,
+              and loved ones.
+            </p>
+          </div>
+          <div className="bg-white border border-secondary/30 rounded-xl py-8 px-6 space-y-3 lg:space-y-8">
+            <div className="lg:h-1/3 space-y-1">
+              <BuildingOffice2Icon className="text-accent h-8 w-8" />
+              <h4 className="font-semibold">Expats</h4>
+            </div>
+
+            <p className="pt-4">
+              Relocated to a new country for work? Find the best ways
+              to send money easily to cover housing costs or other
+              expenses during your move.
+            </p>
+          </div>
+          <div className="bg-white border border-secondary/30 rounded-xl py-8 px-6 space-y-3 lg:space-y-8">
+            <div className="lg:h-1/3 space-y-1">
+              <BookOpenIcon className="text-accent h-8 w-8" />
+              <div className="flex flex-row lg:flex-col font-semibold whitespace-break-spaces">
+                <h4 className="whitespace-pre">
+                  Study-Abroad & {""}
+                </h4>
+                <h4>International Students</h4>
+              </div>
+            </div>
+            <p className="pt-4">
+              Sending tuition or funding your study abroad? Compare
+              options with us and save on fees. We understand the
+              importance of every dollar &mdash; we&apos;ve been there
+              too!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
         id="context"
         className="differentBackgroundColor bg-gradient-to-tr from-accentDark via-accentDark/80 to-accentDark "
       >
-        <div className="subsection flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-background">
+        <div className="subsection flex flex-col lg:flex-row lg:grid-cols-2 gap-16 md:gap-24 lg:justify-between text-white">
           <div className="space-y-8 md:space-y-16">
-            <h1 className="font-bold text-accentSecondary">
+            <h1 className="text-accentSecondary">
               Save money with CurraPay
             </h1>
-            <div>
-              <h3 className="font-semibold">
-                We&apos;re leveling the playing field.
-              </h3>
-              <h3 className="pt-4 md:pt-8">
+            <div className="space-y-4 md:space-y-8">
+              <h2>We&apos;re leveling the playing field.</h2>
+              <h3>
                 We&apos;re on a mission to reduce the cost of sending
                 money internationally. CurraPay was founded on a
                 simple idea — that the international money transfer
                 market needed greater transparency.
               </h3>
+              <h3>
+                We want to give you to the chance to see the{" "}
+                <span className="font-semibold underline-offset-[3px]">
+                  <u>cheapest</u>, <u>fastest</u>, and <u>best</u>{" "}
+                  ways
+                </span>{" "}
+                to send your hard-earned money internationally.
+              </h3>
             </div>
           </div>
 
-          <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16 ">
+          <div className="grid grid-rows-3 gap-y-8 md:gap-y-12 2xl:gap-y-16">
             <div className="border-l-8 pl-8 py-2 lg:py-0 2xl:py-6 grid grid-flow-col justify-start items-center border-accentSecondary gap-6 md:gap-8">
               <div className="h-16 w-16 md:h-20 md:w-20 ">
                 <GroupIcon
@@ -282,7 +446,7 @@ const Homepage = observer(() => {
         id="rates-table"
         className="subsection mt-12 lg:mt-24 text-center"
       >
-        <h1>Mid-Market Exchange Rates</h1>
+        <h1>Check Out the Latest Exchange Rates</h1>
         <div className="relative mt-16 pt-8 pb-20 px-8 md:px-12 bg-white rounded-xl shadow-xl border border-secondary/30">
           <RatesTable />
           <p className="absolute right-12 bottom-6">

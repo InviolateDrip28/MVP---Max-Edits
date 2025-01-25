@@ -64,22 +64,20 @@ const MemberCard = ({ member }: { member: Member }) => {
           </div>
           <h4 className="text-secondary/80">{member.title}</h4>
           <div>
-          <p
-            className={`pt-4 text-ellipsis ${
-              !showDesc && "line-clamp-2"
-            }`}
-          >
-            {member.desc}
-          </p>
-          <button
-            className="pt-1 text-accent hover:underline"
-            onClick={() => setShowDesc(!showDesc)}
-          >
-            {showDesc ? "Read less" : "Read more"}
-          </button>
-            </div>
-
-
+            <p
+              className={`pt-4 text-ellipsis ${
+                !showDesc && "line-clamp-2"
+              }`}
+            >
+              {member.desc}
+            </p>
+            <button
+              className="pt-1 text-accent hover:underline"
+              onClick={() => setShowDesc(!showDesc)}
+            >
+              {showDesc ? "Read less" : "Read more"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -92,10 +90,7 @@ export default function About() {
   }, []);
 
   return (
-    <div
-      id="about"
-      className="about text-center gap-36 lg:gap-48"
-    >
+    <div id="about" className="about text-center gap-36 lg:gap-48">
       <div
         id="mission"
         className="differentBackgroundColor bg-gradient-to-tl from-slate-900 to-accentDark"
@@ -107,31 +102,32 @@ export default function About() {
               We&apos;re building a better way to send money abroad.
             </h3>
             <div className="pt-4 w-full space-y-4 text-left">
-              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4">
+              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4 cursor-default hover:drop-shadow-glow">
                 <ArrowLongRightIcon className="h-5 w-5 2xl:h-7 2xl:w-7 translate-y-1 flex-shrink-0 mr-2" />
                 <h4 className="lg:text-xl 2xl:text-2xl 3xl:text-3xl">
-                  CurraPay is helping the world reach Target 10(c) of
-                  the United Nation&apos;s Sustainable
-                  Development&apos;s Goals: reducing the cost of
-                  sending money abroad below 3%.
+                  CurraPay is on a mission to help the world hit
+                  Target 10(c) of the United Nations&apos; Sustainable
+                  Development Goals: lowering the cost of sending
+                  money abroad to less than 3%.
                 </h4>
               </div>
-              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4">
+              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4 cursor-default hover:drop-shadow-glow">
                 <ArrowLongRightIcon className="h-5 w-5 2xl:h-7 2xl:w-7 translate-y-1 flex-shrink-0 mr-2" />
                 <h4 className="lg:text-xl 2xl:text-2xl 3xl:text-3xl">
-                  Through CurraPay, we are helping move demand within
-                  the international money transfer market away from
-                  slow and expensive institutions, and towards cheaper
-                  and quicker alternatives.
+                  We&apos;re shifting the international money transfer
+                  market away from slow, expensive services and
+                  towards faster, more affordable options. By doing
+                  this, we&apos;re making it easier and cheaper for
+                  people to support their loved ones across borders.
                 </h4>
               </div>
-              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4">
+              <div className="bg-white glass flex flex-row border box-border shadow-xl rounded-xl p-4 cursor-default hover:drop-shadow-glow">
                 <ArrowLongRightIcon className="h-5 w-5 2xl:h-7 2xl:w-7 translate-y-1 flex-shrink-0 mr-2" />
                 <h4 className="lg:text-xl 2xl:text-2xl 3xl:text-3xl">
-                  We are working at the intersection of profit and
-                  purpose to build a marketplace that empowers the
-                  more than 1 billion people who send and receive more
-                  than $13 trillion annually.
+                  At CurraPay, we&apos;re purpose-driven to create a
+                  marketplace that empowers the over 1 billion people
+                  who send and receive more than $13 trillion every
+                  year.
                 </h4>
               </div>
             </div>
@@ -148,7 +144,7 @@ export default function About() {
           <div
             className="relative flex w-full h-full items-center justify-center xl:col-span-4"
             data-aos="fade-up"
-            data-aos-duration="2400"
+            data-aos-duration="2000"
           >
             <img
               src={"/max_and_david.jpg"}
@@ -159,7 +155,7 @@ export default function About() {
           <div
             className="w-full h-full space-y-6 text-left xl:col-span-5"
             data-aos="fade-up"
-            data-aos-duration="2400"
+            data-aos-duration="2000"
           >
             <h4 className="lg:text-xl 2xl:text-2xl">
               As a graduate student at Oxford, David McMillan realized
@@ -179,7 +175,7 @@ export default function About() {
               Play (an early investor in PayPal and DropBox),
               Prudential, Stevens Institute of Technology, and the New
               Jersey Economic Development Authority. The platform
-              launched in November 2024.
+              launched in November 2024, and the rest is history.
             </h4>
           </div>
         </div>
@@ -192,27 +188,44 @@ export default function About() {
           <h1 className="w-full h-full flex items-center justify-center text-white">
             Backed by
           </h1>
-          <div className="mt-16 xl:mt-32 w-full h-full xl:h-20 grid grid-cols-2 gap-12 items-center justify-items-center justify-center xl:flex xl:justify-between">
-            <img
-              src={"/backers/nj_eda_logo_white.png"}
-              alt="NJ EDA"
-              className="relative h-20 w-auto object-contain"
-            />
-            <img
-              src={"/backers/plug_and_play_logo_white.png"}
-              alt="Plug and Play"
-              className="relative h-12 w-auto object-contain"
-            />
-            <img
-              src={"/backers/prudential_logo_white.png"}
-              alt="Prudential"
-              className="relative h-12 w-auto object-contain"
-            />
-            <img
-              src={"/backers/sit_logo_white.png"}
-              alt="SIT"
-              className="relative h-20 w-auto object-contain -translate-y-2"
-            />
+          <div
+            className="mt-16 xl:mt-32 w-full h-full xl:h-20 grid grid-cols-2 gap-12 items-center justify-items-center justify-center xl:flex xl:justify-between"
+            data-aos="zoom-out"
+            data-aos-duration="1200"
+          >
+            <Link href="https://www.njeda.gov/" target="_blank">
+              <img
+                src={"/backers/nj_eda_logo_white.png"}
+                alt="NJ EDA"
+                className="relative h-20 w-auto object-contain"
+              />
+            </Link>
+
+            <Link
+              href="https://www.plugandplaytechcenter.com/"
+              target="_blank"
+            >
+              <img
+                src={"/backers/plug_and_play_logo_white.png"}
+                alt="Plug and Play"
+                className="relative h-12 w-auto object-contain"
+              />
+            </Link>
+
+            <Link href=" https://www.prudential.com/" target="_blank">
+              <img
+                src={"/backers/prudential_logo_white.png"}
+                alt="Prudential"
+                className="relative h-12 w-auto object-contain"
+              />
+            </Link>
+            <Link href="https://www.stevens.edu/" target="_blank">
+              <img
+                src={"/backers/sit_logo_white.png"}
+                alt="SIT"
+                className="relative h-20 w-auto object-contain -translate-y-2"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -226,7 +239,7 @@ export default function About() {
         <div
           className="grid grid-flow-row auto-rows-max md:grid-flow-col md::auto-cols-max gap-12 md:gap-24"
           data-aos="fade-up"
-          data-aos-duration="2400"
+          data-aos-duration="2000"
         >
           {TEAM.map((member) => (
             <MemberCard key={member.name} member={member} />
