@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, reaction } from "mobx";
+import { makeObservable, observable, action } from "mobx";
 import { RootStore } from ".";
 
 // Stores the search state

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { StoreProvider } from "../stores/provider";
 import { Suspense } from "react";
 import { Urbanist } from "next/font/google";
-import { Nav } from "@/components/layout/Nav";
+import Nav from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import "react-material-symbols/rounded";
 import "../globals.css";

@@ -1,10 +1,10 @@
 "use client";
 import SignIn from "./signin/page";
-import UserDashboard from "./userDashboard/page";
+import UserDashboard from "./dashboard/page";
 import { useUserStore } from "@/stores/provider";
 import { observer } from "mobx-react";
 
-const ProfilePage = observer(() => {
+const Profile = observer(() => {
   const userStore = useUserStore();
 
   return (
@@ -14,4 +14,4 @@ const ProfilePage = observer(() => {
   );
 });
 
-export default ProfilePage;
+export default Profile;

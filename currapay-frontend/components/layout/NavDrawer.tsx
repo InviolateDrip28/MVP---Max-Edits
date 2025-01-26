@@ -1,17 +1,16 @@
-import {
-  Popover,
-  PopoverButton,
-  PopoverPanel,
-} from "@headlessui/react";
 import { Drawer } from "flowbite-react";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
+import { useUserStore } from "@/stores/provider";
+import { observer } from "mobx-react";
+import { MaterialSymbol } from "react-material-symbols";
 
 /** Drawer to navigate between site pages in the nav bar (mobile only)
  * Adapated from https://flowbite-react.com/docs/components/drawer
  */
-export default function NavPopover() {
+const NavPopover = observer(() => {
+  const userStore = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const close = () => setIsOpen(false);
@@ -31,7 +30,9 @@ export default function NavPopover() {
         open={isOpen}
         onClose={close}
         backdrop={false}
-        className={`p-6 bg-white w-3/4 ${isOpen && "drop-shadow-nav"}`}
+        className={`p-6 bg-white w-3/4 ${
+          isOpen && "drop-shadow-nav"
+        }`}
       >
         <Drawer.Header
           style={{ fontSize: "30px" }}
@@ -47,6 +48,33 @@ export default function NavPopover() {
           titleIcon={() => <></>}
         />
         <Drawer.Items>
+          <Link
+            className="flex items-center rounded-lg p-1.5 transition hover:text-accent bg-secondary/5 hover:bg-secondary/10 border border-secondary/30 mb-4 font-semibold"
+            href="/profile"
+            onClick={() => close()}
+          >
+            {userStore.loggedIn ? (
+              <MaterialSymbol
+                icon="account_circle"
+                fill
+                size={24}
+                weight={300}
+                color="inherit"
+                className="mr-1"
+              />
+            ) : (
+              <MaterialSymbol
+                icon="login"
+                fill
+                size={24}
+                weight={300}
+                color="inherit"
+                className="mr-1"
+              />
+            )}
+
+            <h3> {userStore.loggedIn ? "Profile" : "Sign in"}</h3>
+          </Link>
           <Link
             className="block rounded-lg p-3 transition hover:text-accent hover:bg-secondary/10"
             href="/"
@@ -81,60 +109,7 @@ export default function NavPopover() {
         </Drawer.Items>
       </Drawer>
     </>
-    // <div className="flex w-full">
-    //   <div className="flex gap-8">
-    //     <Popover>
-    //       <PopoverButton className="block focus:outline-none data-[active]:text-accent data-[hover]:text-accent ">
-    //         <MenuIcon />
-    //       </PopoverButton>
-    //       <PopoverPanel
-    //         transition
-    //         anchor="bottom"
-    //         className="fixed w-56 z-[99] divide-y divide-secondary/10 rounded-xl bg-white glass transition duration-200 ease-in-out data-[closed]:-translate-y-2 translate-y-6 -translate-x-4 data-[closed]:opacity-0 drop-shadow-2xl font-semibold"
-    //       >
-    //         {({ close }) => (
-    //           <div>
-    //             <div className="p-3 ">
-    //               <Link
-    //                 className="block rounded-lg py-2 px-3 transition hover:text-accent"
-    //                 href="/"
-    //                 onClick={() => close()}
-    //               >
-    //                 Home
-    //               </Link>
-    //             </div>
-    //             <div className="p-3 ">
-    //               <Link
-    //                 className="block rounded-lg py-2 px-3 transition hover:text-accent"
-    //                 href="about"
-    //                 onClick={() => close()}
-    //               >
-    //                 About
-    //               </Link>
-    //             </div>
-    //             <div className="p-3 ">
-    //               <Link
-    //                 className="block rounded-lg py-2 px-3 transition hover:text-accent"
-    //                 href="/rates"
-    //                 onClick={() => close()}
-    //               >
-    //                 Rates
-    //               </Link>
-    //             </div>
-    //             <div className="p-3 ">
-    //               <Link
-    //                 className="block rounded-lg py-2 px-3 transition hover:text-accent"
-    //                 href="/news"
-    //                 onClick={() => close()}
-    //               >
-    //                 News
-    //               </Link>
-    //             </div>
-    //           </div>
-    //         )}
-    //       </PopoverPanel>
-    //     </Popover>
-    //   </div>
-    // </div>
   );
-}
+});
+
+export default NavPopover;

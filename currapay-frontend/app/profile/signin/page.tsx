@@ -1,6 +1,7 @@
 "use client";
 import { useUserStore } from "@/stores/provider";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function SignIn() {
   const userStore = useUserStore();
@@ -20,9 +21,8 @@ export default function SignIn() {
 
   return (
     <div className="mb-12 flex items-center justify-center">
-      <form className="w-full">
+      <form className="w-full md:w-3/4 lg:w-1/2">
         <h1 className="text-center">Sign in</h1>
-
         <div className="relative flex items-center mt-16">
           {showWarning && (
             <p className="absolute w-full text-center text-red-500 -top-12">
@@ -56,19 +56,20 @@ export default function SignIn() {
         <div className="mt-6">
           <button
             type="button"
-            className="w-full px-20 py-3 font-medium tracking-wide text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/40 focus:outline-none focus:ring focus:ring-accent focus:ring-opacity-50"
+            className="w-full px-20 py-3 font-semibold text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/75 focus:outline-none"
             onClick={handleSignIn}
           >
-            Sign in
+            <h4>Sign in</h4>
+
           </button>
 
-          <p className="mt-4 text-center text-gray-600 ">or</p>
+          <p className="mt-4 text-center ">or</p>
 
-          <a
+          <Link
             href="#"
-            className="flex items-center justify-center px-20 py-3 mt-4 text-gray-600 transition-colors duration-300 border rounded-lg  hover:bg-secondary/5 bg-white whitespace-nowrap"
+            className="flex items-center justify-center px-20 py-3 mt-4 transition-colors duration-300 border rounded-lg  hover:bg-secondary/5 bg-white whitespace-nowrap"
           >
-            <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
+            <svg className="w-8 h-8 mx-1" viewBox="0 0 40 40">
               <path
                 d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
                 fill="#FFC107"
@@ -86,13 +87,13 @@ export default function SignIn() {
                 fill="#1976D2"
               />
             </svg>
-            <span className="mx-2">Sign in with Google</span>
-          </a>
+            <p className="mx-2">Sign in with Google</p>
+          </Link>
 
-          <div className="mt-6 text-center ">
-            <a href="/signup" className="text-sm link">
-              {"Don’t have an account yet? Sign up"}
-            </a>
+          <div className="mt-12 text-center">
+            <Link href="/profile/signup" className="link">
+              <p>Don&apos;t have an account yet? Sign up</p>
+            </Link>
           </div>
         </div>
       </form>

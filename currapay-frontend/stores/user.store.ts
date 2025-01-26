@@ -1,14 +1,26 @@
 import { makeObservable, observable, action } from "mobx";
 import { RootStore } from ".";
 
-// Stores the user state
+export enum AuthType {
+  LOGIN,
+  SIGNUP,
+}
+
+export enum AuthMethod {
+  INITIAL = '',
+  EMAIL = 'email',
+  GOOGLE = 'google',
+}
+
+// Stores the auth and user states
 export class UserStore {
   // Default values
   root: RootStore;
-  loggedIn = false;
-  firstName = "First";
-  lastName = "Last";
-  country = "US";
+  loggedIn: boolean = false;
+  firstName: string = "First";
+  lastName: string = "Last";
+  email: string = "";
+  authMethod: AuthMethod = AuthMethod.INITIAL;
 
   constructor(root: RootStore) {
     this.root = root;
@@ -16,13 +28,21 @@ export class UserStore {
       loggedIn: observable,
       firstName: observable,
       lastName: observable,
-      country: observable,
-      setLoggedIn: action
+      setLoggedIn: action,
+      setEmail: action
     });
   }
 
   public setLoggedIn = (loggedIn: boolean) => {
     this.loggedIn = loggedIn;
   }
+
+  public setEmail = (email: string) => {
+    this.email = email;
+  };
+
+  public setAuthMethod = (method: AuthMethod) => {
+    this.authMethod = method;
+  };
   
 }
