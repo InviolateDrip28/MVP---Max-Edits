@@ -1,37 +1,60 @@
-import prisma from '../../db/prismaClient';
-import argon2 from 'argon2';
+import { initTRPC } from "@trpc/server";
+import { z } from "zod";
+import prisma from "../../db/prismaClient";
+import argon2 from "argon2";
 
-export const useUser = {
-  getAllUsers: async () => {
+const t = initTRPC.create();
+
+const userCreateSchema = z.object({
+  emailAddress: z.string().email(),
+  password: z.string().min(6),
+  country: z.string(),
+  city: z.string(),
+  age: z.number().int(),
+  gender: z.string(),
+  occupation: z.string(),
+  nationality: z.string(),
+  deviceUsed: z.string(),
+  browserUsed: z.string(),
+});
+
+const userUpdateSchema = z.object({
+  emailAddress: z.string().email().optional(),
+  password: z.string().min(6).optional(),
+  country: z.string().optional(),
+  city: z.string().optional(),
+  age: z.number().int().optional(),
+  gender: z.string().optional(),
+  occupation: z.string().optional(),
+  nationality: z.string().optional(),
+  deviceUsed: z.string().optional(),
+  browserUsed: z.string().optional(),
+});
+
+const userIdSchema = z.number();
+
+export const useUser = t.router({
+  getAllUsers: t.procedure.query(async () => {
     try {
       return await prisma.user.findMany();
     } catch (error) {
-      console.error('Error fetching users:', error);
-      throw new Error('Failed to fetch users');
+      console.error("Error fetching users:", error);
+      throw new Error("Failed to fetch users");
     }
-  },
+  }),
 
-  getUserById: async (id: number) => {
+  getUserById: t.procedure.input(userIdSchema).query(async (opts) => {
+    const { input: id } = opts;
     try {
       return await prisma.user.findUnique({ where: { id } });
     } catch (error) {
       console.error(`Error fetching user with ID ${id}:`, error);
       throw new Error(`Failed to fetch user with ID ${id}`);
     }
-  },
+  }),
 
-  createUser: async (userData: {
-    emailAddress: string;
-    password: string; 
-    country: string;
-    city: string;
-    age: number;
-    gender: string;
-    occupation: string;
-    nationality: string;
-    deviceUsed: string;
-    browserUsed: string;
-  }) => {
+  createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
+    const { input: userData } = opts;
     try {
       const hashedPassword = await argon2.hash(userData.password);
 
@@ -44,38 +67,36 @@ export const useUser = {
         },
       });
     } catch (error) {
-      console.error('Error creating user:', error);
-      throw new Error('Failed to create user');
+      console.error("Error creating user:", error);
+      throw new Error("Failed to create user");
     }
-  },
+  }),
 
-  updateUser: async (id: number, data: {
-    emailAddress?: string;
-    password?: string;
-    country?: string;
-    city?: string;
-    age?: number;
-    gender?: string;
-    occupation?: string;
-    nationality?: string;
-    deviceUsed?: string;
-    browserUsed?: string; 
-  }) => {
-    try {
-      const updateData: any = { ...data, updatedAt: new Date() };
+  updateUser: t.procedure
+    .input(
+      z.object({
+        id: z.number(),
+        data: userUpdateSchema,
+      })
+    )
+    .mutation(async (opts) => {
+      const { id, data } = opts.input;
+      try {
+        const updateData: any = { ...data, updatedAt: new Date() };
 
-      if (data.password) {
-        updateData.password = await argon2.hash(data.password);
+        if (data.password) {
+          updateData.password = await argon2.hash(data.password);
+        }
+
+        return await prisma.user.update({ where: { id }, data: updateData });
+      } catch (error) {
+        console.error(`Error updating user with ID ${id}:`, error);
+        throw new Error(`Failed to update user with ID ${id}`);
       }
+    }),
 
-      return await prisma.user.update({ where: { id }, data: updateData });
-    } catch (error) {
-      console.error(`Error updating user with ID ${id}:`, error);
-      throw new Error(`Failed to update user with ID ${id}`);
-    }
-  },
-
-  deleteUser: async (id: number) => {
+  deleteUser: t.procedure.input(userIdSchema).mutation(async (opts) => {
+    const { input: id } = opts;
     try {
       await prisma.user.delete({ where: { id } });
       return true;
@@ -83,5 +104,5 @@ export const useUser = {
       console.error(`Error deleting user with ID ${id}:`, error);
       return false;
     }
-  },
-};
+  }),
+});
