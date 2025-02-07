@@ -17,8 +17,8 @@ export class UserStore {
   // Default values
   root: RootStore;
   loggedIn: boolean = false;
-  firstName: string = "First";
-  lastName: string = "Last";
+  firstName: string = "First name";
+  lastName: string = "Last name";
   email: string = "";
   authMethod: AuthMethod = AuthMethod.INITIAL;
 
@@ -29,13 +29,24 @@ export class UserStore {
       firstName: observable,
       lastName: observable,
       setLoggedIn: action,
-      setEmail: action
+      setFirstName: action,
+      setLastName: action,
+      setEmail: action,
+      setUser: action,
     });
   }
 
   public setLoggedIn = (loggedIn: boolean) => {
     this.loggedIn = loggedIn;
   }
+
+  public setFirstName = (firstName: string) => {
+    this.firstName = firstName;
+  };
+
+  public setLastName = (lastName: string) => {
+    this.lastName = lastName;
+  };
 
   public setEmail = (email: string) => {
     this.email = email;
@@ -44,5 +55,11 @@ export class UserStore {
   public setAuthMethod = (method: AuthMethod) => {
     this.authMethod = method;
   };
+
+  public setUser = (firstName: string, lastName: string, email: string) => {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
   
 }

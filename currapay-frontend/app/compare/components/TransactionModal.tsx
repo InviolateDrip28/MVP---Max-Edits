@@ -11,6 +11,7 @@ import { PARTNER_NAMES_TO_DETAILS } from "@/app/constants";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Link from "next/link";
+import { trpc } from "@/utils/trpc";
 
 /**
  * Modal component to track transactions
@@ -22,9 +23,7 @@ export interface TransactionModalProps {
   provider: string;
 }
 
-export default function TransactionModal(
-  props: TransactionModalProps
-) {
+const TransactionModal = (props: TransactionModalProps) => {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -126,4 +125,6 @@ export default function TransactionModal(
       </Transition>
     </>
   );
-}
+};
+
+export default trpc.withTRPC(TransactionModal);
