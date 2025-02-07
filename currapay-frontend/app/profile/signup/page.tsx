@@ -1,6 +1,63 @@
-import Link from "next/link";
+"use client";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/stores/provider";
+import { observer } from "mobx-react";
+import { useState } from "react";
+import { trpc } from "@/utils/trpc";
 
-export default function SignupPage() {
+const SignupPage = observer(() => {
+  const userStore = useUserStore();
+  const router = useRouter();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const mutation = trpc.user.createUser.useMutation({
+    onSuccess: async () => {
+      userStore.setUser(firstName, lastName, email);
+      userStore.setLoggedIn(true);
+      setLoading(false);
+      console.log("User created successfully")
+      router.push("/profile");
+    },
+    onError: (error) => {
+      setShowError(true);
+      setLoading(false);
+      console.error(error);
+    },
+  });
+
+  const handleSignup = async () => {
+    setLoading(true);
+
+    await mutation.mutateAsync({
+      emailAddress: email,
+      password: password,
+      country: "",
+      city: "",
+      age: 100,
+      gender: "",
+      occupation: "",
+      nationality: "",
+      deviceUsed: "",
+      browserUsed: "",
+    });
+    // try {
+
+    //   userStore.setUser(firstName, lastName, email);
+    //   userStore.setLoggedIn(true);
+    //   setLoading(false);
+    //   router.push("/profile");
+    // } catch (error) {
+    //   setShowError(true);
+    //   setLoading(false);
+    //   console.error(error);
+    // }
+  };
+
   return (
     <section className="min-h-screen w-full">
       <div className="mb-12 flex items-center justify-center">
@@ -11,11 +68,15 @@ export default function SignupPage() {
               type="first-name"
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <input
               type="family-name"
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary rounded-lg px-11 focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
 
@@ -25,6 +86,8 @@ export default function SignupPage() {
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg px-11 focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               autoComplete="email"
               placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -33,19 +96,27 @@ export default function SignupPage() {
               type="password"
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-6 py-3 font-semibold text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/75 focus:outline-none">
+            <button
+              type="button"
+              disabled={loading}
+              className="w-full px-6 py-3 font-semibold text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/75 focus:outline-none"
+              onClick={handleSignup}
+            >
               <h4>Sign up</h4>
             </button>
 
             <p className="mt-4 text-center ">or</p>
 
-            <Link
-              href="#"
-              className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg  hover:bg-secondary/5 bg-white"
+            <button
+              type="button"
+              className="flex items-center justify-center w-full px-6 py-3 mt-4 transition-colors duration-300 transform border rounded-lg  hover:bg-secondary/5 bg-white"
+              disabled={loading}
             >
               <svg className="w-8 h-8 mx-1" viewBox="0 0 40 40">
                 <path
@@ -66,35 +137,29 @@ export default function SignupPage() {
                 />
               </svg>
               <p className="mx-2">Sign up with Google</p>
-            </Link>
+            </button>
 
             <div className="mt-12 text-center">
               <div className="items-center">
                 <input
-                  id="default-checkbox"
+                  id="terms-and-conditions"
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2"
-                >
+                <label htmlFor="default-checkbox" className="ms-2">
                   I agree to the terms and conditions.
                 </label>
               </div>
 
               <div className="inline-flex items-center">
                 <input
-                  id="default-checkbox"
+                  id="email-updates"
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0"
                 />
-                <label
-                  htmlFor="default-checkbox"
-                  className="ms-2"
-                >
+                <label htmlFor="default-checkbox" className="ms-2">
                   I want to recieve really awesome email updates.
                 </label>
               </div>
@@ -104,4 +169,6 @@ export default function SignupPage() {
       </div>
     </section>
   );
-}
+});
+
+export default trpc.withTRPC(SignupPage);

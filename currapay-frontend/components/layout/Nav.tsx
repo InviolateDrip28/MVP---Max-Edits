@@ -14,7 +14,7 @@ const Nav = observer(() => {
   const userStore = useUserStore();
 
   return (
-    <header className="fixed top-0 w-full bg-white glass px-6 py-3 sm:px-10 sm:py-4 box-border flex items-center shadow-xl z-[50]">
+    <header className="fixed top-0 w-full bg-white glass px-6 py-3 sm:px-10 sm:py-4 box-border flex items-center shadow-lg z-[50]">
       <Link href="/" className="hidden md:flex">
         <Image
           src={CurrapayPrimaryLogoBlack}

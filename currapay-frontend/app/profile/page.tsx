@@ -1,6 +1,6 @@
 "use client";
-import SignIn from "./signin/page";
-import UserDashboard from "./dashboard/page";
+import SignIn from "./signin/SignIn";
+import UserDashboard from "./dashboard/Dashboard";
 import { useUserStore } from "@/stores/provider";
 import { observer } from "mobx-react";
 
