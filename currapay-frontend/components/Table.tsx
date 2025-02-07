@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
+import ratesData from "../../currapay-backend/src/data/rates.json"
 
 const RatesTable = () => {
   const [currRow, setCurrRow] = useState(0);
@@ -8,16 +9,14 @@ const RatesTable = () => {
 
   const countries = ["US", "GB", "EU", "CA", "CH", "AU", "BR", "JP"];
 
-  const { data, error, isLoading } =
-    trpc.xe.getXeRatesTable.useQuery();
-
+  const { data, error, isLoading } = trpc.ratesData.useQuery();
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error loading data: {error.message}</div>;
   }
+
 
   return (
     <div className="w-full overflow-x-auto">
@@ -94,7 +93,7 @@ const RatesTable = () => {
                   }}
                 >
                   {/* {rowIndex === colIndex ? "" : "1.00"} */}
-                  {isLoading ||
+                  {isLoading || 
                   !data ||
                   data[rowIndex] === undefined ||
                   data[rowIndex][colIndex] === undefined
