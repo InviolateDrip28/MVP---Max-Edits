@@ -17,8 +17,9 @@ export class UserStore {
   // Default values
   root: RootStore;
   loggedIn: boolean = false;
-  firstName: string = "First name";
-  lastName: string = "Last name";
+  id: number = 0;
+  firstName: string = "";
+  lastName: string = "";
   email: string = "";
   authMethod: AuthMethod = AuthMethod.INITIAL;
 
@@ -26,9 +27,11 @@ export class UserStore {
     this.root = root;
     makeObservable(this, {
       loggedIn: observable,
+      id: observable,
       firstName: observable,
       lastName: observable,
       setLoggedIn: action,
+      setId: action,
       setFirstName: action,
       setLastName: action,
       setEmail: action,
@@ -38,6 +41,10 @@ export class UserStore {
 
   public setLoggedIn = (loggedIn: boolean) => {
     this.loggedIn = loggedIn;
+  }
+
+  public setId = (id: number) => {
+    this.id = id;
   }
 
   public setFirstName = (firstName: string) => {
@@ -61,5 +68,4 @@ export class UserStore {
     this.lastName = lastName;
     this.email = email;
   }
-  
 }

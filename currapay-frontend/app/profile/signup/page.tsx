@@ -4,6 +4,7 @@ import { useUserStore } from "@/stores/provider";
 import { observer } from "mobx-react";
 import { useState } from "react";
 import { trpc } from "@/utils/trpc";
+import { userData } from "../types";
 
 const SignupPage = observer(() => {
   const userStore = useUserStore();
@@ -15,24 +16,10 @@ const SignupPage = observer(() => {
   const [showError, setShowError] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const mutation = trpc.user.createUser.useMutation({
-    onSuccess: async () => {
-      userStore.setUser(firstName, lastName, email);
-      userStore.setLoggedIn(true);
-      setLoading(false);
-      console.log("User created successfully")
-      router.push("/profile");
-    },
-    onError: (error) => {
-      setShowError(true);
-      setLoading(false);
-      console.error(error);
-    },
-  });
+  const mutation = trpc.user.createUser.useMutation<userData>();
 
   const handleSignup = async () => {
     setLoading(true);
-
     await mutation.mutateAsync({
       emailAddress: email,
       password: password,
@@ -44,18 +31,19 @@ const SignupPage = observer(() => {
       nationality: "",
       deviceUsed: "",
       browserUsed: "",
-    });
-    // try {
-
-    //   userStore.setUser(firstName, lastName, email);
-    //   userStore.setLoggedIn(true);
-    //   setLoading(false);
-    //   router.push("/profile");
-    // } catch (error) {
-    //   setShowError(true);
-    //   setLoading(false);
-    //   console.error(error);
-    // }
+    }).then((data) => {
+      const userData = data as userData;
+      userStore.setId(userData.id);
+      userStore.setUser(firstName, lastName, email);
+      userStore.setLoggedIn(true);
+      setLoading(false);
+      console.log("User created successfully")
+      router.push("/profile");
+    }).catch((error) => {
+      setShowError(true);
+      setLoading(false);
+      console.error(error);
+    })
   };
 
   return (

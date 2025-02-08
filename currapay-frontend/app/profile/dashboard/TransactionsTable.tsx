@@ -53,9 +53,10 @@ const DUMMY_TRANSACTIONS = [
 ];
 
 enum TransactionStatus {
-  COMPLETED = "Completed",
-  PENDING = "In progress",
+  COMPLETED = "completed",
+  PENDING = "pending",
 }
+
 
 export const TransactionsTable = () => {
   function formatNumber(value: string) {
@@ -170,11 +171,11 @@ export const TransactionsTable = () => {
                   {transaction.status ===
                   TransactionStatus.COMPLETED ? (
                     <span className="mt-1 ml-auto block w-fit lg:hidden whitespace-nowrap rounded-md bg-green-200 px-2 py-1 text-green-800 font-medium">
-                      {TransactionStatus.COMPLETED}
+                      Completed
                     </span>
                   ) : (
                     <span className="mt-1 ml-auto block w-fit lg:hidden whitespace-nowrap rounded-md bg-yellow-100 px-2 py-1 text-yellow-800 font-medium">
-                      {TransactionStatus.PENDING}
+                      In progress
                     </span>
                   )}
                 </td>
@@ -182,11 +183,11 @@ export const TransactionsTable = () => {
                   {transaction.status ===
                   TransactionStatus.COMPLETED ? (
                     <span className="whitespace-nowrap rounded-md bg-green-200 px-2 py-1 text-green-800 font-medium">
-                      {TransactionStatus.COMPLETED}
+                      Completed
                     </span>
                   ) : (
                     <span className="whitespace-nowrap rounded-md bg-yellow-100 px-2 py-1 text-yellow-800 font-medium">
-                      {TransactionStatus.PENDING}
+                      In progress
                     </span>
                   )}
                 </td>

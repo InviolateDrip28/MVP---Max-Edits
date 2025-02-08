@@ -5,11 +5,10 @@
 //   transferTime: string;
 // }
 
-
 export type Provider = {
   source: string;
   rate: number;
-}
+};
 export interface Option {
   rate: number;
 }
@@ -30,3 +29,14 @@ export interface RecipientCardProps {
   option: Option;
 }
 
+export type transactionData = {
+  userId: number;
+  amount: number;
+  currency: string;
+  exchangeRate: number;
+  fees: number;
+  processingTime: number;
+  transferMethod: string;
+  purposeOfTransfer: string;
+  status: string;
+};

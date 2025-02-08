@@ -12,6 +12,9 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";
+import { observer } from "mobx-react";
+import { useUserStore, useSearchStore } from "@/stores/provider";
+import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 
 /**
  * Modal component to track transactions
@@ -23,18 +26,42 @@ export interface TransactionModalProps {
   provider: string;
 }
 
-const TransactionModal = (props: TransactionModalProps) => {
+const TransactionModal = observer((props: TransactionModalProps) => {
+  const userStore = useUserStore();
+  const searchStore = useSearchStore();
   let [isOpen, setIsOpen] = useState(false);
+  const [transactionId, setTransactionId] = useState(0);
+  const createMutation = trpc.transaction.createTransaction.useMutation();
+  const updateMutation = trpc.transaction.updateTransaction.useMutation();
 
   function closeModal() {
     setIsOpen(false);
   }
 
-  function openModal() {
+  async function openModal() {
+    await createMutation.mutateAsync({
+      userId: userStore.id,
+      amount: Number(searchStore.amount),
+      currency: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+      exchangeRate: 1.00,
+      fees: 0,
+      processingTime: 1,
+      transferMethod: "",
+      purposeOfTransfer: "",
+      status: "pending",
+    }).then((data) => {
+      setTransactionId(data.id);
+    });
     setIsOpen(true);
   }
 
-  function handleYes() {
+  async function handleYes() {
+    await updateMutation.mutateAsync({
+      id: transactionId,
+      data: {
+        status: "completed",
+      },
+    });
     setIsOpen(false);
   }
 
@@ -125,6 +152,6 @@ const TransactionModal = (props: TransactionModalProps) => {
       </Transition>
     </>
   );
-};
+});
 
 export default trpc.withTRPC(TransactionModal);
