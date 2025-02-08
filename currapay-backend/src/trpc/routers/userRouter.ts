@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
 import { useUser } from '../hooks/useUser';

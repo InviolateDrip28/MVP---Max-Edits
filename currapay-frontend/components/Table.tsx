@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
 import { trpc } from "@/utils/trpc";
-import ratesData from "../../currapay-backend/src/data/rates.json"
 
 const RatesTable = () => {
   const [currRow, setCurrRow] = useState(0);
