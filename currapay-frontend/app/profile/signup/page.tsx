@@ -210,7 +210,7 @@ const SignupPage = observer(() => {
             <button
               type="button"
               disabled={loading || !isValidPassword || !isValidForm}
-              className={`w-full px-6 py-3 font-semibold text-white duration-300 transform rounded-lg focus:outline-none ${
+              className={`w-full px-6 py-3 font-semibold text-white transition-colors duration-300 transform rounded-lg focus:outline-none ${
                 isValidForm && isValidPassword
                   ? "bg-accent hover:bg-accent/80"
                   : "bg-accent/50 cursor-not-allowed"

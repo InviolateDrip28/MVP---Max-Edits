@@ -8,6 +8,8 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showWarning, setShowWarning] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isValidForm, setIsValidForm] = useState(false);
 
   function handleSignIn() {
     // TODO: Implement sign in logic
@@ -19,13 +21,17 @@ export default function SignIn() {
     }
   }
 
+  useEffect(() => {
+    setIsValidForm(email.length > 0 && password.length > 0);
+  }, [email, password]);
+
   return (
     <div className="mb-12 flex items-center justify-center">
       <form className="w-full md:w-3/4 lg:w-1/2">
         <h1 className="text-center">Sign in</h1>
         <div className="relative flex items-center mt-16">
           {showWarning && (
-            <p className="absolute w-full text-center text-red-500 -top-12">
+            <p className="absolute w-full text-center text-red-500 -top-12 font-semibold">
               Invalid email or password, please try again.
             </p>
           )}
@@ -56,11 +62,15 @@ export default function SignIn() {
         <div className="mt-6">
           <button
             type="button"
-            className="w-full px-20 py-3 font-semibold text-white transition-colors duration-300 transform bg-accent rounded-lg hover:bg-accent/75 focus:outline-none"
+            disabled={!isValidForm}
+            className={`w-full px-20 py-3 font-semibold text-white transition-colors duration-300 transform rounded-lg focus:outline-none ${
+                isValidForm
+                  ? "bg-accent hover:bg-accent/80"
+                  : "bg-accent/50 cursor-not-allowed"
+              }`}
             onClick={handleSignIn}
           >
             <h4>Sign in</h4>
-
           </button>
 
           <p className="mt-4 text-center ">or</p>
