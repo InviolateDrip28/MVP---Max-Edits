@@ -10,7 +10,7 @@ export const validateUser = [
 // Middleware for transaction validation
 export const validateTransaction = [
     body('amount').isFloat({ min: 0 }),
-    body('currency').isString(),
+    body('currencyFrom').isString(),
 ];
 
 // Error handling for validation results

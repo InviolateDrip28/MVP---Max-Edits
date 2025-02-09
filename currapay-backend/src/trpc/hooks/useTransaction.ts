@@ -35,7 +35,7 @@ export const useTransaction = {
   createTransaction: async (transactionData: {
     userId: number;
     amount: number;
-    currency: string;
+    currencyFrom: string;
     exchangeRate: number;
     fees: number;
     processingTime: number;
@@ -54,7 +54,7 @@ export const useTransaction = {
   updateTransaction: async (id: number, data: {
     userId?: number;
     amount?: number;
-    currency?: string;
+    currencyFrom?: string;
     exchangeRate?: number;
     fees?: number;
     processingTime?: number;

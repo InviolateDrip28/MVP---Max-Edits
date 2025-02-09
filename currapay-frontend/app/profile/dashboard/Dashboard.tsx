@@ -5,33 +5,15 @@ import { useUserStore } from "@/stores/provider";
 import { TransactionsTable } from "./TransactionsTable";
 import { useEffect, useState } from "react";
 import { trpc } from "@/utils/trpc";
-import { TransactionData } from "@/app/data";
+import { Transaction } from "@/app/data";
 
 const UserDashboard = observer(() => {
   const userStore = useUserStore();
-  const [transactions, setTransactions] = useState<TransactionData[]>([]);
 
-  const { data, error, isLoading } = trpc.transaction.getTransactionsByUserId.useQuery(1)
 
   function handleLogOut() {
     userStore.setLoggedIn(false);
   }
-
-  useEffect(() => {
-    if (error) {
-      console.error("Error fetching transactions:", error);
-    }
-    if (isLoading) {
-      console.log("Loading transactions...");
-    }
-    if (data) {
-      setTransactions(data)
-      console.log("Fetched transactions:", data);
-    }
-  }, [data, error, isLoading]);
-
-  
-
   return (
     <div id="userDashboard">
       <div className="space-y-4">

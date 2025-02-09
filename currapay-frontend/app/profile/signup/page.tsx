@@ -1,10 +1,10 @@
 "use client";
+import { User } from "@/app/data";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/provider";
 import { observer } from "mobx-react";
 import { useState, useEffect } from "react";
 import { trpc } from "@/utils/trpc";
-import { userData } from "../types";
 import Snackbar from "@mui/material/Snackbar";
 import { SnackbarState, Alert } from "./Alert";
 import PasswordChecklist from "react-password-checklist";
@@ -40,7 +40,7 @@ const SignupPage = observer(() => {
     setShowSnackbar({ ...showSnackbar, open: false });
   };
 
-  const mutation = trpc.user.createUser.useMutation<userData>();
+  const mutation = trpc.user.createUser.useMutation<User>();
 
   const handleSignup = async () => {
     setLoading(true);
@@ -58,7 +58,7 @@ const SignupPage = observer(() => {
         browserUsed: "",
       })
       .then((data) => {
-        const userData = data as userData;
+        const userData = data as User;
         userStore.setId(userData.id);
         userStore.setUser(firstName, lastName, email);
         userStore.setLoggedIn(true);
@@ -73,8 +73,10 @@ const SignupPage = observer(() => {
       });
   };
 
-  const handleClickShowPassword = () =>
+  const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
+  }
+
 
   useEffect(() => {
     setIsValidForm(

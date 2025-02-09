@@ -26,7 +26,7 @@ export const transactionRouter = t.router({
     .input(z.object({
       userId: z.number(),
       amount: z.number(),
-      currency: z.string(),
+      currencyFrom: z.string(),
       exchangeRate: z.number(),
       fees: z.number(),
       processingTime: z.number(),
@@ -44,7 +44,7 @@ export const transactionRouter = t.router({
       data: z.object({
         userId: z.number().optional(),
         amount: z.number().optional(),
-        currency: z.string().optional(),
+        currencyFrom: z.string().optional(),
         exchangeRate: z.number().optional(),
         fees: z.number().optional(),
         processingTime: z.number().optional(),

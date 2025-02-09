@@ -42,7 +42,7 @@ const TransactionModal = observer((props: TransactionModalProps) => {
     await createMutation.mutateAsync({
       userId: userStore.id,
       amount: Number(searchStore.amount),
-      currency: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+      currencyFrom: COUNTRY_CODE_TO_CURRENCY[searchStore.fromCountry],
       exchangeRate: 1.00,
       fees: 0,
       processingTime: 1,
