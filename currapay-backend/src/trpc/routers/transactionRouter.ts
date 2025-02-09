@@ -10,6 +10,12 @@ export const transactionRouter = t.router({
     return await useTransaction.getAllTransactions();
   }),
 
+  getTransactionsByUserId: t.procedure
+    .input(z.number())
+    .query(async ({ input }) => {
+      return await useTransaction.getTransactionsByUserId(input);
+    }),
+
   getTransactionById: t.procedure
     .input(z.number())
     .query(async ({ input }) => {

@@ -1,3 +1,4 @@
+import { TransactionData } from "@/app/data";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { MaterialSymbol } from "react-material-symbols";
 
@@ -57,8 +58,11 @@ enum TransactionStatus {
   PENDING = "pending",
 }
 
-
-export const TransactionsTable = () => {
+export const TransactionsTable = ({
+  transactions,
+}: {
+  transactions: TransactionData[];
+}) => {
   function formatNumber(value: string) {
     return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }

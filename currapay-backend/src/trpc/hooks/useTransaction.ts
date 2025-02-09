@@ -12,6 +12,16 @@ export const useTransaction = {
     }
   },
 
+  getTransactionsByUserId: async (userId: number) => {
+    try {
+      console.log(`Fetching transactions for user with ID: ${userId}`);
+      return await prisma.transaction.findMany({ where: { userId: userId } });
+    } catch (error) {
+      console.error(`Error fetching transactions for user with ID ${userId}:`, error);
+      throw new Error(`Failed to fetch transactions for user with ID ${userId}`);
+    }
+  },
+
   getTransactionById: async (id: number) => {
     try {
       console.log(`Fetching transaction with ID: ${id}`);

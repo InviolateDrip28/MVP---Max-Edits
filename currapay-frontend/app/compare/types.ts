@@ -28,15 +28,3 @@ export interface RecipientCardProps {
   provider: string;
   option: Option;
 }
-
-export type transactionData = {
-  userId: number;
-  amount: number;
-  currency: string;
-  exchangeRate: number;
-  fees: number;
-  processingTime: number;
-  transferMethod: string;
-  purposeOfTransfer: string;
-  status: string;
-};
