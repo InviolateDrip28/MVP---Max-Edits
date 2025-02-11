@@ -1067,49 +1067,49 @@ const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
     link: "https://www.westernunion.com",
     image: "/partners/westernunion_logo.png",
     fees: "3",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Dayss",
   },
   "Currency Solution": {
     displayName: "Currency Solutions",
     link: "https://www.currencysolutions.com",
     image: "/partners/currencysolutions_logo.png",
     fees: "0",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
   XE: {
     displayName: "XE",
     link: "https://xe-money-transfer.pxf.io/c/5580726/2132164/12610",
     image: "/partners/xe_logo.png",
     fees: "3",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
   "Atlantic Money": {
     displayName: "Atlantic Money",
     link: "https://www.financeads.net/tc.php?t=70726C4772109258T",
     image: "/partners/atlantic_logo.png",
     fees: "3",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
   Instarem: {
     displayName: "Instarem",
     link: "https://www.instarem.com",
     image: "/partners/instarem_logo.png",
     fees: "3",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
   OFX: {
     displayName: "OFX",
     link: "https://www.ofx.com/p/currapay/",
     image: "/partners/ofx_logo.png",
     fees: "0",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
   Remitly: {
     displayName: "Remitly",
     link: "https://remitly.tod8mp.net/55g9ko",
     image: "/partners/remitly_logo.png",
     fees: "3",
-    transferTime: "1-2 days",
+    transferTime: "Minutes to 2 Days",
   },
 };
 
@@ -1139,6 +1139,12 @@ const PARTNER_NAMES_TO_PROMOTION: Record<string, ModalDetails> = {
   OFX: {
     description: [
       "OFX is a “zero-fee” broker (FX gains still apply).",
+    ],
+  },
+  "Atlantic Money": {
+    description: [
+      "Fixed fee for the first transfer gets waived for every person using the tracked URL. Applies to standard and express but the 0.1% for express will still be charged.",
+      "Referral program: £15 or €15 for each referred person via unique link. Referred person gets a free transfer. Needs to do a transfer and pass standard checks.",
     ],
   },
 };
@@ -1182,7 +1188,7 @@ export {
   COUNTRY_CODES,
   COUNTRY_CODE_TO_NAME,
   COUNTRY_NAMES,
-  COUNTRY_NAME_TO_CODE, 
+  COUNTRY_NAME_TO_CODE,
   COUNTRY_CODE_TO_CURRENCY,
   PARTNER_NAMES_TO_DETAILS,
   PARTNER_NAMES_TO_PROMOTION,

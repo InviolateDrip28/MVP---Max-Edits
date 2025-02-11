@@ -21,8 +21,8 @@ import { COUNTRY_CODE_TO_CURRENCY } from "@/app/constants";
  * source: https://headlessui.com/v1/react/dialog
  */
 
-export interface TransactionModalProps {
-  className?: string;
+interface TransactionModalProps {
+  className: string;
   provider: string;
 }
 
@@ -78,7 +78,7 @@ const TransactionModal = observer((props: TransactionModalProps) => {
           target="_blank"
           onClick={openModal}
         >
-          <p className="font-bold">Go to provider</p>
+          <p className="font-bold whitespace-nowrap">Go to {PARTNER_NAMES_TO_DETAILS[props.provider].displayName}</p>
           <div className="flex items-center ml-1">
             <OpenInNewIcon className="h-6 w-6" />
           </div>

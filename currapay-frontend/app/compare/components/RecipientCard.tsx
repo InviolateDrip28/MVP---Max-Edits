@@ -21,17 +21,14 @@ export default function RecipientCard(props: RecipientCardProps) {
   return (
     <div className="w-full h-full">
       {/* smaller screens */}
-      <div className="font-normal text-secondary/80 block lg-xl:hidden">
-        <div>
-          <p>
-            <span className="mb-2 font-semibold text-primary">
-              Recipient recieves:{"  "}
-            </span>
-            <span>
-              {" "}
-              {total} {props.toCurrency}
-            </span>
-          </p>
+      <div className="font-normal text-secondary/80 flex flex-col justify-center  lg-xl:hidden text-center ">
+        <div className="my-4 font-semibold">
+          <h2 className="text-primary">
+          Recipient recieves:
+          </h2>
+          <h2 className="text-accent">
+          {total} {props.toCurrency}
+          </h2>
         </div>
 
         {showRecieveDetails && (
@@ -60,7 +57,7 @@ export default function RecipientCard(props: RecipientCardProps) {
           </div>
         )}
         <button
-          className="flex items-center hover:underline decoration-accent underline-offset-4 pb-4 hover:text-accent"
+          className="flex items-center justify-center hover:underline decoration-accent underline-offset-4 pb-4 hover:text-accent mt-1"
           onClick={() => setShowRecieveDetails(!showRecieveDetails)}
         >
           {showRecieveDetails ? (

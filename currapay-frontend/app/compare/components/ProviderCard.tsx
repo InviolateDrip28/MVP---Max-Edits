@@ -4,6 +4,8 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@heroicons/react/20/solid";
+import { MaterialSymbol } from "react-material-symbols";
+import { Tooltip } from "flowbite-react";
 import { ProviderCardProps } from "../types";
 import Image from "next/image";
 import { useState } from "react";
@@ -24,7 +26,8 @@ export default function ProviderCard(props: ProviderCardProps) {
     props.provider == "Western Union" ||
     props.provider == "Currency Solution" ||
     props.provider == "Remitly" ||
-    props.provider == "OFX";
+    props.provider == "OFX" ||
+    props.provider == "Atlantic Money";
 
   const optionsFirst = props.options[0];
   const optionsRest =
@@ -67,17 +70,42 @@ export default function ProviderCard(props: ProviderCardProps) {
 
           <div>
             <div className="font-normal text-secondary/80">
-              <p>
-                <span className="mb-2 font-semibold text-primary">
-                  Transfer time:{"  "}
-                </span>
-                <span>
-                  {
+              <div className="flex items-center">
+                <p>
+                  <span className="mb-2 font-semibold text-primary">
+                    Transfer time:{"  "}
+                  </span>
+                  <span>
+                    {
+                      PARTNER_NAMES_TO_DETAILS[props.provider]
+                        .transferTime
+                    }
+                  </span>
+                </p>
+                <Tooltip
+                  content={`Transfer speeds shown are estimated and based on what's typical for that provider & transfer method. For the most accurate speed information, please visit ${
                     PARTNER_NAMES_TO_DETAILS[props.provider]
-                      .transferTime
-                  }
-                </span>
-              </p>
+                      .displayName
+                  }.`}
+                  placement="bottom"
+                  className="w-full max-w-xs md:max-w-md shadow-xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30 mobile:-translate-x-1"
+                  style="light"
+                  theme={{
+                    arrow: {
+                      base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30",
+                    },
+                  }}
+                >
+                  <MaterialSymbol
+                    icon="info"
+                    size={18}
+                    weight={300}
+                    color="inherit"
+                    className="translate-y-0.5 ml-1 cursor-pointer"
+                  />
+                </Tooltip>
+              </div>
+
               <p>Payment method: debit card</p>
             </div>
           </div>
@@ -223,9 +251,32 @@ export default function ProviderCard(props: ProviderCardProps) {
           </div>
           <div className="relative w-full lg-xl:p-4 xl:p-6 bg-white border border-secondary/10 rounded-lg shadow ">
             <ClockIcon className="w-8 h-8 text-secondary mb-3 fill-accentDark" />
-            <h4 className="mb-4 font-semibold tracking-tight text-primary">
-              Transfer time
-            </h4>
+            <div className="flex items-center mb-4 text-primary">
+              <h4 className="font-semibold tracking-tight text-primary">
+                Transfer time
+              </h4>
+              <Tooltip
+                content={`Transfer speeds shown are estimated and based on what's typical for that provider & transfer method. For the most accurate speed information, please visit ${
+                  PARTNER_NAMES_TO_DETAILS[props.provider].displayName
+                }.`}
+                placement="bottom"
+                className="w-full shadow-xl text-secondary whitespace-normal text-sm sm:text-base 2xl:text-lg tracking-wide px-6 py-4 border-secondary/30 mobile:-translate-x-1"
+                style="light"
+                theme={{
+                  arrow: {
+                    base: "absolute z-10 h-2 w-2 rotate-45 border-l border-t border-secondary/30",
+                  },
+                }}
+              >
+                <MaterialSymbol
+                  icon="info"
+                  size={24}
+                  weight={300}
+                  color="inherit"
+                  className="translate-y-1 ml-1.5 cursor-pointer"
+                />
+              </Tooltip>
+            </div>
 
             <div className="pb-6 space-y-2 font-normal">
               {/* <p>{optionsFirst.transferTime}</p>
@@ -382,7 +433,7 @@ export default function ProviderCard(props: ProviderCardProps) {
       </div>
 
       <TransactionModal
-        className="absolute bottom-6 right-6 lg-xl:bottom-8 lg-xl:right-8"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 lg-xl:left-auto lg-xl:translate-x-0 lg-xl:bottom-8 lg-xl:right-8"
         provider={props.provider}
       />
     </div>
