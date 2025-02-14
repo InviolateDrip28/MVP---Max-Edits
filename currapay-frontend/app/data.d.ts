@@ -3,6 +3,8 @@ export type Transaction = {
   amount: number;
   createdAt: string;
   currencyFrom: string;
+  currencyTo: string;
+  provider: string;
   exchangeRate: number;
   fees: number;
   processingTime: number;

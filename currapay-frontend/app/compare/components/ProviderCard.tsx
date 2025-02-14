@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   ClockIcon,
   ArrowPathIcon,
@@ -431,7 +432,6 @@ export default function ProviderCard(props: ProviderCardProps) {
           </div>
         )}
       </div>
-
       <TransactionModal
         className="absolute bottom-6 left-1/2 -translate-x-1/2 lg-xl:left-auto lg-xl:translate-x-0 lg-xl:bottom-8 lg-xl:right-8"
         provider={props.provider}

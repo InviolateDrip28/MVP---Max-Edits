@@ -18,7 +18,7 @@ export const TransactionsTable = () => {
   const showTransactions = useRef(false);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const { data, error, isLoading } =
-    trpc.transaction.getTransactionsByUserId.useQuery(1);
+    trpc.transaction.getTransactionsByUserId.useQuery(75);
 
   useEffect(() => {
     if (error) {
@@ -93,9 +93,7 @@ export const TransactionsTable = () => {
                           color="inherit"
                           className="mr-1"
                         />
-                        Currapay
-                        {/* TODO: change back */}
-                        {/* {transaction.provider} */}
+                        {transaction.provider}
                       </div>
                       <div className="flex items-center">
                         <MaterialSymbol
@@ -110,8 +108,7 @@ export const TransactionsTable = () => {
                           <p>{transaction.currencyFrom}</p>
                           <ArrowRightIcon className="h-4 w-4" />
                           <p>{transaction.currencyFrom}</p>
-                          {/* TODO: change back */}
-                          {/* <p>{transaction.currencyTo}</p> */}
+                          <p>{transaction.currencyTo}</p>
                         </span>
                       </div>
                     </div>
@@ -121,17 +118,14 @@ export const TransactionsTable = () => {
                     {formatDate(transaction.updatedAt)}
                   </td>
                   <td className="whitespace-no-wrap hidden py-6 lg:table-cell">
-                    Currapay
-                    {/* TODO: change back */}
-                    {/* {transaction.provider} */}
+                    {transaction.provider}
                   </td>
 
                   <td className="whitespace-no-wrap hidden py-6 lg:inline-flex items-center space-x-1">
                     <p>{transaction.currencyFrom}</p>
                     <ArrowRightIcon className="h-4 w-4" />
                     <p>{transaction.currencyFrom}</p>
-                    {/* TODO: change back */}
-                    {/* <p>{transaction.currencyTo}</p> */}
+                    <p>{transaction.currencyTo}</p>
                   </td>
                   <td className="whitespace-nowrap py-6 text-right lg:text-left">
                     <span className="font-semibold lg:font-normal">

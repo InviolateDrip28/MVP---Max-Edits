@@ -4,7 +4,7 @@ Run the following commands in your terminal
 
 ```cd currapay-backend```
 ```npm install```
-```npm run```
+```npm run start```
 
 See server result in http://localhost:4000
 

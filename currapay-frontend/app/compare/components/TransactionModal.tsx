@@ -39,10 +39,16 @@ const TransactionModal = observer((props: TransactionModalProps) => {
   }
 
   async function openModal() {
+    if (!userStore.loggedIn) {
+      return;
+    }
+
     await createMutation.mutateAsync({
       userId: userStore.id,
       amount: Number(searchStore.amount),
       currencyFrom: COUNTRY_CODE_TO_CURRENCY[searchStore.fromCountry],
+      currencyTo: COUNTRY_CODE_TO_CURRENCY[searchStore.toCountry],
+      provider: PARTNER_NAMES_TO_DETAILS[props.provider].displayName,
       exchangeRate: 1.00,
       fees: 0,
       processingTime: 1,
@@ -56,6 +62,10 @@ const TransactionModal = observer((props: TransactionModalProps) => {
   }
 
   async function handleYes() {
+    if (!userStore.loggedIn) {
+      return;
+    }
+
     await updateMutation.mutateAsync({
       id: transactionId,
       data: {
