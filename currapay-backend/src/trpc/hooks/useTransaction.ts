@@ -36,6 +36,7 @@ export const useTransaction = {
     userId: number;
     amount: number;
     currencyFrom: string;
+    currencyTo: string;
     exchangeRate: number;
     fees: number;
     processingTime: number;
