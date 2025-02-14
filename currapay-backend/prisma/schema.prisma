@@ -32,6 +32,7 @@ model Transaction {
   userId            Int      @map("userId")
   amount            Float    @map("amount")
   currencyFrom      String   @map("currencyFrom")
+  currencyTo        String   @map("currencyTo")
   exchangeRate      Float    @map("exchangeRate")
   fees              Float    @map("fees")
   processingTime    Int      @map("processingTime")
