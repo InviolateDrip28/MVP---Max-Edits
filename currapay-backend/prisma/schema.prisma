@@ -11,6 +11,8 @@ model User {
   id                  Int           @id @default(autoincrement()) @map("id")
   emailAddress        String        @unique @map("emailAddress")
   password            String        @map("password") 
+  firstName           String        @map("firstName")
+  lastName            String        @map("lastName")
   country             String?        @map("country")
   city                String?        @map("city")
   age                 Int?           @map("age")
