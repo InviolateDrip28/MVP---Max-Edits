@@ -11,7 +11,7 @@ enum TransactionStatus {
 }
 
 {
-  /* TODO:  use user id, add loading, add error handling */
+  /* TODO:  use user id, add loading, add error handling, fix date time */
 }
 export const TransactionsTable = () => {
   const userStore = useUserStore();

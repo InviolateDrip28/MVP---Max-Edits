@@ -21,6 +21,7 @@ export class UserStore {
   firstName: string = "";
   lastName: string = "";
   email: string = "";
+  recieveEmails: boolean = false;
   authMethod: AuthMethod = AuthMethod.INITIAL;
 
   constructor(root: RootStore) {
@@ -30,6 +31,7 @@ export class UserStore {
       id: observable,
       firstName: observable,
       lastName: observable,
+      recieveEmails: observable,
       setLoggedIn: action,
       setId: action,
       setFirstName: action,
@@ -63,9 +65,10 @@ export class UserStore {
     this.authMethod = method;
   };
 
-  public setUser = (firstName: string, lastName: string, email: string) => {
+  public setUser = (firstName: string, lastName: string, email: string, recieveEmails: boolean) => {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.recieveEmails = recieveEmails;
   }
 }

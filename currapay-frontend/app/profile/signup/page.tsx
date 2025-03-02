@@ -24,6 +24,7 @@ const SignupPage = observer(() => {
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [recieveEmails, setRecieveEmails] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +47,8 @@ const SignupPage = observer(() => {
     setLoading(true);
     await mutation
       .mutateAsync({
+        firstName: firstName,
+        lastName: lastName,
         emailAddress: email,
         password: password,
         country: "",
@@ -56,11 +59,12 @@ const SignupPage = observer(() => {
         nationality: "",
         deviceUsed: "",
         browserUsed: "",
+        recieveEmails: recieveEmails,
       })
       .then((data) => {
         const userData = data as User;
         userStore.setId(userData.id);
-        userStore.setUser(firstName, lastName, email);
+        userStore.setUser(firstName, lastName, email, recieveEmails);
         userStore.setLoggedIn(true);
         setLoading(false);
         router.push("/profile");
@@ -201,6 +205,7 @@ const SignupPage = observer(() => {
                 type="checkbox"
                 value=""
                 className="w-4 h-4 text-accent bg-gray-100 border-gray-300 rounded accent-accent focus:ring-0 cursor-pointer"
+                onChange={(e) => setRecieveEmails(e.target.checked)}
               />
               <label htmlFor="default-checkbox" className="ms-2">
                 I want to recieve really awesome email updates.

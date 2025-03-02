@@ -6,6 +6,8 @@ import argon2 from "argon2";
 const t = initTRPC.create();
 
 const userCreateSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
   emailAddress: z.string().email(),
   password: z.string().min(6),
   country: z.string(),
@@ -16,6 +18,7 @@ const userCreateSchema = z.object({
   nationality: z.string(),
   deviceUsed: z.string(),
   browserUsed: z.string(),
+  recieveEmails: z.boolean(),
 });
 
 const userUpdateSchema = z.object({
@@ -52,6 +55,8 @@ export const useUser = t.router({
       throw new Error(`Failed to fetch user with ID ${id}`);
     }
   }),
+
+  
 
   createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
     const { input: userData } = opts;

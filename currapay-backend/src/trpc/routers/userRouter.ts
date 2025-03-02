@@ -18,6 +18,8 @@ export const userRouter = t.router({
 
   createUser: t.procedure
     .input(z.object({
+      firstName: z.string(),
+      lastName: z.string(),
       emailAddress: z.string().email(),
       password: z.string().min(6), 
       country: z.string(),
@@ -28,6 +30,7 @@ export const userRouter = t.router({
       nationality: z.string(),
       deviceUsed: z.string(),
       browserUsed: z.string(), 
+      recieveEmails: z.boolean(),
     }))
     .mutation(async ({ input }) => {
       return await useUser.createUser(input);

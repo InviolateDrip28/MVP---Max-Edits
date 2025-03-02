@@ -21,6 +21,7 @@ model User {
   nationality         String?        @map("nationality")
   deviceUsed          String?        @map("deviceUsed")
   browserUsed         String?        @map("browserUsed")
+  recieveEmails       Boolean        @map("recieveEmails")
   createdAt           DateTime      @default(now()) @map("createdAt")
   updatedAt           DateTime      @default(now()) @updatedAt @map("updatedAt") 
   transactions        Transaction[] @relation("UserTransactions")
