@@ -35,6 +35,7 @@ const userUpdateSchema = z.object({
 });
 
 const userIdSchema = z.number();
+const userEmailSchema = z.string().email();
 
 export const useUser = t.router({
   getAllUsers: t.procedure.query(async () => {
@@ -56,7 +57,15 @@ export const useUser = t.router({
     }
   }),
 
-  
+  getUserByEmail: t.procedure.input(userEmailSchema).query(async (opts) => {
+    const { input: email } = opts;
+    try {
+      return await prisma.user.findUnique({ where: { emailAddress: email } });
+    } catch (error) {
+      console.error("Error fetching user with email ${email}:", error);
+      throw new Error("Failed to fetch user with email ${email}");
+    }
+  }),
 
   createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
     const { input: userData } = opts;
