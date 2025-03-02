@@ -61,4 +61,10 @@ export const userRouter = t.router({
     .mutation(async ({ input }) => {
       return await useUser.deleteUser(input);
     }),
+  
+  getUserByEmail: t.procedure
+    .input(z.string().email())
+    .query(async ({ input }) => {
+      return await useUser.getUserByEmail(input);
+    }),
 });

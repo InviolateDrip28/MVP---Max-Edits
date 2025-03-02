@@ -2,16 +2,20 @@
 import { useUserStore } from "@/stores/provider";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { trpc } from "@/utils/trpc";
 
-export default function SignIn() {
+const SignIn = () => {
   const userStore = useUserStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showWarning, setShowWarning] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
 
+  const { status, data, error, refetch } =
+    trpc.user.getUserByEmail.useQuery(email, { enabled: false });
+
   function handleSignIn() {
+    const result = refetch();
     // TODO: Implement sign in logic
     if (true) {
       userStore.setLoggedIn(true);
@@ -64,10 +68,10 @@ export default function SignIn() {
             type="button"
             disabled={!isValidForm}
             className={`w-full px-20 py-3 font-semibold text-white transition-colors duration-300 transform rounded-lg focus:outline-none ${
-                isValidForm
-                  ? "bg-accent hover:bg-accent/80"
-                  : "bg-accent/50 cursor-not-allowed"
-              }`}
+              isValidForm
+                ? "bg-accent hover:bg-accent/80"
+                : "bg-accent/50 cursor-not-allowed"
+            }`}
             onClick={handleSignIn}
           >
             <h4>Sign in</h4>
@@ -109,4 +113,6 @@ export default function SignIn() {
       </form>
     </div>
   );
-}
+};
+
+export default trpc.withTRPC(SignIn);
