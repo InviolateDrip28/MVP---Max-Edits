@@ -67,6 +67,39 @@ export const useUser = t.router({
     }
   }),
 
+  signInUser: t.procedure
+    .input(
+      z.object({
+        emailAddress: z.string().email(),
+        password: z.string().min(6),
+      })
+    )
+    .mutation(async (opts) => {
+      const { emailAddress, password } = opts.input;
+
+      try {
+        const user = await prisma.user.findUnique({
+          where: { emailAddress },
+        });
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+        const hashedPassword = await argon2.verify(user.password, password);
+
+        if (!hashedPassword) {
+          throw new Error("Invalid password");
+        }
+        const { password: _, ...userData } = user;
+        return userData;
+
+      } catch (error) {
+        console.error("Error signing in:", error);
+        throw new Error("Failed to sign in");
+      }
+    }),
+
+
   createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
     const { input: userData } = opts;
     try {
