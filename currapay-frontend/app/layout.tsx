@@ -15,8 +15,9 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Currapay",
-  description: "currapay",
+  title: "CurraPay",
+  description:
+    "Find the Cheapest Ways to Send Money Abroad and Save Big on Fees with CurraPay",
 };
 
 export default function RootLayout({
@@ -26,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`font-urbanist ${urbanist.variable}`}
-      >
+      <body className={`font-urbanist ${urbanist.variable}`}>
         <div>
           <StoreProvider>
             <Suspense>
