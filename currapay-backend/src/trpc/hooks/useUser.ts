@@ -6,10 +6,10 @@ import argon2 from "argon2";
 const t = initTRPC.create();
 
 const userCreateSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
   emailAddress: z.string().email(),
   password: z.string().min(6),
+  firstName: z.string(),
+  lastName: z.string(),
   country: z.string(),
   city: z.string(),
   age: z.number().int(),
@@ -24,6 +24,8 @@ const userCreateSchema = z.object({
 const userUpdateSchema = z.object({
   emailAddress: z.string().email().optional(),
   password: z.string().min(6).optional(),
+  firstName: z.string(),
+  lastName: z.string(),
   country: z.string().optional(),
   city: z.string().optional(),
   age: z.number().int().optional(),
@@ -92,13 +94,11 @@ export const useUser = t.router({
         }
         const { password: _, ...userData } = user;
         return userData;
-
       } catch (error) {
         console.error("Error signing in:", error);
         throw new Error("Failed to sign in");
       }
     }),
-
 
   createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
     const { input: userData } = opts;

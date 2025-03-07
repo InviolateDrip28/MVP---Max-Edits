@@ -47,10 +47,10 @@ const SignupPage = observer(() => {
     setLoading(true);
     await mutation
       .mutateAsync({
-        firstName: firstName,
-        lastName: lastName,
         emailAddress: email,
         password: password,
+        firstName: firstName,
+        lastName: lastName,
         country: "",
         city: "",
         age: 100,
@@ -79,15 +79,11 @@ const SignupPage = observer(() => {
 
   const handleClickShowPassword = () => {
     setShowPassword((show) => !show);
-  }
-
+  };
 
   useEffect(() => {
     setIsValidForm(
-      firstName.length > 0 &&
-        lastName.length > 0 &&
-        email.length > 0 &&
-        checked
+      firstName.length > 0 && lastName.length > 0 && email.length > 0 && checked
     );
   }, [firstName, lastName, email, checked]);
 
@@ -97,7 +93,9 @@ const SignupPage = observer(() => {
         <form className="w-full md:w-3/4 lg:w-1/2">
           <h1 className="text-center">Sign Up</h1>
 
-          <p className="text-center mt-12 underline underline-offset-2">*All fields required</p>
+          <p className="text-center mt-12 underline underline-offset-2">
+            *All fields required
+          </p>
           <div className="relative flex flex-row items-center mt-8 space-x-4">
             <input
               type="first-name"
@@ -152,9 +150,7 @@ const SignupPage = observer(() => {
               type={showPassword ? "text" : "password"}
               className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Confirm password"
-              onChange={(event) =>
-                setConfirmPassword(event.target.value)
-              }
+              onChange={(event) => setConfirmPassword(event.target.value)}
             />
           </div>
 
@@ -264,11 +260,7 @@ const SignupPage = observer(() => {
           autoHideDuration={8000}
           onClose={handleClose}
         >
-          <Alert
-            severity="error"
-            onClose={handleClose}
-            sx={{ width: "100%" }}
-          >
+          <Alert severity="error" onClose={handleClose} sx={{ width: "100%" }}>
             {errorText}
           </Alert>
         </Snackbar>
