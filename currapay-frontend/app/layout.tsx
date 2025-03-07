@@ -26,6 +26,12 @@ export const metadata: Metadata = {
     url: "https://currapay.com",
     title: "Compare International Money Transfer Providers and Save Your Money",
     description: "Find the Cheapest Ways to Send Money Abroad and Save Big on Fees with CurraPay",
+    images: [
+      {
+        url: "/thumbnail.jpg",
+        alt: "CurraPay",
+      },
+    ]
   }
 };
 
