@@ -15,6 +15,8 @@ export type Transaction = {
 };
 
 export type User = {
+  firstName: string;
+  lastName: string;
   age: number;
   browserUsed: string;
   city: string;
@@ -28,4 +30,5 @@ export type User = {
   occupation: string;
   password: string;
   updatedAt: string;
+  recieveEmails: boolean;
 };
