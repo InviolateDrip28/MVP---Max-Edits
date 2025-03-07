@@ -39,16 +39,15 @@ const userUpdateSchema = z.object({
 const userIdSchema = z.number();
 const userEmailSchema = z.string().email();
 
-export const useUser = t.router({
-  getAllUsers: t.procedure.query(async () => {
+export const useUser = {
+  getAllUsers: async () => {
     try {
       return await prisma.user.findMany();
     } catch (error) {
       console.error("Error fetching users:", error);
       throw new Error("Failed to fetch users");
     }
-  }),
-
+  },
   getUserById: t.procedure.input(userIdSchema).query(async (opts) => {
     const { input: id } = opts;
     try {
@@ -69,25 +68,16 @@ export const useUser = t.router({
     }
   }),
 
-  signInUser: t.procedure
-    .input(
-      z.object({
-        emailAddress: z.string().email(),
-        password: z.string().min(6),
-      })
-    )
-    .mutation(async (opts) => {
-      const { emailAddress, password } = opts.input;
-
+  signInUser: async (opts: {emailAddress: string, password: string}) => {
       try {
         const user = await prisma.user.findUnique({
-          where: { emailAddress },
+          where: { emailAddress: opts.emailAddress },
         });
 
         if (!user) {
           throw new Error("User not found");
         }
-        const hashedPassword = await argon2.verify(user.password, password);
+        const hashedPassword = await argon2.verify(user.password, opts.password);
 
         if (!hashedPassword) {
           throw new Error("Invalid password");
@@ -98,10 +88,25 @@ export const useUser = t.router({
         console.error("Error signing in:", error);
         throw new Error("Failed to sign in");
       }
-    }),
+    },
 
-  createUser: t.procedure.input(userCreateSchema).mutation(async (opts) => {
-    const { input: userData } = opts;
+  createUser: async (userData: 
+    {
+      emailAddress: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+      country: string;
+      city: string;
+      age: number;
+      gender: string;
+      occupation: string;
+      nationality: string;
+      deviceUsed: string;
+      browserUsed: string;
+      recieveEmails: boolean;
+    }
+   ) => {
     try {
       const hashedPassword = await argon2.hash(userData.password);
 
@@ -117,7 +122,7 @@ export const useUser = t.router({
       console.error("Error creating user:", error);
       throw new Error("Failed to create user");
     }
-  }),
+  },
 
   updateUser: t.procedure
     .input(
@@ -152,4 +157,4 @@ export const useUser = t.router({
       return false;
     }
   }),
-});
+};

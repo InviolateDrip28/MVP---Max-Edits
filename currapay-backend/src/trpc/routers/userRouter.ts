@@ -75,7 +75,7 @@ export const userRouter = t.router({
   signInUser: t.procedure
     .input(
       z.object({
-        email: z.string().email(),
+        emailAddress: z.string().email(),
         password: z.string().min(6),
       })
     )

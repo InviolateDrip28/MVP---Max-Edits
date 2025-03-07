@@ -11,14 +11,14 @@ enum TransactionStatus {
 }
 
 {
-  /* TODO:  use user id, add loading, add error handling, fix date time */
+  /* TODO:  add loading, add error handling, fix date time */
 }
 export const TransactionsTable = () => {
   const userStore = useUserStore();
   const showTransactions = useRef(false);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const { data, error, isLoading } =
-    trpc.transaction.getTransactionsByUserId.useQuery(75);
+    trpc.transaction.getTransactionsByUserId.useQuery(userStore.id);
 
   useEffect(() => {
     if (error) {

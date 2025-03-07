@@ -3,6 +3,7 @@ import { useUserStore } from "@/stores/provider";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";
+import { User } from "@/app/data";
 
 const SignIn = () => {
   const userStore = useUserStore();
@@ -11,18 +12,30 @@ const SignIn = () => {
   const [showWarning, setShowWarning] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
 
-  const { status, data, error, refetch } =
-    trpc.user.getUserByEmail.useQuery(email, { enabled: false });
+  const mutation = trpc.user.signInUser.useMutation();
 
-  function handleSignIn() {
-    const result = refetch();
-    // TODO: Implement sign in logic
-    if (true) {
-      userStore.setLoggedIn(true);
-    } else {
-      setShowWarning(true);
-      return;
-    }
+  async function handleSignIn() {
+    await mutation
+      .mutateAsync({
+        emailAddress: email,
+        password: password,
+      })
+      .then((data) => {
+        const userData = data as User;
+        userStore.setId(userData.id);
+        userStore.setUser(
+          userData.firstName,
+          userData.lastName,
+          userData.emailAddress,
+          userData.recieveEmails
+        );
+        userStore.setLoggedIn(true);
+      })
+      .catch((error) => {
+        // TODO: Implement error handling
+        setShowWarning(true);
+        console.error(error);
+      });
   }
 
   useEffect(() => {

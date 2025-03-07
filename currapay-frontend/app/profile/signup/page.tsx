@@ -41,16 +41,16 @@ const SignupPage = observer(() => {
     setShowSnackbar({ ...showSnackbar, open: false });
   };
 
-  const mutation = trpc.user.createUser.useMutation<User>();
+  const mutation = trpc.user.createUser.useMutation();
 
-  const handleSignup = async () => {
+  async function handleSignup () {
     setLoading(true);
-    await mutation
-      .mutateAsync({
-        emailAddress: email,
-        password: password,
+
+    await mutation.mutateAsync({
         firstName: firstName,
         lastName: lastName,
+        emailAddress: email,
+        password: password,
         country: "",
         city: "",
         age: 100,
@@ -60,8 +60,7 @@ const SignupPage = observer(() => {
         deviceUsed: "",
         browserUsed: "",
         recieveEmails: recieveEmails,
-      })
-      .then((data) => {
+      }).then((data) => {
         const userData = data as User;
         userStore.setId(userData.id);
         userStore.setUser(firstName, lastName, email, recieveEmails);
