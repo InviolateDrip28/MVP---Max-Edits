@@ -1064,10 +1064,10 @@ interface PartnerDetails {
 const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
   "Western Union": {
     displayName: "Western Union",
-    link: "https://www.westernunion.com",
+    link: "https://www.tkqlhce.com/click-101237354-15662762",
     image: "/partners/westernunion_logo.png",
     fees: "3",
-    transferTime: "Minutes to 2 Dayss",
+    transferTime: "Minutes to 2 Days",
   },
   "Currency Solution": {
     displayName: "Currency Solutions",
