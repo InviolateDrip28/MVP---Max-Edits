@@ -2,6 +2,10 @@
 import { useUserStore } from "@/stores/provider";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/20/solid";
 import { trpc } from "@/utils/trpc";
 import { User } from "@/app/data";
 
@@ -11,6 +15,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showWarning, setShowWarning] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const mutation = trpc.user.signInUser.useMutation();
 
@@ -37,6 +42,10 @@ const SignIn = () => {
         console.error(error);
       });
   }
+
+  const handleClickShowPassword = () => {
+    setShowPassword((show) => !show);
+  };
 
   useEffect(() => {
     setIsValidForm(email.length > 0 && password.length > 0);
@@ -66,14 +75,23 @@ const SignIn = () => {
 
         <div className="relative flex items-center mt-4">
           <input
-            type="password"
-            className={`block w-full pl-3 pr-10 py-3 text-secondary border rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40 ${
-              showWarning ? "border-red-500" : "border-secondary"
-            }`}
+            type={showPassword ? "text" : "password"}
+            className="block w-full pl-3 pr-10 py-3 text-secondary border border-secondary  rounded-lg  focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {showPassword ? (
+            <EyeSlashIcon
+              className="h-6 w-6 text-secondary/75 absolute right-3 cursor-pointer"
+              onClick={handleClickShowPassword}
+            />
+          ) : (
+            <EyeIcon
+              className="h-6 w-6 text-secondary/75 absolute right-3 cursor-pointer"
+              onClick={handleClickShowPassword}
+            />
+          )}
         </div>
 
         <div className="mt-6">
@@ -90,7 +108,7 @@ const SignIn = () => {
             <h4>Sign in</h4>
           </button>
 
-          <p className="mt-4 text-center ">or</p>
+          {/* <p className="mt-4 text-center ">or</p>
 
           <Link
             href="#"
@@ -115,7 +133,7 @@ const SignIn = () => {
               />
             </svg>
             <p className="mx-2">Sign in with Google</p>
-          </Link>
+          </Link> */}
 
           <div className="mt-12 text-center">
             <Link href="/profile/signup" className="link">

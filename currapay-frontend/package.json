@@ -55,5 +55,8 @@
     "three": "^0.169.0",
     "typescript": "^5",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6"
   }
 }

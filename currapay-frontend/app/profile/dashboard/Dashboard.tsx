@@ -12,7 +12,7 @@ const UserDashboard = observer(() => {
 
 
   function handleLogOut() {
-    userStore.setLoggedIn(false);
+    userStore.signOut()
   }
   return (
     <div id="userDashboard">
