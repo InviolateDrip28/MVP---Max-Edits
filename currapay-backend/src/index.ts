@@ -7,6 +7,7 @@ import { appRouter } from "./trpc/_app";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { errorHandler } from "./utils/errorHandler";
 import { logger } from "./utils/logger";
+import cookieParser from "cookie-parser";
 
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
@@ -27,6 +28,9 @@ app.use(
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// Middleware to parse cookies
+app.use(cookieParser());
+
 // Middleware for logging requests
 app.use((req, res, next) => {
   logger(`Received ${req.method} request for ${req.url}`);
@@ -43,7 +47,9 @@ app.use(
   "/trpc",
   trpcExpress.createExpressMiddleware({
     router: appRouter,
-    createContext: () => ({}),
+    createContext: ({ req }) => ({
+      cookies: req.cookies,
+    }),
   })
 );
 
@@ -66,16 +72,7 @@ const cron = require("node-cron");
 // INR is tradeable only between 07:00 to 17:30 NZST
 // sell currency cannot equal the currency of buy
 async function updateRatesTable() {
-  const currencies = [
-    "USD",
-    "GBP",
-    "EUR",
-    "CAD",
-    "CHF",
-    "AUD",
-    "BRL",
-    "JPY",
-  ];
+  const currencies = ["USD", "GBP", "EUR", "CAD", "CHF", "AUD", "BRL", "JPY"];
 
   const currencyToCountryCode = {
     USD: "US",
@@ -92,7 +89,6 @@ async function updateRatesTable() {
 
   for (const sell of currencies) {
     const tmpArr = [];
-
 
     for (const buy of currencies) {
       if (sell !== buy) {
@@ -131,15 +127,11 @@ async function updateRatesTable() {
   }
 
   const filepath = path.join(__dirname, "/trpc/data/rates.json");
-  fs.writeFile(
-    filepath,
-    JSON.stringify(resultArr, null, 2),
-    (err) => {
-      if (err) {
-        console.error("Error writing rates data:", err);
-      }
+  fs.writeFile(filepath, JSON.stringify(resultArr, null, 2), (err) => {
+    if (err) {
+      console.error("Error writing rates data:", err);
     }
-  );
+  });
 }
 
 // Schedule the update every hour
