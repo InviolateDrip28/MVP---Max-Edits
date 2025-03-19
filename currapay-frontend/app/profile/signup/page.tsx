@@ -222,7 +222,7 @@ const SignupPage = observer(() => {
               <h4>Sign up</h4>
             </button>
 
-            <p className="mt-4 text-center ">or</p>
+            {/* <p className="mt-4 text-center ">or</p>
 
             <button
               type="button"
@@ -248,7 +248,7 @@ const SignupPage = observer(() => {
                 />
               </svg>
               <p className="mx-2">Sign up with Google</p>
-            </button>
+            </button> */}
           </div>
         </form>
 
