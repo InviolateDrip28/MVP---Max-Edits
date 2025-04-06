@@ -20,22 +20,6 @@ export const TransactionsTable = () => {
       userStore.id !== undefined ? userStore.id : -1
     );
 
-  if (isLoading) {
-    return (
-      <div className="text-center mt-16 font-semibold text-secondary space-y-8 overflow-hidden rounded-xl bg-white border border-secondary/30 shadow p-4 lg:p-6">
-        <h4>Loading your transactions...</h4>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-center mt-16 font-semibold text-secondary space-y-8 overflow-hidden rounded-xl bg-white border border-secondary/30 shadow p-4 lg:p-6">
-        <h4>Error fetching transactions. Please try again later.</h4>
-      </div>
-    );
-  }
-
   useEffect(() => {
     if (error) {
       console.error("Error fetching transactions:", error);
@@ -57,6 +41,22 @@ export const TransactionsTable = () => {
   function formatDate(value: string) {
     const date = new Date(value);
     return date.toISOString().replace("T", ", ").substring(0, 17);
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-center mt-16 font-semibold text-secondary space-y-8 overflow-hidden rounded-xl bg-white border border-secondary/30 shadow p-4 lg:p-6">
+        <h4>Loading your transactions...</h4>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-16 font-semibold text-secondary space-y-8 overflow-hidden rounded-xl bg-white border border-secondary/30 shadow p-4 lg:p-6">
+        <h4>Error fetching transactions. Please try again later.</h4>
+      </div>
+    );
   }
 
   return (
