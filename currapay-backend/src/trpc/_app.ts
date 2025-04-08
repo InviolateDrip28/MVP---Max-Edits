@@ -4,6 +4,7 @@ import { userRouter } from "./routers/userRouter";
 import { currencySolutionsRouter } from "./routers/currencySolutionsRouter";
 import { atlanticMoneyRouter } from "./routers/atlanticMoneyRouter";
 import { xeRouter } from "./routers/xeRouter";
+import { remitlyRouter } from "./routers/remitlyRouter";
 import { ofxRouter } from "./routers/ofxRouter";
 import { allRatesRouter } from "./routers/allRatesRouter";
 import { instaremRouter } from "./routers/instaremRouter";
@@ -23,6 +24,7 @@ export const appRouter = t.router({
   user: userRouter,
   currencySolutions: currencySolutionsRouter,
   atlanticMoney: atlanticMoneyRouter,
+  remitly: remitlyRouter,
   xe: xeRouter,
   ofx: ofxRouter,
   allRates: allRatesRouter,
