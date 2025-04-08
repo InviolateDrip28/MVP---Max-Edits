@@ -119,7 +119,42 @@ export const allRatesRouter = t.router({
         // throw new Error("Failed to fetch Currency Solution  rate");
         csRate = null;
       }
+      
+      // Get Remitly Rate
+      let reRate: number | null = null;
+      try {
+        const request = {
+          origination: {
+            country,
+            currency: sell,
+            sendAmount: amount,
+          },
+          destination: {
+            country: destinationCountry,
+            currency: buy,
+          },
+        };
 
+        const response = await axios.post(
+          `${process.env.RE_URL}/v1/price`,
+          request,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "x-api-key": process.env.WU_KEY!,
+            },
+          }
+        );
+
+        reRate = response.data.products[0]?.exchangeRate;
+        reRate = parseFloat(Number(reRate).toFixed(3));
+        console.log("Remitly Rate:", reRate);
+      } catch (error) {
+        console.error("Error fetching Remitly rate:", error);
+        // throw new Error("Failed to fetch Remitly rate");
+        reRate = null;
+      }
+      
       // Get Western Union Rate
       let wuRate: number | null = null;
       try {
@@ -160,6 +195,7 @@ export const allRatesRouter = t.router({
         { source: "XE", rate: xeRate },
         // { source: "OFX", rate: ofxRate },
         { source: "Atlantic Money", rate: amRate },
+        { source: "Remitly", rate: reRate },      
         { source: "Currency Solution", rate: csRate },
         { source: "Western Union", rate: wuRate },
       ];
