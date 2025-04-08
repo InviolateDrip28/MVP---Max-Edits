@@ -141,7 +141,7 @@ export const allRatesRouter = t.router({
           {
             headers: {
               "Content-Type": "application/json",
-              "x-api-key": process.env.WU_KEY!,
+              "x-api-key": "lM99nHGdAfsgADZXSYM67EtrdC5Z4ZKW",
             },
           }
         );
