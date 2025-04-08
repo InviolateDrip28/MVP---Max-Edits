@@ -56,24 +56,24 @@ export const allRatesRouter = t.router({
       }
 
       // Get OFX Rate
-      // let ofxRate: number | null = null;
-      // try {
-      //   const response = await axios.get(
-      //     `${process.env.OFX_URL}/ofxrates/${sell}/${buy}/${amount}`,
-      //     {
-      //       headers: {
-      //         Authorization: `Bearer ${process.env.OFX_TOKEN}`,
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
+      let ofxRate: number | null = null;
+      try {
+        const response = await axios.get(
+         `${process.env.OFX_URL}/ofxrates/${sell}/${buy}/${amount}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.OFX_TOKEN}`,
+              "Content-Type": "application/json",
+             },
+           }
+         );
 
-      //   ofxRate = response.data.ofxRate || null;
-      //   console.log("OFX Rate:", ofxRate);
-      // } catch (error) {
-      //   console.error("Error fetching OFX rate:", error);
-      //   throw new Error("Failed to fetch OFX rate");
-      // }
+         ofxRate = response.data.ofxRate || null;
+         console.log("OFX Rate:", ofxRate);
+       } catch (error) {
+         console.error("Error fetching OFX rate:", error);
+         throw new Error("Failed to fetch OFX rate");
+      }
 
       // Get Atlantic Money Rate
       let amRate: number | null = null;
@@ -195,7 +195,8 @@ export const allRatesRouter = t.router({
         { source: "XE", rate: xeRate },
         // { source: "OFX", rate: ofxRate },
         { source: "Atlantic Money", rate: amRate },
-        { source: "Remitly", rate: reRate },      
+        { source: "Remitly", rate: reRate },
+        { source: "OFX", rate: ofxRate },
         { source: "Currency Solution", rate: csRate },
         { source: "Western Union", rate: wuRate },
       ];
