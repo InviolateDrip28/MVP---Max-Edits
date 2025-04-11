@@ -38,7 +38,7 @@ export const riaRouter = t.router({
     .query(async (opts) => {
       const { countryTo, currencyTo, currencyFrom, paymentMethod, deliveryMethod, amountFrom } = opts.input;
       try {
-        const requestBody = {
+        const request = {
           "selections": {
             "countryTo": countryTo,
             "currencyTo": currencyTo,
@@ -55,7 +55,7 @@ export const riaRouter = t.router({
 
         const response = await axios.post(
           'https://public.riamoneytransfer.com/moneytransfercalculator/calculate',
-          requestBody,
+          request,
           {
             headers: {
               'appversion': '4.51.0',
