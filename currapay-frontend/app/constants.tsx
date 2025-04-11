@@ -1037,7 +1037,7 @@ const PARTNERS = [
   },
   {
     image: "/partners/westernunion_logo.png",
-    link: "https://westernunion.com/",
+    link: "https://www.tkqlhce.com/click-101237354-15662762",
   },
   {
     image: "/partners/wise_logo.png",
@@ -1108,6 +1108,13 @@ const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
     displayName: "Remitly",
     link: "https://remitly.tod8mp.net/55g9ko",
     image: "/partners/remitly_logo.png",
+    fees: "3",
+    transferTime: "Minutes to 2 Days",
+  },
+  Wise: {
+    displayName: "Wise",
+    link: "https://wise.prf.hn/click/camref:1011l3XFpW",
+    image: "/partners/wise_logo.png",
     fees: "3",
     transferTime: "Minutes to 2 Days",
   },
