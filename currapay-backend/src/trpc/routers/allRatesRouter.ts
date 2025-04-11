@@ -155,6 +155,47 @@ export const allRatesRouter = t.router({
         reRate = null;
       }
       
+      // Get Ria Rates
+      let riaRate: number | null = null;
+      try {
+        const requestBody = {
+          "selections": {
+            "countryTo": destinationCountry,
+            "currencyTo": buy,
+            "currencyFrom": sell,
+            "paymentMethod": "MobilePayment", // You might need to make this dynamic based on user input
+            "deliveryMethod": "MobilePayment", // You might need to make this dynamic
+            "amountFrom": amount.toString(),
+            "amountTo": null,
+            "agentToId": null,
+            "agentToLocationId": null,
+            "shouldCalcVariableRates": true
+          }
+        };
+
+        const response = await axios.post(
+          'https://public.riamoneytransfer.com/moneytransfercalculator/calculate',
+          requestBody,
+          {
+            headers: {
+              'appversion': '4.51.0',
+              'isocode': country, // Using the 'country' from the input as 'isocode'
+              'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0',
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+
+        const riaCalculations = response.data?.model?.transferDetails?.calculations;
+        riaRate = riaCalculations?.exchangeRate || null;
+        riaRate = parseFloat(Number(riaRate).toFixed(3));
+        console.log("Ria Rate:", riaRate);
+      } catch (error) {
+        console.error("Error fetching Ria rate:", error);
+        riaRate = null;
+        // throw new Error("Failed to fetch Ria rate");
+      }
+
       // Get Western Union Rate
       let wuRate: number | null = null;
       try {
@@ -197,6 +238,7 @@ export const allRatesRouter = t.router({
         { source: "Atlantic Money", rate: amRate },
         { source: "Remitly", rate: reRate },
         { source: "OFX", rate: ofxRate },
+        { source: "Ria", rate: riaRate },
         { source: "Currency Solution", rate: csRate },
         { source: "Western Union", rate: wuRate },
       ];
