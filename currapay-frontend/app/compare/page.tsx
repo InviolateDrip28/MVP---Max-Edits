@@ -56,13 +56,13 @@ const Compare = observer(() => {
   useEffect(() => {
     if (!isLoading && data) {
       setNumProviders(data.length);
-      setCards(data.slice(0, 5));
+      setCards(data.slice(0, 10));
     }
   }, [numProviders, data, isLoading]);
 
   useEffect(() => {
     if (data) {
-      setCards(data.slice((current - 1) * 5, current * 5));
+      setCards(data.slice((current - 1) * 10, current * 10));
     }
   }, [current, data]);
 
