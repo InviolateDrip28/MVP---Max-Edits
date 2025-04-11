@@ -32,7 +32,7 @@ const riaRateOutputSchema = z.object({
   ),
 });
 
-export const riaMoneyTransferRouter = t.router({
+export const riaRouter = t.router({
   getRiaRate: t.procedure
     .input(riaRateInputSchema)
     .query(async (opts) => {
@@ -66,9 +66,9 @@ export const riaMoneyTransferRouter = t.router({
           }
         );
 
-        const riaRateData = response.data.model.transferDetails.calculations;
-        console.log("Ria API Response:", riaRateData);
-        return riaRateData as z.infer<typeof riaRateOutputSchema>;
+        const riaRate = response.data.model.transferDetails.calculations;
+        console.log("Ria Rate:", riRate);
+        return riaRate as z.infer<typeof riaRateOutputSchema>;
       } catch (error) {
         console.error("Error fetching Ria rate:", error);
         throw new Error("Failed to fetch Ria rate");
