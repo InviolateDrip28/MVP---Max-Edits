@@ -67,7 +67,7 @@ export const riaRouter = t.router({
         );
 
         const riaRate = response.data.model.transferDetails.calculations;
-        console.log("Ria Rate:", riRate);
+        console.log("Ria Rate:", riaRate);
         return riaRate as z.infer<typeof riaRateOutputSchema>;
       } catch (error) {
         console.error("Error fetching Ria rate:", error);
