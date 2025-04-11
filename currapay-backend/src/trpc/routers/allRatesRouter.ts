@@ -155,7 +155,7 @@ export const allRatesRouter = t.router({
         reRate = null;
       }
       
-      // Get Ria Rates
+      // Get Ria Rate
       let riaRate: number | null = null;
       try {
         const requestBody = {
@@ -163,7 +163,7 @@ export const allRatesRouter = t.router({
             "countryTo": destinationCountry,
             "currencyTo": buy,
             "currencyFrom": sell,
-            "paymentMethod": "MobilePayment", // You might need to make this dynamic based on user input
+            "paymentMethod": "DebitCard", // You might need to make this dynamic based on user input
             "deliveryMethod": "MobilePayment", // You might need to make this dynamic
             "amountFrom": amount.toString(),
             "amountTo": null,
@@ -182,7 +182,8 @@ export const allRatesRouter = t.router({
               'isocode': country, // Using the 'country' from the input as 'isocode'
               'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0',
               'Content-Type': 'application/json'
-            }
+              "x-api-key": process.env.RI_KEY!,              
+            },
           }
         );
 
