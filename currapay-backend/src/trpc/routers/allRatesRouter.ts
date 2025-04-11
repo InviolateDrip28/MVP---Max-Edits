@@ -158,15 +158,15 @@ export const allRatesRouter = t.router({
       // Get Ria Rate
       let riaRate: number | null = null;
       try {
-        const requestBody = {
+        const request = {
           "selections": {
             "countryTo": destinationCountry,
             "currencyTo": buy,
             "currencyFrom": sell,
             "paymentMethod": "DebitCard", // You might need to make this dynamic based on user input
             "deliveryMethod": "MobilePayment", // You might need to make this dynamic
-            "amountFrom": amount.toString(),
-            "amountTo": null,
+            "amountFrom": null,
+            "amountTo": amount.toString(),
             "agentToId": null,
             "agentToLocationId": null,
             "shouldCalcVariableRates": true
@@ -175,7 +175,7 @@ export const allRatesRouter = t.router({
 
         const response = await axios.post(
           'https://public.riamoneytransfer.com/moneytransfercalculator/calculate',
-          requestBody,
+          request,
           {
             headers: {
               'appversion': '4.51.0',
