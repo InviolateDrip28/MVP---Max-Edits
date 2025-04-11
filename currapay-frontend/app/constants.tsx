@@ -1111,6 +1111,13 @@ const PARTNER_NAMES_TO_DETAILS: Record<string, PartnerDetails> = {
     fees: "3",
     transferTime: "Minutes to 2 Days",
   },
+  Ria: {
+    displayName: "Ria",
+    link: "https://ria-money-transfer.7eer.net/e1KVn6",
+    image: "/partners/ria_logo.png",
+    fees: "3",
+    transferTime: "Minutes to 2 Days",
+  },
 };
 
 interface ModalDetails {
