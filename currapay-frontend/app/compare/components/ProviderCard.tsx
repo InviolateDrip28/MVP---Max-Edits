@@ -29,6 +29,8 @@ export default function ProviderCard(props: ProviderCardProps) {
     props.provider == "Remitly" ||
     props.provider == "OFX" ||
     props.provider == "Ria" ||
+    props.provider == "Instarem" ||
+    props.provider == "Wise" ||
     props.provider == "Atlantic Money";
 
   const optionsFirst = props.options[0];
